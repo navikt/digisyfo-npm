@@ -1,0 +1,44 @@
+{
+  "name": "digisyfo-npm",
+  "version": "1.0.0",
+  "description": "Felleskomponenter for DigiSyfo - Digitalisering av sykefraværsoppfølgingen",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel-core/register --require ./tests/test_helper.js \"tests/**/*.@(js|jsx)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@stash.devillo.no:7999/syfo/digisyfo-npm.git"
+  },
+  "author": "digisyfo@nav.no",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "6.3.26",
+    "babel-cli": "^6.7.7",
+    "babel-core": "6.5.2",
+    "babel-loader": "6.2.3",
+    "babel-polyfill": "6.6.1",
+    "babel-preset-es2015": "6.5.0",
+    "babel-preset-react": "6.5.0",
+    "babel-preset-stage-0": "6.3.13",
+    "babelify": "7.2.0",
+    "react": "15.3.2",
+    "react-dom": "15.3.2"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "chai-enzyme": "0.5.1",
+    "enzyme": "2.4.1",
+    "jsdom": "9.5.0",
+    "karma": "0.13.21",
+    "karma-chrome-launcher": "0.2.2",
+    "karma-cli": "0.1.2",
+    "karma-coverage": "0.5.3",
+    "karma-firefox-launcher": "0.1.7",
+    "karma-mocha": "0.2.2",
+    "karma-phantomjs-launcher": "git+http://stash.devillo.no/scm/npmm/karma-phantomjs-launcher.git#d77c5b83f657b19796520b196db66be7d07ae168",
+    "karma-sourcemap-loader": "0.3.7",
+    "karma-webpack": "1.7.0",
+    "react-addons-test-utils": "15.3.2"
+  }
+}
