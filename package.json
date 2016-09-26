@@ -42,6 +42,7 @@
     "karma-phantomjs-launcher": "git+http://stash.devillo.no/scm/npmm/karma-phantomjs-launcher.git#d77c5b83f657b19796520b196db66be7d07ae168",
     "karma-sourcemap-loader": "0.3.7",
     "karma-webpack": "1.7.0",
-    "react-addons-test-utils": "15.3.2"
+    "react-addons-test-utils": "15.3.2",
+    "gulp": "3.9.1"
   }
 }
