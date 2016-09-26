@@ -11,6 +11,9 @@
     "url": "ssh://git@stash.devillo.no:7999/syfo/digisyfo-npm.git"
   },
   "author": "digisyfo@nav.no",
+  "publishConfig": {
+    "registry": "http://maven.adeo.no/nexus/content/repositories/npm-internal/"
+  },
   "license": "ISC",
   "dependencies": {
     "babel": "6.3.26",
