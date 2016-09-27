@@ -4,9 +4,6 @@ export { ArbeidsgiversSykmeldingOpplysninger };
 import DineSykmeldingOpplysninger from './components/sykmeldingOpplysninger/DineSykmeldingOpplysninger';
 export { DineSykmeldingOpplysninger };
 
-import DineSykmeldingOpplysninger from './components/sykmeldingOpplysninger/DineSykmeldingOpplysninger';
-export { DineSykmeldingOpplysninger };
-
 import * as ledetekster from './ledetekster';
 export { ledetekster };
 
