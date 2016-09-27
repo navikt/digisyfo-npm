@@ -1,0 +1,111 @@
+@purple-light: #e0dae7;
+
+.utvidbar {
+	border: 1px solid @color-border; 
+	border-radius: 2px; 
+}
+
+.utvidbar__toggle {
+	color: @color-text; 
+	display: flex; 
+	width: 100%;
+}
+
+.utvidbar__toggle:focus {
+	background-color: transparent; 
+	box-shadow: 0 0 0 3px @color-focus;
+	z-index: 1;
+	position: relative; 
+}
+
+.utvidbar__toggle:hover {
+	color: @color-link; 
+}
+
+.utvidbar__header:extend(.panelHeader) {
+	padding: .5rem;
+	margin: 0;
+
+	@media(min-width: @screen-xs) {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+
+	&:hover .utvidbar__tittel { 
+		background-image: data-uri("../img/svg/arrow-down_hover.svg");
+	}
+
+}
+
+.utvidbar__ikon:extend(.panelHeader__ikon) {
+
+}
+
+.utvidbar__ikon--hoykontrast:extend(.panelHeader__ikon--hoykontrast) {
+	
+}
+
+.utvidbar__tittel {
+	.mixin-typo-infotekst();
+	padding-right: 2rem; 
+	background: data-uri("../img/svg/arrow-down.svg") no-repeat 100% .5rem;
+	background-size: 1rem .5rem;
+	flex: 1;
+}
+
+.utvidbar__header--lilla {
+	background: @purple-light;
+}
+
+.utvidbar__header--lysebla {
+	background-color: @blueLight;
+}
+
+.utvidbar__tittel--erApen {
+	background-image: data-uri("../img/svg/arrow-up.svg");
+}
+
+.utvidbar__header--apen:hover .utvidbar__tittel {
+	background-image: data-uri("../img/svg/arrow-up_hover.svg");
+}
+
+.utvidbar__innholdContainer {
+	overflow: hidden;
+}
+
+.utvidbar__innholdContainer--medAnimasjon {
+	transition: height ease-in-out .3s;
+	transform: translate3d(0, 0, 0);
+}
+
+.contrast {
+
+	.utvidbar__tittel {
+		background-image: data-uri("../img/svg/arrow-down-highcontrast.svg")
+	}
+
+	a:hover .utvidbar__tittel {
+		background-image: data-uri("../img/svg/arrow-down_hover-highcontrast.svg");	
+	}
+
+	.utvidbar__tittel--erApen {
+		background-image: data-uri("../img/svg/arrow-up-highcontrast.svg");
+	}
+
+	a:hover .utvidbar_tittel--erApen {
+		background-image: data-uri("../img/svg/arrow-up_hover-highcontrast.svg");
+	}
+
+}
+
+.utvidbar__innhold { 
+	padding: 1.5rem 1rem 2.5rem 1rem;
+	background-color: @white;
+}
+
+@media print {
+	.utvidbar__toggle {
+		border-bottom: 1px solid @color-border;
+		text-decoration: none;
+	}
+}
