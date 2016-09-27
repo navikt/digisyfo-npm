@@ -1,8 +1,4 @@
 node_modules
-<<<<<<< HEAD
-lib
-=======
 lib
 *.log
 npm-debug.log*
->>>>>>> LESS ligger nå i digisyfo-npm
