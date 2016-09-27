@@ -6,11 +6,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ./tests/test_helper.js \"tests/**/*.@(js|jsx)\"",
     "compile": "babel --presets es2015 -d lib/ js/",
-<<<<<<< HEAD
     "prepublish": "npm run compile"
-=======
-    "prepublish": "parallelshell \"npm run compile\" && \"npm run test\""
->>>>>>> LESS ligger nå i digisyfo-npm
   },
   "repository": {
     "type": "git",
@@ -51,11 +47,7 @@
     "karma-phantomjs-launcher": "git+http://stash.devillo.no/scm/npmm/karma-phantomjs-launcher.git#d77c5b83f657b19796520b196db66be7d07ae168",
     "karma-sourcemap-loader": "0.3.7",
     "karma-webpack": "1.7.0",
-<<<<<<< HEAD
-    "react-addons-test-utils": "15.3.2"
-=======
     "react-addons-test-utils": "15.3.2",
     "parallelshell": "2.0.0"
->>>>>>> LESS ligger nå i digisyfo-npm
   }
 }
