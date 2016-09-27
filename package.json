@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Felleskomponenter for DigiSyfo - Digitalisering av sykefraværsoppfølgingen",
   "main": "lib/index.js",
+  "files": [
+    "lib/"
+  ],
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ./tests/test_helper.js \"tests/**/*.@(js|jsx)\"",
     "compile": "babel --presets es2015 -d lib/ js/",
