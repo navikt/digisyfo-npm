@@ -9,7 +9,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ./tests/test_helper.js \"tests/**/*.@(js|jsx)\"",
     "compile": "babel --presets es2015 -d lib/ js/",
-    "prepublish": "npm run compile",
+    "prepublish": "npm run test && npm run lint && npm run compile",
     "lint": "eslint js/. --ext .js"
   },
   "repository": {
