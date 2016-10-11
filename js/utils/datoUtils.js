@@ -1,5 +1,3 @@
-import { sorterPerioderEldsteFoerst } from './sorterSykmeldingerUtils';
-
 export const toDate = (dato) => {
     return new Date(dato.year, dato.monthValue - 1, dato.dayOfMonth);
 };

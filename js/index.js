@@ -5,8 +5,8 @@ import DineSykmeldingOpplysninger from './components/sykmeldingOpplysninger/Dine
 export { DineSykmeldingOpplysninger };
 
 import Utvidbar from './components/Utvidbar';
-export { Utvidbar }
+export { Utvidbar };
 
-export * from './components/sykmeldingOpplysninger/SykmeldingOpplysning'
+export * from './components/sykmeldingOpplysninger/SykmeldingOpplysning';
 export * from './ledetekster';
 export * from './utils';

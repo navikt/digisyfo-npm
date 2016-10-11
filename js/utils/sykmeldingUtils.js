@@ -23,7 +23,7 @@ export function getSykmelding(sykmeldinger, sykmeldingId) {
     return sykmeldinger.filter((sykmld) => {
         return `${sykmld.id}` === `${sykmeldingId}`;
     })[0];
-};
+}
 
 export function getPeriodeSpenn(perioder) {
     const forsteStartDato = perioder.sort((a, b) => {
