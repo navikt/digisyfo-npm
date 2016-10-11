@@ -3,7 +3,7 @@ import SykmeldingPerioder from './SykmeldingPerioder';
 import { SykmeldingNokkelOpplysning } from './SykmeldingOpplysning';
 import { getLedetekst } from '../../ledetekster';
 import FlereOpplysninger from './FlereOpplysninger';
-import { getSykmeldingCheckbox } from '../../utils/dinSykmeldingUtils';
+import { getSykmeldingCheckbox } from '../../utils';
 
 const ArbeidsgiversSykmeldingOpplysninger = ({ sykmelding, ledetekster }) => {
     return (<div className="side-innhold arbeidsgiversSykmelding">
@@ -19,7 +19,7 @@ const ArbeidsgiversSykmeldingOpplysninger = ({ sykmelding, ledetekster }) => {
             {
                 !sykmelding.skalViseSkravertFelt ? null :
                 <SykmeldingNokkelOpplysning tittel={getLedetekst('send-til-arbeidsgiver.diagnose.tittel', ledetekster)} Overskrift="H4">
-                    <p className="skravert js-diagnose">{getLedetekst('send-til-arbeidsgiver.diagnose.skjult', ledetekster)}</p>
+                    <img src="/sykefravaer/img/svg/sladd.svg" className="js-diagnose" alt={getLedetekst('send-til-arbeidsgiver.diagnose.skjult', ledetekster)} />
                 </SykmeldingNokkelOpplysning>
             }
             {

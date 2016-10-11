@@ -10,7 +10,6 @@ const expect = chai.expect;
 import MeldingTilNAV from "../../../js/components/sykmeldingOpplysninger/MeldingTilNAV.js";
 
 let component;
-
 describe("Melding til NAV", () => {
 
     describe("navBoerTaTakISaken", () => {

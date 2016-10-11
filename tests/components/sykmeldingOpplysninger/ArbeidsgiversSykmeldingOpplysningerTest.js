@@ -8,6 +8,7 @@ import getSykmelding from "../../mockSykmeldinger.js";
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
+import Utvidbar from "../../../js/components/Utvidbar.js";
 import FlereOpplysninger from "../../../js/components/sykmeldingOpplysninger/FlereOpplysninger.js";
 
 import SykmeldingPerioder from "../../../js/components/sykmeldingOpplysninger/SykmeldingPerioder.js";
@@ -31,7 +32,7 @@ describe("ArbeidsgiversSykmelding", () => {
             skalViseSkravertFelt: true
         })} ledetekster={ledetekster}/>);
         expect(component.find(".js-diagnose")).to.have.length(1);
-        expect(component.find(".js-diagnose").text()).to.equal("Diagnosen er skjult for arbeidsgiver")
+        expect(component.find(".js-diagnose").prop("alt")).to.equal("Diagnosen er skjult for arbeidsgiver")
     });
 
     it("Skal ikke vise diagnose som et skravert felt dersom sykmelding.skalViseSkravertFelt === false", () => {

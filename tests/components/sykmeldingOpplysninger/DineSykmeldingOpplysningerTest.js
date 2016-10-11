@@ -135,11 +135,11 @@ describe("DineSykmeldingOpplysninger", () => {
 
             component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
                 diagnose: {
-                    bidiagnose: {
+                    bidiagnoser: [{
                         diagnose: "Mageknipe",
                         diagnosesystem: "IZPZ",
                         diagnosekode: "LP3"
-                    }
+                    }]
                 }
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-bidiagnose").text()).to.equal("Mageknipe")
@@ -273,8 +273,42 @@ describe("DineSykmeldingOpplysninger", () => {
 
         it("Skal vise arbeidsfør etter perioden dersom sykmelding.friskmelding.arbeidsfoerEtterPerioden === true", () => {
             let component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
-                friskmelding: {
-                    arbeidsfoerEtterPerioden: true
+                "friskmelding": {
+                    "arbeidsfoerEtterPerioden": true,
+                    "hensynPaaArbeidsplassen": "MÃ¥ ta det pent",
+                    "antarReturSammeArbeidsgiver": true,
+                    "antattDatoReturSammeArbeidsgiver": {
+                        "year": 2016,
+                        "month": "SEPTEMBER",
+                        "era": "CE",
+                        "dayOfMonth": 15,
+                        "dayOfWeek": "THURSDAY",
+                        "dayOfYear": 259,
+                        "leapYear": true,
+                        "monthValue": 9,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "antarReturAnnenArbeidsgiver": true,
+                    "tilbakemeldingReturArbeid": {
+                        "year": 2016,
+                        "month": "SEPTEMBER",
+                        "era": "CE",
+                        "dayOfMonth": 15,
+                        "dayOfWeek": "THURSDAY",
+                        "dayOfYear": 259,
+                        "leapYear": true,
+                        "monthValue": 9,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "utenArbeidsgiverAntarTilbakeIArbeid": false,
+                    "utenArbeidsgiverAntarTilbakeIArbeidDato": null,
+                    "utenArbeidsgiverTilbakemelding": null
                 }
             })} ledetekster={ledetekster}/>);
             expect(component.find(".js-arbeidsfoerEtterPerioden").length).to.equal(1);
@@ -283,8 +317,42 @@ describe("DineSykmeldingOpplysninger", () => {
 
         it("Skal ikke vise arbeidsfør etter perioden dersom sykmelding.friskmelding.arbeidsfoerEtterPerioden === false", () => {
             let component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
-                friskmelding: {
-                    arbeidsfoerEtterPerioden: false
+                "friskmelding": {
+                    "arbeidsfoerEtterPerioden": false,
+                    "hensynPaaArbeidsplassen": "MÃ¥ ta det pent",
+                    "antarReturSammeArbeidsgiver": true,
+                    "antattDatoReturSammeArbeidsgiver": {
+                        "year": 2016,
+                        "month": "SEPTEMBER",
+                        "era": "CE",
+                        "dayOfMonth": 15,
+                        "dayOfWeek": "THURSDAY",
+                        "dayOfYear": 259,
+                        "leapYear": true,
+                        "monthValue": 9,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "antarReturAnnenArbeidsgiver": true,
+                    "tilbakemeldingReturArbeid": {
+                        "year": 2016,
+                        "month": "SEPTEMBER",
+                        "era": "CE",
+                        "dayOfMonth": 15,
+                        "dayOfWeek": "THURSDAY",
+                        "dayOfYear": 259,
+                        "leapYear": true,
+                        "monthValue": 9,
+                        "chronology": {
+                            "id": "ISO",
+                            "calendarType": "iso8601"
+                        }
+                    },
+                    "utenArbeidsgiverAntarTilbakeIArbeid": false,
+                    "utenArbeidsgiverAntarTilbakeIArbeidDato": null,
+                    "utenArbeidsgiverTilbakemelding": null
                 }
             })} ledetekster={ledetekster}/>);
             expect(component.find(".js-arbeidsfoerEtterPerioden").length).to.equal(0);
