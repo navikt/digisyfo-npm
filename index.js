@@ -1,5 +1,0 @@
-import ArbeidsgiversSykmeldingOpplysninger from 'js/components/sykmeldingOpplysninger/ArbeidsgiversSykmeldingOpplysninger';
-import DineSykmeldingOpplysninger from 'js/components/sykmeldingOpplysninger/DineSykmeldingOpplysninger';
-
-export ArbeidsgiversSykmeldingOpplysninger;
-export DineSykmeldingOpplysninger;
