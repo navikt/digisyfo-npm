@@ -123,7 +123,6 @@ export class Utvidbar extends Component {
                     aria-expanded={this.state.erApen}
                     ref="js-toggle"
                     role="button"
-                    aria-expanded={this.state.erApen}
                     onMouseEnter={() => {this.onMouseEnter();}}
                     onMouseLeave={() => {this.onMouseLeave();}}
                     onClick={(event) => {this.toggle(event);}}
