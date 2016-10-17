@@ -8,7 +8,7 @@ export const visFeilmelding = (skjemaData, field) => {
         const _field = field.split('[')[0];
         const _subfield = field.split('.')[1];
         if (!skjemaData.fields[_field]) {
-            return false; 
+            return false;
         }
         return skjemaData.fields[_field][_index][_subfield].touched && typeof skjemaData.syncErrors[_field][_index][_subfield] === 'string';
     }
