@@ -93,4 +93,76 @@ describe("visFeilmelding", () => {
         const res = visFeilmelding(skjemaData, "feilaktigeOpplysninger")
         expect(res).to.be.true;
     });
+
+    it("Skal håndtere arrays", () => {
+        const skjemaData = {
+            fields: {
+                tidspunkter: [{
+                    dato: {
+                        touched: true,
+                    },
+                    klokkeslett: {
+                        touched: true,
+                    }
+                }, {
+                    dato: {
+                        touched: true,
+                    },
+                    klokkeslett: {
+                        touched: true,
+                    }
+                }]
+            },
+            syncErrors: {
+                tidspunkter: [{
+                    dato: "Vennligst angi dato",
+                    klokkeslett: "Vennligst angi klokkeslett"
+                }, {
+                    dato: "Vennligst angi dato",
+                    klokkeslett: "Vennligst angi klokkeslett"
+                }]
+            }
+        };
+        const res1 = visFeilmelding(skjemaData, "tidspunkter[0].klokkeslett");
+        const res2 = visFeilmelding(skjemaData, "tidspunkter[1].klokkeslett");
+        expect(res1).to.be.true;
+        expect(res2).to.be.true;
+    });
 });
+
+describe("getFeilmelding", () => {
+    it("Skal håndtere arrays", () => {
+        const skjemaData = {
+            fields: {
+                tidspunkter: [{
+                    dato: {
+                        touched: true,
+                    },
+                    klokkeslett: {
+                        touched: true,
+                    }
+                }, {
+                    dato: {
+                        touched: true,
+                    },
+                    klokkeslett: {
+                        touched: true,
+                    }
+                }]
+            },
+            syncErrors: {
+                tidspunkter: [{
+                    dato: "Vennligst angi dato",
+                    klokkeslett: "Vennligst angi klokkeslett"
+                }, {
+                    dato: "Vennligst angi dato",
+                    klokkeslett: "Vennligst oppgi riktig klokkeslett"
+                }]
+            }
+        };
+        const res1 = getFeilmelding(skjemaData, "tidspunkter[0].klokkeslett");
+        const res2 = getFeilmelding(skjemaData, "tidspunkter[1].klokkeslett");
+        expect(res1).to.equal("Vennligst angi klokkeslett");
+        expect(res2).to.equal("Vennligst oppgi riktig klokkeslett")
+    });
+})
