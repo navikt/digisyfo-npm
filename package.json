@@ -7,7 +7,7 @@
     "lib/"
   ],
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --require ./tests/test_helper.js \"tests/**/*.@(js|jsx)\"",
+    "test": "mocha --compilers js:babel-core/register --require babel-polyfill ./tests/test_helper.js \"tests/**/*.@(js|jsx)\"",
     "watch": "npm run test -- --watch",
     "compile": "babel --presets es2015 -d lib/ js/",
     "prepublish": "npm run test && npm run lint && npm run compile",
@@ -32,9 +32,12 @@
     "babel-preset-react": "6.5.0",
     "babel-preset-stage-0": "6.3.13",
     "babelify": "7.2.0",
+    "deep-freeze": "0.0.1",
     "mocha": "3.1.2",
     "react": "15.3.2",
-    "react-dom": "15.3.2"
+    "react-dom": "15.3.2",
+    "redux-saga": "0.12.0",
+    "simple-ajax": "2.6.0"
   },
   "devDependencies": {
     "babel-cli": "6.14.0",
