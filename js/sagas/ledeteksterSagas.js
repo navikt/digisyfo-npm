@@ -9,7 +9,6 @@ export function* hentLedetekster() {
         const ledetekster = yield call(get, `${window.APP_SETTINGS.REST_ROOT}/informasjon/tekster`);
         yield put(actions.setLedetekster(ledetekster));
     } catch (e) {
-    	console.log(e);
         yield put(actions.hentLedeteksterFeilet());
     }
 }
