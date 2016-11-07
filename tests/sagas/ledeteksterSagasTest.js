@@ -5,9 +5,11 @@ import { put, call } from 'redux-saga/effects';
 
 describe("ledeteksterSagas", () => {
 
-    window.APP_SETTINGS = {
-        REST_ROOT: "http://tjenester.nav.no/syforest"
-    }
+    beforeEach(() => {
+        window.APP_SETTINGS = {
+            REST_ROOT: "http://tjenester.nav.no/syforest"
+        }
+    });
 
     const generator = hentLedetekster();
 
