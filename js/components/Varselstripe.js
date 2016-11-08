@@ -1,47 +1,26 @@
 import React, { PropTypes } from 'react';
 
 export function getIkon(type) {
-    let typeIkon;
-    let ikonAlt = 'Info';
-    const modigFrontendIkonRot = `${window.APP_SETTINGS.APP_ROOT}/img/modig-frontend/ikoner-svg/`;
-
     switch (type) {
         case 'suksess': {
-            typeIkon = `${modigFrontendIkonRot}ikon-suksess.svg`;
-            ikonAlt = 'Suksess';
-            break;
+            return `${window.APP_SETTINGS.APP_ROOT}/img/svg/suksess.svg`;
         }
         case 'feil': {
-            typeIkon = `${window.APP_SETTINGS.APP_ROOT}/img/svg/utropstegn-hvit.svg`;
-            break;
-        }
-        case 'info': {
-            typeIkon = `${window.APP_SETTINGS.APP_ROOT}/img/svg/utropstegn-hvit.svg`;
-            break;
-        }
-        case 'avbrutt': {
-            typeIkon = `${window.APP_SETTINGS.APP_ROOT}/img/svg/avbryt-sykmelding-roed.svg`;
-            ikonAlt = 'Avbrutt';
-            break;
+            return `${window.APP_SETTINGS.APP_ROOT}/img/svg/utropstegn.svg`;
         }
         default: {
-            typeIkon = `${modigFrontendIkonRot}ikon-informasjon.svg`;
-            break;
+            return `${window.APP_SETTINGS.APP_ROOT}/img/svg/informasjon.svg`;
         }
     }
-    return {
-        typeIkon,
-        ikonAlt,
-    };
 }
 
-const Varselstripe = ({ type = 'default', children }) => {
+const Varselstripe = ({ type = 'default', children, ikon }) => {
     const typeClass = `varselstripe--${type}`;
-    const { typeIkon, ikonAlt } = getIkon(type);
-
+    const typeIkon = getIkon(type);
+    
     return (<div className={`varselstripe ${(type ? typeClass : '')}`}>
         <div className="varselstripe__ikon">
-            <img src={typeIkon} alt={ikonAlt} />
+            <img src={ikon || typeIkon} alt='' />
         </div>
         {children}
     </div>);
