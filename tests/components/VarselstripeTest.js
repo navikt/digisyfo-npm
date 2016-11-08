@@ -27,7 +27,7 @@ describe("Varselstripe", () => {
         expect(comp.find("img").prop("src")).to.equal("fiskekake.jpg");
     });
 
-    describe("getIkn", () => {
+    describe("getIkon", () => {
         it("Skal vise riktig ikon når type === suksess", () => {
             expect(getIkon('suksess')).to.equal("/sykefravaer/img/svg/suksess.svg")
         });
