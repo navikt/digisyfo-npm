@@ -17,10 +17,10 @@ export function getIkon(type) {
 const Varselstripe = ({ type = 'default', children, ikon }) => {
     const typeClass = `varselstripe--${type}`;
     const typeIkon = getIkon(type);
-    
+
     return (<div className={`varselstripe ${(type ? typeClass : '')}`}>
         <div className="varselstripe__ikon">
-            <img src={ikon || typeIkon} alt='' />
+            <img src={ikon || typeIkon} alt="" />
         </div>
         {children}
     </div>);
@@ -29,6 +29,7 @@ const Varselstripe = ({ type = 'default', children, ikon }) => {
 Varselstripe.propTypes = {
     type: PropTypes.string,
     children: PropTypes.object,
+    ikon: PropTypes.string,
 };
 
 export default Varselstripe;
