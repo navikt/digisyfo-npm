@@ -32,8 +32,6 @@
     "babel-preset-react": "6.5.0",
     "babel-preset-stage-0": "6.3.13",
     "babelify": "7.2.0",
-    "deep-freeze": "0.0.1",
-    "mocha": "3.1.2",
     "react": "15.3.2",
     "react-dom": "15.3.2",
     "redux-saga": "0.12.0",
@@ -51,16 +49,9 @@
     "eslint-plugin-react": "4.2.3",
     "gulp": "3.9.1",
     "jsdom": "9.5.0",
-    "karma": "0.13.21",
-    "karma-chrome-launcher": "0.2.2",
-    "karma-cli": "0.1.2",
-    "karma-coverage": "0.5.3",
-    "karma-firefox-launcher": "0.1.7",
-    "karma-mocha": "0.2.2",
-    "karma-phantomjs-launcher": "git+http://stash.devillo.no/scm/npmm/karma-phantomjs-launcher.git#d77c5b83f657b19796520b196db66be7d07ae168",
-    "karma-sourcemap-loader": "0.3.7",
-    "karma-webpack": "1.7.0",
     "parallelshell": "2.0.0",
-    "react-addons-test-utils": "15.3.2"
+    "react-addons-test-utils": "15.3.2",
+    "deep-freeze": "0.0.1",
+    "mocha": "3.1.2"
   }
 }
