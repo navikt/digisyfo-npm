@@ -2,6 +2,7 @@ import { call, put, fork } from 'redux-saga/effects';
 import { takeEvery } from 'redux-saga';
 import { get } from '../api';
 import * as actions from '../actions/tidslinjer_actions';
+import { log } from '../utils';
 import { apneHendelser } from '../actions/hendelser_actions.js';
 
 export function* hentTidslinjer(action) {
@@ -13,6 +14,7 @@ export function* hentTidslinjer(action) {
             yield put(apneHendelser(action.apneHendelseIder));
         }
     } catch (e) {
+        log(e);
         yield put(actions.hentTidslinjerFeilet());
     }
 }
