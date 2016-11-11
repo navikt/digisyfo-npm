@@ -14,7 +14,7 @@ export function getHtmlTittel(hendelse, ledetekster) {
         case 'NY_NAERMESTE_LEDER': {
             return getLedetekst(`${hendelse.tekstkey}.tittel`, ledetekster, {
                 '%DATO%': toDatePrettyPrint(hendelse.inntruffetdato),
-                '%ARBEIDSGIVER%': hendelse.data.naermesteLeder.organinsasjonsnavn,
+                '%ARBEIDSGIVER%': hendelse.data.naermesteLeder.organisasjonsnavn,
                 '%NAERMESTELEDER%': hendelse.data.naermesteLeder.navn,
             });
         }
