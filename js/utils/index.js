@@ -40,10 +40,10 @@ export function filtrerObjektKeys(objekt) {
 }
 
 const createLogger = () => {
-    if (!window.APP_SETTINGS.LOGGING_ENABLED) {
-        return () => {};
+    if (window.location.search.indexOf("log=true") || window.APP_SETTINGS.LOGGING_ENABLED) {
+        return console.log;
     }
-    return console.log;
+    return () => {};
 };
 
 export const log = createLogger();
