@@ -38,3 +38,12 @@ export function filtrerObjektKeys(objekt) {
     }
     return resultat;
 }
+
+const createLogger = () => {
+    if (!window.APP_SETTINGS.LOGGING_ENABLED) {
+        return () => {};
+    }
+    return console.log;
+};
+
+export const log = createLogger();
