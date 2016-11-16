@@ -8,6 +8,9 @@ export function getIkon(type) {
         case 'feil': {
             return `${window.APP_SETTINGS.APP_ROOT}/img/svg/utropstegn.svg`;
         }
+        case 'opplysning': {
+            return `${window.APP_SETTINGS.APP_ROOT}/img/svg/informasjon_sirkel.svg`;
+        }
         default: {
             return `${window.APP_SETTINGS.APP_ROOT}/img/svg/informasjon.svg`;
         }
