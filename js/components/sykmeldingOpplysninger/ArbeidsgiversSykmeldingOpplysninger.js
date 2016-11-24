@@ -19,7 +19,10 @@ const ArbeidsgiversSykmeldingOpplysninger = ({ sykmelding, ledetekster }) => {
             {
                 !sykmelding.skalViseSkravertFelt ? null :
                 <SykmeldingNokkelOpplysning tittel={getLedetekst('send-til-arbeidsgiver.diagnose.tittel', ledetekster)} Overskrift="H4">
-                    <img src="/sykefravaer/img/svg/sladd.svg" className="js-diagnose" alt={getLedetekst('send-til-arbeidsgiver.diagnose.skjult', ledetekster)} />
+                    <img
+                        src={`${window.APP_SETTINGS.APP_ROOT}/img/svg/sladd.svg`}
+                        className="js-diagnose"
+                        alt={getLedetekst('send-til-arbeidsgiver.diagnose.skjult', ledetekster)} />
                 </SykmeldingNokkelOpplysning>
             }
             {
