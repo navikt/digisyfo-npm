@@ -32,7 +32,7 @@ export const leggTilBilder = (_tidslinjer) => {
         const hendelser = tidslinje.hendelser.map((hendelse) => {
             if (bilder[hendelse.tekstkey]) {
                 return Object.assign({}, hendelse, {
-                    bilde: bilder[hendelse.tekstkey],
+                    bilde: `${window.APP_SETTINGS.APP_ROOT}${bilder[hendelse.tekstkey]}`,
                 });
             }
             return hendelse;

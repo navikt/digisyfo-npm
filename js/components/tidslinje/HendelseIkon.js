@@ -33,8 +33,8 @@ export const getIkon = (type) => {
 const HendelseIkon = ({ type }) => {
     const ikonData = getIkon(type);
     return (<div className={`tidslinjeHendelse__ikon ${ikonData.className}`}>
-            <img className="tidslinjeHendelse__img" src={`/sykefravaer/img/tidslinje/${ikonData.bilde}.svg`} alt="" />
-            <img className="tidslinjeHendelse__img--hoykontrast" src={`/sykefravaer/img/tidslinje/${ikonData.bilde}-highcontrast.svg`} alt="" />
+            <img className="tidslinjeHendelse__img" src={`/${window.APP_SETTINGS.APP_ROOT}/img/tidslinje/${ikonData.bilde}.svg`} alt="" />
+            <img className="tidslinjeHendelse__img--hoykontrast" src={`/${window.APP_SETTINGS.APP_ROOT}/img/tidslinje/${ikonData.bilde}-highcontrast.svg`} alt="" />
         </div>);
 };
 

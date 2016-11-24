@@ -9,7 +9,7 @@ describe("Varselstripe", () => {
         window.APP_SETTINGS = {
             "APP_ROOT": '/sykefravaer',
         };
-    })
+    });
 
     it("Skal vise children", () => {
         const comp = mount(<Varselstripe><p>Info</p></Varselstripe>);
