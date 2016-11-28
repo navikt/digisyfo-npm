@@ -1,6 +1,12 @@
 import ArbeidsgiversSykmeldingOpplysninger from './components/sykmeldingOpplysninger/ArbeidsgiversSykmeldingOpplysninger';
 export { ArbeidsgiversSykmeldingOpplysninger };
 
+import ArbeidsgiversNokkelopplysninger from './components/sykmeldingOpplysninger/ArbeidsgiversNokkelopplysninger';
+export { ArbeidsgiversNokkelopplysninger };
+
+import FlereOpplysninger from './components/sykmeldingOpplysninger/FlereOpplysninger';
+export { FlereOpplysninger };
+
 import DineSykmeldingOpplysninger from './components/sykmeldingOpplysninger/DineSykmeldingOpplysninger';
 export { DineSykmeldingOpplysninger };
 
