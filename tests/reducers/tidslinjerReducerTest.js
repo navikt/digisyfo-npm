@@ -94,6 +94,20 @@ describe('tidslinjer', () => {
         })
     });
 
+    it("Håndterer HENT_TIDSLINJER_IKKE_TILGANG", () => {
+        const initiellState = deepFreeze({});
+        const action = {
+            type: "HENT_TIDSLINJER_IKKE_TILGANG"
+        }
+        const nextState = tidslinjer(initiellState, action);
+        expect(nextState).to.deep.equal({
+            data: [],
+            henter: false,
+            hentingFeilet: false,
+            ikkeTilgang: true,
+        })
+    });
+
     it("Sorterer hendelser", () => {
         const hendelser = deepFreeze([{antallDager: 52}, { antallDager: 0}, {antallDager: 80}]);
         const res = sorterHendelser(hendelser);
