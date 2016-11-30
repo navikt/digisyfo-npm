@@ -3,6 +3,7 @@ import { bilder } from '../tidslinjeData';
 const initiellState = {
     henter: false,
     hentingFeilet: false,
+    ikkeTilgang: false,
     data: [],
 };
 
@@ -95,6 +96,14 @@ export default function tidslinjer(state = initiellState, action) {
                 hentingFeilet: false,
                 data,
             };
+        }
+        case 'HENT_TIDSLINJER_IKKE_TILGANG': {
+            return Object.assign({}, state, {
+                data: [],
+                henter: false,
+                hentingFeilet: false,
+                ikkeTilgang: true,
+            });
         }
         case 'ÅPNE_HENDELSER': {
             if (!state.data.length) {
