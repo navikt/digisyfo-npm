@@ -7,11 +7,11 @@ const Radiofaner = ({ alternativer = [], valgtAlternativ, changeHandler, classNa
             {
                 alternativer.map((a, index) => {
                     const erValgt = a.verdi === valgtAlternativ;
-                    const liClassName = a.hjelpetekst ? ' med-hjelpetekst' : '';
-                    return (<li className={`nav-input${liClassName}`} key={index}>
+                    const liClassName = a.hjelpetekst ? ' skjema__input--medHjelpetekst' : '';
+                    return (<li className={`skjema__input${liClassName}`} key={index}>
                         <input
                             type="radio"
-                            className={`nav-radioknapp nav-radioknapp--mork js-${a.verdi}`}
+                            className={`radioknapp radioknapp--mork js-${a.verdi}`}
                             name={radioName}
                             value={a.verdi}
                             id={`radio-${a.verdi}`}
