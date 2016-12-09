@@ -21,6 +21,10 @@ describe("Varselstripe", () => {
         expect(comp.find("img")).to.have.length(1);
     })
 
+    it("Skal vise ikon med alt-tekst", () => {
+        const comp = mount(<Varselstripe type="suksess"><p>Suksess</p></Varselstripe>);
+        expect(comp.find("img").prop("alt")).to.equal("Suksess");
+    })
 
     it("Skal vise riktig ikon når ikon er innsendt", () => {
         const comp = mount(<Varselstripe ikon="fiskekake.jpg"></Varselstripe>)
