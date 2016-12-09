@@ -48,6 +48,7 @@ Varselstripe.propTypes = {
     type: PropTypes.string,
     children: PropTypes.object,
     ikon: PropTypes.string,
+    alt: PropTypes.string,
 };
 
 export default Varselstripe;
