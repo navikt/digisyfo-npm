@@ -1,5 +1,23 @@
 import React, { PropTypes } from 'react';
 
+export function getAlt(type) {
+    switch (type) {
+        case 'suksess': {
+            return 'Suksess';
+        }
+        case 'feil': {
+            return 'Feil';
+        }
+        case 'default':
+        case 'info': {
+            return 'Informasjon';
+        }
+        default: {
+            return '';
+        }
+    }
+}
+
 export function getIkon(type) {
     switch (type) {
         case 'suksess': {
@@ -14,13 +32,13 @@ export function getIkon(type) {
     }
 }
 
-const Varselstripe = ({ type = 'default', children, ikon }) => {
+const Varselstripe = ({ type = 'default', children, ikon, alt }) => {
     const typeClass = `varselstripe--${type}`;
     const typeIkon = getIkon(type);
 
     return (<div className={`varselstripe ${(type ? typeClass : '')}`}>
         <div className="varselstripe__ikon">
-            <img src={ikon || typeIkon} alt="" />
+            <img src={ikon || typeIkon} alt={alt || getAlt(type)} />
         </div>
         {children}
     </div>);

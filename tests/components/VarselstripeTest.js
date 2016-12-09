@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import Varselstripe, { getIkon } from '../../js/components/Varselstripe';
+import Varselstripe, { getIkon, getAlt } from '../../js/components/Varselstripe';
 
 describe("Varselstripe", () => {
 
@@ -42,6 +42,24 @@ describe("Varselstripe", () => {
 
         it("Skal vise riktig ikon når type === undefined", () => {
             expect(getIkon()).to.equal("/sykefravaer/img/svg/informasjon.svg")
+        });
+    });
+
+    describe("getAlt", () => {
+        it("Skal returnere riktig tekst når type === suksess", () => {
+            expect(getAlt('suksess')).to.equal("Suksess")
+        });
+
+        it("Skal returnere riktig tekst når type === feil", () => {
+            expect(getAlt('feil')).to.equal("Feil")
+        });
+
+        it("Skal returnere riktig tekst når type === info", () => {
+            expect(getAlt('info')).to.equal("Informasjon")
+        });
+
+        it("Skal returnere riktig tekst når type === undefined", () => {
+            expect(getAlt()).to.equal("")
         });
     });
 
