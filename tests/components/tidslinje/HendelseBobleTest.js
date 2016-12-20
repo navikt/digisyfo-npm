@@ -6,7 +6,7 @@ import chaiEnzyme from 'chai-enzyme';
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-import { getHtmlTittel } from "../../../js/components/tidslinje/HendelseBoble.js";
+import { getHtmlTittel, getHtmlBudskap } from "../../../js/components/tidslinje/HendelseBoble.js";
 
 describe("HendelseBoble", () => {
 
@@ -57,6 +57,43 @@ describe("HendelseBoble", () => {
             const html = getHtmlTittel(hendelse, ledetekster)
 
             expect(html).to.be.equal('<h3>tittel</h3>')
+        });
+
+        it("ny naermeste leder hendelse opphørt", () => {
+            const hendelse = {
+                tekstkey: 'key',
+                type: 'NY_NAERMESTE_LEDER',
+                data: {
+                    naermesteLeder: {
+                        aktivTom: {year: 2016, monthValue: 2, dayOfMonth: 2},
+                        navn: 'navn'
+                    }
+                }
+            };
+            const ledetekster = {
+                'key.budskap': '<p>Koblingen mellom deg og %NAVN% er %STATUS%</p>',
+            };
+            const html = getHtmlBudskap(hendelse, ledetekster)
+
+            expect(html).to.be.equal('<p>Koblingen mellom deg og navn er opphørt den 02.02.2016</p>')
+        });
+
+        it("ny naermeste leder hendelse aktiv", () => {
+            const hendelse = {
+                tekstkey: 'key',
+                type: 'NY_NAERMESTE_LEDER',
+                data: {
+                    naermesteLeder: {
+                        navn: 'navn'
+                    }
+                }
+            };
+            const ledetekster = {
+                'key.budskap': '<p>Koblingen mellom deg og %NAVN% er %STATUS%</p>',
+            };
+            const html = getHtmlBudskap(hendelse, ledetekster)
+
+            expect(html).to.be.equal('<p>Koblingen mellom deg og navn er aktiv</p>')
         });
 
     });

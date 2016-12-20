@@ -23,6 +23,17 @@ export function getHtmlTittel(hendelse, ledetekster) {
     }
 }
 
+export function getHtmlBudskap(hendelse, ledetekster) {
+    if (hendelse.type === 'NY_NAERMESTE_LEDER') {
+        const aktivTom = toDatePrettyPrint(hendelse.data.naermesteLeder.aktivTom);
+        return getLedetekst(`${hendelse.tekstkey}.budskap`, ledetekster, {
+            '%NAVN%': hendelse.data.naermesteLeder.navn,
+            '%STATUS%': aktivTom ? `opphørt den ${aktivTom}` : 'aktiv',
+        });
+    }
+    return getLedetekst(`${hendelse.tekstkey}.budskap`, ledetekster);
+}
+
 const BobleHeader = (props) => {
     return (<a
         role="button"
@@ -129,6 +140,7 @@ class HendelseBoble extends Component {
 
     render() {
         const { hendelse, ledetekster } = this.props;
+
         return (<article className="tidslinjeHendelse js-hendelse">
             <div className="tidslinjeHendelse__rad">
                 <div className="tidslinjeHendelse__status">
@@ -152,12 +164,13 @@ class HendelseBoble extends Component {
                         onTransitionEnd={() => {
                             this.onTransitionEnd();
                         }}>
+
                         <div ref="js-budskap">
                             <TidslinjeBudskap
                                 vis={hendelse.visBudskap}
                                 bilde={hendelse.bilde}
                                 alt={hendelse.alt}
-                                innhold={getLedetekst(`${hendelse.tekstkey}.budskap`, ledetekster)} />
+                                innhold={getHtmlBudskap(hendelse, ledetekster)} />
                         </div>
                     </div>
                 </div>
