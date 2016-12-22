@@ -50,7 +50,7 @@ class Hjelpetekst extends Component {
         const ariaId = `tooltip-${this.props.id}`;
         return (
             <div className="hjelpetekst">
-                <button type="button" className="hjelpetekst-ikon js-apne" aria-describedby={ariaId}
+                <button type="button" className="hjelpetekst__apne js-apne" aria-describedby={ariaId}
                     onClick={() => { this.toggle(); }} ref="js-apne">
                     <span aria-hidden="true">?</span>
                     <span className="vekk">? Hjelpetekst</span>
@@ -58,14 +58,14 @@ class Hjelpetekst extends Component {
                 {
                     !this.state.erApen ? null :
                     (<div role="tooltip" id={ariaId}
-                        className={`hjelpetekst-tooltip js-tooltip ${this.state.erApen ? 'er-synlig' : ''}`}>
-                        <h3 className="decorated hjelpetekst-tittel js-tittel">{this.props.tittel}</h3>
-                        <div className="hjelpetekst-tekst js-tekst">
+                        className="hjelpetekst__tooltip js-tooltip">
+                        <h3 className="hjelpetekst__tittel js-tittel">{this.props.tittel}</h3>
+                        <div className="hjelpetekst__tekst js-tekst">
                             <p>
                                 {this.props.tekst}
                             </p>
                         </div>
-                        <button type="button" className="hjelpetekst-lukk js-lukk"
+                        <button type="button" className="hjelpetekst__lukk js-lukk"
                             aria-controls={ariaId}
                             onClick={() => { this.lukk(); }}
                             ref="js-lukk">
