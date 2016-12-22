@@ -27,7 +27,7 @@ describe("Hjelpetekst", () => {
 
     it("Skal være åpen dersom erApen === true", () => {
         let component = shallow(<Hjelpetekst tittel={tittel} tekst={innhold} erApen={true} />);
-        expect(component.find(".js-tooltip.er-synlig")).to.have.length(1);
+        expect(component.find(".js-tooltip")).to.have.length(1);
     });
 
     it("Skal åpne seg når man klikker på ?", () => {
