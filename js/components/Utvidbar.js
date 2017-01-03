@@ -8,7 +8,6 @@ export class Utvidbar extends Component {
         this.state = {
             erApen: props.erApen,
             ikon: props.ikon,
-            ikonHoykontrast: props.ikon.replace('.svg', '-highcontrast.svg'),
             containerClassName: '',
             hindreToggle: false,
             hoyde: !props.erApen ? '0' : 'auto',
@@ -19,14 +18,12 @@ export class Utvidbar extends Component {
     onMouseEnter() {
         this.setState({
             ikon: this.props.ikonHover,
-            ikonHoykontrast: this.props.ikonHover.replace('.svg', '-highcontrast.svg'),
         });
     }
 
     onMouseLeave() {
         this.setState({
             ikon: this.props.ikon,
-            ikonHoykontrast: this.props.ikon.replace('.svg', '-highcontrast.svg'),
         });
     }
 
@@ -129,9 +126,6 @@ export class Utvidbar extends Component {
                     className="utvidbar__toggle">
                     <this.props.Overskrift className={this.getHeaderClassName()}>
                         <img src={`${window.APP_SETTINGS.APP_ROOT}/img/${this.state.ikon}`} alt={this.props.ikonAltTekst} className="utvidbar__ikon" />
-                        <img
-                            src={`${window.APP_SETTINGS.APP_ROOT}/img/${this.state.ikonHoykontrast}`}
-                            alt={this.props.ikonAltTekst} className="utvidbar__ikon utvidbar__ikon--hoykontrast" />
                         <span className={!this.state.erApen ? 'utvidbar__tittel' : 'utvidbar__tittel utvidbar__tittel-erApen'}>{this.props.tittel}</span>
                     </this.props.Overskrift>
                 </a>
