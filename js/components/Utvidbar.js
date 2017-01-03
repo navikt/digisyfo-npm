@@ -47,7 +47,7 @@ export class Utvidbar extends Component {
     }
 
     getHeaderClassName() {
-        let c = !this.state.erApen ? 'utvidbar__header' : 'utvidbar__header utvidbar__header-erApen';
+        let c = !this.state.erApen ? 'utvidbar__header' : 'utvidbar__header utvidbar__header--erApen';
         if (this.props.variant) {
             c = `${c} utvidbar__header--${this.props.variant}`;
         }
@@ -126,7 +126,7 @@ export class Utvidbar extends Component {
                     className="utvidbar__toggle">
                     <this.props.Overskrift className={this.getHeaderClassName()}>
                         <img src={`${window.APP_SETTINGS.APP_ROOT}/img/${this.state.ikon}`} alt={this.props.ikonAltTekst} className="utvidbar__ikon" />
-                        <span className={!this.state.erApen ? 'utvidbar__tittel' : 'utvidbar__tittel utvidbar__tittel-erApen'}>{this.props.tittel}</span>
+                        <span className={!this.state.erApen ? 'utvidbar__tittel' : 'utvidbar__tittel utvidbar__tittel--erApen'}>{this.props.tittel}</span>
                     </this.props.Overskrift>
                 </a>
                 <div ref="container" style={{ height: this.state.hoyde }} className={`utvidbar__innholdContainer${this.state.containerClassName}`} onTransitionEnd={() => {
