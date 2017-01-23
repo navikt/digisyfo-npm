@@ -160,7 +160,7 @@ Utvidbar.propTypes = {
     ikonAltTekst: PropTypes.string,
     className: PropTypes.string,
     variant: PropTypes.string,
-    visLukklenke: PropTypes.boolean,
+    visLukklenke: PropTypes.bool.isRequired,
 };
 
 Utvidbar.defaultProps = {
