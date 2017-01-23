@@ -136,13 +136,13 @@ export class Utvidbar extends Component {
                         {
                             this.state.visInnhold && <div>
                                 {this.props.children}
-                                <div className="knapperad side-innhold ikke-print">
+                                {this.props.visLukklenke && <div className="knapperad ikke-print">
                                     <button type="button"
                                         className="lenke"
                                         aria-pressed={!this.state.erApen}
                                         tabIndex={this.state.erApen ? null : '-1'}
                                         onClick={(event) => {this.toggle(event);}}>Lukk</button>
-                                </div>
+                                </div>}
                             </div>
                         }
                     </div>
@@ -160,11 +160,13 @@ Utvidbar.propTypes = {
     ikonAltTekst: PropTypes.string,
     className: PropTypes.string,
     variant: PropTypes.string,
+    visLukklenke: PropTypes.boolean,
 };
 
 Utvidbar.defaultProps = {
     erApen: false,
     Overskrift: 'H3',
+    visLukklenke: true,
 };
 
 export default Utvidbar;

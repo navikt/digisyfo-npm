@@ -14,6 +14,9 @@ import Utvidbar from './components/Utvidbar';
 export { Utvidbar };
 
 export * from './components/sykmeldingOpplysninger/SykmeldingOpplysning';
+import SykmeldingPerioder from './components/sykmeldingOpplysninger/SykmeldingPerioder';
+export { SykmeldingPerioder };
+
 export * from './ledetekster';
 export * from './utils';
 
