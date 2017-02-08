@@ -129,6 +129,9 @@ export class Utvidbar extends Component {
                             this.state.ikon && <img src={`${window.APP_SETTINGS.APP_ROOT}/img/${this.state.ikon}`} alt={this.props.ikonAltTekst} className="utvidbar__ikon" />
                         }
                         <span className={!this.state.erApen ? 'utvidbar__tittel' : 'utvidbar__tittel utvidbar__tittel--erApen'}>{this.props.tittel}</span>
+                        <em className="utvidbar__handling">
+                            <span className="utvidbar__handling__tekst">{this.state.erApen ? 'Lukk' : 'Åpne'}</span>
+                        </em>
                     </this.props.Overskrift>
                 </a>
                 <div ref="container" style={{ height: this.state.hoyde }} className={`utvidbar__innholdContainer${this.state.containerClassName}`} onTransitionEnd={() => {
