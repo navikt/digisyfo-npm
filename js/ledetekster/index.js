@@ -1,5 +1,5 @@
 function replace(str, replacements) {
-    return str.replace(/%\w+%/g, (all) => {
+    return str.replace(/%\w+%+([.,:;?]{0}?)/g, (all) => {
         return `${replacements[all]}` || all;
     });
 }

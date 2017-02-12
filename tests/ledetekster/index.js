@@ -37,6 +37,15 @@ describe("LABELS", function () {
             expect(label).to.equal("0 % sykmeldt");
         });
 
+        it("Skal erstatte selv om keyen har påfølgende .", function() {
+            const label = getLedetekst("min.ledetekst", {
+                "min.ledetekst": "%GRAD%. % sykmeldt"
+            }, {
+                "%GRAD%": 0
+            });
+            expect(label).to.equal("0. % sykmeldt");
+        });
+
         it("viser key dersom visLedetekster er satt i localstorage ", function() {
             localStorage.setItem('visLedetekster', true);
             const label = getLedetekst("min.ledetekst", {
