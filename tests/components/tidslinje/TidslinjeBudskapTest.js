@@ -5,7 +5,7 @@ import chaiEnzyme from 'chai-enzyme';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
-import ledetekster from "../../ledetekster_mock.js";
+import ledetekster from "../../mock/mockLedetekster.js";
 import { lagHtml } from "../../../js/components/tidslinje/TidslinjeBudskap.js";
 
 describe("TidslinjeBudskap", () => {
