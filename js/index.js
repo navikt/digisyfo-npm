@@ -10,6 +10,12 @@ export { FlereOpplysninger };
 import DineSykmeldingOpplysninger from './components/sykmeldingOpplysninger/DineSykmeldingOpplysninger';
 export { DineSykmeldingOpplysninger };
 
+import Soknad from './components/sykepengesoknadOppsummering/Soknad';
+export { Soknad };
+
+import SykmeldingUtdrag from './components/sykepengesoknadOppsummering/SykmeldingUtdrag';
+export { SykmeldingUtdrag };
+
 import Utvidbar from './components/Utvidbar';
 export { Utvidbar };
 

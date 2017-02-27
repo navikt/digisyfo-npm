@@ -2,13 +2,13 @@ import chai from 'chai';
 import React from 'react'
 import {mount, shallow} from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
-import ledetekster from "../../ledetekster_mock.js";
+import ledetekster from "../../mock/mockLedetekster.js";
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
 import BedreArbeidsevne from "../../../js/components/sykmeldingOpplysninger/BedreArbeidsevne.js";
-import getSykmelding from "../../mockSykmeldinger.js";
+import getSykmelding from "../../mock/mockSykmeldinger.js";
 
 let component;
 

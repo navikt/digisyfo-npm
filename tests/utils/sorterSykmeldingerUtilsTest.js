@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { sorterSykmeldinger, sorterPerioderEldsteFoerst, sorterSykmeldingerEldsteFoerst, getSykmeldingStartdato } from '../../js/utils/sorterSykmeldingerUtils';
-import getSykmelding from '../mockSykmeldinger';
+import getSykmelding from '../mock/mockSykmeldinger';
 
 describe("sorterSykmeldinger", function () {
 

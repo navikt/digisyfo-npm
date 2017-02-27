@@ -2,7 +2,7 @@ import chai from 'chai';
 import React from 'react'
 import { mount, shallow } from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
-import ledetekster from "../../ledetekster_mock.js";
+import ledetekster from "../../mock/mockLedetekster.js";
 import Tidslinje from "../../../js/components/tidslinje/Tidslinje.js";
 import HendelseBoble from "../../../js/components/tidslinje/HendelseBoble.js";
 import HendelseTittel from "../../../js/components/tidslinje/HendelseTittel.js";
