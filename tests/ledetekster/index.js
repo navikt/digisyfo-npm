@@ -1,12 +1,20 @@
-import {expect} from 'chai';
-import {getLedetekst, getHtmlLedetekst} from '../../js/ledetekster';
+import { expect } from 'chai';
+import { getLedetekst, getHtmlLedetekst, setLedetekster, erReplacements } from '../../js/ledetekster';
 
 describe("LABELS", function () {
+
+    afterEach(() => {
+        localStorage.setItem("visLedetekster", null);
+        setLedetekster(undefined);
+    });
 
     describe("getLedetekst", () => {
 
         it("Skal gi beskjed hvis en ledetekst ikke finnes", function () {
-            const label = getLedetekst("denne.finnes.ikke", {
+            const ledetekster = {
+                "min.tekst": "Min tekst"
+            }
+            const label = getLedetekst("denne.finnes.ikke", ledetekster, {
                 "%FOM%": "12. februar",
                 "%TOM%": "8. mars"
             });
@@ -55,5 +63,111 @@ describe("LABELS", function () {
         });
 
     });
+
+    describe("getHtmlLedetekst", () => {
+
+        it("Skal returnere { __html: label }", () => {
+            const ledetekster = {
+                "min.tekst": "<p>Min tekst</p>"
+            };
+            const tekst = getHtmlLedetekst("min.tekst", ledetekster);
+            expect(tekst).to.deep.equal({
+                __html: "<p>Min tekst</p>"
+            });
+        });
+
+        it("Skal returnere { __html: label } når teksten ikke finnes", () => {
+            const ledetekster = {
+                "min.tekst": "<p>Min tekst</p>"
+            };
+            const tekst = getHtmlLedetekst("min.undefined.tekst", ledetekster);
+            expect(tekst).to.deep.equal({
+                __html: "min.undefined.tekst [MANGLER LEDETEKST]"
+            });
+        });
+
+        describe("Når ledetekster er satt via setLedetekster()", () => {
+            beforeEach(() => {
+                const ledetekster = {
+                    "min.tekst": "<p>Min tekst</p>"
+                };
+                setLedetekster(ledetekster)                
+            });
+
+            it("Skal returnere { __html: label}", () => {
+                const tekst = getHtmlLedetekst("min.tekst");
+                expect(tekst).to.deep.equal({
+                    __html: "<p>Min tekst</p>"
+                });
+            });
+
+        })
+
+    })
+
+    describe("erReplacements", () => {
+
+        it("Returnerer true hvis objekt er replacements", () => {
+            const obj = {
+                "%ERSTATT%": "geniale"
+            }
+            expect(erReplacements(obj)).to.be.true;
+        });
+
+        it("Returnerer true hvis objekt ikke er replacements", () => {
+            const obj = {
+                "min.tekst": "Min tekst"
+            }
+            expect(erReplacements(obj)).to.be.false;
+        });
+
+        it("Returnerer false hvis objekt ikke er replacements", () => {
+            const obj = {
+                "min.tekst.med.%-tegn": "Min tekst"
+            }
+            expect(erReplacements(obj)).to.be.false;
+        });
+
+    })
+
+    describe("etter setLedetekster()", () => {
+
+        let ledetekster;
+        let replacements;
+
+        beforeEach(() => {
+            ledetekster = {
+                'min.tekst': 'Min tekst',
+                'min.andre.tekst': 'Min andre %ERSTATT% tekst'
+            }
+            replacements =  {
+                '%ERSTATT%': 'geniale'
+            }
+            setLedetekster(ledetekster);
+        });
+
+        it('Skal hente tekster fra satte tekster', () => {
+            expect(getLedetekst('min.tekst')).to.equal('Min tekst');
+        });
+
+        it('Skal hente tekster fra innsendte tekster etter at tekster er satt (sikrer bakoverkompabilitet)', () => {
+            const ledetekster = {
+                "min.tekst": "Min andre tekst"
+            }
+            expect(getLedetekst('min.tekst', ledetekster)).to.equal('Min andre tekst');
+        });
+
+        it('Skal erstatte tekster etter at tekster er satt når ledetekster sendes inn (sikrer bakoverkompabilitet)', () => {
+            const ledetekster = {
+                "min.tekst": "Min andre %ERSTATT% tekst"
+            };
+            expect(getLedetekst('min.tekst', ledetekster, replacements)).to.equal('Min andre geniale tekst');
+        });
+
+        it("Skal erstatte tekster etter at tekster er satt når ledetekster ikke sendes inn (sikrer bakoverkompabilitet)", () => {
+            expect(getLedetekst('min.andre.tekst', replacements)).to.equal('Min andre geniale tekst');
+        });
+
+    })
 
 }); 
