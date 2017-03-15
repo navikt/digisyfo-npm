@@ -33,8 +33,8 @@ export function getHtmlLedetekst(key, labels, replacements) {
 export const erReplacements = (labels) => {
     const keys = Object.keys(labels);
     return keys.reduce((acc, val) => {
-        return val === val.toUpperCase();
-    }, true)
+        return acc && val === val.toUpperCase() && val.startsWith('%') && val.endsWith('%');
+    }, true);
 }
 
 export const setLedetekster = (tekster) => {

@@ -107,9 +107,17 @@ describe("LABELS", function () {
 
     describe("erReplacements", () => {
 
-        it("Returnerer true hvis objekt er replacements", () => {
+        it("Returnerer true hvis objekt inneholder 1 replacements", () => {
             const obj = {
                 "%ERSTATT%": "geniale"
+            }
+            expect(erReplacements(obj)).to.be.true;
+        });
+
+        it("Returnerer true hvis objekt inneholder 2 replacements", () => {
+            const obj = {
+                "%ERSTATT%": "geniale",
+                "%ERSTATT2%": "geniale"
             }
             expect(erReplacements(obj)).to.be.true;
         });
@@ -124,6 +132,29 @@ describe("LABELS", function () {
         it("Returnerer false hvis objekt ikke er replacements", () => {
             const obj = {
                 "min.tekst.med.%-tegn": "Min tekst"
+            }
+            expect(erReplacements(obj)).to.be.false;
+        });
+
+        it("Returnerer false hvis objekt ikke er replacements, men ligner veldig (1)", () => {
+            const obj = {
+                "%REPLACE": "Min tekst"
+            }
+            expect(erReplacements(obj)).to.be.false;
+        });
+
+
+        it("Returnerer false hvis objekt ikke er replacements, men ligner veldig (2)", () => {
+            const obj = {
+                "%REPLACE": "Min tekst",
+                "%REPLACE2%": "Min adnre tekst"
+            }
+            expect(erReplacements(obj)).to.be.false;
+        });
+
+        it("Returnerer false hvis objekt ikke er replacements, men ligner veldig (3)", () => {
+            const obj = {
+                "%REPLAC%E": "Min tekst",
             }
             expect(erReplacements(obj)).to.be.false;
         });
