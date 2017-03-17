@@ -2,6 +2,8 @@ import { expect } from 'chai';
 import { hentLedetekster } from '../../js/sagas/ledeteksterSagas.js';
 import { get } from '../../js/api';
 import { put, call } from 'redux-saga/effects';
+import * as ledetekster from '../../js/ledetekster';
+import sinon from 'sinon';
 
 describe("ledeteksterSagas", () => {
 
