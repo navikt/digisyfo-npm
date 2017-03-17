@@ -21,35 +21,29 @@ export function hasURLParameter(parameterName) {
     return result;
 }
 
-export function getHtmlLedetekst(key, labels, replacements) {
-    if (localStorage.getItem('visLedetekster')) {
-        return { __html: key };
-    }
-    return {
-        __html: getLedetekst.apply(this, arguments),
-    };
-}
-
 export const erReplacements = (labels) => {
     const keys = Object.keys(labels);
     return keys.reduce((acc, val) => {
         return acc && val === val.toUpperCase() && val.startsWith('%') && val.endsWith('%');
     }, true);
-}
+};
 
 export const setLedetekster = (tekster) => {
     ledetekster = tekster || {};
-}
+};
 
-export function getLedetekst(key, _labels = {}, _replacements) {
+export function getLedetekst(...args) {
     let labels;
     let replacements;
-    
+    const key = args[0];
+    const _labels = args[1];
+    const _replacements = args[2];
+
     if (localStorage.getItem('visLedetekster')) {
         return key;
     }
 
-    switch (arguments.length) {
+    switch (args.length) {
         case 1: {
             labels = ledetekster;
             break;
@@ -63,7 +57,7 @@ export function getLedetekst(key, _labels = {}, _replacements) {
             }
             break;
         }
-        case 3: {
+        default: {
             labels = _labels;
             replacements = _replacements;
             break;
@@ -81,4 +75,14 @@ export function getLedetekst(key, _labels = {}, _replacements) {
         return label;
     }
     return replace(label, replacements);
+}
+
+export function getHtmlLedetekst(...args) {
+    const key = args[0];
+    if (localStorage.getItem('visLedetekster')) {
+        return { __html: key };
+    }
+    return {
+        __html: getLedetekst.apply(this, args),
+    };
 }
