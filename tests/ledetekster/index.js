@@ -122,7 +122,7 @@ describe("LABELS", function () {
             expect(erReplacements(obj)).to.be.true;
         });
 
-        it("Returnerer true hvis objekt ikke er replacements", () => {
+        it("Returnerer false hvis objekt ikke er replacements", () => {
             const obj = {
                 "min.tekst": "Min tekst"
             }
