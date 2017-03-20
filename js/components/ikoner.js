@@ -13,7 +13,7 @@ export const UtropstegnIkonFylt = ({ size = 32 }) => {
 };
 
 UtropstegnIkonFylt.propTypes = {
-    size: PropTypes.number.isRequired,
+    size: PropTypes.number,
 };
 
 export const UtropstegnIkon = ({ size = 32 }) => {
@@ -30,7 +30,7 @@ export const UtropstegnIkon = ({ size = 32 }) => {
 };
 
 UtropstegnIkon.propTypes = {
-    size: PropTypes.number.isRequired,
+    size: PropTypes.number,
 };
 
 export const SuksessIkonFylt = ({ size = 32 }) => {
@@ -46,7 +46,7 @@ export const SuksessIkonFylt = ({ size = 32 }) => {
 };
 
 SuksessIkonFylt.propTypes = {
-    size: PropTypes.number.isRequired,
+    size: PropTypes.number,
 };
 
 export const SuksessIkon = ({ size = 32 }) => {
@@ -61,7 +61,7 @@ export const SuksessIkon = ({ size = 32 }) => {
 };
 
 SuksessIkon.propTypes = {
-    size: PropTypes.number.isRequired,
+    size: PropTypes.number,
 };
 
 export const InfoIkon = ({ size = 32 }) => {
@@ -79,7 +79,7 @@ export const InfoIkon = ({ size = 32 }) => {
 };
 
 InfoIkon.propTypes = {
-    size: PropTypes.number.isRequired,
+    size: PropTypes.number,
 };
 
 export const InfoIkonFylt = ({ size = 32 }) => {
@@ -95,5 +95,5 @@ export const InfoIkonFylt = ({ size = 32 }) => {
 };
 
 InfoIkonFylt.propTypes = {
-    size: PropTypes.number.isRequired,
+    size: PropTypes.number,
 };
