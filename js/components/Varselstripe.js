@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { UtropstegnIkon, UtropstegnIkonFylt, InfoIkonFylt, InfoIkon, SuksessIkonFylt, SuksessIkon } from './ikoner';
 
-export const getIkon = (type, fylt) =>  {
+export const getIkon = (type, fylt) => {
     switch (type) {
         case 'feil': {
             if (fylt) {
@@ -15,14 +15,14 @@ export const getIkon = (type, fylt) =>  {
             }
             return <SuksessIkon />;
         }
-        default: {    
+        default: {
             if (fylt) {
                 return <InfoIkonFylt />;
             }
             return <InfoIkon />;
         }
     }
-}
+};
 
 const Varselstripe = ({ type = 'default', fylt = false, children, ikon }) => {
     const typeClass = ` varselstripe--${type}`;
@@ -42,6 +42,7 @@ Varselstripe.propTypes = {
     type: PropTypes.string,
     fylt: PropTypes.bool,
     children: PropTypes.object,
+    ikon: PropTypes.string,
 };
 
 export default Varselstripe;
