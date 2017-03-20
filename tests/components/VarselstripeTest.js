@@ -2,6 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import Varselstripe, { getIkon, getAlt } from '../../js/components/Varselstripe';
+import { InfoIkon, InfoIkonFylt, SuksessIkon, SuksessIkonFylt, UtropstegnIkon } from '../../js/components/ikoner';
 
 describe("Varselstripe", () => {
 
@@ -16,14 +17,14 @@ describe("Varselstripe", () => {
         expect(comp.contains(<p>Info</p>)).to.be.true;
     });
 
-    it("Skal vise ikon som img", () => {
+    it("Skal vise ikon", () => {
         const comp = mount(<Varselstripe><p>Info</p></Varselstripe>);
-        expect(comp.find("img")).to.have.length(1);
-    })
+        expect(comp.find(InfoIkon)).to.have.length(1);
+    });
 
-    it("Skal vise ikon med alt-tekst", () => {
-        const comp = mount(<Varselstripe type="suksess"><p>Suksess</p></Varselstripe>);
-        expect(comp.find("img").prop("alt")).to.equal("Suksess");
+    it("Skal vise fylt ikon", () => {
+        const comp = mount(<Varselstripe fylt><p>Info</p></Varselstripe>);
+        expect(comp.find(InfoIkonFylt)).to.have.length(1);
     })
 
     it("Skal vise riktig ikon når ikon er innsendt", () => {
@@ -33,37 +34,23 @@ describe("Varselstripe", () => {
 
     describe("getIkon", () => {
         it("Skal vise riktig ikon når type === suksess", () => {
-            expect(getIkon('suksess')).to.equal("/sykefravaer/img/svg/suksess.svg")
+            expect(getIkon('suksess')).to.deep.equal(<SuksessIkon />)
+        });
+
+        it("Skal vise riktig ikon når type === suksess og fylt = true", () => {
+            expect(getIkon('suksess', true)).to.deep.equal(<SuksessIkonFylt />)
         });
 
         it("Skal vise riktig ikon når type === feil", () => {
-            expect(getIkon('feil')).to.equal("/sykefravaer/img/svg/utropstegn.svg")
+            expect(getIkon('feil')).to.deep.equal(<UtropstegnIkon />)
         });
 
         it("Skal vise riktig ikon når type === info", () => {
-            expect(getIkon('info')).to.equal("/sykefravaer/img/svg/informasjon.svg")
+            expect(getIkon('info')).to.deep.equal(<InfoIkon />)
         });
 
         it("Skal vise riktig ikon når type === undefined", () => {
-            expect(getIkon()).to.equal("/sykefravaer/img/svg/informasjon.svg")
-        });
-    });
-
-    describe("getAlt", () => {
-        it("Skal returnere riktig tekst når type === suksess", () => {
-            expect(getAlt('suksess')).to.equal("Suksess")
-        });
-
-        it("Skal returnere riktig tekst når type === feil", () => {
-            expect(getAlt('feil')).to.equal("Feil")
-        });
-
-        it("Skal returnere riktig tekst når type === info", () => {
-            expect(getAlt('info')).to.equal("Informasjon")
-        });
-
-        it("Skal returnere riktig tekst når type === undefined", () => {
-            expect(getAlt()).to.equal("")
+            expect(getIkon()).to.deep.equal(<InfoIkon />)
         });
     });
 

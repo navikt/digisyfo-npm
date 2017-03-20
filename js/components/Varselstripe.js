@@ -1,54 +1,47 @@
 import React, { PropTypes } from 'react';
+import { UtropstegnIkon, UtropstegnIkonFylt, InfoIkonFylt, InfoIkon, SuksessIkonFylt, SuksessIkon } from './ikoner';
 
-export function getAlt(type) {
+export const getIkon = (type, fylt) =>  {
     switch (type) {
-        case 'suksess': {
-            return 'Suksess';
-        }
         case 'feil': {
-            return 'Feil';
+            if (fylt) {
+                return <UtropstegnIkonFylt />;
+            }
+            return <UtropstegnIkon />;
         }
-        case 'default':
-        case 'info': {
-            return 'Informasjon';
+        case 'suksess': {
+            if (fylt) {
+                return <SuksessIkonFylt />;
+            }
+            return <SuksessIkon />;
         }
-        default: {
-            return '';
+        default: {    
+            if (fylt) {
+                return <InfoIkonFylt />;
+            }
+            return <InfoIkon />;
         }
     }
 }
 
-export function getIkon(type) {
-    switch (type) {
-        case 'suksess': {
-            return `${window.APP_SETTINGS.APP_ROOT}/img/svg/suksess.svg`;
-        }
-        case 'feil': {
-            return `${window.APP_SETTINGS.APP_ROOT}/img/svg/utropstegn.svg`;
-        }
-        default: {
-            return `${window.APP_SETTINGS.APP_ROOT}/img/svg/informasjon.svg`;
-        }
-    }
-}
+const Varselstripe = ({ type = 'default', fylt = false, children, ikon }) => {
+    const typeClass = ` varselstripe--${type}`;
+    const _ikon = ikon ? <img src={ikon} alt="" /> : getIkon(type, fylt);
 
-const Varselstripe = ({ type = 'default', children, ikon, alt }) => {
-    const typeClass = `varselstripe--${type}`;
-    const typeIkon = getIkon(type);
-
-    return (<div className={`varselstripe ${(type ? typeClass : '')}`}>
+    return (<div className={`varselstripe${(type ? typeClass : '')}`}>
         <div className="varselstripe__ikon">
-            <img src={ikon || typeIkon} alt={alt || getAlt(type)} />
+            {_ikon}
         </div>
-        {children}
+        <div className="varselstripe__innhold">
+            {children}
+        </div>
     </div>);
 };
 
 Varselstripe.propTypes = {
     type: PropTypes.string,
+    fylt: PropTypes.bool,
     children: PropTypes.object,
-    ikon: PropTypes.string,
-    alt: PropTypes.string,
 };
 
 export default Varselstripe;
