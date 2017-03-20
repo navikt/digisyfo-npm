@@ -62,6 +62,23 @@ describe("LABELS", function () {
             expect(label).to.equal("min.ledetekst");
         });
 
+        it("Skal returnere '' dersom ledetekster ikke er satt", () => {
+            const label = getLedetekst("min.ledetekst");
+            expect(label).to.equal("");
+        });
+
+        it("Skal returnere '' dersom ledetekster er undefined", () => {
+            const label = getLedetekst("min.ledetekst", undefined);
+            expect(label).to.equal("");
+        });
+
+        it("Skal returnere '' dersom ledetekster er undefined og det sendes inn replacements", () => {
+            const label = getLedetekst("min.ledetekst", undefined, {
+                "%REPLACE%": "Me"
+            });
+            expect(label).to.equal("");
+        });
+
     });
 
     describe("getHtmlLedetekst", () => {
@@ -199,6 +216,18 @@ describe("LABELS", function () {
             expect(getLedetekst('min.andre.tekst', replacements)).to.equal('Min andre geniale tekst');
         });
 
-    })
+        it("Skal returnere '' dersom ledetekster er undefined", () => {
+            const label = getLedetekst("min.tekst", undefined);
+            expect(label).to.equal('Min tekst');
+        });
+
+        it("Skal returnere Min tekst dersom ledetekster er undefined og det sendes inn replacements", () => {
+            const label = getLedetekst("min.tekst", undefined, {
+                "%REPLACE%": "Me"
+            });
+            expect(label).to.equal("Min tekst");
+        });
+
+    });
 
 }); 

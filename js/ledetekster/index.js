@@ -22,6 +22,9 @@ export function hasURLParameter(parameterName) {
 }
 
 export const erReplacements = (labels) => {
+    if (!labels) {
+        return false;
+    }
     const keys = Object.keys(labels);
     return keys.reduce((acc, val) => {
         return acc && val === val.toUpperCase() && val.startsWith('%') && val.endsWith('%');
@@ -49,7 +52,9 @@ export function getLedetekst(...args) {
             break;
         }
         case 2: {
-            if (erReplacements(_labels)) {
+            if (!_labels) {
+                labels = ledetekster;
+            } else if (erReplacements(_labels)) {
                 replacements = _labels;
                 labels = ledetekster;
             } else {
@@ -58,16 +63,20 @@ export function getLedetekst(...args) {
             break;
         }
         default: {
-            labels = _labels;
+            if (_labels) {
+                labels = _labels;
+            } else {
+                labels = ledetekster;
+            }
             replacements = _replacements;
             break;
         }
     }
 
-    const label = labels[key];
-    if (Object.keys(labels).length === 0) {
+    if (!labels || Object.keys(labels).length === 0) {
         return '';
     }
+    const label = labels[key];
     if (!label) {
         return `${key} [MANGLER LEDETEKST]`;
     }
