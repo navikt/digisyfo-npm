@@ -1,24 +1,26 @@
+import * as actiontyper from './actiontyper';
+
 export function henterLedetekster() {
     return {
-        type: 'HENTER_LEDETEKSTER',
+        type: actiontyper.HENTER_LEDETEKSTER,
     };
 }
 
-export function setLedetekster(ledetekster = {}) {
+export function ledeteksterHentet(ledetekster = {}) {
     return {
-        type: 'SET_LEDETEKSTER',
+        type: actiontyper.LEDETEKSTER_HENTET,
         ledetekster,
     };
 }
 
 export function hentLedeteksterFeilet() {
     return {
-        type: 'HENT_LEDETEKSTER_FEILET',
+        type: actiontyper.HENT_LEDETEKSTER_FEILET,
     };
 }
 
 export function hentLedetekster() {
     return {
-        type: 'HENT_LEDETEKSTER_FORESPURT',
+        type: actiontyper.HENT_LEDETEKSTER_FORESPURT,
     };
 }

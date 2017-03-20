@@ -1,27 +1,29 @@
+import * as actiontyper from './actiontyper';
+
 export function setHendelser(data = []) {
     return {
-        type: 'SET_HENDELSER',
+        type: actiontyper.SET_HENDELSER,
         data,
     };
 }
 
 export function apneHendelser(hendelseIder) {
     return {
-        type: 'ÅPNE_HENDELSER',
+        type: actiontyper.APNE_HENDELSER,
         hendelseIder,
     };
 }
 
 export function leggTilHendelser(sykeforloep) {
     return {
-        type: 'LEGG_TIL_HENDELSER',
+        type: actiontyper.LEGG_TIL_HENDELSER,
         sykeforloep,
     };
 }
 
 export function setHendelseData(hendelseId, data) {
     return {
-        type: 'SET_HENDELSEDATA',
+        type: actiontyper.SET_HENDELSEDATA,
         hendelseId,
         data,
     };

@@ -14,9 +14,9 @@ describe("ledetekster_actions", () => {
 		})
 	});
 
-	it("Should have a setLedetekster action that returns a proper function", () => {
-		expect(actions.setLedetekster({tekst: "Min ledetekst"})).to.deep.equal({
-			type: 'SET_LEDETEKSTER',
+	it("Should have a ledeteksterHentet action that returns a proper function", () => {
+		expect(actions.ledeteksterHentet({tekst: "Min ledetekst"})).to.deep.equal({
+			type: 'LEDETEKSTER_HENTET',
 			ledetekster: {
 				tekst: "Min ledetekst"
 			}

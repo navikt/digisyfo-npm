@@ -27,7 +27,7 @@ describe("ledeteksterSagas", () => {
 
     it("Skal dernest sette ledetekster", () => {
         const nextPut = put({
-            type: 'SET_LEDETEKSTER',
+            type: 'LEDETEKSTER_HENTET',
             ledetekster: {"min.ledetekst": "Hello world!"}
         })
         expect(generator.next({"min.ledetekst": "Hello world!"}).value).to.deep.equal(nextPut);
