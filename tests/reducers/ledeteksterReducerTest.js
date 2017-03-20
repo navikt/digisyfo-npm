@@ -5,10 +5,10 @@ import ledetekster from '../../js/reducers/ledetekster.js';
 
 describe('ledetekster', () => {
 
-    it('håndterer SET_LEDETEKSTER ', () => {
+    it('håndterer LEDETEKSTER_HENTET ', () => {
         const initialState = deepFreeze({});
         const action = {
-            type: 'SET_LEDETEKSTER',
+            type: 'LEDETEKSTER_HENTET',
             ledetekster: {
                 "nokkel.1": "Verdi 1",
                 "nokkel.2": "Verdi 2",

@@ -6,7 +6,7 @@ const initiellState = {
 
 export default function ledetekster(state = initiellState, action) {
     switch (action.type) {
-        case 'SET_LEDETEKSTER':
+        case 'LEDETEKSTER_HENTET':
             return {
                 data: action.ledetekster,
                 henter: false,
