@@ -2,19 +2,17 @@ import {expect} from 'chai';
 import deepFreeze from 'deep-freeze';
 
 import ledetekster from '../../js/reducers/ledetekster.js';
+import * as actions from '../../js/actions/ledetekster_actions';
 
 describe('ledetekster', () => {
 
     it('håndterer LEDETEKSTER_HENTET ', () => {
         const initialState = deepFreeze({});
-        const action = {
-            type: 'LEDETEKSTER_HENTET',
-            ledetekster: {
-                "nokkel.1": "Verdi 1",
-                "nokkel.2": "Verdi 2",
-                "nokkel.3": "Verdi 3"
-            }
-        };
+        const action = actions.ledeteksterHentet({
+            "nokkel.1": "Verdi 1",
+            "nokkel.2": "Verdi 2",
+            "nokkel.3": "Verdi 3"
+        });
         const nextState = ledetekster(initialState, action);
         expect(nextState).to.deep.equal({
             data: {
@@ -29,9 +27,7 @@ describe('ledetekster', () => {
 
     it("Håndterer HENTER_LEDETEKSTER ", () => {
         const initialState = deepFreeze({});
-        const action = {
-            type: 'HENTER_LEDETEKSTER'
-        };
+        const action = actions.henterLedetekster();
         const nextState = ledetekster(initialState, action);
         expect(nextState).to.deep.equal({
             data: {},
@@ -42,9 +38,7 @@ describe('ledetekster', () => {
 
     it("Håndterer HENT_LEDETEKSTER_FEILET ", () => {
         const initialState = deepFreeze({});
-        const action = {
-            type: 'HENT_LEDETEKSTER_FEILET'
-        };
+        const action = actions.hentLedeteksterFeilet();
         const nextState = ledetekster(initialState, action);
         expect(nextState).to.deep.equal({
             data: {},

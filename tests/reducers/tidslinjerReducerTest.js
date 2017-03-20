@@ -2,6 +2,8 @@ import {expect} from 'chai';
 import deepFreeze from 'deep-freeze';
 
 import tidslinjer, { settHendelseIder, leggTilTidshendelser, sorterHendelser } from '../../js/reducers/tidslinjer.js';
+import * as actions from '../../js/actions/tidslinjer_actions';
+import * as hendelserActions from '../../js/actions/hendelser_actions';
 
 describe('tidslinjer', () => {
 
@@ -70,9 +72,7 @@ describe('tidslinjer', () => {
 
     it("Håndterer HENT_TIDSLINJER_FEILET", () => {
         const initiellState = deepFreeze({});
-        const action = {
-            type: "HENT_TIDSLINJER_FEILET"
-        }
+        const action = actions.hentTidslinjerFeilet();
         const nextState = tidslinjer(initiellState, action);
         expect(nextState).to.deep.equal({
             data: [],
@@ -83,9 +83,7 @@ describe('tidslinjer', () => {
 
     it("Håndterer HENTER_TIDSLINJER", () => {
         const initiellState = deepFreeze({});
-        const action = {
-            type: "HENTER_TIDSLINJER"
-        }
+        const action = actions.henterTidslinjer();
         const nextState = tidslinjer(initiellState, action);
         expect(nextState).to.deep.equal({
             data: [],
@@ -116,68 +114,65 @@ describe('tidslinjer', () => {
 
     it("Håndterer SET_TIDSLINJER når sykeforløpet har en startdato", () => {
         const initiellState = deepFreeze({});
-        const action = {
-            type: "SET_TIDSLINJER",
-            tidslinjer: [{
-                "startdato": {
-                    "year": 2016,
-                    "month": "JUNE",
-                    "dayOfMonth": 12,
-                    "dayOfWeek": "SUNDAY",
-                    "dayOfYear": 164,
-                    "leapYear": true,
-                    "monthValue": 6,
-                    "era": "CE",
-                    "chronology": {
-                        "id": "ISO",
-                        "calendarType": "iso8601"
-                    }
-                },
-                "hendelser": [{
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 0,
-                    "tekstkey": "tidslinje.sykefravaeret-starter"
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 27,
-                    "tekstkey": "tidslinje.snakk-med-arbeidsgiver.MED_ARBEIDSGIVER"
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 48,
-                    "tekstkey": "tidslinje.dialogmote-arbeidsgiver.MED_ARBEIDSGIVER"
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 55,
-                    "tekstkey": "tidslinje.aktivitetskrav.MED_ARBEIDSGIVER"
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 181,
-                    "tekstkey": "tidslinje.dialogmote-nav.MED_ARBEIDSGIVER"
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 272,
-                    "tekstkey": "tidslinje.langtidssykmeldt.MED_ARBEIDSGIVER"
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 364,
-                    "tekstkey": "tidslinje.sluttfasen.MED_ARBEIDSGIVER"
-                }]
+        const action = actions.setTidslinjer([{
+            "startdato": {
+                "year": 2016,
+                "month": "JUNE",
+                "dayOfMonth": 12,
+                "dayOfWeek": "SUNDAY",
+                "dayOfYear": 164,
+                "leapYear": true,
+                "monthValue": 6,
+                "era": "CE",
+                "chronology": {
+                    "id": "ISO",
+                    "calendarType": "iso8601"
+                }
+            },
+            "hendelser": [{
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 0,
+                "tekstkey": "tidslinje.sykefravaeret-starter"
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 27,
+                "tekstkey": "tidslinje.snakk-med-arbeidsgiver.MED_ARBEIDSGIVER"
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 48,
+                "tekstkey": "tidslinje.dialogmote-arbeidsgiver.MED_ARBEIDSGIVER"
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 55,
+                "tekstkey": "tidslinje.aktivitetskrav.MED_ARBEIDSGIVER"
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 181,
+                "tekstkey": "tidslinje.dialogmote-nav.MED_ARBEIDSGIVER"
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 272,
+                "tekstkey": "tidslinje.langtidssykmeldt.MED_ARBEIDSGIVER"
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 364,
+                "tekstkey": "tidslinje.sluttfasen.MED_ARBEIDSGIVER"
             }]
-         };
+        }])
         const nextState = tidslinjer(initiellState, action);
         expect(nextState.data).to.deep.equal([{
                 "startdato": {
@@ -289,55 +284,52 @@ describe('tidslinjer', () => {
 
     it("Håndterer SET_TIDSLINJER når sykeforløpet ikke har en startdato", () => {
         const initiellState = deepFreeze({});
-        const action = {
-            type: "SET_TIDSLINJER",
-            tidslinjer: [{
-                startdato: null,
-                "hendelser": [{
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 0,
-                    "tekstkey": "tidslinje.med-arbeidsgiver.sykefravaer.startet"
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 27,
-                    "tekstkey": "tidslinje.snakk-med-arbeidsgiver.MED_ARBEIDSGIVER",
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 48,
-                    "tekstkey": "tidslinje.dialogmote-arbeidsgiver.MED_ARBEIDSGIVER",
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 55,
-                    "tekstkey": "tidslinje.aktivitetskrav.MED_ARBEIDSGIVER",
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 181,
-                    "tekstkey": "tidslinje.dialogmote-nav.MED_ARBEIDSGIVER",
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 272,
-                    "tekstkey": "tidslinje.langtidssykmeldt.MED_ARBEIDSGIVER",
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 364,
-                    "tekstkey": "tidslinje.sluttfasen.MED_ARBEIDSGIVER",
-                }]
+        const action = actions.setTidslinjer([{
+            startdato: null,
+            "hendelser": [{
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 0,
+                "tekstkey": "tidslinje.med-arbeidsgiver.sykefravaer.startet"
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 27,
+                "tekstkey": "tidslinje.snakk-med-arbeidsgiver.MED_ARBEIDSGIVER",
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 48,
+                "tekstkey": "tidslinje.dialogmote-arbeidsgiver.MED_ARBEIDSGIVER",
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 55,
+                "tekstkey": "tidslinje.aktivitetskrav.MED_ARBEIDSGIVER",
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 181,
+                "tekstkey": "tidslinje.dialogmote-nav.MED_ARBEIDSGIVER",
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 272,
+                "tekstkey": "tidslinje.langtidssykmeldt.MED_ARBEIDSGIVER",
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 364,
+                "tekstkey": "tidslinje.sluttfasen.MED_ARBEIDSGIVER",
             }]
-         };
+        }])
         const nextState = tidslinjer(initiellState, action);
         expect(nextState.data).to.deep.equal([{
                 "startdato": null,
@@ -420,68 +412,65 @@ describe('tidslinjer', () => {
 
     it("Håndterer SET_TIDSLINJER når sykeforløpet har hendelser med ID", () => {
         const initiellState = deepFreeze({});
-        const action = {
-            type: "SET_TIDSLINJER",
-            tidslinjer: [{
-                "startdato": {
-                    "year": 2016,
-                    "month": "JUNE",
-                    "dayOfMonth": 12,
-                    "dayOfWeek": "SUNDAY",
-                    "dayOfYear": 164,
-                    "leapYear": true,
-                    "monthValue": 6,
-                    "era": "CE",
-                    "chronology": {
-                        "id": "ISO",
-                        "calendarType": "iso8601"
-                    }
-                },
-                "hendelser": [{
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 0,
-                    "tekstkey": "tidslinje.sykefravaeret-starter"
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 27,
-                    "tekstkey": "tidslinje.snakk-med-arbeidsgiver.MED_ARBEIDSGIVER"
-                }, {
-                    "id": "fiskekake",
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 48,
-                    "tekstkey": "tidslinje.dialogmote-arbeidsgiver.MED_ARBEIDSGIVER"
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 55,
-                    "tekstkey": "tidslinje.aktivitetskrav.MED_ARBEIDSGIVER"
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 181,
-                    "tekstkey": "tidslinje.dialogmote-nav.MED_ARBEIDSGIVER"
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 272,
-                    "tekstkey": "tidslinje.langtidssykmeldt.MED_ARBEIDSGIVER"
-                }, {
-                    "id": null,
-                    "inntruffetdato": null,
-                    "type": "BOBLE",
-                    "antallDager": 364,
-                    "tekstkey": "tidslinje.sluttfasen.MED_ARBEIDSGIVER"
-                }]
+        const action = actions.setTidslinjer([{
+            "startdato": {
+                "year": 2016,
+                "month": "JUNE",
+                "dayOfMonth": 12,
+                "dayOfWeek": "SUNDAY",
+                "dayOfYear": 164,
+                "leapYear": true,
+                "monthValue": 6,
+                "era": "CE",
+                "chronology": {
+                    "id": "ISO",
+                    "calendarType": "iso8601"
+                }
+            },
+            "hendelser": [{
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 0,
+                "tekstkey": "tidslinje.sykefravaeret-starter"
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 27,
+                "tekstkey": "tidslinje.snakk-med-arbeidsgiver.MED_ARBEIDSGIVER"
+            }, {
+                "id": "fiskekake",
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 48,
+                "tekstkey": "tidslinje.dialogmote-arbeidsgiver.MED_ARBEIDSGIVER"
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 55,
+                "tekstkey": "tidslinje.aktivitetskrav.MED_ARBEIDSGIVER"
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 181,
+                "tekstkey": "tidslinje.dialogmote-nav.MED_ARBEIDSGIVER"
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 272,
+                "tekstkey": "tidslinje.langtidssykmeldt.MED_ARBEIDSGIVER"
+            }, {
+                "id": null,
+                "inntruffetdato": null,
+                "type": "BOBLE",
+                "antallDager": 364,
+                "tekstkey": "tidslinje.sluttfasen.MED_ARBEIDSGIVER"
             }]
-         };
+        }]);
         const nextState = tidslinjer(initiellState, action);
         expect(nextState.data).to.deep.equal([{
                 "startdato": {
@@ -615,10 +604,7 @@ describe('tidslinjer', () => {
             henter: false,
             hentingFeilet: false
         });
-        const action = {
-            type: 'ÅPNE_HENDELSER',
-            hendelseIder: [0, 2, 3]
-        };
+        const action = hendelserActions.apneHendelser([0, 2, 3]);
         const nextState = tidslinjer(initiellState, action);
         expect(nextState).to.deep.equal({
             data: [{
@@ -668,14 +654,10 @@ describe('tidslinjer', () => {
             henter: false,
             hentingFeilet: false,
         });
-        const action = {
-            type: 'SET_HENDELSEDATA',
-            hendelseId: 1,
-            data: {
-                ikon: "helge.jpg",
-                hoyde: 55
-            }
-        };
+        const action = hendelserActions.setHendelseData(1, {
+            ikon: "helge.jpg",
+            hoyde: 55
+        });
         const nextState = tidslinjer(initiellState, action);
 
         expect(nextState).to.deep.equal({

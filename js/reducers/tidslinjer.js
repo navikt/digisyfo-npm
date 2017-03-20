@@ -1,4 +1,5 @@
 import { bilder } from '../tidslinjeData';
+import * as actiontyper from '../actions/actiontyper';
 
 const initiellState = {
     henter: false,
@@ -75,21 +76,21 @@ export const leggTilTidshendelser = (_tidslinjer, arbeidssituasjon) => {
 
 export default function tidslinjer(state = initiellState, action) {
     switch (action.type) {
-        case 'HENT_TIDSLINJER_FEILET': {
+        case actiontyper.HENT_TIDSLINJER_FEILET: {
             return Object.assign({}, state, {
                 data: [],
                 henter: false,
                 hentingFeilet: true,
             });
         }
-        case 'HENTER_TIDSLINJER': {
+        case actiontyper.HENTER_TIDSLINJER: {
             return {
                 data: [],
                 henter: true,
                 hentingFeilet: false,
             };
         }
-        case 'SET_TIDSLINJER': {
+        case actiontyper.SET_TIDSLINJER: {
             const data = leggTilBilder(settHendelseIder(leggTilTidshendelser(action.tidslinjer, action.arbeidssituasjon)));
             return {
                 henter: false,
@@ -97,7 +98,7 @@ export default function tidslinjer(state = initiellState, action) {
                 data,
             };
         }
-        case 'HENT_TIDSLINJER_IKKE_TILGANG': {
+        case actiontyper.HENT_TIDSLINJER_IKKE_TILGANG: {
             return Object.assign({}, state, {
                 data: [],
                 henter: false,
@@ -105,7 +106,7 @@ export default function tidslinjer(state = initiellState, action) {
                 ikkeTilgang: true,
             });
         }
-        case 'ÅPNE_HENDELSER': {
+        case actiontyper.APNE_HENDELSER: {
             if (!state.data.length) {
                 return state;
             }
@@ -126,7 +127,7 @@ export default function tidslinjer(state = initiellState, action) {
             });
             return Object.assign({}, state, { data });
         }
-        case 'SET_HENDELSEDATA': {
+        case actiontyper.SET_HENDELSEDATA: {
             if (!state.data.length) {
                 return state;
             }
@@ -143,7 +144,7 @@ export default function tidslinjer(state = initiellState, action) {
             });
             return Object.assign({}, state, { data });
         }
-        case 'BRUKER_ER_UTLOGGET': {
+        case actiontyper.BRUKER_ER_UTLOGGET: {
             return {
                 data: [],
                 hentingFeilet: false,
