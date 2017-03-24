@@ -7,6 +7,7 @@
     "lib/"
   ],
   "scripts": {
+    "build": "npm run compile",
     "test": "mocha --compilers js:babel-core/register --require babel-polyfill ./tests/test_helper.js \"tests/**/*.@(js|jsx)\"",
     "watch": "npm run test -- --watch",
     "compile": "babel --presets es2015 -d lib/ js/",
