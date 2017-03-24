@@ -28,7 +28,7 @@ export const Avvik = ({ aktivitet, arbeidsgiver, ledetekster }) => {
         </div>
         <div>
             <h4 className="oppsummering__sporsmal">{getLedetekst('sykepengesoknad.angi-tid.normal-arbeidstimer.sporsmal', ledetekster)}</h4>
-            <p>{getLedetekst('sykepengesoknad.angi-tid.normal-arbeidstimer.label-med-verdi', ledetekster, { '%ANTALL%': String(arbeidstimerNormalUke).replace('.', ',')})}</p>
+            <p>{getLedetekst('sykepengesoknad.angi-tid.normal-arbeidstimer.label-med-verdi', ledetekster, { '%ANTALL%': String(arbeidstimerNormalUke).replace('.', ',') })}</p>
         </div>
     </div>);
 };
