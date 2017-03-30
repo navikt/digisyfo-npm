@@ -105,6 +105,12 @@ describe("DineSykmeldingOpplysninger", () => {
             expect(component.find(".js-hoveddiagnose-system").text()).to.contain("ICPC")
         });
 
+        it("Skal vise 2 x informasjon om at diagnose ikke sendes til arbeidsgiver", () => {
+            expect(component.find(".js-diagnose-meta")).to.have.length(2);
+            expect(component.find(".js-diagnose-meta").at(0).text()).to.equal("Diagnose blir ikke sendt videre til eventuell arbeidsgiver");
+            expect(component.find(".js-diagnose-meta").at(1).text()).to.equal("Diagnose blir ikke sendt videre til eventuell arbeidsgiver")
+        });
+
         it("Skal ikke vise hoveddiagnose dersom den ikke finnes", () => {
             const getState = {
                 ledetekster: { ledetekster },

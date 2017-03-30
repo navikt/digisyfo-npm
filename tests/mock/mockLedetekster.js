@@ -248,6 +248,7 @@ const ledetekster = {
     "sykepengesoknad.ferie-permisjon-utenlandsopphold.oppholdt-meg-utenfor-norge": "oppholdt meg utenfor Norge",
     "sykepengesoknad.ferie-permisjon-utenlandsopphold.hatt-permisjon": "hatt permisjon",
     "sykepengesoknad.angi-tid.normal-arbeidstimer.label-med-verdi": "%ANTALL% timer",
+    "din-sykmelding.diagnose.meta": "Diagnose blir ikke sendt videre til eventuell arbeidsgiver"
 };
 
 export default ledetekster;
