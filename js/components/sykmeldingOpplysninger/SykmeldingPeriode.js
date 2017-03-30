@@ -27,7 +27,7 @@ const SykmeldingPeriode = ({ periode, antallDager = 1, ledetekster, Overskrift =
                 periode.avventende ? <div className="blokk"><p className="js-avventende">{getLedetekst('din-sykmelding.periode.avventende', ledetekster)}</p></div> : null
             }
             {
-                periode.avventende ? <h4>{getLedetekst('din-sykmelding.periode.avventende.innspill', ledetekster)}</h4> : null
+                periode.avventende ? <h4 className="nokkelopplysning__tittel">{getLedetekst('din-sykmelding.periode.avventende.innspill', ledetekster)}</h4> : null
             }
             {
                 periode.avventende ? <p>{periode.avventende}</p> : ''
