@@ -6,6 +6,7 @@ import { SykmeldingNokkelOpplysning } from './SykmeldingOpplysning';
 import SykmeldingPerioder from './SykmeldingPerioder';
 import { SykmeldingCheckbox } from './SykmeldingCheckbox';
 import FlereOpplysninger from './FlereOpplysninger';
+import Hjelpetekst from '../Hjelpetekst';
 
 const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'H2' }) => {
     return (<div className="dine-opplysninger">
@@ -24,20 +25,24 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'H2'
                             <p className="js-diagnose-meta nokkelopplysning__meta nokkelopplysning__meta--mobil">{getLedetekst('din-sykmelding.diagnose.meta', ledetekster)}</p>
                         </div>
                     </SykmeldingNokkelOpplysning>
-                    <SykmeldingNokkelOpplysning
-                        className="nokkelopplysning--hoveddiagnose"
-                        tittel={getLedetekst('din-sykmelding.diagnosekode.tittel', ledetekster)}>
+                    <div
+                        className="nokkelopplysning nokkelopplysning--hoveddiagnose js-hoveddiagnose-kode-container">
+
+                        <div className="medHjelpetekst">
+                            <h3>
+                                {getLedetekst('din-sykmelding.diagnosekode.tittel', ledetekster)}
+                            </h3>
+                            <Hjelpetekst
+                                tittel={getLedetekst('din-sykmelding.diagnosekode.hjelpetekst.tittel', ledetekster)}
+                                tekst={getLedetekst('din-sykmelding.diagnosekode.hjelpetekst.tekst', ledetekster)} />
+                        </div>
                         <p>
-                            <span
-                                className="js-hoveddiagnose-kode">{sykmelding.diagnose.hoveddiagnose.diagnosekode}
-                            </span>
+                            <span className="js-hoveddiagnose-kode">{sykmelding.diagnose.hoveddiagnose.diagnosekode}</span>
                             &nbsp;(
-                                <span
-                                    className="js-hoveddiagnose-system">{sykmelding.diagnose.hoveddiagnose.diagnosesystem}
-                                </span>
+                                <span className="js-hoveddiagnose-system">{sykmelding.diagnose.hoveddiagnose.diagnosesystem}</span>
                             )
                         </p>
-                    </SykmeldingNokkelOpplysning>
+                    </div>
                     <p className="js-diagnose-meta nokkelopplysning__meta nokkelopplysning__meta--desktop">{getLedetekst('din-sykmelding.diagnose.meta', ledetekster)}</p>
                 </div>) : null
             }

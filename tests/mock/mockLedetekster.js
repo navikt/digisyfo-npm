@@ -247,6 +247,9 @@ const ledetekster = {
     "sykepengesoknad.periodevelger.fom": "Fra dato",
     "sykepengesoknad.ferie-permisjon-utenlandsopphold.oppholdt-meg-utenfor-norge": "oppholdt meg utenfor Norge",
     "sykepengesoknad.ferie-permisjon-utenlandsopphold.hatt-permisjon": "hatt permisjon",
+    "din-sykmelding.diagnose.meta": "Diagnose blir ikke sendt videre til eventuell arbeidsgiver",
+    "din-sykmelding.diagnosekode.hjelpetekst.tittel": "Diagnosekode",
+    "din-sykmelding.diagnosekode.hjelpetekst.tekst": "Diagnosekoden henviser til de internasjonale kodeverkene som klassifiserer sykdom og symptomer. De ulike diagnosekodene brukes for å gi en mest mulig presis diagnose."
     "sykepengesoknad.angi-tid.normal-arbeidstimer.label-med-verdi": "%ANTALL% timer",
     "din-sykmelding.diagnose.meta": "Diagnose blir ikke sendt videre til eventuell arbeidsgiver"
 };

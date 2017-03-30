@@ -11,6 +11,7 @@ const expect = chai.expect;
 import DineSykmeldingOpplysninger from "../../../js/components/sykmeldingOpplysninger/DineSykmeldingOpplysninger";
 import SykmeldingPerioder from "../../../js/components/sykmeldingOpplysninger/SykmeldingPerioder";
 import FlereOpplysninger from "../../../js/components/sykmeldingOpplysninger/FlereOpplysninger";
+import Hjelpetekst from '../../../js/components/Hjelpetekst';
 
 describe("DineSykmeldingOpplysninger", () => {
 
@@ -110,6 +111,12 @@ describe("DineSykmeldingOpplysninger", () => {
             expect(component.find(".js-diagnose-meta").at(0).text()).to.equal("Diagnose blir ikke sendt videre til eventuell arbeidsgiver");
             expect(component.find(".js-diagnose-meta").at(1).text()).to.equal("Diagnose blir ikke sendt videre til eventuell arbeidsgiver")
         });
+
+        it("Skal vise Hjelpetekst på diagnosekode", () => {
+            expect(component.find(".js-hoveddiagnose-kode-container").find(Hjelpetekst)).to.have.length(1);
+            expect(component.find(".js-hoveddiagnose-kode-container").find(Hjelpetekst).prop("tittel")).to.equal("Diagnosekode");
+            expect(component.find(".js-hoveddiagnose-kode-container").find(Hjelpetekst).prop("tekst")).to.equal("Diagnosekoden henviser til de internasjonale kodeverkene som klassifiserer sykdom og symptomer. De ulike diagnosekodene brukes for å gi en mest mulig presis diagnose.")
+        })
 
         it("Skal ikke vise hoveddiagnose dersom den ikke finnes", () => {
             const getState = {
