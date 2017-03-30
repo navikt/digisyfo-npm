@@ -16,32 +16,34 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'H2'
         <div className="blokk-l side-innhold">
             <SykmeldingPerioder perioder={sykmelding.mulighetForArbeid.perioder} ledetekster={ledetekster} />
             {
-                sykmelding.diagnose.hoveddiagnose ? (<div className="rad-container">
-                    <SykmeldingNokkelOpplysning
-                        className="nokkelopplysning--hoveddiagnose"
-                        tittel={getLedetekst('din-sykmelding.diagnose.tittel', ledetekster)}>
-                        <div>
-                            <p className="js-hoveddiagnose">{sykmelding.diagnose.hoveddiagnose.diagnose}</p>
-                            <p className="js-diagnose-meta nokkelopplysning__meta nokkelopplysning__meta--mobil">{getLedetekst('din-sykmelding.diagnose.meta', ledetekster)}</p>
-                        </div>
-                    </SykmeldingNokkelOpplysning>
-                    <div
-                        className="nokkelopplysning nokkelopplysning--hoveddiagnose js-hoveddiagnose-kode-container">
+                sykmelding.diagnose.hoveddiagnose ? (<div className="hoveddiagnose">
+                    <div className="rad-container">
+                        <SykmeldingNokkelOpplysning
+                            className="nokkelopplysning--hoveddiagnose"
+                            tittel={getLedetekst('din-sykmelding.diagnose.tittel', ledetekster)}>
+                            <div>
+                                <p className="js-hoveddiagnose">{sykmelding.diagnose.hoveddiagnose.diagnose}</p>
+                                <p className="js-diagnose-meta nokkelopplysning__meta nokkelopplysning__meta--mobil">{getLedetekst('din-sykmelding.diagnose.meta', ledetekster)}</p>
+                            </div>
+                        </SykmeldingNokkelOpplysning>
+                        <div
+                            className="nokkelopplysning nokkelopplysning--hoveddiagnose js-hoveddiagnose-kode-container">
 
-                        <div className="medHjelpetekst">
-                            <h3 className="nokkelopplysning__tittel">
-                                {getLedetekst('din-sykmelding.diagnosekode.tittel', ledetekster)}
-                            </h3>
-                            <Hjelpetekst
-                                tittel={getLedetekst('din-sykmelding.diagnosekode.hjelpetekst.tittel', ledetekster)}
-                                tekst={getLedetekst('din-sykmelding.diagnosekode.hjelpetekst.tekst', ledetekster)} />
+                            <div className="medHjelpetekst">
+                                <h3 className="nokkelopplysning__tittel">
+                                    {getLedetekst('din-sykmelding.diagnosekode.tittel', ledetekster)}
+                                </h3>
+                                <Hjelpetekst
+                                    tittel={getLedetekst('din-sykmelding.diagnosekode.hjelpetekst.tittel', ledetekster)}
+                                    tekst={getLedetekst('din-sykmelding.diagnosekode.hjelpetekst.tekst', ledetekster)} />
+                            </div>
+                            <p>
+                                <span className="js-hoveddiagnose-kode">{sykmelding.diagnose.hoveddiagnose.diagnosekode}</span>
+                                &nbsp;(
+                                    <span className="js-hoveddiagnose-system">{sykmelding.diagnose.hoveddiagnose.diagnosesystem}</span>
+                                )
+                            </p>
                         </div>
-                        <p>
-                            <span className="js-hoveddiagnose-kode">{sykmelding.diagnose.hoveddiagnose.diagnosekode}</span>
-                            &nbsp;(
-                                <span className="js-hoveddiagnose-system">{sykmelding.diagnose.hoveddiagnose.diagnosesystem}</span>
-                            )
-                        </p>
                     </div>
                     <p className="js-diagnose-meta nokkelopplysning__meta nokkelopplysning__meta--desktop">{getLedetekst('din-sykmelding.diagnose.meta', ledetekster)}</p>
                 </div>) : null
