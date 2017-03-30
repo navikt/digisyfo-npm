@@ -3,7 +3,7 @@ import SykmeldingPeriode from './SykmeldingPeriode';
 import { getDuration, sorterPerioderEldsteFoerst } from '../../utils';
 
 const SykmeldingPerioder = ({ perioder = [], ledetekster, Overskrift = 'H3' }) => {
-    return (<div className="sykmeldingPerioder">
+    return (<div className={`sykmeldingPerioder ${perioder.length > 1 ? 'sykmeldingPerioder--flere' : ''}`}>
         {
             sorterPerioderEldsteFoerst(perioder).map((periode, index) => {
                 return (<SykmeldingPeriode
