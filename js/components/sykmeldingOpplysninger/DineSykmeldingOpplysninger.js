@@ -29,7 +29,7 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'H2'
                         className="nokkelopplysning nokkelopplysning--hoveddiagnose js-hoveddiagnose-kode-container">
 
                         <div className="medHjelpetekst">
-                            <h3>
+                            <h3 className="nokkelopplysning__tittel">
                                 {getLedetekst('din-sykmelding.diagnosekode.tittel', ledetekster)}
                             </h3>
                             <Hjelpetekst

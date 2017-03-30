@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 export const SykmeldingOpplysning = ({ tittel, children, Overskrift = 'H5', className = '' }) => {
     return (
         <div className={`opplysning ${className}`}>
-            {tittel ? <Overskrift dangerouslySetInnerHTML={{ __html: tittel }} /> : null}
+            {tittel ? <Overskrift className="opplysning__tittel" dangerouslySetInnerHTML={{ __html: tittel }} /> : null}
             {children}
         </div>
     );
@@ -19,7 +19,7 @@ SykmeldingOpplysning.propTypes = {
 export const SykmeldingNokkelOpplysning = ({ tittel, children, Overskrift = 'H3', className = '' }) => {
     return (
         <div className={`nokkelopplysning ${className}`}>
-            {tittel ? <Overskrift dangerouslySetInnerHTML={{ __html: tittel }} /> : null}
+            {tittel ? <Overskrift className="nokkelopplysning__tittel" dangerouslySetInnerHTML={{ __html: tittel }} /> : null}
             {children}
         </div>
     );
