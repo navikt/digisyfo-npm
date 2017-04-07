@@ -136,6 +136,12 @@ export const Utdanning = ({ sykepengesoknad, ledetekster }) => {
         })}</h3>
         <Avkrysset tekst={sykepengesoknad.utdanning ? getLedetekst('sykepengesoknad.ja', ledetekster) : getLedetekst('sykepengesoknad.nei', ledetekster)} />
         {
+            sykepengesoknad.utdanning && (<div className="js-utdanning-start">
+                <h3 className="oppsummering__sporsmal">{getLedetekst('sykepengesoknad.utdanning.startdato.sporsmal', ledetekster)}</h3>
+                <p>Den {toDatePrettyPrint(sykepengesoknad.utdanning.utdanningStartdato)}</p>
+            </div>)
+        }
+        {
             sykepengesoknad.utdanning && (<div className="js-utdanning-fulltid">
                 <h3 className="oppsummering__sporsmal">{getLedetekst('sykepengesoknad.utdanning.fulltidsstudium.sporsmal', ledetekster)}</h3>
                 <Avkrysset
@@ -143,12 +149,6 @@ export const Utdanning = ({ sykepengesoknad, ledetekster }) => {
                         ? getLedetekst('sykepengesoknad.ja', ledetekster)
                         : getLedetekst('sykepengesoknad.nei', ledetekster)}
                 />
-            </div>)
-        }
-        {
-            sykepengesoknad.utdanning && (<div className="js-utdanning-start">
-                <h3 className="oppsummering__sporsmal">{getLedetekst('sykepengesoknad.utdanning.startdato.sporsmal', ledetekster)}</h3>
-                <p>Den {toDatePrettyPrint(sykepengesoknad.utdanning.utdanningStartdato)}</p>
             </div>)
         }
     </div>);
