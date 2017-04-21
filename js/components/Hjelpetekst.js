@@ -8,7 +8,15 @@ class Hjelpetekst extends Component {
         super(props);
         this.state = {
             erApen: props.erApen === true,
+            variant: '',
         };
+    }
+
+
+    componentWillUpdate(nextProps, nextState) {
+        if (nextState.erApen && nextState.erApen !== this.state.erApen) {
+            this.setVariant();
+        }
     }
 
     componentDidUpdate() {
@@ -16,6 +24,30 @@ class Hjelpetekst extends Component {
             const focusRef = this.state.erApen ? 'js-lukk' : 'js-apne';
             this.refs[focusRef].focus();
             SET_FOCUS = false;
+        }
+    }
+
+    setVariant() {
+        const LIMIT = 330;
+        const toggle = this.refs['js-apne'];
+        if (toggle) {
+            const rect = toggle.getBoundingClientRect();
+            const right = window.innerWidth - rect.right;
+            if (right < LIMIT) {
+                if (right < LIMIT / 2) {
+                    this.setState({
+                        variant: ' hjelpetekst__tooltip--venstrestilt',
+                    });
+                } else {
+                    this.setState({
+                        variant: ' hjelpetekst__tooltip--midtstilt',
+                    });
+                }
+            } else {
+                this.setState({
+                    variant: '',
+                });
+            }
         }
     }
 
@@ -58,7 +90,7 @@ class Hjelpetekst extends Component {
                 {
                     !this.state.erApen ? null :
                     (<div role="tooltip" id={ariaId}
-                        className="hjelpetekst__tooltip js-tooltip">
+                        className={`hjelpetekst__tooltip${this.state.variant} js-tooltip`}>
                         <h3 className="hjelpetekst__tittel js-tittel">{this.props.tittel}</h3>
                         <div className="hjelpetekst__tekst js-tekst">
                             <p>
