@@ -49,3 +49,5 @@ export { Radiofaner };
 
 import Hjelpetekst from './components/Hjelpetekst';
 export { Hjelpetekst };
+
+export * from './utils/sykepengesoknadUtils';

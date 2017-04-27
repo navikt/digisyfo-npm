@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import { Avkrysset } from './opplysninger';
-import { tidligsteFom, senesteTom } from '../../utils/periodeUtils';
+import { tidligsteFom } from '../../utils/periodeUtils';
 import { getLedetekst } from '../../ledetekster';
 import { toDatePrettyPrint } from '../../utils/datoUtils';
+import { getTomDato } from '../../utils/sykepengesoknadUtils';
 
 const getLedetekstPrefix = (aktivitet) => {
     return aktivitet.grad === 100 ? 'sykepengesoknad.aktiviteter.ugradert' : 'sykepengesoknad.aktiviteter.gradert';
@@ -39,15 +40,23 @@ Avvik.propTypes = {
     ledetekster: PropTypes.object,
 };
 
-export const Aktivitet = ({ aktivitet, ledetekster, arbeidsgiver }) => {
+export const Aktivitet = ({ aktivitet, ledetekster, arbeidsgiver, gjenopptattArbeidFulltUtDato }) => {
     const ledetekstPrefix = getLedetekstPrefix(aktivitet);
+    let tom = aktivitet.periode.tom;
+
+    if (gjenopptattArbeidFulltUtDato) {
+        tom = new Date(gjenopptattArbeidFulltUtDato - (1000 * 60 * 60 * 24));
+        if (gjenopptattArbeidFulltUtDato.getTime() === new Date(aktivitet.periode.fom).getTime()) {
+            tom = gjenopptattArbeidFulltUtDato;
+        }
+    }
 
     return (<div className="oppsummering__bolk js-aktivitet">
         <p className="oppsummering__sporsmal">
         {
             getLedetekst(`${ledetekstPrefix}.intro`, ledetekster, {
                 '%FOM%': toDatePrettyPrint(aktivitet.periode.fom),
-                '%TOM%': toDatePrettyPrint(aktivitet.periode.tom),
+                '%TOM%': toDatePrettyPrint(tom),
                 '%ARBEIDSGIVER%': arbeidsgiver,
                 '%ARBEIDSGRAD%': 100 - aktivitet.grad,
             })
@@ -65,12 +74,13 @@ Aktivitet.propTypes = {
     ledetekster: PropTypes.object,
     aktivitet: PropTypes.object,
     arbeidsgiver: PropTypes.string,
+    gjenopptattArbeidFulltUtDato: PropTypes.instanceOf(Date),
 };
 
 export const Aktiviteter = ({ sykepengesoknad, ledetekster }) => {
     return (<div id="aktiviteter">
         {sykepengesoknad.aktiviteter.map((aktivitet, index) => {
-            return <Aktivitet aktivitet={aktivitet} arbeidsgiver={sykepengesoknad.arbeidsgiver.navn} ledetekster={ledetekster} key={index} />;
+            return <Aktivitet aktivitet={aktivitet} arbeidsgiver={sykepengesoknad.arbeidsgiver.navn} ledetekster={ledetekster} key={index} gjenopptattArbeidFulltUtDato={sykepengesoknad.gjenopptattArbeidFulltUtDato} />;
         })}
     </div>);
 };
@@ -129,10 +139,11 @@ export const Utdanning = ({ sykepengesoknad, ledetekster }) => {
     const perioder = sykepengesoknad.aktiviteter.map((aktivitet) => {
         return aktivitet.periode;
     });
+    const sluttdato = getTomDato(sykepengesoknad);
     return (<div id="oppsummering-utdanning">
         <h3 className="oppsummering__sporsmal">{getLedetekst('sykepengesoknad.utdanning.ja-nei.sporsmal', ledetekster, {
             '%STARTDATO%': toDatePrettyPrint(tidligsteFom(perioder)),
-            '%SLUTTDATO%': toDatePrettyPrint(senesteTom(perioder)),
+            '%SLUTTDATO%': toDatePrettyPrint(sluttdato),
         })}</h3>
         <Avkrysset tekst={sykepengesoknad.utdanning ? getLedetekst('sykepengesoknad.ja', ledetekster) : getLedetekst('sykepengesoknad.nei', ledetekster)} />
         {

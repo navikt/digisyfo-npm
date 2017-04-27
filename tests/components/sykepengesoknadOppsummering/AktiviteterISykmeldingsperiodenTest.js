@@ -58,6 +58,64 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
 
     });
 
+    describe("senesteTom", () => {
+        let component; 
+        let soknad;
+
+        it("Skal bruke gjenopptattArbeidFulltUtDato minus en dag i spørsmål om arbeidstid dersom gjenopptattArbeidFulltUtDato er fylt ut", () => {
+            soknad = getSoknad({
+                gjenopptattArbeidFulltUtDato: new Date("2017-01-20"),
+                aktiviteter: [{
+                  "periode": {
+                    "fom": "2017-01-01",
+                    "tom": "2017-01-15"
+                  },
+                  "grad": 100,
+                  "avvik": null
+                }, {
+                  "periode": {
+                    "fom": "2017-01-16",
+                    "tom": "2017-01-30"
+                  },
+                  "grad": 30,
+                  "avvik": {
+                    "arbeidsgrad": 80,
+                    "arbeidstimerNormalUke": "37,5"
+                  }
+                }]
+            });
+            component = mount(<Aktivitet ledetekster={ledetekster} arbeidsgiver="***REMOVED***" aktivitet={soknad.aktiviteter[1]} gjenopptattArbeidFulltUtDato={soknad.gjenopptattArbeidFulltUtDato} />);
+            expect(component.text()).to.contain("I perioden 16.01.2017 - 19.01.2017 skulle du jobbe 70 % av din normale arbeidstid hos ***REMOVED***");
+        });
+
+        it("Skal bruke gjenopptattArbeidFulltUtDato i spørsmål om arbeidstid dersom gjenopptattArbeidFulltUtDato er fylt ut med samme dag som fom", () => {
+            soknad = getSoknad({
+                gjenopptattArbeidFulltUtDato: new Date("2017-01-16"),
+                aktiviteter: [{
+                  "periode": {
+                    "fom": "2017-01-01",
+                    "tom": "2017-01-15"
+                  },
+                  "grad": 100,
+                  "avvik": null
+                }, {
+                  "periode": {
+                    "fom": "2017-01-16",
+                    "tom": "2017-01-30"
+                  },
+                  "grad": 30,
+                  "avvik": {
+                    "arbeidsgrad": 80,
+                    "arbeidstimerNormalUke": "37,5"
+                  }
+                }]
+            });
+            component = mount(<Aktivitet ledetekster={ledetekster} arbeidsgiver="***REMOVED***" aktivitet={soknad.aktiviteter[1]} gjenopptattArbeidFulltUtDato={soknad.gjenopptattArbeidFulltUtDato} />);
+            expect(component.text()).to.contain("I perioden 16.01.2017 - 16.01.2017 skulle du jobbe 70 % av din normale arbeidstid hos ***REMOVED***");
+        });
+
+    })
+
     describe("Periode med gradering", () => {
 
         let component;
@@ -336,6 +394,24 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
             it("Skal spørre og vise svar på om utdanningen er et fulltidsstudium", () => {
                 expect(component.find(".js-utdanning-fulltid").text()).to.contain("Er utdanningen et fulltidsstudium?");
                 expect(component.find(".js-utdanning-fulltid").text()).to.contain("Ja");
+            });
+        });
+
+        describe("Dersom man har fylt ut gjenopptattArbeidFulltUtDato", () => {
+            it("Skal bruke denne datoen minus en dag i spørsmål", () => {
+                component = render(<Utdanning ledetekster={ledetekster} sykepengesoknad={getSoknad({
+                    utdanning: null,
+                    gjenopptattArbeidFulltUtDato: new Date("2017-01-18"),
+                })} />);
+                expect(component.text()).to.contain("Har du vært under utdanning i løpet av perioden 01.01.2017 - 17.01.2017?");
+            });
+
+            it("Skal bruke denne datoen i spørsmål hvis den er lik tidligsteFom", () => {
+                component = render(<Utdanning ledetekster={ledetekster} sykepengesoknad={getSoknad({
+                    utdanning: null,
+                    gjenopptattArbeidFulltUtDato: new Date("2017-01-01"),
+                })} />);
+                expect(component.text()).to.contain("Har du vært under utdanning i løpet av perioden 01.01.2017 - 01.01.2017?");
             });
         })
 

@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Avkrysset } from './opplysninger';
-import { tidligsteFom, senesteTom } from '../../utils/periodeUtils';
+import { tidligsteFom } from '../../utils/periodeUtils';
 import { getLedetekst } from '../../ledetekster';
+import { getTomDato } from '../../utils/sykepengesoknadUtils';
 import { toDatePrettyPrint } from '../../utils/datoUtils';
 
 export const Perioder = ({ perioder, ledetekster }) => {
@@ -101,11 +102,12 @@ export const FeriePermisjonEllerUtenlandsopphold = ({ sykepengesoknad, ledetekst
     const sykmeldingsperioder = sykepengesoknad.aktiviteter.map((aktivitet) => {
         return aktivitet.periode;
     });
+    const senesteTom = getTomDato(sykepengesoknad);
 
     return (<div className="js-feriePermisjonUtenlandsopphold oppsummering__bolk">
         <h3 className="oppsummering__sporsmal">{getLedetekst('sykepengesoknad.ferie-permisjon-utenlandsopphold.janei.sporsmal', ledetekster, {
             '%FOM%': toDatePrettyPrint(tidligsteFom(sykmeldingsperioder)),
-            '%TOM%': toDatePrettyPrint(senesteTom(sykmeldingsperioder)),
+            '%TOM%': toDatePrettyPrint(senesteTom),
         })}</h3>
         <Avkrysset tekst={harHattFeriePermisjonEllerUtenlandsopphold ? getLedetekst('sykepengesoknad.ja', ledetekster) : getLedetekst('sykepengesoknad.nei', ledetekster)} />
         {

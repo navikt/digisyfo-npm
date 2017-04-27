@@ -68,7 +68,25 @@ describe("Oppsummering - FravaerOgFriskmelding -", () => {
         getFragment = (soknad = {}) => {
           return mount(<FeriePermisjonEllerUtenlandsopphold ledetekster={ledetekster} sykepengesoknad={getSoknad(soknad)} />);
         }
-      })
+      });
+
+      describe("Dersom man har fylt ut gjenopptattArbeidFulltUtDato", () => {
+
+        it("Skal bruke denne datoen minus én dag i spørsmål om ferie, permisjon eller utenlandsopphold", () => {
+          const fragment = getFragment({
+            gjenopptattArbeidFulltUtDato: new Date("2017-01-20"),
+          })
+          expect(fragment.text()).to.contain("Har du hatt ferie, permisjon eller oppholdt deg i utlandet i perioden 01.01.2017 – 19.01.2017?");
+        });
+
+        it("Skal bruke denne datoen hvis datoen er den samme som tidligsteFom", () => {
+          const fragment = getFragment({
+            gjenopptattArbeidFulltUtDato: new Date("2017-01-01"),
+          })
+          expect(fragment.text()).to.contain("Har du hatt ferie, permisjon eller oppholdt deg i utlandet i perioden 01.01.2017 – 01.01.2017?");
+        });
+
+      });
       
       describe("Dersom svaret er nei pga tomme array", () => {
         let fragment; 
