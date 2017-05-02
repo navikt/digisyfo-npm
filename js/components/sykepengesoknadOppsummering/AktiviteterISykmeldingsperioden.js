@@ -180,7 +180,7 @@ const AktiviteterISykmeldingsperioden = ({ sykepengesoknad, ledetekster }) => {
 
 AktiviteterISykmeldingsperioden.propTypes = {
     sykepengesoknad: PropTypes.object.isRequired,
-    ledetekster: PropTypes.object.isRequired,
+    ledetekster: PropTypes.object,
 };
 
 export default AktiviteterISykmeldingsperioden;

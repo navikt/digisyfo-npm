@@ -16,7 +16,7 @@ const Oppsummering = ({ sykepengesoknad, ledetekster }) => {
 
 Oppsummering.propTypes = {
     sykepengesoknad: PropTypes.object.isRequired,
-    ledetekster: PropTypes.object.isRequired,
+    ledetekster: PropTypes.object,
 };
 
 export default Oppsummering;
