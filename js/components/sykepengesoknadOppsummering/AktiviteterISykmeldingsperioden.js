@@ -40,16 +40,16 @@ Avvik.propTypes = {
     ledetekster: PropTypes.object,
 };
 
-export const Aktivitet = ({ aktivitet, ledetekster, arbeidsgiver, gjenopptattArbeidFulltUtDato }) => {
+export const Aktivitet = ({ aktivitet, ledetekster, arbeidsgiver }) => {
     const ledetekstPrefix = getLedetekstPrefix(aktivitet);
-    let tom = aktivitet.periode.tom;
+    const tom = aktivitet.periode.tom;
 
-    if (gjenopptattArbeidFulltUtDato) {
-        tom = new Date(gjenopptattArbeidFulltUtDato - (1000 * 60 * 60 * 24));
-        if (gjenopptattArbeidFulltUtDato.getTime() === new Date(aktivitet.periode.fom).getTime()) {
-            tom = gjenopptattArbeidFulltUtDato;
-        }
-    }
+    // if (gjenopptattArbeidFulltUtDato) {
+    //     tom = new Date(gjenopptattArbeidFulltUtDato - (1000 * 60 * 60 * 24));
+    //     if (gjenopptattArbeidFulltUtDato.getTime() === new Date(aktivitet.periode.fom).getTime()) {
+    //         tom = gjenopptattArbeidFulltUtDato;
+    //     }
+    // }
 
     return (<div className="oppsummering__bolk js-aktivitet">
         <p className="oppsummering__sporsmal">
@@ -80,7 +80,7 @@ Aktivitet.propTypes = {
 export const Aktiviteter = ({ sykepengesoknad, ledetekster }) => {
     return (<div id="aktiviteter">
         {sykepengesoknad.aktiviteter.map((aktivitet, index) => {
-            return <Aktivitet aktivitet={aktivitet} arbeidsgiver={sykepengesoknad.arbeidsgiver.navn} ledetekster={ledetekster} key={index} gjenopptattArbeidFulltUtDato={sykepengesoknad.gjenopptattArbeidFulltUtDato} />;
+            return <Aktivitet aktivitet={aktivitet} arbeidsgiver={sykepengesoknad.arbeidsgiver.navn} ledetekster={ledetekster} key={index} />;
         })}
     </div>);
 };
