@@ -10,7 +10,7 @@ export const ArbeidsgiverForskutterer = ({ sykepengesoknad }) => {
     }
     return (<div className="oppsummering__seksjon js-arbeidsgiverForskutterer">
         <h3 className="oppsummering__sporsmal">{getLedetekst('sykepengesoknad.forskutterer-arbeidsgiver.sporsmal')}</h3>
-        <p>{getLedetekst(`sykepengesoknad.forskutterer-arbeidsgiver.svar.${sykepengesoknad.arbeidsgiverForskutterer}`)}</p>
+        <Avkrysset tekst={getLedetekst(`sykepengesoknad.forskutterer-arbeidsgiver.svar.${sykepengesoknad.arbeidsgiverForskutterer}`)} />
     </div>);
 };
 
