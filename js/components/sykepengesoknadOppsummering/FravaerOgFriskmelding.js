@@ -135,7 +135,7 @@ FeriePermisjonEllerUtenlandsopphold.propTypes = {
 };
 
 const FravaerOgFriskmelding = ({ sykepengesoknad, ledetekster }) => {
-    return (<div id="fravaer-og-friskmelding">
+    return (<div id="fravaer-og-friskmelding" className="oppsummering__seksjon">
         <Egenmeldingsdager sykepengesoknad={sykepengesoknad} ledetekster={ledetekster} />
         <GjenopptattArbeidFulltUt sykepengesoknad={sykepengesoknad} ledetekster={ledetekster} />
         <FeriePermisjonEllerUtenlandsopphold sykepengesoknad={sykepengesoknad} ledetekster={ledetekster} />

@@ -140,7 +140,7 @@ export const Utdanning = ({ sykepengesoknad, ledetekster }) => {
         return aktivitet.periode;
     });
     const sluttdato = getTomDato(sykepengesoknad);
-    return (<div id="oppsummering-utdanning">
+    return (<div id="oppsummering-utdanning" className="oppsummering__bolk">
         <h3 className="oppsummering__sporsmal">{getLedetekst('sykepengesoknad.utdanning.ja-nei.sporsmal', ledetekster, {
             '%STARTDATO%': toDatePrettyPrint(tidligsteFom(perioder)),
             '%SLUTTDATO%': toDatePrettyPrint(sluttdato),
@@ -171,7 +171,7 @@ Utdanning.propTypes = {
 };
 
 const AktiviteterISykmeldingsperioden = ({ sykepengesoknad, ledetekster }) => {
-    return (<div id="aktiviteter-i-sykmeldingsperioden">
+    return (<div id="aktiviteter-i-sykmeldingsperioden" className="oppsummering__seksjon">
         <Aktiviteter sykepengesoknad={sykepengesoknad} ledetekster={ledetekster} />
         <Inntektskilder sykepengesoknad={sykepengesoknad} ledetekster={ledetekster} />
         <Utdanning sykepengesoknad={sykepengesoknad} ledetekster={ledetekster} />
