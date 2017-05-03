@@ -77,19 +77,6 @@ Aktivitet.propTypes = {
     gjenopptattArbeidFulltUtDato: PropTypes.instanceOf(Date),
 };
 
-export const Aktiviteter = ({ sykepengesoknad, ledetekster }) => {
-    return (<div id="aktiviteter">
-        {sykepengesoknad.aktiviteter.map((aktivitet, index) => {
-            return <Aktivitet aktivitet={aktivitet} arbeidsgiver={sykepengesoknad.arbeidsgiver.navn} ledetekster={ledetekster} key={index} />;
-        })}
-    </div>);
-};
-
-Aktiviteter.propTypes = {
-    sykepengesoknad: PropTypes.object,
-    ledetekster: PropTypes.object,
-};
-
 const AndreInntektskilderListe = ({ inntektskilder, ledetekster }) => {
     return (<div className="oppsummering__bolk" id="andre-inntektskilder-liste">
         {
@@ -172,7 +159,9 @@ Utdanning.propTypes = {
 
 const AktiviteterISykmeldingsperioden = ({ sykepengesoknad, ledetekster }) => {
     return (<div id="aktiviteter-i-sykmeldingsperioden" className="oppsummering__seksjon">
-        <Aktiviteter sykepengesoknad={sykepengesoknad} ledetekster={ledetekster} />
+        {sykepengesoknad.aktiviteter.map((aktivitet, index) => {
+            return <Aktivitet aktivitet={aktivitet} arbeidsgiver={sykepengesoknad.arbeidsgiver.navn} ledetekster={ledetekster} key={index} />;
+        })}
         <Inntektskilder sykepengesoknad={sykepengesoknad} ledetekster={ledetekster} />
         <Utdanning sykepengesoknad={sykepengesoknad} ledetekster={ledetekster} />
     </div>);

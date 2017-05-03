@@ -5,7 +5,7 @@ import chaiEnzyme from 'chai-enzyme';
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-import AktiviteterISykmeldingsperioden, { Aktiviteter, Aktivitet, Inntektskilder, Utdanning } from '../../../js/components/sykepengesoknadOppsummering/AktiviteterISykmeldingsperioden';
+import AktiviteterISykmeldingsperioden, { Aktivitet, Inntektskilder, Utdanning } from '../../../js/components/sykepengesoknadOppsummering/AktiviteterISykmeldingsperioden';
 import { getSoknad } from '../../mock/mockSoknader';
 import ledetekster from '../../mock/mockLedetekster';
 
@@ -23,8 +23,8 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
         let component;
 
         beforeEach(() => {
-            component = shallow(<Aktiviteter sykepengesoknad={sykepengesoknad} ledetekster={ledetekster} />);
-        });
+            component = mount(<AktiviteterISykmeldingsperioden sykepengesoknad={sykepengesoknad} ledetekster={ledetekster} />);
+        })
 
         it("Skal vise to Aktivitet", () => {     
             expect(component.find(Aktivitet)).to.have.length(2);
@@ -43,10 +43,6 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
         beforeEach(() => {
             component = mount(<AktiviteterISykmeldingsperioden sykepengesoknad={sykepengesoknad} ledetekster={ledetekster} />);
         })
-
-        it("Skal inneholde Aktiviteter", () => {
-            expect(component.find(Aktiviteter)).to.have.length(1);
-        });
 
         it("Skal inneholde Inntektskilder", () => {
             expect(component.find(Inntektskilder)).to.have.length(1);
