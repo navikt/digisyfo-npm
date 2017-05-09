@@ -87,6 +87,17 @@ describe("Oppsummering - FravaerOgFriskmelding -", () => {
         });
 
       });
+
+      describe("Dersom søknaden har forrigeSykeforloepTom", () => {
+
+          it("Skal bruke denne datoen som tidligsteFom", () => {
+            const fragment = getFragment({
+              forrigeSykeforloepTom: new Date("2016-12-18"),
+            });
+            expect(fragment.text()).to.contain("Har du hatt ferie, permisjon eller oppholdt deg i utlandet i perioden 18.12.2016 – 25.01.2017?");
+          });
+
+      });
       
       describe("Dersom svaret er nei pga tomme array", () => {
         let fragment; 

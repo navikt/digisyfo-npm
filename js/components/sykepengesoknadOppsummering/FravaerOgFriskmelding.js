@@ -106,7 +106,7 @@ export const FeriePermisjonEllerUtenlandsopphold = ({ sykepengesoknad, ledetekst
 
     return (<div className="js-feriePermisjonUtenlandsopphold oppsummering__bolk">
         <h3 className="oppsummering__sporsmal">{getLedetekst('sykepengesoknad.ferie-permisjon-utenlandsopphold.janei.sporsmal', ledetekster, {
-            '%FOM%': toDatePrettyPrint(tidligsteFom(sykmeldingsperioder)),
+            '%FOM%': toDatePrettyPrint(sykepengesoknad.forrigeSykeforloepTom || tidligsteFom(sykmeldingsperioder)),
             '%TOM%': toDatePrettyPrint(senesteTom),
         })}</h3>
         <Avkrysset tekst={harHattFeriePermisjonEllerUtenlandsopphold ? getLedetekst('sykepengesoknad.ja', ledetekster) : getLedetekst('sykepengesoknad.nei', ledetekster)} />
