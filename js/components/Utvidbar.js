@@ -30,7 +30,7 @@ export class Utvidbar extends Component {
 
     onTransitionEnd() {
         if (this.state.harTransisjon) {
-            // Forhindrer scrolling til utenforliggnede 
+            // Forhindrer scrolling til utenforliggnede
             // Utvidbar dersom flere er nøstet inni hverandre
             this.setState({
                 harTransisjon: false,
