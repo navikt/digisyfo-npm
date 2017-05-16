@@ -12,6 +12,7 @@ export class Utvidbar extends Component {
             hindreToggle: false,
             hoyde: !props.erApen ? '0' : 'auto',
             visInnhold: props.erApen,
+            harTransisjon: false,
         };
     }
 
@@ -28,21 +29,28 @@ export class Utvidbar extends Component {
     }
 
     onTransitionEnd() {
-        if (this.state.erApen) {
-            scrollTo(this.refs.utvidbar, 600);
+        if (this.state.harTransisjon) {
+            // Forhindrer scrolling til utenforliggnede 
+            // Utvidbar dersom flere er nøstet inni hverandre
             this.setState({
-                hindreToggle: false,
+                harTransisjon: false,
             });
-            this.setAutoHoyde();
-        } else {
-            this.setState({
-                hindreToggle: false,
-                visInnhold: false,
-            });
-            if (!erSynligIViewport(this.refs.utvidbar)) {
+            if (this.state.erApen) {
                 scrollTo(this.refs.utvidbar, 600);
+                this.setState({
+                    hindreToggle: false,
+                });
+                this.setAutoHoyde();
+            } else {
+                this.setState({
+                    hindreToggle: false,
+                    visInnhold: false,
+                });
+                if (!erSynligIViewport(this.refs.utvidbar)) {
+                    scrollTo(this.refs.utvidbar, 600);
+                }
+                this.refs['js-toggle'].focus();
             }
-            this.refs['js-toggle'].focus();
         }
     }
 
@@ -75,6 +83,7 @@ export class Utvidbar extends Component {
             hindreToggle: true,
             containerClassName: ' utvidbar__innholdContainer--medAnimasjon',
             visInnhold: true,
+            harTransisjon: true,
         });
         setTimeout(() => {
             const hoyde = this.refs.innhold.offsetHeight;
@@ -90,6 +99,7 @@ export class Utvidbar extends Component {
         this.setState({
             hoyde,
             hindreToggle: true,
+            harTransisjon: true,
         });
         setTimeout(() => {
             this.setState({
@@ -116,42 +126,42 @@ export class Utvidbar extends Component {
 
     render() {
         return (<div ref="utvidbar" className={`utvidbar ${this.props.className ? this.props.className : ''}`}>
-                <a href="javscript:void(0)"
-                    aria-expanded={this.state.erApen}
-                    ref="js-toggle"
-                    role="button"
-                    onMouseEnter={() => {this.onMouseEnter();}}
-                    onMouseLeave={() => {this.onMouseLeave();}}
-                    onClick={(event) => {this.toggle(event);}}
-                    className="utvidbar__toggle">
-                    <this.props.Overskrift className={this.getHeaderClassName()}>
-                        {
-                            this.state.ikon && <img src={`${window.APP_SETTINGS.APP_ROOT}/img/${this.state.ikon}`} alt={this.props.ikonAltTekst} className="utvidbar__ikon" />
-                        }
-                        <span className={!this.state.erApen ? 'utvidbar__tittel' : 'utvidbar__tittel utvidbar__tittel--erApen'}>{this.props.tittel}</span>
-                        <em className="utvidbar__handling">
-                            <span className="utvidbar__handling__tekst">{this.state.erApen ? 'Lukk' : 'Åpne'}</span>
-                        </em>
-                    </this.props.Overskrift>
-                </a>
-                <div ref="container" style={{ height: this.state.hoyde }} className={`utvidbar__innholdContainer${this.state.containerClassName}`} onTransitionEnd={() => {
-                    this.onTransitionEnd();
-                }}>
-                    <div className="utvidbar__innhold" ref="innhold">
-                        {
-                            this.state.visInnhold && <div>
-                                {this.props.children}
-                                {this.props.visLukklenke && <div className="knapperad ikke-print">
-                                    <button type="button"
-                                        className="lenke"
-                                        aria-pressed={!this.state.erApen}
-                                        tabIndex={this.state.erApen ? null : '-1'}
-                                        onClick={(event) => {this.toggle(event);}}>Lukk</button>
-                                </div>}
-                            </div>
-                        }
-                    </div>
+            <a href="javscript:void(0)"
+                aria-expanded={this.state.erApen}
+                ref="js-toggle"
+                role="button"
+                onMouseEnter={() => {this.onMouseEnter();}}
+                onMouseLeave={() => {this.onMouseLeave();}}
+                onClick={(event) => {this.toggle(event);}}
+                className="utvidbar__toggle">
+                <this.props.Overskrift className={this.getHeaderClassName()}>
+                    {
+                        this.state.ikon && <img src={`${window.APP_SETTINGS.APP_ROOT}/img/${this.state.ikon}`} alt={this.props.ikonAltTekst} className="utvidbar__ikon" />
+                    }
+                    <span className={!this.state.erApen ? 'utvidbar__tittel' : 'utvidbar__tittel utvidbar__tittel--erApen'}>{this.props.tittel}</span>
+                    <em className="utvidbar__handling">
+                        <span className="utvidbar__handling__tekst">{this.state.erApen ? 'Lukk' : 'Åpne'}</span>
+                    </em>
+                </this.props.Overskrift>
+            </a>
+            <div ref="container" style={{ height: this.state.hoyde }} className={`utvidbar__innholdContainer${this.state.containerClassName}`} onTransitionEnd={() => {
+                this.onTransitionEnd();
+            }}>
+                <div className="utvidbar__innhold" ref="innhold">
+                    {
+                        this.state.visInnhold && <div>
+                            {this.props.children}
+                            {this.props.visLukklenke && <div className="knapperad ikke-print">
+                                <button type="button"
+                                    className="lenke"
+                                    aria-pressed={!this.state.erApen}
+                                    tabIndex={this.state.erApen ? null : '-1'}
+                                    onClick={(event) => {this.toggle(event);}}>Lukk</button>
+                            </div>}
+                        </div>
+                    }
                 </div>
+            </div>
         </div>);
     }
 }
