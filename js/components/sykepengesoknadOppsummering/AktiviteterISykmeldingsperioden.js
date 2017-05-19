@@ -29,7 +29,7 @@ export const Avvik = ({ aktivitet, arbeidsgiver, ledetekster }) => {
         </div>
         <div>
             <h4 className="oppsummering__sporsmal">{getLedetekst('sykepengesoknad.angi-tid.normal-arbeidstimer.sporsmal', ledetekster)}</h4>
-            <p>{getLedetekst('sykepengesoknad.angi-tid.normal-arbeidstimer.label-med-verdi', ledetekster, { '%ANTALL%': String(arbeidstimerNormalUke).replace('.', ',') })}</p>
+            <p>{String(arbeidstimerNormalUke).replace('.', ',')} {getLedetekst('sykepengesoknad.angi-tid.normal-arbeidstimer.label', ledetekster)}</p>
         </div>
     </div>);
 };
@@ -43,13 +43,6 @@ Avvik.propTypes = {
 export const Aktivitet = ({ aktivitet, ledetekster, arbeidsgiver }) => {
     const ledetekstPrefix = getLedetekstPrefix(aktivitet);
     const tom = aktivitet.periode.tom;
-
-    // if (gjenopptattArbeidFulltUtDato) {
-    //     tom = new Date(gjenopptattArbeidFulltUtDato - (1000 * 60 * 60 * 24));
-    //     if (gjenopptattArbeidFulltUtDato.getTime() === new Date(aktivitet.periode.fom).getTime()) {
-    //         tom = gjenopptattArbeidFulltUtDato;
-    //     }
-    // }
 
     return (<div className="oppsummering__bolk js-aktivitet">
         <p className="oppsummering__sporsmal">
