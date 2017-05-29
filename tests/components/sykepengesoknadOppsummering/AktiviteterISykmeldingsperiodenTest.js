@@ -158,7 +158,7 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
 
             it("Skal vise spørsmål om normal jobbing", () => {
                 expect(component.text()).to.contain("Hvor mange timer jobber du normalt per uke?");
-                expect(component.text()).to.contain("37,5 timer");
+                expect(component.text()).to.contain("37,5 timer per uke");
             });
 
             it("Skal vise avvik", () => {
