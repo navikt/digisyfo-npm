@@ -31,6 +31,7 @@ export { Varselstripe };
 
 export * from './actions/hendelser_actions';
 export * from './actions/ledetekster_actions';
+export * from './actions/toggles_actions';
 
 import ledetekster from './reducers/ledetekster';
 export { ledetekster };
@@ -38,11 +39,17 @@ export { ledetekster };
 import tidslinjer from './reducers/tidslinjer';
 export { tidslinjer };
 
+import toggles from './reducers/toggles';
+export { toggles };
+
 import ledeteksterSagas from './sagas/ledeteksterSagas';
 export { ledeteksterSagas };
 
 import Tidslinje from './components/tidslinje/Tidslinje';
 export { Tidslinje };
+
+import togglesSagas from './sagas/togglesSagas';
+export { togglesSagas };
 
 import Radiofaner from './components/Radiofaner';
 export { Radiofaner };
