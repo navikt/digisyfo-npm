@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import SykmeldingPerioder from '../sykmeldingOpplysninger/SykmeldingPerioder';
 import { SykmeldingNokkelOpplysning } from '../sykmeldingOpplysninger/SykmeldingOpplysning';
-import { Avkrysset } from './opplysninger';
 import Utvidbar from '../Utvidbar';
 import { toDatePrettyPrint } from '../../utils/datoUtils';
 import { getLedetekst } from '../../ledetekster';
