@@ -28,9 +28,6 @@ const SykmeldingUtdrag = ({ erApen, sykepengesoknad, ledetekster }) => {
                     tittel={getLedetekst('sykepengesoknad.sykmelding-utdrag.arbeidsgiver', ledetekster)}>
                     <p className="js-arbeidsgiver">{sykepengesoknad.arbeidsgiver.navn}</p>
                 </SykmeldingNokkelOpplysning>
-                <div className="blokk">
-                    <Avkrysset tekst={getLedetekst('sykepengesoknad.sykmelding-utdrag.lonn-etter-16-dager', ledetekster)} />
-                </div>
                 <SykmeldingNokkelOpplysning
                     tittel={getLedetekst('sykepengesoknad.sykmelding-utdrag.dato-sykmeldingen-ble-skrevet', ledetekster)}>
                     <p className="js-utstedelsesdato">{toDatePrettyPrint(sykepengesoknad.sykmeldingSkrevetDato)}</p>
