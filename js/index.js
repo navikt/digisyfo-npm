@@ -58,3 +58,4 @@ import Hjelpetekst from './components/Hjelpetekst';
 export { Hjelpetekst };
 
 export * from './utils/sykepengesoknadUtils';
+export * from './utils/periodeUtils';
