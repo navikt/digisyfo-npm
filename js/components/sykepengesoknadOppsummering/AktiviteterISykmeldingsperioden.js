@@ -49,7 +49,7 @@ export const Aktivitet = ({ aktivitet, ledetekster, arbeidsgiver }) => {
     const tom = aktivitet.periode.tom;
 
     return (<div className="oppsummering__bolk js-aktivitet">
-        <h3 className="oppsummering__sporsmal">{getLedetekst(`${ledetekstPrefix}.sporsmal-2`, ledetekster, {
+        <h3 className="oppsummering__sporsmal">{getLedetekst(`${ledetekstPrefix}.spoersmal-2`, ledetekster, {
             '%FOM%': toDatePrettyPrint(aktivitet.periode.fom),
             '%TOM%': toDatePrettyPrint(tom),
             '%ARBEIDSGIVER%': arbeidsgiver,
