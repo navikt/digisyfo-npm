@@ -143,17 +143,12 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
             });
 
             it("Skal vise spørsmål som inneholder perioden og gradering", () => {
-                expect(component.text()).to.contain("I perioden 16.01.2017 - 30.01.2017 skulle du jobbe 70 % av din normale arbeidstid hos ***REMOVED***");
+                expect(component.text()).to.contain("I perioden 16.01.2017–30.01.2017 skulle du ifølge sykmeldingen jobbe 70 % av din normale arbeidstid hos ***REMOVED***. Jobbet du mer enn dette?");
             });
 
-            it("Skal vise spørsmål Har du jobbet mer enn dette?", () => {
-                expect(component.text()).to.contain("Har du jobbet mer enn dette?");
-                expect(component.text()).to.contain("Ja")
-            });
-
-            it("Skal vise spørsmål om gjennomsnittlig jobbing", () => {
-                expect(component.text()).to.contain("Hvor mye har du jobbet i gjennomsnitt per uke i denne perioden hos ***REMOVED***");
-                expect(component.text()).to.contain("80 prosent totalt per uke");
+            it("Skal vise spørsmål om total jobbing", () => {
+                expect(component.text()).to.contain("Hvor hvor mye jobbet du totalt i denne perioden hos ***REMOVED***?");
+                expect(component.text()).to.contain("80 prosent");
             });
 
             it("Skal vise spørsmål om normal jobbing", () => {
@@ -165,7 +160,52 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
                 expect(component.find(".js-avvik")).to.have.length(1);
             });
 
+            it("Skal ikke vise hva dette tilsvarer", () => {
+                expect(component.text()).not.to.contain("Dette tilsvarer");
+            });
+
         });
+
+        describe("Med avvik oppgitt i prosent og timer", () => {
+            beforeEach(() => {
+                soknad = getSoknad({
+                    aktiviteter: [{
+                      "periode": {
+                        "fom": "2017-01-01",
+                        "tom": "2017-01-15"
+                      },
+                      "grad": 100,
+                      "avvik": null
+                    }, {
+                      "periode": {
+                        "fom": "2017-01-16",
+                        "tom": "2017-01-30"
+                      },
+                      "grad": 30,
+                      "avvik": {
+                        "arbeidsgrad": 80,
+                        "arbeidstimerNormalUke": "37,5",
+                        "timer": 60
+                      }
+                    }]
+                });
+                component = mount(<Aktivitet ledetekster={ledetekster} arbeidsgiver="***REMOVED***" aktivitet={soknad.aktiviteter[1]} />);
+            });
+
+            it("Skal vise spørsmål om total jobbing", () => {
+                expect(component.text()).to.contain("Hvor hvor mye jobbet du totalt i denne perioden hos ***REMOVED***?")
+            });
+
+            it("Skal vise antall timer totalt", () => {
+                expect(component.text()).to.contain("60 timer totalt");
+            });
+
+            it("Skal vise hva dette tilsvarer", () => {
+                expect(component.text()).to.contain("Dette tilsvarer 80 % av din stilling");
+            });
+
+        });
+
 
         describe("Uten avvik", () => {
             beforeEach(() => {
@@ -190,16 +230,15 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
             });
 
             it("Skal vise spørsmål som inneholder perioden og gradering", () => {
-                expect(component.text()).to.contain("I perioden 16.01.2017 - 30.01.2017 skulle du jobbe 70 % av din normale arbeidstid hos ***REMOVED***");
+                expect(component.text()).to.contain("I perioden 16.01.2017–30.01.2017 skulle du ifølge sykmeldingen jobbe 70 % av din normale arbeidstid hos ***REMOVED***. Jobbet du mer enn dette?");
             });
 
-            it("Skal vise spørsmål Har du jobbet mer enn dette?", () => {
-                expect(component.text()).to.contain("Har du jobbet mer enn dette?");
+            it("Skal vise svaret?", () => {
                 expect(component.text()).to.contain("Nei")
             });
 
-            it("Skal ikke vise spørsmål om gjennomsnittlig jobbing", () => {
-                expect(component.text()).not.to.contain("Hvor mye har du jobbet i gjennomsnitt per uke i denne perioden hos ***REMOVED***");
+            it("Skal ikke vise spørsmål om total jobbing", () => {
+                expect(component.text()).not.to.contain("Hv ASor hvor mye jobbet du totalt i denne perioden hos BYGGMESTER BLOM?");
             });
 
             it("Skal vise spørsmål om normal jobbing", () => {
@@ -239,12 +278,7 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
         })
 
         it("Skal vise spørsmål som inneholder perioden og gradering", () => {
-            expect(component.text()).to.contain("I perioden 01.01.2017 - 15.01.2017 skulle du ikke jobbe hos ***REMOVED***.");
-        });
-
-        it("Skal vise spørsmål Har du jobbet noe?", () => {
-            expect(component.text()).to.contain("Har du jobbet?");
-            expect(component.text()).to.contain("Nei")
+            expect(component.text()).to.contain("I perioden 01.01.2017–15.01.2017 var du 100 % sykmeldt fra ***REMOVED***. Jobbet du noe i denne perioden?");
         });
 
         it("Skal ikke vise avvik", () => {

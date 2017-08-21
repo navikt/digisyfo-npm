@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Avkrysset } from './opplysninger';
 import { tidligsteFom } from '../../utils/periodeUtils';
-import { getLedetekst } from '../../ledetekster';
+import { getLedetekst, getHtmlLedetekst } from '../../ledetekster';
 import { toDatePrettyPrint } from '../../utils/datoUtils';
 import { getTomDato } from '../../utils/sykepengesoknadUtils';
 
@@ -15,21 +15,25 @@ export const getInntektskildeLabel = (field, ledetekster) => {
 
 export const Avvik = ({ aktivitet, arbeidsgiver, ledetekster }) => {
     const { arbeidsgrad, timer, arbeidstimerNormalUke } = aktivitet.avvik;
-    const antall = arbeidsgrad ? `${arbeidsgrad}` : `${timer}`;
-    const nokkel = arbeidsgrad ? 'sykepengesoknad.angi-tid.antall.label.prosent' : 'sykepengesoknad.angi-tid.antall.label.timer';
+    const antall = arbeidsgrad && !timer ? arbeidsgrad : timer;
+    const nokkel = arbeidsgrad && !timer ? 'sykepengesoknad.angi-tid.antall.label-totalt.prosent' : 'sykepengesoknad.angi-tid.antall.label-totalt.timer';
     const antallMedLabel = `${String(antall).replace('.', ',')} ${getLedetekst(nokkel, ledetekster)}`;
     return (<div className="js-avvik">
         <div>
+            <h4 className="oppsummering__sporsmal">{getLedetekst('sykepengesoknad.angi-tid.normal-arbeidstimer.sporsmal', ledetekster)}</h4>
+            <p>{String(arbeidstimerNormalUke).replace('.', ',')} {getLedetekst('sykepengesoknad.angi-tid.normal-arbeidstimer.label', ledetekster)}</p>
+        </div>
+        <div>
             <h4 className="oppsummering__sporsmal">{
-                getLedetekst('sykepengesoknad.aktiviteter.avvik.hvor-mye-har-du-jobbet', ledetekster, {
+                getLedetekst('sykepengesoknad.aktiviteter.avvik.hvor-mye-har-du-jobbet-totalt', ledetekster, {
                     '%ARBEIDSGIVER%': arbeidsgiver,
                 })
             }</h4>
             <p>{antallMedLabel}</p>
-        </div>
-        <div>
-            <h4 className="oppsummering__sporsmal">{getLedetekst('sykepengesoknad.angi-tid.normal-arbeidstimer.sporsmal', ledetekster)}</h4>
-            <p>{String(arbeidstimerNormalUke).replace('.', ',')} {getLedetekst('sykepengesoknad.angi-tid.normal-arbeidstimer.label', ledetekster)}</p>
+            { arbeidsgrad && timer && <p className="oppsummering__detteTilsvarer" dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.angi-tid.dette-tilsvarer',
+                ledetekster, {
+                    '%STILLINGSPROSENT%': arbeidsgrad,
+                })} /> }
         </div>
     </div>);
 };
@@ -45,17 +49,12 @@ export const Aktivitet = ({ aktivitet, ledetekster, arbeidsgiver }) => {
     const tom = aktivitet.periode.tom;
 
     return (<div className="oppsummering__bolk js-aktivitet">
-        <p className="oppsummering__sporsmal">
-        {
-            getLedetekst(`${ledetekstPrefix}.intro`, ledetekster, {
-                '%FOM%': toDatePrettyPrint(aktivitet.periode.fom),
-                '%TOM%': toDatePrettyPrint(tom),
-                '%ARBEIDSGIVER%': arbeidsgiver,
-                '%ARBEIDSGRAD%': 100 - aktivitet.grad,
-            })
-        }
-        </p>
-        <h3 className="oppsummering__sporsmal">{getLedetekst(`${ledetekstPrefix}.sporsmal`, ledetekster)}</h3>
+        <h3 className="oppsummering__sporsmal">{getLedetekst(`${ledetekstPrefix}.sporsmal-2`, ledetekster, {
+            '%FOM%': toDatePrettyPrint(aktivitet.periode.fom),
+            '%TOM%': toDatePrettyPrint(tom),
+            '%ARBEIDSGIVER%': arbeidsgiver,
+            '%ARBEIDSGRAD%': 100 - aktivitet.grad,
+        })}</h3>
         <Avkrysset tekst={aktivitet.avvik ? getLedetekst('sykepengesoknad.ja', ledetekster) : getLedetekst('sykepengesoknad.nei', ledetekster)} />
         {
             aktivitet.avvik && <Avvik aktivitet={aktivitet} arbeidsgiver={arbeidsgiver} ledetekster={ledetekster} />
