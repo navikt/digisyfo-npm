@@ -72,5 +72,6 @@ export const parseSykepengesoknad = (soknad) => {
         forrigeSykeforloepTom: toDate(soknad.forrigeSykeforloepTom),
         fom: toDate(fom),
         tom: toDate(tom),
+        avbruttDato: toDate(soknad.avbruttDato),
     });
 };

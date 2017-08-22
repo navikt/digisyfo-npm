@@ -97,6 +97,7 @@ export const getParsetSoknad = (soknad = {}) => {
     "forrigeSykeforloepTom": null,
     "sendtTilArbeidsgiverDato": new Date("2017-07-21"),
     "sendtTilNAVDato": new Date("2017-07-21"),
+    "avbruttDato": null,
   }, soknad);
 };
 
