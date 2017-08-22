@@ -1,43 +1,191 @@
-const sykmelding = {
-    id: 3456789,
-    pasient: {
-        fnr: "***REMOVED***",
-        fornavn: "Per",
-        etternavn: "Person",
-    },
-    arbeidsgiver: "Selskapet AS",
-    orgnummer: "123456789",
-    status: 'NY',
-    identdato: { year: 2015, monthValue: 12, dayOfMonth: 31 },
-    diagnose: {
-        hoveddiagnose: {
-            diagnose: "Influensa",
-            diagnosesystem: "ICPC",
-            diagnosekode: "LP2"
+export const getSykmelding = (sykmelding = {}) => {
+    return Object.assign({}, {
+        "id": "73970c89-1173-4d73-b1cb-e8445c2840e2",
+        "startLegemeldtFravaer": "2017-07-07",
+        "skalViseSkravertFelt": true,
+        "identdato": "2017-07-07",
+        "status": "SENDT",
+        "naermesteLederStatus": null,
+        "innsendtArbeidsgivernavn": "***REMOVED***",
+        "valgtArbeidssituasjon": null,
+        "orgnummer": "***REMOVED***",
+        "sendtdato": "2017-07-24T10:19:15",
+        "pasient": {
+          "fnr": "***REMOVED***",
+          "fornavn": "Frida",
+          "etternavn": "Frost"
         },
-    },
-    mulighetForArbeid: {
-        perioder: [{
-            fom: { year: 2015, monthValue: 12, dayOfMonth: 31 },
-            tom: { year: 2016, monthValue: 1, dayOfMonth: 6 },
-            grad: 67
-        }],
-    },
-    friskmelding: {
-        arbeidsfoerEtterPerioden: true,
-    },
-    utdypendeOpplysninger: {},
-    arbeidsevne: {},
-    meldingTilNav: {},
-    tilbakedatering: {},
-    bekreftelse: {
-        sykmelder: "***REMOVED***",
-        utstedelsesdato: { year: 2016, monthValue: 5, dayOfMonth: 2 }
-    },
+        "arbeidsgiver": "Selskapet AS",
+        "diagnose": {
+          "hoveddiagnose": {
+            "diagnose": "Influensa",
+            "diagnosekode": "LP2",
+            "diagnosesystem": "ICPC-2"
+          },
+          "bidiagnoser": [
+            {
+              "diagnose": "GANGLION SENE",
+              "diagnosekode": "LP2",
+              "diagnosesystem": "ICPC-2"
+            }
+          ],
+          "fravaersgrunnLovfestet": null,
+          "fravaerBeskrivelse": "Medising årsak i kategorien annet",
+          "svangerskap": true,
+          "yrkesskade": true,
+          "yrkesskadeDato": "2017-07-07"
+        },
+        "mulighetForArbeid": {
+          "perioder": [
+            {
+              "fom": "2017-07-07",
+              "tom": "2017-07-23",
+              "grad": 100,
+              "behandlingsdager": null,
+              "reisetilskudd": null,
+              "avventende": null
+            }
+          ],
+          "aktivitetIkkeMulig433": [
+            "Annet"
+          ],
+          "aktivitetIkkeMulig434": [
+            "Annet"
+          ],
+          "aarsakAktivitetIkkeMulig433": "andre årsaker til sykefravær",
+          "aarsakAktivitetIkkeMulig434": "andre årsaker til sykefravær"
+        },
+        "friskmelding": {
+          "arbeidsfoerEtterPerioden": true,
+          "antarReturSammeArbeidsgiver": true,
+          "antattDatoReturSammeArbeidsgiver": "2017-07-07",
+          "antarReturAnnenArbeidsgiver": true,
+          "tilbakemeldingReturArbeid": "2017-07-07",
+          "utenArbeidsgiverAntarTilbakeIArbeid": false,
+          "utenArbeidsgiverAntarTilbakeIArbeidDato": "2017-03-10",
+          "utenArbeidsgiverTilbakemelding": "2017-03-10"
+        },
+        "utdypendeOpplysninger": {
+          "sykehistorie": null,
+          "paavirkningArbeidsevne": null,
+          "resultatAvBehandling": null,
+          "henvisningUtredningBehandling": null
+        },
+        "arbeidsevne": {
+          "tilretteleggingArbeidsplass": "Fortsett som sist.",
+          "tiltakNAV": "Pasienten har plager som er kommet tilbake etter operasjon. Det er nylig tatt MR bildet som viser forandringer i hånd som mulig må opereres. Venter på time. Det er mulig sykemledingen vil vare utover aktuell sm periode. ",
+          "tiltakAndre": null
+        },
+        "meldingTilNav": {
+          "navBoerTaTakISaken": false,
+          "navBoerTaTakISakenBegrunnelse": null
+        },
+        "innspillTilArbeidsgiver": null,
+        "tilbakedatering": {
+          "dokumenterbarPasientkontakt": "2017-03-12",
+          "tilbakedatertBegrunnelse": null
+        },
+        "bekreftelse": {
+          "utstedelsesdato": "2017-07-24",
+          "sykmelder": "***REMOVED***",
+          "sykmelderTlf": "***REMOVED***"
+        }
+      }, sykmelding);
 };
 
-const getSykmelding = (skmld = {}) => {
-    return Object.assign({}, sykmelding, skmld);
+export const getParsetSykmelding = (sykmelding = {}) => {
+    return Object.assign({}, {
+        "id": "73970c89-1173-4d73-b1cb-e8445c2840e2",
+        "startLegemeldtFravaer": new Date("2017-07-07"),
+        "skalViseSkravertFelt": true,
+        "identdato": new Date("2017-07-07"),
+        "status": "SENDT",
+        "naermesteLederStatus": null,
+        "innsendtArbeidsgivernavn": "***REMOVED***",
+        "valgtArbeidssituasjon": null,
+        "orgnummer": "***REMOVED***",
+        "sendtdato": new Date("2017-07-24T10:19:15"),
+        "pasient": {
+          "fnr": "***REMOVED***",
+          "fornavn": "Frida",
+          "etternavn": "Frost"
+        },
+        "arbeidsgiver": "Selskapet AS",
+        "diagnose": {
+          "hoveddiagnose": {
+            "diagnose": "Influensa",
+            "diagnosekode": "LP2",
+            "diagnosesystem": "ICPC-2"
+          },
+          "bidiagnoser": [
+            {
+              "diagnose": "GANGLION SENE",
+              "diagnosekode": "LP2",
+              "diagnosesystem": "ICPC-2"
+            }
+          ],
+          "fravaersgrunnLovfestet": null,
+          "fravaerBeskrivelse": "Medising årsak i kategorien annet",
+          "svangerskap": true,
+          "yrkesskade": true,
+          "yrkesskadeDato": new Date("2017-07-07")
+        },
+        "mulighetForArbeid": {
+          "perioder": [
+            {
+              "fom": new Date("2017-07-07"),
+              "tom": new Date("2017-07-23"),
+              "grad": 100,
+              "behandlingsdager": null,
+              "reisetilskudd": null,
+              "avventende": null
+            }
+          ],
+          "aktivitetIkkeMulig433": [
+            "Annet"
+          ],
+          "aktivitetIkkeMulig434": [
+            "Annet"
+          ],
+          "aarsakAktivitetIkkeMulig433": "andre årsaker til sykefravær",
+          "aarsakAktivitetIkkeMulig434": "andre årsaker til sykefravær"
+        },
+        "friskmelding": {
+          "arbeidsfoerEtterPerioden": true,
+          "antarReturSammeArbeidsgiver": true,
+          "antattDatoReturSammeArbeidsgiver": new Date("2017-07-07"),
+          "antarReturAnnenArbeidsgiver": true,
+          "tilbakemeldingReturArbeid": new Date("2017-07-07"),
+          "utenArbeidsgiverAntarTilbakeIArbeid": false,
+          "utenArbeidsgiverAntarTilbakeIArbeidDato": new Date("2017-03-10"),
+          "utenArbeidsgiverTilbakemelding": new Date("2017-03-10")
+        },
+        "utdypendeOpplysninger": {
+          "sykehistorie": null,
+          "paavirkningArbeidsevne": null,
+          "resultatAvBehandling": null,
+          "henvisningUtredningBehandling": null
+        },
+        "arbeidsevne": {
+          "tilretteleggingArbeidsplass": "Fortsett som sist.",
+          "tiltakNAV": "Pasienten har plager som er kommet tilbake etter operasjon. Det er nylig tatt MR bildet som viser forandringer i hånd som mulig må opereres. Venter på time. Det er mulig sykemledingen vil vare utover aktuell sm periode. ",
+          "tiltakAndre": null
+        },
+        "meldingTilNav": {
+          "navBoerTaTakISaken": false,
+          "navBoerTaTakISakenBegrunnelse": null
+        },
+        "innspillTilArbeidsgiver": null,
+        "tilbakedatering": {
+          "dokumenterbarPasientkontakt": new Date("2017-03-12"),
+          "tilbakedatertBegrunnelse": null
+        },
+        "bekreftelse": {
+          "utstedelsesdato": new Date("2017-07-24"),
+          "sykmelder": "***REMOVED***",
+          "sykmelderTlf": "***REMOVED***"
+        }
+      }, sykmelding);
 };
 
 export default getSykmelding;

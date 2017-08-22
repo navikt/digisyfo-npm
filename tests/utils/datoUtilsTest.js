@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { toDatePrettyPrint, getDuration, getPeriodeSpenn, getSykmeldingStartdato } from '../../js/utils/datoUtils';
+import { toDatePrettyPrint, getDuration, getPeriodeSpenn, getSykmeldingStartdato, toDate } from '../../js/utils/datoUtils';
 
 describe("datoUtils", () => {
 
@@ -19,6 +19,10 @@ describe("datoUtils", () => {
         it("Kan formattere dato på ISO-format",() => {
             expect(toDatePrettyPrint("2017-02-02")).to.equal("02.02.2017")
         })
+
+        it("Kan formattere dato på ISO-format når argument er JS-dato",() => {
+            expect(toDatePrettyPrint(new Date("2017-02-02"))).to.equal("02.02.2017")
+        })
     });
 
     describe("getDuration", () => {
@@ -32,4 +36,19 @@ describe("datoUtils", () => {
             expect(getDuration("2014-06-30", "2014-07-05")).to.equal(6);
         })
     });
+
+    describe("toDate", () => {
+        it("Skal skal returnere JS-dato når sender inn en streng", () => {
+            expect(toDate("2014-02-28")).to.deep.equal(new Date("2014-02-28"));
+        });
+
+        it("Skal skal returnere JS-dato når sender inn en JS-dato", () => {
+            expect(toDate(new Date("2014-02-28"))).to.deep.equal(new Date("2014-02-28"));
+        });
+
+        it("Skal returnere null hvis vi sender inn null", () => {
+            expect(toDate(null)).to.be.null;
+        });
+    })
+
 });
