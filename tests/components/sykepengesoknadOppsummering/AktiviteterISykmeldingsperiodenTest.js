@@ -166,7 +166,7 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
 
         });
 
-        describe("Med avvik oppgitt i prosent og timer", () => {
+        describe("Med avvik oppgitt i beregnetArbeidsgrad og timer", () => {
             beforeEach(() => {
                 soknad = getSoknad({
                     aktiviteter: [{
@@ -183,8 +183,8 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
                       },
                       "grad": 30,
                       "avvik": {
-                        "arbeidsgrad": 80,
                         "arbeidstimerNormalUke": "37,5",
+                        "beregnetArbeidsgrad": 80,
                         "timer": 60
                       }
                     }]

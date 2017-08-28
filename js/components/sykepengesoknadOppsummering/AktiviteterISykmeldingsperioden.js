@@ -14,7 +14,7 @@ export const getInntektskildeLabel = (field, ledetekster) => {
 };
 
 export const Avvik = ({ aktivitet, arbeidsgiver, ledetekster }) => {
-    const { arbeidsgrad, timer, arbeidstimerNormalUke } = aktivitet.avvik;
+    const { arbeidsgrad, timer, arbeidstimerNormalUke, beregnetArbeidsgrad } = aktivitet.avvik;
     const antall = arbeidsgrad && !timer ? arbeidsgrad : timer;
     const nokkel = arbeidsgrad && !timer ? 'sykepengesoknad.angi-tid.antall.label-totalt.prosent' : 'sykepengesoknad.angi-tid.antall.label-totalt.timer';
     const antallMedLabel = `${String(antall).replace('.', ',')} ${getLedetekst(nokkel, ledetekster)}`;
