@@ -30,9 +30,9 @@ export const Avvik = ({ aktivitet, arbeidsgiver, ledetekster }) => {
                 })
             }</h4>
             <p>{antallMedLabel}</p>
-            { arbeidsgrad && timer && <p className="oppsummering__detteTilsvarer" dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.angi-tid.dette-tilsvarer',
+            { beregnetArbeidsgrad && timer && <p className="oppsummering__detteTilsvarer" dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.angi-tid.dette-tilsvarer',
                 ledetekster, {
-                    '%STILLINGSPROSENT%': arbeidsgrad,
+                    '%STILLINGSPROSENT%': beregnetArbeidsgrad,
                 })} /> }
         </div>
     </div>);
