@@ -3,16 +3,18 @@ import Oppsummering from './Oppsummering';
 import Utvidbar from '../Utvidbar';
 import { getHtmlLedetekst } from '../../ledetekster';
 
-const Soknad = ({ ledetekster, sykepengesoknad, apentUtdrag = true, tittel }) => {
+const Soknad = ({ ledetekster, sykepengesoknad, apentUtdrag = true, tittel, visVaerKlarOverAt = true }) => {
     return (<div>
         <div className="blokk">
             <Utvidbar tittel={tittel} erApen={apentUtdrag} Overskrift="h2">
                 <Oppsummering ledetekster={ledetekster} sykepengesoknad={sykepengesoknad} />
             </Utvidbar>
         </div>
-        <div
-            className="panel blokk js-vaer-klar-over-at"
-            dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.oppsummering.vaer-klar-over-at', ledetekster)} />
+        {
+            visVaerKlarOverAt && <div
+                className="panel blokk js-vaer-klar-over-at"
+                dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.oppsummering.vaer-klar-over-at', ledetekster)} />
+        }
     </div>);
 };
 
@@ -21,6 +23,7 @@ Soknad.propTypes = {
     sykepengesoknad: PropTypes.object,
     apentUtdrag: PropTypes.bool,
     tittel: PropTypes.string,
+    visVaerKlarOverAt: PropTypes.bool,
 };
 
 export default Soknad;
