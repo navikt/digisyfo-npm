@@ -1,27 +1,57 @@
-export function scrollTo(element, duration) {
-    const started = Date.now();
-    const ends = started + duration;
-    const y = Math.min(document.body.scrollTop + element.getBoundingClientRect().top, document.body.scrollHeight - window.innerHeight);
+// Get the top position of an element in the document
+const getTop = function (element, start) {
+    // return value of html.getBoundingClientRect().top ... IE : 0, other browsers : -pageYOffset
+    if (element.nodeName === 'HTML') {
+        return -start;
+    }
+    return element.getBoundingClientRect().top + start;
+};
 
-    const tick = () => {
-        let distanceLeft;
-        let dt;
-        let tickDuration;
-        let travel;
-        const t = Date.now();
-        if (t < ends) {
-            dt = t - started;
-            tickDuration = ends - started;
-            distanceLeft = y - document.body.scrollTop;
-            travel = distanceLeft * (dt / tickDuration);
-            document.body.scrollTop += travel;
-            window.requestAnimationFrame(tick);
+const easeInOutCubic = function (t) {
+    if (t < 0.5) {
+        return 4 * t * t * t;
+    }
+    return (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+};
+
+const position = function (start, end, elapsed, duration) {
+    if (elapsed > duration) {
+        return end;
+    }
+    return start + (end - start) * easeInOutCubic(elapsed / duration);
+};
+
+export function scrollTo(el, duration = 500, callback) {
+    const context = window;
+    const start = context.scrollTop || window.pageYOffset;
+    let end;
+    if (typeof el === 'number') {
+        end = parseInt(el, 10);
+    } else {
+        end = getTop(el, start);
+    }
+
+    const clock = Date.now();
+    const requestAnimationFrame = window.requestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        function (fn) {
+            window.setTimeout(fn, 15);
+        };
+
+    const step = function () {
+        const elapsed = Date.now() - clock;
+        window.scroll(0, position(start, end, elapsed, duration));
+
+        if (elapsed > duration) {
+            if (typeof callback === 'function') {
+                callback(el);
+            }
         } else {
-            document.body.scrollTop = y;
+            requestAnimationFrame(step);
         }
     };
-
-    window.requestAnimationFrame(tick);
+    step();
 }
 
 export function erSynligIViewport(element) {
