@@ -93,6 +93,11 @@ const hendelserData = [{
     "type": "BOBLE",
     "antallDager": 364,
     "tekstkey": "tidslinje.med-arbeidsgiver.sluttfasen"
+}, {
+    "id": "012",
+    "inntruffetdato": null,
+    "type": "AKTIVITETSKRAV_VARSEL",
+    "tekstkey": "tidslinje.aktivitetskrav-varsel.MED_ARBEIDSGIVER"
 }]
 
 describe("Tidslinje", () => {

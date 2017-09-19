@@ -10,8 +10,11 @@ const Tidslinje = ({ hendelser = [], ledetekster, arbeidssituasjon, setHendelseD
             {
                 hendelser
                     .filter(nyNaermesteLederHendelseMedArbeidsgiver)
+                    .filter((h) => {
+                        return h.type !== 'AKTIVITETSKRAV_VARSEL';
+                    })
                 .map((hendelse) => {
-                    if (hendelse.type !== 'BOBLE' && hendelse.type !== 'AKTIVITETSKRAV_VARSEL' && hendelse.type !== 'NY_NAERMESTE_LEDER') {
+                    if (hendelse.type !== 'BOBLE' && hendelse.type !== 'NY_NAERMESTE_LEDER') {
                         return <HendelseTittel {...hendelse} key={hendelse.id} ledetekster={ledetekster} />;
                     }
                     return (<HendelseBoble hendelse={hendelse} key={hendelse.id} ledetekster={ledetekster}
