@@ -28,7 +28,7 @@ export default function toggles(state = initiellState, action = {}) {
             return Object.assign({}, state, {
                 henter: false,
                 hentingFeilet: true,
-                hentet: false,
+                hentet: true,
             });
         }
         default: {

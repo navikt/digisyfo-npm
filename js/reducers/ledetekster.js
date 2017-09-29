@@ -28,7 +28,7 @@ export default function ledetekster(state = initiellState, action) {
                 data: {},
                 henter: false,
                 hentingFeilet: true,
-                hentet: false,
+                hentet: true,
             };
         default:
             return state;

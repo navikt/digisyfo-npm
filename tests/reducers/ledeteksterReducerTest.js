@@ -46,7 +46,7 @@ describe('ledetekster', () => {
             data: {},
             henter: false,
             hentingFeilet: true,
-            hentet: false,
+            hentet: true,
         });        
     });
 
