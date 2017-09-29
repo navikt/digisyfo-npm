@@ -77,7 +77,8 @@ describe('tidslinjer', () => {
         expect(nextState).to.deep.equal({
             data: [],
             henter: false, 
-            hentingFeilet: true
+            hentingFeilet: true,
+            hentet: true,
         })
     });
 
@@ -89,6 +90,7 @@ describe('tidslinjer', () => {
             data: [],
             henter: true, 
             hentingFeilet: false,
+            hentet: false,
         })
     });
 
@@ -103,6 +105,7 @@ describe('tidslinjer', () => {
             henter: false,
             hentingFeilet: false,
             ikkeTilgang: true,
+            hentet: true,
         })
     });
 
@@ -174,6 +177,7 @@ describe('tidslinjer', () => {
             }]
         }])
         const nextState = tidslinjer(initiellState, action);
+        expect(nextState.hentet).to.be.true;
         expect(nextState.data).to.deep.equal([{
                 "startdato": {
                     "year": 2016,
@@ -331,6 +335,7 @@ describe('tidslinjer', () => {
             }]
         }])
         const nextState = tidslinjer(initiellState, action);
+        expect(nextState.hentet).to.be.true;
         expect(nextState.data).to.deep.equal([{
                 "startdato": null,
                 "hendelser": [{
@@ -472,6 +477,7 @@ describe('tidslinjer', () => {
             }]
         }]);
         const nextState = tidslinjer(initiellState, action);
+        expect(nextState.hentet).to.be.true;
         expect(nextState.data).to.deep.equal([{
                 "startdato": {
                     "year": 2016,
@@ -602,7 +608,8 @@ describe('tidslinjer', () => {
                 }]
             }],
             henter: false,
-            hentingFeilet: false
+            hentingFeilet: false,
+            hentet: true,
         });
         const action = hendelserActions.apneHendelser([0, 2, 3]);
         const nextState = tidslinjer(initiellState, action);
@@ -633,6 +640,7 @@ describe('tidslinjer', () => {
             }],
             henter: false,
             hentingFeilet: false,
+            hentet: true,
         });
     }); 
 
@@ -653,6 +661,7 @@ describe('tidslinjer', () => {
             }],
             henter: false,
             hentingFeilet: false,
+            hentet: true,
         });
         const action = hendelserActions.setHendelseData(1, {
             ikon: "helge.jpg",
@@ -676,7 +685,8 @@ describe('tidslinjer', () => {
                 }]
             }],
             henter: false,
-            hentingFeilet: false
+            hentingFeilet: false,
+            hentet: true,
         });
     });
 
@@ -684,7 +694,8 @@ describe('tidslinjer', () => {
         const initialState = deepFreeze({
             data: [{startdato: "", hendelser: []}],
             henter: false,
-            hentingFeilet: false
+            hentingFeilet: false,
+            hentet: true,
         });
         const action = {
             type: "BRUKER_ER_UTLOGGET"
@@ -693,7 +704,8 @@ describe('tidslinjer', () => {
         expect(nextState).to.deep.equal({
             henter: false,
             hentingFeilet: false,
-            data: []
+            data: [],
+            hentet: true,
         })
     })
 

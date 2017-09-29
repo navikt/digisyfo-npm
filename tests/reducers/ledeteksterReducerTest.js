@@ -22,6 +22,7 @@ describe('ledetekster', () => {
             },
             henter: false,
             hentingFeilet: false,
+            hentet: true,
         });
     });
 
@@ -33,6 +34,7 @@ describe('ledetekster', () => {
             data: {},
             henter: true,
             hentingFeilet: false,
+            hentet: false,
         });        
     });
 
@@ -44,6 +46,7 @@ describe('ledetekster', () => {
             data: {},
             henter: false,
             hentingFeilet: true,
+            hentet: true,
         });        
     });
 

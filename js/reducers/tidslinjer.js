@@ -4,6 +4,7 @@ import * as actiontyper from '../actions/actiontyper';
 const initiellState = {
     henter: false,
     hentingFeilet: false,
+    hentet: false,
     ikkeTilgang: false,
     data: [],
 };
@@ -81,6 +82,7 @@ export default function tidslinjer(state = initiellState, action) {
                 data: [],
                 henter: false,
                 hentingFeilet: true,
+                hentet: true,
             });
         }
         case actiontyper.HENTER_TIDSLINJER: {
@@ -88,6 +90,7 @@ export default function tidslinjer(state = initiellState, action) {
                 data: [],
                 henter: true,
                 hentingFeilet: false,
+                hentet: false,
             };
         }
         case actiontyper.SET_TIDSLINJER: {
@@ -96,6 +99,7 @@ export default function tidslinjer(state = initiellState, action) {
                 henter: false,
                 hentingFeilet: false,
                 data,
+                hentet: true,
             };
         }
         case actiontyper.HENT_TIDSLINJER_IKKE_TILGANG: {
@@ -104,6 +108,7 @@ export default function tidslinjer(state = initiellState, action) {
                 henter: false,
                 hentingFeilet: false,
                 ikkeTilgang: true,
+                hentet: true,
             });
         }
         case actiontyper.APNE_HENDELSER: {
@@ -149,6 +154,7 @@ export default function tidslinjer(state = initiellState, action) {
                 data: [],
                 hentingFeilet: false,
                 henter: false,
+                hentet: true,
             };
         }
         default: {

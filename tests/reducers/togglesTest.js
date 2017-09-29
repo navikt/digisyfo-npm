@@ -21,6 +21,7 @@ describe('toggles', () => {
             },
             henter: false,
             hentingFeilet: false,
+            hentet: true,
         });
     });
 
@@ -31,6 +32,7 @@ describe('toggles', () => {
         expect(nextState).to.deep.equal({
             henter: true,
             hentingFeilet: false,
+            hentet: false,
         });
     });
 
@@ -41,6 +43,7 @@ describe('toggles', () => {
         expect(nextState).to.deep.equal({
             henter: false,
             hentingFeilet: true,
+            hentet: true,
         });
     });
 });

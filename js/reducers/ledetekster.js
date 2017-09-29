@@ -3,6 +3,7 @@ import * as actiontyper from '../actions/actiontyper';
 const initiellState = {
     henter: false,
     hentingFeilet: false,
+    hentet: false,
     data: {},
 };
 
@@ -13,18 +14,21 @@ export default function ledetekster(state = initiellState, action) {
                 data: action.ledetekster,
                 henter: false,
                 hentingFeilet: false,
+                hentet: true,
             };
         case actiontyper.HENTER_LEDETEKSTER:
             return {
                 data: {},
                 henter: true,
                 hentingFeilet: false,
+                hentet: false,
             };
         case actiontyper.HENT_LEDETEKSTER_FEILET:
             return {
                 data: {},
                 henter: false,
                 hentingFeilet: true,
+                hentet: true,
             };
         default:
             return state;

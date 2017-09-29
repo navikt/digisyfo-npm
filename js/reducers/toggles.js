@@ -4,6 +4,7 @@ const initiellState = {
     data: {},
     henter: false,
     hentingFeilet: false,
+    hentet: false,
 };
 
 export default function toggles(state = initiellState, action = {}) {
@@ -13,18 +14,21 @@ export default function toggles(state = initiellState, action = {}) {
                 data: action.data,
                 henter: false,
                 hentingFeilet: false,
+                hentet: true,
             };
         }
         case actiontyper.HENTER_TOGGLES: {
             return Object.assign({}, state, {
                 henter: true,
                 hentingFeilet: false,
+                hentet: false,
             });
         }
         case actiontyper.HENT_TOGGLES_FEILET: {
             return Object.assign({}, state, {
                 henter: false,
                 hentingFeilet: true,
+                hentet: true,
             });
         }
         default: {
