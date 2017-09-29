@@ -78,7 +78,7 @@ describe('tidslinjer', () => {
             data: [],
             henter: false, 
             hentingFeilet: true,
-            hentet: true,
+            hentet: false,
         })
     });
 

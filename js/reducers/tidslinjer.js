@@ -82,7 +82,7 @@ export default function tidslinjer(state = initiellState, action) {
                 data: [],
                 henter: false,
                 hentingFeilet: true,
-                hentet: true,
+                hentet: false,
             });
         }
         case actiontyper.HENTER_TIDSLINJER: {

@@ -43,7 +43,7 @@ describe('toggles', () => {
         expect(nextState).to.deep.equal({
             henter: false,
             hentingFeilet: true,
-            hentet: true,
+            hentet: false,
         });
     });
 });
