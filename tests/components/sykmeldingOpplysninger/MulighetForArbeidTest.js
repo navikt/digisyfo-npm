@@ -3,7 +3,7 @@ import React from 'react'
 import {mount, shallow} from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import ledetekster from "../../mock/mockLedetekster.js";
-import getSykmelding from "../../mock/mockSykmeldinger.js";
+import { getParsetSykmelding } from "../../mock/mockSykmeldinger.js";
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -17,7 +17,7 @@ describe("Mulighet for arbeid", () => {
     describe("aktivitetIkkeMulig433", () => {
 
         it("Skal vise dersom sykmelding.aktivitetIkkeMulig433 === ['Helsetilstanden hindrer pasienten i å være i aktivitet']", () => {
-            component = mount(<MulighetForArbeid sykmelding={getSykmelding({
+            component = mount(<MulighetForArbeid sykmelding={getParsetSykmelding({
                 mulighetForArbeid: {
                     aktivitetIkkeMulig433: ["Helsetilstanden hindrer pasienten i å være i aktivitet"]
                 }
@@ -27,7 +27,7 @@ describe("Mulighet for arbeid", () => {
         });
 
         it("Skal vise 'Annet' dersom sykmelding.aktivitetIkkeMulig433 === ['Helsetilstanden hindrer pasienten i å være i aktivitet', 'Annet']", () => {
-            component = mount(<MulighetForArbeid sykmelding={getSykmelding({
+            component = mount(<MulighetForArbeid sykmelding={getParsetSykmelding({
                 mulighetForArbeid: {
                     aktivitetIkkeMulig433: ["Helsetilstanden hindrer pasienten i å være i aktivitet", "Annet"]
                 }
@@ -37,7 +37,7 @@ describe("Mulighet for arbeid", () => {
         });
 
         it("Skal ikke vise 'Annet' dersom sykmelding.aktivitetIkkeMulig433 === ['Annet']", () => {
-            component = mount(<MulighetForArbeid sykmelding={getSykmelding({
+            component = mount(<MulighetForArbeid sykmelding={getParsetSykmelding({
                 mulighetForArbeid: {
                     aktivitetIkkeMulig433: ["Annet"]
                 }
@@ -47,7 +47,7 @@ describe("Mulighet for arbeid", () => {
 
 
         it("Skal vise dersom sykmelding.aktivitetIkkeMulig433 === ['A', 'B', 'C']", () => {
-            component = mount(<MulighetForArbeid sykmelding={getSykmelding({
+            component = mount(<MulighetForArbeid sykmelding={getParsetSykmelding({
                 mulighetForArbeid: {
                     aktivitetIkkeMulig433: ['A', 'B', 'C']
                 }
@@ -59,7 +59,7 @@ describe("Mulighet for arbeid", () => {
         });  
 
         it("Skal ikke vise dersom sykmelding.aktivitetIkkeMulig433 === null", () => {
-            component = mount(<MulighetForArbeid sykmelding={getSykmelding({
+            component = mount(<MulighetForArbeid sykmelding={getParsetSykmelding({
                 mulighetForArbeid: {
                     aktivitetIkkeMulig433: null
                 }
@@ -68,7 +68,7 @@ describe("Mulighet for arbeid", () => {
         });
 
         it("Skal ikke vise dersom sykmelding.aarsakAktivitetIkkeMulig433 === null", () => {
-            component = mount(<MulighetForArbeid sykmelding={getSykmelding({
+            component = mount(<MulighetForArbeid sykmelding={getParsetSykmelding({
                 mulighetForArbeid: {
                     aarsakAktivitetIkkeMulig433: null
                 }
@@ -81,7 +81,7 @@ describe("Mulighet for arbeid", () => {
     describe("aktivitetIkkeMulig434", () => {
 
         it("Skal vise dersom sykmelding.aktivitetIkkeMulig434 === ['Helsetilstanden hindrer pasienten i å være i aktivitet']", () => {
-            component = mount(<MulighetForArbeid sykmelding={getSykmelding({
+            component = mount(<MulighetForArbeid sykmelding={getParsetSykmelding({
                 mulighetForArbeid: {
                     aktivitetIkkeMulig434: ["Helsetilstanden hindrer pasienten i å være i aktivitet"]
                 }
@@ -91,7 +91,7 @@ describe("Mulighet for arbeid", () => {
         });
 
         it("Skal vise dersom sykmelding.aktivitetIkkeMulig434 === ['A', 'B', 'C']", () => {
-            component = mount(<MulighetForArbeid sykmelding={getSykmelding({
+            component = mount(<MulighetForArbeid sykmelding={getParsetSykmelding({
                 mulighetForArbeid: {
                     aktivitetIkkeMulig434: ['A', 'B', 'C']
                 }
@@ -103,7 +103,7 @@ describe("Mulighet for arbeid", () => {
         });  
 
         it("Skal ikke vise dersom sykmelding.aktivitetIkkeMulig434 === null", () => {
-            component = mount(<MulighetForArbeid sykmelding={getSykmelding({
+            component = mount(<MulighetForArbeid sykmelding={getParsetSykmelding({
                 mulighetForArbeid: {
                     aktivitetIkkeMulig434: null
                 }
@@ -112,7 +112,7 @@ describe("Mulighet for arbeid", () => {
         });
 
         it("Skal vise dersom sykmelding.aarsakAktivitetIkkeMulig434 === 'Derfor'", () => {
-            component = mount(<MulighetForArbeid sykmelding={getSykmelding({
+            component = mount(<MulighetForArbeid sykmelding={getParsetSykmelding({
                 mulighetForArbeid: {
                     aarsakAktivitetIkkeMulig434: 'Derfor'
                 }
@@ -122,7 +122,7 @@ describe("Mulighet for arbeid", () => {
         });
 
         it("Skal vise 'Annet' dersom sykmelding.aktivitetIkkeMulig434 === ['Helsetilstanden hindrer pasienten i å være i aktivitet', 'Annet']", () => {
-            component = mount(<MulighetForArbeid sykmelding={getSykmelding({
+            component = mount(<MulighetForArbeid sykmelding={getParsetSykmelding({
                 mulighetForArbeid: {
                     aktivitetIkkeMulig434: ["Helsetilstanden hindrer pasienten i å være i aktivitet", "Annet"]
                 }
@@ -132,7 +132,7 @@ describe("Mulighet for arbeid", () => {
         });
 
         it("Skal ikke vise 'Annet' dersom sykmelding.aktivitetIkkeMulig434 === ['Annet']", () => {
-            component = mount(<MulighetForArbeid sykmelding={getSykmelding({
+            component = mount(<MulighetForArbeid sykmelding={getParsetSykmelding({
                 mulighetForArbeid: {
                     aktivitetIkkeMulig434: ["Annet"]
                 }

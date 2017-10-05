@@ -10,7 +10,7 @@ export const getSykmeldingCheckbox = (sykmeldingBolk, felt, tekst, className) =>
     return null;
 };
 
-export const getSykmeldingOpplysning = (sykmeldingBolk, felt, tittel, opplysning, Overskrift = 'H5') => {
+export const getSykmeldingOpplysning = (sykmeldingBolk, felt, tittel, opplysning, Overskrift = 'h5') => {
     if (sykmeldingBolk[felt]) {
         return (<SykmeldingOpplysning tittel={tittel} Overskrift={Overskrift}>
             <p className={`opplysning__verdi js-${felt}`}>{opplysning || sykmeldingBolk[felt]}</p>

@@ -6,7 +6,7 @@ chai.use(chaiEnzyme());
 const expect = chai.expect;
 
 import AktiviteterISykmeldingsperioden, { Aktivitet, Inntektskilder, Utdanning } from '../../../js/components/sykepengesoknadOppsummering/AktiviteterISykmeldingsperioden';
-import { getSoknad } from '../../mock/mockSoknader';
+import { getParsetSoknad } from '../../mock/mockSoknader';
 import ledetekster from '../../mock/mockLedetekster';
 
 
@@ -16,7 +16,7 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
     let sykepengesoknad;
 
     beforeEach(() => {
-        sykepengesoknad = getSoknad();
+        sykepengesoknad = getParsetSoknad();
     });
 
     describe("Aktiviteter", () => {
@@ -59,24 +59,24 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
         let soknad;
 
         it("Skal bruke gjenopptattArbeidFulltUtDato minus en dag i spørsmål om arbeidstid dersom gjenopptattArbeidFulltUtDato er fylt ut", () => {
-            soknad = getSoknad({
+            soknad = getParsetSoknad({
                 gjenopptattArbeidFulltUtDato: new Date("2017-01-20"),
                 aktiviteter: [{
                   "periode": {
-                    "fom": "2017-01-01",
-                    "tom": "2017-01-15"
+                    "fom": new Date("2017-01-01"),
+                    "tom": new Date("2017-01-15")
                   },
                   "grad": 100,
                   "avvik": null
                 }, {
                   "periode": {
-                    "fom": "2017-01-16",
-                    "tom": "2017-01-30"
+                    "fom": new Date("2017-01-16"),
+                    "tom": new Date("2017-01-30")
                   },
                   "grad": 30,
                   "avvik": {
                     "arbeidsgrad": 80,
-                    "arbeidstimerNormalUke": "37,5"
+                    "arbeidstimerNormalUke": 37.5
                   }
                 }]
             });
@@ -85,24 +85,24 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
         });
 
         it("Skal bruke gjenopptattArbeidFulltUtDato i spørsmål om arbeidstid dersom gjenopptattArbeidFulltUtDato er fylt ut med samme dag som fom", () => {
-            soknad = getSoknad({
+            soknad = getParsetSoknad({
                 gjenopptattArbeidFulltUtDato: new Date("2017-01-16"),
                 aktiviteter: [{
                   "periode": {
-                    "fom": "2017-01-01",
-                    "tom": "2017-01-15"
+                    "fom": new Date("2017-01-01"),
+                    "tom": new Date("2017-01-15")
                   },
                   "grad": 100,
                   "avvik": null
                 }, {
                   "periode": {
-                    "fom": "2017-01-16",
-                    "tom": "2017-01-30"
+                    "fom": new Date("2017-01-16"),
+                    "tom": new Date("2017-01-30")
                   },
                   "grad": 30,
                   "avvik": {
                     "arbeidsgrad": 80,
-                    "arbeidstimerNormalUke": "37,5"
+                    "arbeidstimerNormalUke": 37.5
                   }
                 }]
             });
@@ -119,23 +119,23 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
 
         describe("Med avvik", () => {
             beforeEach(() => {
-                soknad = getSoknad({
+                soknad = getParsetSoknad({
                     aktiviteter: [{
                       "periode": {
-                        "fom": "2017-01-01",
-                        "tom": "2017-01-15"
+                        "fom": new Date("2017-01-01"),
+                        "tom": new Date("2017-01-15")
                       },
                       "grad": 100,
                       "avvik": null
                     }, {
                       "periode": {
-                        "fom": "2017-01-16",
-                        "tom": "2017-01-30"
+                        "fom": new Date("2017-01-16"),
+                        "tom": new Date("2017-01-30")
                       },
                       "grad": 30,
                       "avvik": {
                         "arbeidsgrad": 80,
-                        "arbeidstimerNormalUke": "37,5"
+                        "arbeidstimerNormalUke": 37.5
                       }
                     }]
                 });
@@ -168,22 +168,22 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
 
         describe("Med avvik oppgitt i beregnetArbeidsgrad og timer", () => {
             beforeEach(() => {
-                soknad = getSoknad({
+                soknad = getParsetSoknad({
                     aktiviteter: [{
                       "periode": {
-                        "fom": "2017-01-01",
-                        "tom": "2017-01-15"
+                        "fom": new Date("2017-01-01"),
+                        "tom": new Date("2017-01-15")
                       },
                       "grad": 100,
                       "avvik": null
                     }, {
                       "periode": {
-                        "fom": "2017-01-16",
-                        "tom": "2017-01-30"
+                        "fom": new Date("2017-01-16"),
+                        "tom": new Date("2017-01-30")
                       },
                       "grad": 30,
                       "avvik": {
-                        "arbeidstimerNormalUke": "37,5",
+                        "arbeidstimerNormalUke": 37.5,
                         "beregnetArbeidsgrad": 80,
                         "timer": 60
                       }
@@ -209,18 +209,18 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
 
         describe("Uten avvik", () => {
             beforeEach(() => {
-                soknad = getSoknad({
+                soknad = getParsetSoknad({
                     aktiviteter: [{
                       "periode": {
-                        "fom": "2017-01-01",
-                        "tom": "2017-01-15"
+                        "fom": new Date("2017-01-01"),
+                        "tom": new Date("2017-01-15")
                       },
                       "grad": 100,
                       "avvik": null
                     }, {
                       "periode": {
-                        "fom": "2017-01-16",
-                        "tom": "2017-01-30"
+                        "fom": new Date("2017-01-16"),
+                        "tom": new Date("2017-01-30")
                       },
                       "grad": 30,
                       "avvik": null
@@ -257,18 +257,18 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
         let component;
 
         beforeEach(() => {
-            const soknad = getSoknad({
+            const soknad = getParsetSoknad({
                 aktiviteter: [{
                   "periode": {
-                    "fom": "2017-01-01",
-                    "tom": "2017-01-15"
+                    "fom": new Date("2017-01-01"),
+                    "tom": new Date("2017-01-15")
                   },
                   "grad": 100,
                   "avvik": null
                 }, {
                   "periode": {
-                    "fom": "2017-01-16",
-                    "tom": "2017-01-30"
+                    "fom": new Date("2017-01-16"),
+                    "tom": new Date("2017-01-30")
                   },
                   "grad": 30,
                   "avvik": null
@@ -291,11 +291,11 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
         let component;
 
         beforeEach(() => {
-            const soknad = getSoknad({
+            const soknad = getParsetSoknad({
                 aktiviteter: [{
                   "periode": {
-                    "fom": "2017-01-01",
-                    "tom": "2017-01-15"
+                    "fom": new Date("2017-01-01"),
+                    "tom": new Date("2017-01-15")
                   },
                   "grad": 100,
                   "avvik": {
@@ -304,8 +304,8 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
                   }
                 }, {
                   "periode": {
-                    "fom": "2017-01-16",
-                    "tom": "2017-01-30"
+                    "fom": new Date("2017-01-16"),
+                    "tom": new Date("2017-01-30")
                   },
                   "grad": 30,
                   "avvik": null
@@ -327,7 +327,7 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
         describe("Hvis man ikke har andre inntektskilder", () => {
 
             beforeEach(() => {
-                component = render(<Inntektskilder ledetekster={ledetekster} sykepengesoknad={getSoknad({
+                component = render(<Inntektskilder ledetekster={ledetekster} sykepengesoknad={getParsetSoknad({
                     andreInntektskilder: [],
                 })} />)
             });
@@ -345,7 +345,7 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
 
         describe("Hvis man har andre inntektskilder", () => {
             beforeEach(() => {
-                component = render(<Inntektskilder ledetekster={ledetekster} sykepengesoknad={getSoknad({
+                component = render(<Inntektskilder ledetekster={ledetekster} sykepengesoknad={getParsetSoknad({
                     andreInntektskilder: [{
                         annenInntektskildeType: "ANDRE_ARBEIDSFORHOLD",
                         sykmeldt: true
@@ -386,7 +386,7 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
 
         describe("Dersom man ikke har vært under utdanning", () => {
             beforeEach(() => {
-                component = render(<Utdanning ledetekster={ledetekster} sykepengesoknad={getSoknad({
+                component = render(<Utdanning ledetekster={ledetekster} sykepengesoknad={getParsetSoknad({
                     utdanning: null
                 })} />);
             })
@@ -408,7 +408,7 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
 
         describe("Dersom man har vært under utdanning", () => {
             beforeEach(() => {
-                component = render(<Utdanning ledetekster={ledetekster} sykepengesoknad={getSoknad({
+                component = render(<Utdanning ledetekster={ledetekster} sykepengesoknad={getParsetSoknad({
                     utdanning: {
                         utdanningStartdato: "2017-01-15",
                         erUtdanningFulltidsstudium: true
@@ -429,7 +429,7 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
 
         describe("Dersom man har fylt ut gjenopptattArbeidFulltUtDato", () => {
             it("Skal bruke denne datoen minus en dag i spørsmål", () => {
-                component = render(<Utdanning ledetekster={ledetekster} sykepengesoknad={getSoknad({
+                component = render(<Utdanning ledetekster={ledetekster} sykepengesoknad={getParsetSoknad({
                     utdanning: null,
                     gjenopptattArbeidFulltUtDato: new Date("2017-01-18"),
                 })} />);
@@ -437,7 +437,7 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
             });
 
             it("Skal bruke denne datoen i spørsmål hvis den er lik tidligsteFom", () => {
-                component = render(<Utdanning ledetekster={ledetekster} sykepengesoknad={getSoknad({
+                component = render(<Utdanning ledetekster={ledetekster} sykepengesoknad={getParsetSoknad({
                     utdanning: null,
                     gjenopptattArbeidFulltUtDato: new Date("2017-01-01"),
                 })} />);

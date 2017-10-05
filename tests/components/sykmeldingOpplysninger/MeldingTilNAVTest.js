@@ -3,7 +3,7 @@ import React from 'react'
 import {mount, shallow} from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import ledetekster from "../../mock/mockLedetekster.js";
-import getSykmelding from "../../mock/mockSykmeldinger.js";
+import { getParsetSykmelding } from "../../mock/mockSykmeldinger.js";
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -14,7 +14,7 @@ describe("Melding til NAV", () => {
 
     describe("navBoerTaTakISaken", () => {
         it("Skal vise checkbox dersom sykmelding.navBoerTaTakISaken === true", () => {
-            let component = mount(<MeldingTilNAV sykmelding={getSykmelding({
+            let component = mount(<MeldingTilNAV sykmelding={getParsetSykmelding({
                 meldingTilNav: {
                     navBoerTaTakISaken: true
                 }
@@ -23,7 +23,7 @@ describe("Melding til NAV", () => {
         });
 
         it("Skal ikke vise navBoerTaTakISaken dersom den ikke finnes", () => {
-            let component = mount(<MeldingTilNAV sykmelding={getSykmelding({
+            let component = mount(<MeldingTilNAV sykmelding={getParsetSykmelding({
                 meldingTilNav: {
                     navBoerTaTakISaken: null
                 }
@@ -39,7 +39,7 @@ describe("Melding til NAV", () => {
             };
 
             component = mount(
-                <MeldingTilNAV sykmelding={getSykmelding({
+                <MeldingTilNAV sykmelding={getParsetSykmelding({
                 meldingTilNav: {
                     navBoerTaTakISaken: true,
                     navBoerTaTakISakenBegrunnelse: "Den sykmeldte trenger bistand fra NAV"
@@ -55,7 +55,7 @@ describe("Melding til NAV", () => {
             };
 
             component = mount(
-                <MeldingTilNAV sykmelding={getSykmelding({
+                <MeldingTilNAV sykmelding={getParsetSykmelding({
                 meldingTilNav: {
                     navBoerTaTakISaken: true
                 }

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { sykmelding as sykmeldingPt, keyValue } from '../../propTypes';
 import MulighetForArbeid from './MulighetForArbeid';
 import Friskmelding from './Friskmelding';
 import UtdypendeOpplysninger from './UtdypendeOpplysninger';
@@ -13,17 +14,17 @@ import { toDatePrettyPrint, getSykmeldingOpplysning } from '../../utils';
 const FlereOpplysninger = ({ sykmelding, ledetekster }) => {
     return (<div>
         <div className="sykmeldingSeksjon">
-        {
-            getSykmeldingOpplysning(sykmelding.bekreftelse,
-                'utstedelsesdato',
-                getLedetekst('din-sykmelding.annet.utstedelsesdato', ledetekster),
-                toDatePrettyPrint(sykmelding.bekreftelse.utstedelsesdato), 'H4')
-        }
-        {
-            getSykmeldingOpplysning(sykmelding, 'startLegemeldtFravaer',
-                getLedetekst('din-sykmelding.mulighet.for.arbeid.start.legemeldt.fravaer.tittel', ledetekster),
-                toDatePrettyPrint(sykmelding.startLegemeldtFravaer), 'H4')
-        }
+            {
+                getSykmeldingOpplysning(sykmelding.bekreftelse,
+                    'utstedelsesdato',
+                    getLedetekst('din-sykmelding.annet.utstedelsesdato', ledetekster),
+                    toDatePrettyPrint(sykmelding.bekreftelse.utstedelsesdato), 'h4')
+            }
+            {
+                getSykmeldingOpplysning(sykmelding, 'startLegemeldtFravaer',
+                    getLedetekst('din-sykmelding.mulighet.for.arbeid.start.legemeldt.fravaer.tittel', ledetekster),
+                    toDatePrettyPrint(sykmelding.startLegemeldtFravaer), 'h4')
+            }
         </div>
         <MulighetForArbeid sykmelding={sykmelding} ledetekster={ledetekster} />
         <Friskmelding sykmelding={sykmelding} ledetekster={ledetekster} />
@@ -37,8 +38,8 @@ const FlereOpplysninger = ({ sykmelding, ledetekster }) => {
 };
 
 FlereOpplysninger.propTypes = {
-    sykmelding: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykmelding: sykmeldingPt,
+    ledetekster: keyValue,
 };
 
 export default FlereOpplysninger;

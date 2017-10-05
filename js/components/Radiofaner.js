@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Hjelpetekst from './Hjelpetekst';
 
 const Radiofaner = ({ alternativer = [], valgtAlternativ, changeHandler, className, radioName }) => {
@@ -8,6 +9,7 @@ const Radiofaner = ({ alternativer = [], valgtAlternativ, changeHandler, classNa
                 alternativer.map((a, index) => {
                     const erValgt = a.verdi === valgtAlternativ;
                     const divClassname = a.hjelpetekst ? 'medHjelpetekst' : '';
+                    const inputId = `radio-${a.verdi}`;
                     return (<li className="skjema__input" key={index}>
                         <div className={divClassname}>
                             <input
@@ -15,13 +17,14 @@ const Radiofaner = ({ alternativer = [], valgtAlternativ, changeHandler, classNa
                                 className={`radioknapp radioknapp--mork js-${a.verdi}`}
                                 name={radioName}
                                 value={a.verdi}
-                                id={`radio-${a.verdi}`}
+                                id={inputId}
                                 checked={erValgt}
-                                onChange={() => {changeHandler(a.verdi);}} />
-                            <label htmlFor={`radio-${a.verdi}`}>{a.tittel}</label>
+                                onChange={() => {
+                                    changeHandler(a.verdi);
+                                }} />
+                            <label htmlFor={inputId}>{a.tittel}</label>
                             {
-                                a.hjelpetekst ?
-                                <Hjelpetekst id="velg-arbeidssituasjon" {...a.hjelpetekst} /> : null
+                                a.hjelpetekst ? <Hjelpetekst id="velg-arbeidssituasjon" {...a.hjelpetekst} /> : null
                             }
                         </div>
                     </li>);
@@ -31,8 +34,13 @@ const Radiofaner = ({ alternativer = [], valgtAlternativ, changeHandler, classNa
     </div>);
 };
 
+const alternativ = PropTypes.shape({
+    verdi: PropTypes.string,
+    tittel: PropTypes.string,
+});
+
 Radiofaner.propTypes = {
-    alternativer: PropTypes.array,
+    alternativer: PropTypes.arrayOf(alternativ),
     changeHandler: PropTypes.func,
     valgtAlternativ: PropTypes.string,
     className: PropTypes.string,

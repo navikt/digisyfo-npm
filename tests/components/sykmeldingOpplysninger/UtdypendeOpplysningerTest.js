@@ -8,7 +8,7 @@ chai.use(chaiEnzyme());
 const expect = chai.expect;
 
 import UtdypendeOpplysninger from "../../../js/components/sykmeldingOpplysninger/UtdypendeOpplysninger.js";
-import getSykmelding from "../../mock/mockSykmeldinger.js";
+import { getParsetSykmelding } from "../../mock/mockSykmeldinger.js";
 
 let component;
 
@@ -16,7 +16,7 @@ describe("Utdypende opplysninger", () => {
 
     describe("Sykehistorie", () => {
         it("Skal vise sykehistorie dersom den finnes", () => {
-            let component = shallow(<UtdypendeOpplysninger sykmelding={getSykmelding({
+            let component = shallow(<UtdypendeOpplysninger sykmelding={getParsetSykmelding({
                 utdypendeOpplysninger: {
                     sykehistorie: "Min sykehistorie er ganske kort. Flaks for meg."
                 }
@@ -25,7 +25,7 @@ describe("Utdypende opplysninger", () => {
         });
 
         it("Skal ikke vise sykehistorie dersom den ikke finnes", () => {
-            let component = shallow(<UtdypendeOpplysninger sykmelding={getSykmelding({
+            let component = shallow(<UtdypendeOpplysninger sykmelding={getParsetSykmelding({
                 utdypendeOpplysninger: {
                     sykehistorie: null
                 }
@@ -36,7 +36,7 @@ describe("Utdypende opplysninger", () => {
 
     describe("Hvordan påvirker sykdommen arbeidsevnen?", () => {
         it("Skal vise dersom den finnes", () => {
-            let component = shallow(<UtdypendeOpplysninger sykmelding={getSykmelding({
+            let component = shallow(<UtdypendeOpplysninger sykmelding={getParsetSykmelding({
                 utdypendeOpplysninger: {
                     paavirkningArbeidsevne: "I stor grad"
                 }
@@ -45,7 +45,7 @@ describe("Utdypende opplysninger", () => {
         });
 
         it("Skal ikke vise dersom den ikke finnes", () => {
-            let component = shallow(<UtdypendeOpplysninger sykmelding={getSykmelding({
+            let component = shallow(<UtdypendeOpplysninger sykmelding={getParsetSykmelding({
                 utdypendeOpplysninger: {
                     paavirkningArbeidsevne: null
                 }
@@ -56,7 +56,7 @@ describe("Utdypende opplysninger", () => {
 
     describe("Har behandlingen frem til nå bedret arbeidsevnen?", () => {
         it("Skal vise dersom den finnes", () => {
-            let component = shallow(<UtdypendeOpplysninger sykmelding={getSykmelding({
+            let component = shallow(<UtdypendeOpplysninger sykmelding={getParsetSykmelding({
                 utdypendeOpplysninger: {
                     resultatAvBehandling: "Gode resultater"
                 }
@@ -65,7 +65,7 @@ describe("Utdypende opplysninger", () => {
         });
 
         it("Skal ikke vise dersom den ikke finnes", () => {
-            let component = shallow(<UtdypendeOpplysninger sykmelding={getSykmelding({
+            let component = shallow(<UtdypendeOpplysninger sykmelding={getParsetSykmelding({
                 utdypendeOpplysninger: {
                     resultatAvBehandling: null
                 }
@@ -76,7 +76,7 @@ describe("Utdypende opplysninger", () => {
 
     describe("Beskriv pågående og planlagt henvisning, utredning og/eller behandling", () => {
         it("Skal vise dersom den finnes", () => {
-            let component = shallow(<UtdypendeOpplysninger sykmelding={getSykmelding({
+            let component = shallow(<UtdypendeOpplysninger sykmelding={getParsetSykmelding({
                 utdypendeOpplysninger: {
                     henvisningUtredningBehandling: "Dette er min beskrivelse"
                 }
@@ -85,7 +85,7 @@ describe("Utdypende opplysninger", () => {
         });
 
         it("Skal ikke vise dersom den ikke finnes", () => {
-            let component = shallow(<UtdypendeOpplysninger sykmelding={getSykmelding({
+            let component = shallow(<UtdypendeOpplysninger sykmelding={getParsetSykmelding({
                 utdypendeOpplysninger: {
                     henvisningUtredningBehandling: null
                 }

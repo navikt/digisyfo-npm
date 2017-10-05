@@ -9,12 +9,20 @@ chai.use(chaiEnzyme());
 const expect = chai.expect;
 import SykmeldingPeriode from "../../../js/components/sykmeldingOpplysninger/SykmeldingPeriode.js";
 
+const toDate = (obj) => {
+    var s = new Date();
+    s.setYear(obj.year);
+    s.setMonth("0" + obj.monthValue);
+    s.setDate(obj.dayOfMonth);
+    return s;
+}
+
 describe("SykmeldingPeriode", () => {
 
     it("Viser grad dersom sykmeldingen er gradert", function () {
         const periode = shallow(<SykmeldingPeriode periode={{
-            "fom": { year: 2016, monthValue: 5, dayOfMonth: 1 },
-            "tom": { year: 2016, monthValue: 5, dayOfMonth: 16 },
+            "fom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 1 }),
+            "tom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 16 }),
             "grad": 60,
             "behandlingsdager": null,
             "reisetilskudd": false,
@@ -25,8 +33,8 @@ describe("SykmeldingPeriode", () => {
 
     it("Skal vise antall dager", () => {
         const periode = shallow(<SykmeldingPeriode periode={{
-            "fom": { year: 2016, monthValue: 5, dayOfMonth: 1 },
-            "tom": { year: 2016, monthValue: 5, dayOfMonth: 16 },
+            "fom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 1 }),
+            "tom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 16 }),
             "grad": 100
           }} ledetekster={ledetekster} antallDager={16} />);
         expect(periode.text()).to.contain("16");
@@ -35,8 +43,8 @@ describe("SykmeldingPeriode", () => {
 
     it("Viser grad dersom sykmeldingen er ugradert (100 % sykmeldt)", function () {
         const periode = shallow(<SykmeldingPeriode periode={{
-            "fom": { year: 2016, monthValue: 5, dayOfMonth: 1 },
-            "tom": { year: 2016, monthValue: 5, dayOfMonth: 16 },
+            "fom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 1 }),
+            "tom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 16 }),
             "grad": 100,
             "behandlingsdager": null,
             "reisetilskudd": false,
@@ -47,8 +55,8 @@ describe("SykmeldingPeriode", () => {
 
     it("Viser ikke grad, men behandlingsdager, dersom sykmeldingen har behandlingsdager", function () {
         const periode = shallow(<SykmeldingPeriode periode={{
-            "fom": { year: 2016, monthValue: 5, dayOfMonth: 1 },
-            "tom": { year: 2016, monthValue: 5, dayOfMonth: 16 },
+            "fom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 1 }),
+            "tom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 16 }),
             "grad": null,
             "behandlingsdager": 5,
             "reisetilskudd": false,
@@ -61,8 +69,8 @@ describe("SykmeldingPeriode", () => {
 
     it("Viser ikke behandlingsdager, dersom sykmeldingen ikke har behandlingsdager", function () {
         const periode = shallow(<SykmeldingPeriode periode={{
-            "fom": { year: 2016, monthValue: 5, dayOfMonth: 1 },
-            "tom": { year: 2016, monthValue: 5, dayOfMonth: 16 },
+            "fom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 1 }),
+            "tom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 16 }),
             "grad": null,
             "behandlingsdager": null,
             "reisetilskudd": false,
@@ -74,8 +82,8 @@ describe("SykmeldingPeriode", () => {
 
     it("Viser reisetilskudd dersom sykmeldingen er gradert med reisetilskudd", function() {
         const periode = shallow(<SykmeldingPeriode periode={{
-            "fom": { year: 2016, monthValue: 5, dayOfMonth: 1 },
-            "tom": { year: 2016, monthValue: 5, dayOfMonth: 16 },
+            "fom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 1 }),
+            "tom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 16 }),
             "grad": 45,
             "behandlingsdager": 5,
             "reisetilskudd": true,
@@ -86,8 +94,8 @@ describe("SykmeldingPeriode", () => {
 
     it("Viser reisetilskudd dersom sykmeldingen er ugradert med reisetilskudd", function() {
         const periode1 = shallow(<SykmeldingPeriode periode={{
-            "fom": { year: 2016, monthValue: 5, dayOfMonth: 1 },
-            "tom": { year: 2016, monthValue: 5, dayOfMonth: 16 },
+            "fom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 1 }),
+            "tom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 16 }),
             "grad": null,
             "behandlingsdager": null,
             "reisetilskudd": true,
@@ -99,8 +107,8 @@ describe("SykmeldingPeriode", () => {
 
     it("Viser ikke reisetilskudd dersom sykmeldingen ikke har reisetilskudd", function() {
         const periode = shallow(<SykmeldingPeriode periode={{
-            "fom": { year: 2016, monthValue: 5, dayOfMonth: 1 },
-            "tom": { year: 2016, monthValue: 5, dayOfMonth: 16 },
+            "fom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 1 }),
+            "tom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 16 }),
             "grad": 45,
             "behandlingsdager": 5,
             "reisetilskudd": null,
@@ -112,8 +120,8 @@ describe("SykmeldingPeriode", () => {
 
     it("Viser avventende + innspill til arbeidsgiver dersom sykmeldingen er avventende", function() {
         const periode = shallow(<SykmeldingPeriode periode={{
-            "fom": { year: 2016, monthValue: 5, dayOfMonth: 1 },
-            "tom": { year: 2016, monthValue: 5, dayOfMonth: 16 },
+            "fom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 1 }),
+            "tom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 16 }),
             "grad": null,
             "behandlingsdager": 5,
             "reisetilskudd": true,
@@ -127,8 +135,8 @@ describe("SykmeldingPeriode", () => {
 
     it("Viser ikke avventende dersom sykmeldingen ikke er avventende", function() {
         const periode = shallow(<SykmeldingPeriode periode={{
-            "fom": { year: 2016, monthValue: 5, dayOfMonth: 1 },
-            "tom": { year: 2016, monthValue: 5, dayOfMonth: 16 },
+            "fom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 1 }),
+            "tom": toDate({ year: 2016, monthValue: 5, dayOfMonth: 16 }),
             "grad": 45,
             "behandlingsdager": 5,
             "reisetilskudd": true,

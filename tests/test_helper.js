@@ -1,7 +1,20 @@
-import jsdom from 'jsdom';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
-const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
-const win = doc.defaultView;
+Enzyme.configure({ adapter: new Adapter() });
+
+const { JSDOM } = require('jsdom');
+
+const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
+const { window } = jsdom;
+
+function copyProps(src, target) {
+  const props = Object.getOwnPropertyNames(src)
+    .filter(prop => typeof target[prop] === 'undefined')
+    .map(prop => Object.getOwnPropertyDescriptor(src, prop));
+  Object.defineProperties(target, props);
+}
+
 let temp = null;
 const localS = {
     getItem: function(key) {
@@ -12,12 +25,12 @@ const localS = {
     }
 };
 
-global.document = doc;
-global.window = win;
+global.HTMLElement = window.HTMLElement;
 global.localStorage = localS;
 
-Object.keys(window).forEach((key) => {
-    if (!(key in global)) {
-        global[key] = window[key];
-    }
-});
+global.window = window;
+global.document = window.document;
+global.navigator = {
+  userAgent: 'node.js',
+};
+copyProps(window, global);

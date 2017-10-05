@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { UtropstegnIkon, UtropstegnIkonFylt, InfoIkonFylt, InfoIkon, SuksessIkonFylt, SuksessIkon } from './ikoner';
 
 export const getIkon = (type, fylt) => {
@@ -24,7 +25,7 @@ export const getIkon = (type, fylt) => {
     }
 };
 
-const Varselstripe = ({ type = 'default', fylt = false, children, ikon }) => {
+const Varselstripe = ({ type = 'default', fylt = false, children = <span />, ikon }) => {
     const typeClass = ` varselstripe--${type}`;
     const _ikon = ikon ? <img src={ikon} alt="" /> : getIkon(type, fylt);
 
@@ -41,7 +42,7 @@ const Varselstripe = ({ type = 'default', fylt = false, children, ikon }) => {
 Varselstripe.propTypes = {
     type: PropTypes.string,
     fylt: PropTypes.bool,
-    children: PropTypes.object,
+    children: PropTypes.element,
     ikon: PropTypes.string,
 };
 

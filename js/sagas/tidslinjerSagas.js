@@ -3,7 +3,7 @@ import { takeEvery } from 'redux-saga';
 import { get } from '../api';
 import * as actions from '../actions/tidslinjer_actions';
 import { log } from '../utils';
-import { apneHendelser } from '../actions/hendelser_actions.js';
+import { apneHendelser } from '../actions/hendelser_actions';
 
 export function* hentTidslinjer(action) {
     yield put(actions.henterTidslinjer());

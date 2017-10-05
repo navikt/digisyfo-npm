@@ -11,7 +11,7 @@ Object.byString = function byString(o, s) {
     s_ = s_.replace(/\[(\w+)]/g, '.$1');
     s_ = s_.replace(/^\./, '');
     const a = s_.split('.');
-    for (let i = 0, n = a.length; i < n; ++i) {
+    for (let i = 0, n = a.length; i < n; i += 1) {
         const k = a[i];
         if (k in o_) {
             o_ = o_[k];
@@ -30,10 +30,11 @@ export const getCookie = (name) => {
 
 export function filtrerObjektKeys(objekt) {
     const resultat = [];
+    const keys = Object.keys(objekt);
 
-    for (const key in objekt) {
-        if (objekt[key]) {
-            resultat.push(objekt[key]);
+    for (let i = 0; i < keys.length; i += 1) {
+        if (objekt[keys[i]]) {
+            resultat.push(objekt[keys[i]]);
         }
     }
     return resultat;

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { sykmelding as sykmeldingPt, keyValue } from '../../propTypes';
 import { SykmeldingOpplysning } from './SykmeldingOpplysning';
 import { toDatePrettyPrint, getSykmeldingCheckbox } from '../../utils';
 import { getLedetekst } from '../../ledetekster';
@@ -14,7 +15,7 @@ const Friskmelding = ({ sykmelding, ledetekster }) => {
     sykmelding.friskmelding.utenArbeidsgiverTilbakemelding);
 
     if (!visSeksjon) {
-        return <div></div>;
+        return <div />;
     }
     return (<div className="sykmeldingSeksjon">
         <h4 className="sykmeldingSeksjon__tittel">{getLedetekst('din-sykmelding.friskmelding.tittel', ledetekster)}</h4>
@@ -23,8 +24,9 @@ const Friskmelding = ({ sykmelding, ledetekster }) => {
                 getLedetekst('din-sykmelding.friskmelding.retur.samme.arbeidsgiver.tittel', ledetekster), 'typo-element')
         }
         {
-            !sykmelding.friskmelding.antattDatoReturSammeArbeidsgiver ? null :
-            <SykmeldingOpplysning Overskrift="h5" className="subopplysning"
+            !sykmelding.friskmelding.antattDatoReturSammeArbeidsgiver ? null : <SykmeldingOpplysning
+                Overskrift="h5"
+                className="subopplysning"
                 tittel={getLedetekst('din-sykmelding.friskmelding.retur.samme.arbeidsgiver.dato', ledetekster)}>
                 <p className="opplysning__verdi js-antattDatoReturSammeArbeidsgiver">{toDatePrettyPrint(sykmelding.friskmelding.antattDatoReturSammeArbeidsgiver)}</p>
             </SykmeldingOpplysning>
@@ -40,8 +42,9 @@ const Friskmelding = ({ sykmelding, ledetekster }) => {
                 'typo-element')
         }
         {
-            !sykmelding.friskmelding.tilbakemeldingReturArbeid ? null :
-            <SykmeldingOpplysning className="subopplysning" tittel={getLedetekst('din-sykmelding.friskmelding.retur.usikker.dato', ledetekster)}>
+            !sykmelding.friskmelding.tilbakemeldingReturArbeid ? null : <SykmeldingOpplysning
+                className="subopplysning"
+                tittel={getLedetekst('din-sykmelding.friskmelding.retur.usikker.dato', ledetekster)}>
                 <p className="opplysning__verdi js-tilbakemeldingReturArbeidDato">{toDatePrettyPrint(sykmelding.friskmelding.tilbakemeldingReturArbeid)}</p>
             </SykmeldingOpplysning>
         }
@@ -50,8 +53,9 @@ const Friskmelding = ({ sykmelding, ledetekster }) => {
                 getLedetekst('din-sykmelding.friskmelding.uten.arbeidsgiver.retur.tittel', ledetekster), 'typo-element')
         }
         {
-            !(sykmelding.friskmelding.utenArbeidsgiverAntarTilbakeIArbeid && sykmelding.friskmelding.utenArbeidsgiverAntarTilbakeIArbeidDato) ? null :
-            <SykmeldingOpplysning className="subopplysning" tittel={getLedetekst('din-sykmelding.friskmelding.uten.arbeidsgiver.retur.dato', ledetekster)}>
+            !(sykmelding.friskmelding.utenArbeidsgiverAntarTilbakeIArbeid && sykmelding.friskmelding.utenArbeidsgiverAntarTilbakeIArbeidDato) ? null : <SykmeldingOpplysning
+                className="subopplysning"
+                tittel={getLedetekst('din-sykmelding.friskmelding.uten.arbeidsgiver.retur.dato', ledetekster)}>
                 <p className="opplysning__verdi js-utenArbeidsgiverAntarTilbakeIArbeidDato">
                     {toDatePrettyPrint(sykmelding.friskmelding.utenArbeidsgiverAntarTilbakeIArbeidDato)}
                 </p>
@@ -62,8 +66,9 @@ const Friskmelding = ({ sykmelding, ledetekster }) => {
                 getLedetekst('din-sykmelding.friskmelding.uten.arbeidsgiver.usikker.tittel', ledetekster), 'typo-element')
         }
         {
-            !sykmelding.friskmelding.utenArbeidsgiverTilbakemelding ? null :
-            <SykmeldingOpplysning className="subopplysning" tittel={getLedetekst('din-sykmelding.friskmelding.uten.arbeidsgiver.usikker.dato', ledetekster)}>
+            !sykmelding.friskmelding.utenArbeidsgiverTilbakemelding ? null : <SykmeldingOpplysning
+                className="subopplysning"
+                tittel={getLedetekst('din-sykmelding.friskmelding.uten.arbeidsgiver.usikker.dato', ledetekster)}>
                 <p className="js-utenArbeidsgiverTilbakemeldingDato">{toDatePrettyPrint(sykmelding.friskmelding.utenArbeidsgiverTilbakemelding)}</p>
             </SykmeldingOpplysning>
         }
@@ -71,8 +76,8 @@ const Friskmelding = ({ sykmelding, ledetekster }) => {
 };
 
 Friskmelding.propTypes = {
-    sykmelding: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykmelding: sykmeldingPt,
+    ledetekster: keyValue,
 };
 
 export default Friskmelding;

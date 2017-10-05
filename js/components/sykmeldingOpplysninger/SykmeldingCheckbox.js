@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export const SykmeldingCheckbox = ({ tekst, jsClassName, className = '' }) => {
     return (<p className={`checkboxOpplysning ${className} js-${jsClassName}`}>
         <img src={`${window.APP_SETTINGS.APP_ROOT}/img/png/check-box-1.png`} className="ikon" alt="Huket av" />
-        <span className="checkboxOpplysning__label" dangerouslySetInnerHTML={{ __html: tekst }}></span>
+        <span className="checkboxOpplysning__label" dangerouslySetInnerHTML={{ __html: tekst }} />
     </p>);
 };
 

@@ -11,14 +11,14 @@ const easeInOutCubic = function (t) {
     if (t < 0.5) {
         return 4 * t * t * t;
     }
-    return (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+    return ((t - 1) * ((2 * t) - 2) * ((2 * t) - 2)) + 1;
 };
 
 const position = function (start, end, elapsed, duration) {
     if (elapsed > duration) {
         return end;
     }
-    return start + (end - start) * easeInOutCubic(elapsed / duration);
+    return start + ((end - start) * easeInOutCubic(elapsed / duration));
 };
 
 export function scrollTo(el, duration = 500, callback) {

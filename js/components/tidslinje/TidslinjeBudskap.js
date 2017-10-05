@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export const lagHtml = (innhold, bilde, alt = '') => {
     let innholdMedBilde = innhold;
@@ -9,8 +10,9 @@ export const lagHtml = (innhold, bilde, alt = '') => {
 };
 
 const TidslinjeBudskap = ({ innhold, bilde, alt, vis }) => {
-    return (<div className={`tidslinjeBoble__innhold ${(!vis ? 'tidslinjeBoble__innhold--erUsynlig' : '')}`}
-        dangerouslySetInnerHTML={lagHtml(innhold, bilde, alt)}></div>);
+    return (<div
+        className={`tidslinjeBoble__innhold ${(!vis ? 'tidslinjeBoble__innhold--erUsynlig' : '')}`}
+        dangerouslySetInnerHTML={lagHtml(innhold, bilde, alt)} />);
 };
 
 TidslinjeBudskap.propTypes = {

@@ -6,7 +6,7 @@ chai.use(chaiEnzyme());
 const expect = chai.expect;
 
 import FravaerOgFriskmelding, { FeriePermisjonEllerUtenlandsopphold } from '../../../js/components/sykepengesoknadOppsummering/FravaerOgFriskmelding';
-import { getSoknad } from '../../mock/mockSoknader';
+import { getParsetSoknad } from '../../mock/mockSoknader';
 import ledetekster from '../../mock/mockLedetekster';
 
 describe("Oppsummering - FravaerOgFriskmelding -", () => {
@@ -14,10 +14,10 @@ describe("Oppsummering - FravaerOgFriskmelding -", () => {
     let component;
 
     it("Skal vise egenmeldingsdager hvis det er krysset av for egenmeldingsdager", () => {
-      const soknad = getSoknad({
+      const soknad = getParsetSoknad({
         egenmeldingsperioder: [{
-            fom: "2016-12-27",
-            tom: "2016-12-31"
+            fom: new Date("2016-12-27"),
+            tom: new Date("2016-12-31")
         }]
       });
       component = mount(<FravaerOgFriskmelding ledetekster={ledetekster} sykepengesoknad={soknad} />);
@@ -30,7 +30,7 @@ describe("Oppsummering - FravaerOgFriskmelding -", () => {
     });
 
     it("Skal ikke vise egenmeldingsdager hvis det ikke er krysset av for egenmeldingsdager", () => {
-      component = mount(<FravaerOgFriskmelding ledetekster={ledetekster} sykepengesoknad={getSoknad({
+      component = mount(<FravaerOgFriskmelding ledetekster={ledetekster} sykepengesoknad={getParsetSoknad({
         egenmeldingsperioder: []
       })} />)
       const fragment = component.find(".js-egenmeldingsdager");
@@ -40,8 +40,8 @@ describe("Oppsummering - FravaerOgFriskmelding -", () => {
     });
 
     it("Skal vise gjenopptatt arbeid fullt ut", () => {
-      const soknad = getSoknad({
-        gjenopptattArbeidFulltUtDato: "2017-01-15"
+      const soknad = getParsetSoknad({
+        gjenopptattArbeidFulltUtDato: new Date("2017-01-15")
       });
       component = mount(<FravaerOgFriskmelding ledetekster={ledetekster} sykepengesoknad={soknad} />);
       const fragment = component.find(".js-gjenopptattArbeid");
@@ -51,7 +51,7 @@ describe("Oppsummering - FravaerOgFriskmelding -", () => {
     });
 
     it("Skal vise gjenopptatt arbeid fullt ut dersom det er krysset av for nei", () => {
-      component = mount(<FravaerOgFriskmelding ledetekster={ledetekster} sykepengesoknad={getSoknad({
+      component = mount(<FravaerOgFriskmelding ledetekster={ledetekster} sykepengesoknad={getParsetSoknad({
         gjenopptattArbeidFulltUtDato: null,
       })} />);
       const fragment = component.find(".js-gjenopptattArbeid");
@@ -66,7 +66,7 @@ describe("Oppsummering - FravaerOgFriskmelding -", () => {
 
       beforeEach(() => {
         getFragment = (soknad = {}) => {
-          return mount(<FeriePermisjonEllerUtenlandsopphold ledetekster={ledetekster} sykepengesoknad={getSoknad(soknad)} />);
+          return mount(<FeriePermisjonEllerUtenlandsopphold ledetekster={ledetekster} sykepengesoknad={getParsetSoknad(soknad)} />);
         }
       });
 
@@ -124,8 +124,8 @@ describe("Oppsummering - FravaerOgFriskmelding -", () => {
         beforeEach(() => {
           fragment = getFragment({
             ferie: [{
-              fom: "2017-01-02",
-              tom: "2017-01-10"
+              fom: new Date("2017-01-02"),
+              tom: new Date("2017-01-10")
             }]
           })
         })
@@ -149,8 +149,8 @@ describe("Oppsummering - FravaerOgFriskmelding -", () => {
           fragment = getFragment({
             "harHattFeriePermisjonEllerUtenlandsopphold": true,
             "ferie": [{
-              fom: "2017-01-02",
-              tom: "2017-01-10"
+              fom: new Date("2017-01-02"),
+              tom: new Date("2017-01-10")
             }]
           });
         });
@@ -170,8 +170,8 @@ describe("Oppsummering - FravaerOgFriskmelding -", () => {
         beforeEach(() => {
           fragment = getFragment({
             "permisjon": [{
-              fom: "2017-01-12",
-              tom: "2017-01-15"
+              fom: new Date("2017-01-12"),
+              tom: new Date("2017-01-15")
             }]
           });
         });
@@ -192,8 +192,8 @@ describe("Oppsummering - FravaerOgFriskmelding -", () => {
           fragment = getFragment({
             "utenlandsopphold": {
               "perioder": [{
-                fom: "2017-01-12",
-                tom: "2017-01-15"
+                fom: new Date("2017-01-12"),
+                tom: new Date("2017-01-15")
               }],
               "soektOmSykepengerIPerioden": false,
             }

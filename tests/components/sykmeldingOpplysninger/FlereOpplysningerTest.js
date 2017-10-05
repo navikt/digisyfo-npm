@@ -3,7 +3,7 @@ import React from 'react'
 import {mount, shallow} from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import ledetekster from "../../mock/mockLedetekster.js";
-import getSykmelding from "../../mock/mockSykmeldinger.js";
+import { getParsetSykmelding } from "../../mock/mockSykmeldinger.js";
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -23,21 +23,21 @@ let component;
 describe("FlereOpplysninger", () => {
 
     beforeEach(() => {
-        component = mount(<FlereOpplysninger sykmelding={getSykmelding()} ledetekster={ledetekster}/>)
+        component = mount(<FlereOpplysninger sykmelding={getParsetSykmelding()} ledetekster={ledetekster}/>)
     });
 
     describe("Når startet det legemeldte fraværet?", () => {
 
         it("Skal ikke vise dersom sykmelding.startLegemeldtFravaer === null", () => {
-            component = mount(<FlereOpplysninger sykmelding={getSykmelding({
+            component = mount(<FlereOpplysninger sykmelding={getParsetSykmelding({
                 startLegemeldtFravaer: null
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-startLegemeldtFravaer").length).to.equal(0); 
         });
 
         it("Skal vise dersom sykmelding.startLegemeldtFravaer er en dato", () => {
-            component = mount(<FlereOpplysninger sykmelding={getSykmelding({
-                startLegemeldtFravaer: { year: 2016, monthValue: 4, dayOfMonth: 28 }
+            component = mount(<FlereOpplysninger sykmelding={getParsetSykmelding({
+                startLegemeldtFravaer: new Date("2016-04-28")
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-startLegemeldtFravaer").length).to.equal(1); 
             expect(component.find(".js-startLegemeldtFravaer").text()).to.equal("28.04.2016");

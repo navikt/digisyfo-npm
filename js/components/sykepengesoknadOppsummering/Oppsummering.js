@@ -1,8 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import FravaerOgFriskmelding from './FravaerOgFriskmelding';
 import AktiviteterISykmeldingsperioden from './AktiviteterISykmeldingsperioden';
 import { Avkrysset } from './opplysninger';
 import { getLedetekst } from '../../ledetekster';
+import { keyValue, sykepengesoknad as sykepengesoknadPt } from '../../propTypes';
 
 export const ArbeidsgiverForskutterer = ({ sykepengesoknad }) => {
     if (sykepengesoknad.arbeidsgiverForskutterer === null || sykepengesoknad.arbeidsgiverForskutterer === undefined) {
@@ -15,7 +16,7 @@ export const ArbeidsgiverForskutterer = ({ sykepengesoknad }) => {
 };
 
 ArbeidsgiverForskutterer.propTypes = {
-    sykepengesoknad: PropTypes.object,
+    sykepengesoknad: sykepengesoknadPt,
 };
 
 const Oppsummering = ({ sykepengesoknad, ledetekster }) => {
@@ -30,8 +31,8 @@ const Oppsummering = ({ sykepengesoknad, ledetekster }) => {
 };
 
 Oppsummering.propTypes = {
-    sykepengesoknad: PropTypes.object.isRequired,
-    ledetekster: PropTypes.object,
+    sykepengesoknad: sykepengesoknadPt,
+    ledetekster: keyValue,
 };
 
 export default Oppsummering;

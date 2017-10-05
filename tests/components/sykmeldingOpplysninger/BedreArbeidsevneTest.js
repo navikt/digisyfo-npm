@@ -8,7 +8,7 @@ chai.use(chaiEnzyme());
 const expect = chai.expect;
 
 import BedreArbeidsevne from "../../../js/components/sykmeldingOpplysninger/BedreArbeidsevne.js";
-import getSykmelding from "../../mock/mockSykmeldinger.js";
+import { getParsetSykmelding } from "../../mock/mockSykmeldinger.js";
 
 let component;
 
@@ -16,7 +16,7 @@ describe("Hva skal til for å bedre arbeidsevnen?", () => {
 
     describe("tilretteleggingArbeidsplass", () => {
         it("Skal vise tilretteleggingArbeidsplass dersom den finnes", () => {
-            let component = shallow(<BedreArbeidsevne sykmelding={getSykmelding({
+            let component = shallow(<BedreArbeidsevne sykmelding={getParsetSykmelding({
                 arbeidsevne: {
                     tilretteleggingArbeidsplass: "trenger ny pult"
                 }
@@ -25,7 +25,7 @@ describe("Hva skal til for å bedre arbeidsevnen?", () => {
         });
 
         it("Skal ikke vise tilretteleggingArbeidsplass dersom den ikke finnes", () => {
-            let component = shallow(<BedreArbeidsevne sykmelding={getSykmelding({
+            let component = shallow(<BedreArbeidsevne sykmelding={getParsetSykmelding({
                 arbeidsevne: {
                     tilretteleggingArbeidsplass: null
                 }
@@ -36,7 +36,7 @@ describe("Hva skal til for å bedre arbeidsevnen?", () => {
 
     describe("tiltakNAV", () => {
         it("Skal vise tiltakNAV dersom den finnes", () => {
-            let component = shallow(<BedreArbeidsevne sykmelding={getSykmelding({
+            let component = shallow(<BedreArbeidsevne sykmelding={getParsetSykmelding({
                 arbeidsevne: {
                     tiltakNAV: "NAV må bli flinkere til å blablabla."
                 }
@@ -45,7 +45,7 @@ describe("Hva skal til for å bedre arbeidsevnen?", () => {
         });
 
         it("Skal ikke vise tiltakNAV dersom den ikke finnes", () => {
-            let component = shallow(<BedreArbeidsevne sykmelding={getSykmelding({
+            let component = shallow(<BedreArbeidsevne sykmelding={getParsetSykmelding({
                 arbeidsevne: {
                     tiltakNAV: null
                 }
@@ -56,7 +56,7 @@ describe("Hva skal til for å bedre arbeidsevnen?", () => {
 
     describe("tiltakAndre", () => {
         it("Skal vise tiltakAndre dersom den finnes", () => {
-            let component = shallow(<BedreArbeidsevne sykmelding={getSykmelding({
+            let component = shallow(<BedreArbeidsevne sykmelding={getParsetSykmelding({
                 arbeidsevne: {
                     tiltakAndre: "Verden må bli et bedre sted å være. Takk for meg."
                 }
@@ -65,7 +65,7 @@ describe("Hva skal til for å bedre arbeidsevnen?", () => {
         });
 
         it("Skal ikke vise tiltakAndre dersom den ikke finnes", () => {
-            let component = shallow(<BedreArbeidsevne sykmelding={getSykmelding({
+            let component = shallow(<BedreArbeidsevne sykmelding={getParsetSykmelding({
                 arbeidsevne: {
                     tiltakAndre: null
                 }
