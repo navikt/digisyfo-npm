@@ -3,7 +3,7 @@ import React from 'react'
 import { mount, shallow } from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import ledetekster from "../../mock/mockLedetekster.js";
-import getSykmelding from "../../mock/mockSykmeldinger.js";
+import { getParsetSykmelding } from "../../mock/mockSykmeldinger.js";
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -19,7 +19,7 @@ describe("AndreSykmeldingOpplysninger", () => {
             ledetekster: { ledetekster },
         };
 
-        component = mount(<AndreSykmeldingOpplysninger sykmelding={getSykmelding({
+        component = mount(<AndreSykmeldingOpplysninger sykmelding={getParsetSykmelding({
             bekreftelse: {
                 sykmelderTlf: null
             }
@@ -32,7 +32,7 @@ describe("AndreSykmeldingOpplysninger", () => {
             ledetekster: { ledetekster },
         };
 
-        component = mount(<AndreSykmeldingOpplysninger sykmelding={getSykmelding({
+        component = mount(<AndreSykmeldingOpplysninger sykmelding={getParsetSykmelding({
             bekreftelse: {
                 sykmelderTlf: "22332244"
             }

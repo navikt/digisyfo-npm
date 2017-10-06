@@ -1,62 +1,45 @@
 import ArbeidsgiversSykmeldingOpplysninger from './components/sykmeldingOpplysninger/ArbeidsgiversSykmeldingOpplysninger';
-export { ArbeidsgiversSykmeldingOpplysninger };
-
 import ArbeidsgiversNokkelopplysninger from './components/sykmeldingOpplysninger/ArbeidsgiversNokkelopplysninger';
-export { ArbeidsgiversNokkelopplysninger };
-
 import FlereOpplysninger from './components/sykmeldingOpplysninger/FlereOpplysninger';
-export { FlereOpplysninger };
-
-import DineSykmeldingOpplysninger from './components/sykmeldingOpplysninger/DineSykmeldingOpplysninger';
-export { DineSykmeldingOpplysninger };
-
 import Soknad from './components/sykepengesoknadOppsummering/Soknad';
-export { Soknad };
-
 import SykmeldingUtdrag from './components/sykepengesoknadOppsummering/SykmeldingUtdrag';
-export { SykmeldingUtdrag };
-
 import Utvidbar from './components/Utvidbar';
-export { Utvidbar };
-
-export * from './components/sykmeldingOpplysninger/SykmeldingOpplysning';
 import SykmeldingPerioder from './components/sykmeldingOpplysninger/SykmeldingPerioder';
-export { SykmeldingPerioder };
+import Varselstripe from './components/Varselstripe';
+import ledetekster from './reducers/ledetekster';
+import tidslinjer from './reducers/tidslinjer';
+import toggles from './reducers/toggles';
+import ledeteksterSagas from './sagas/ledeteksterSagas';
+import Tidslinje from './components/tidslinje/Tidslinje';
+import togglesSagas from './sagas/togglesSagas';
+import Radiofaner from './components/Radiofaner';
+import Hjelpetekst from './components/Hjelpetekst';
+import DineSykmeldingOpplysninger from './components/sykmeldingOpplysninger/DineSykmeldingOpplysninger';
 
+export { ArbeidsgiversSykmeldingOpplysninger };
+export { ArbeidsgiversNokkelopplysninger };
+export { FlereOpplysninger };
+export { DineSykmeldingOpplysninger };
+export { Soknad };
+export { SykmeldingUtdrag };
+export { Utvidbar };
+export * from './components/sykmeldingOpplysninger/SykmeldingOpplysning';
+export { SykmeldingPerioder };
 export * from './ledetekster';
 export * from './utils';
-
-import Varselstripe from './components/Varselstripe';
 export { Varselstripe };
-
 export * from './actions/hendelser_actions';
 export * from './actions/ledetekster_actions';
 export * from './actions/toggles_actions';
-
-import ledetekster from './reducers/ledetekster';
+export * from './propTypes';
 export { ledetekster };
-
-import tidslinjer from './reducers/tidslinjer';
 export { tidslinjer };
-
-import toggles from './reducers/toggles';
 export { toggles };
-
-import ledeteksterSagas from './sagas/ledeteksterSagas';
 export { ledeteksterSagas };
-
-import Tidslinje from './components/tidslinje/Tidslinje';
 export { Tidslinje };
-
-import togglesSagas from './sagas/togglesSagas';
 export { togglesSagas };
-
-import Radiofaner from './components/Radiofaner';
 export { Radiofaner };
-
-import Hjelpetekst from './components/Hjelpetekst';
 export { Hjelpetekst };
-
 export * from './utils/sykepengesoknadUtils';
 export * from './utils/periodeUtils';
 export * from './utils/reducerUtils';

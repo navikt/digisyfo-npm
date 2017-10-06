@@ -3,7 +3,7 @@ import React from 'react'
 import {mount, shallow} from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import ledetekster from "../../mock/mockLedetekster.js";
-import getSykmelding from "../../mock/mockSykmeldinger.js";
+import { getParsetSykmelding } from "../../mock/mockSykmeldinger.js";
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -17,7 +17,7 @@ describe("Friskmelding", () => {
     describe("Jeg antar at pasienten på sikt kan komme tilbake til eget eller annet arbeid hos samme arbeidsgiver", () => {
 
         it("Skal vise checkbox dersom sykmelding.antarReturSammeArbeidsgiver === true", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
                     antarReturSammeArbeidsgiver: true
                 }
@@ -26,7 +26,7 @@ describe("Friskmelding", () => {
         });
 
         it("Skal ikke vise noe dersom sykmelding.antarReturSammeArbeidsgiver === false", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
                     antarReturSammeArbeidsgiver: false
                 }
@@ -35,17 +35,17 @@ describe("Friskmelding", () => {
         });
 
         it("Skal vise dato dersom dette finnes", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
                     antarReturSammeArbeidsgiver: true,
-                    antattDatoReturSammeArbeidsgiver: { year: 2015, monthValue: 12, dayOfMonth: 31 }
+                    antattDatoReturSammeArbeidsgiver: new Date("2015-12-31")
                 }
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-antattDatoReturSammeArbeidsgiver").text()).to.equal("31.12.2015");
         });
 
         it("Skal ikke vise dato dersom dette ikke finnes", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
                     antarReturSammeArbeidsgiver: true,
                     antattDatoReturSammeArbeidsgiver: null
@@ -59,7 +59,7 @@ describe("Friskmelding", () => {
     describe("Jeg antar at pasienten på sikt kan komme tilbake til eget eller annet arbeid hos annen arbeidsgiver", () => {
 
         it("Skal vise checkbox dersom sykmelding.antarReturAnnenArbeidsgiver === true", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
                     antarReturAnnenArbeidsgiver: true
                 }
@@ -68,7 +68,7 @@ describe("Friskmelding", () => {
         });
 
         it("Skal ikke vise noe dersom sykmelding.antarReturAnnenArbeidsgiver === false", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
                     antarReturAnnenArbeidsgiver: false
                 }
@@ -81,25 +81,25 @@ describe("Friskmelding", () => {
     describe("Jeg er usikker på om pasienten kan komme tilbake i arbeid hos egen eller annen arbeidsgiver", () => {
 
         it("Skal vise checkbox dersom sykmelding.tilbakemeldingReturArbeid === (dato)", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
-                    tilbakemeldingReturArbeid: { year: 2015, monthValue: 12, dayOfMonth: 31 }
+                    tilbakemeldingReturArbeid: new Date("2015-12-31")
                 }
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-tilbakemeldingReturArbeid").text()).to.equal("Jeg er usikker på om pasienten kan komme tilbake i arbeid hos egen eller annen arbeidsgiver")
         });
 
         it("Skal vise datoen dersom sykmelding.tilbakemeldingReturArbeid === (dato)", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
-                    tilbakemeldingReturArbeid: { year: 2015, monthValue: 12, dayOfMonth: 31 }
+                    tilbakemeldingReturArbeid: new Date("2015-12-31")
                 }
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-tilbakemeldingReturArbeidDato").text()).to.equal("31.12.2015")
         });
 
         it("Skal ikke vise noe dersom sykmelding.tilbakemeldingReturArbeid === null", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
                     antarReturAnnenArbeidsgiver: false
                 }
@@ -113,7 +113,7 @@ describe("Friskmelding", () => {
     describe("Jeg antar at pasienten på sikt kan komme tilbake i arbeid", () => {
 
         it("Skal vise checkbox dersom sykmelding.utenArbeidsgiverAntarTilbakeIArbeid === true", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
                     utenArbeidsgiverAntarTilbakeIArbeid: true
                 }
@@ -122,7 +122,7 @@ describe("Friskmelding", () => {
         });
 
         it("Skal ikke vise datoen dersom sykmelding.utenArbeidsgiverAntarTilbakeIArbeidDato !== (dato)", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
                     utenArbeidsgiverAntarTilbakeIArbeid: true,
                     utenArbeidsgiverAntarTilbakeIArbeidDato: null
@@ -132,17 +132,17 @@ describe("Friskmelding", () => {
         });        
 
         it("Skal vise datoen dersom sykmelding.utenArbeidsgiverAntarTilbakeIArbeidDato === (dato)", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
                     utenArbeidsgiverAntarTilbakeIArbeid: true,
-                    utenArbeidsgiverAntarTilbakeIArbeidDato: { year: 2015, monthValue: 12, dayOfMonth: 31 }
+                    utenArbeidsgiverAntarTilbakeIArbeidDato: new Date("2015-12-31")
                 }
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-utenArbeidsgiverAntarTilbakeIArbeidDato").text()).to.equal("31.12.2015")
         });
 
         it("Skal ikke vise noe dersom sykmelding.utenArbeidsgiverAntarTilbakeIArbeid === null", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
                     utenArbeidsgiverAntarTilbakeIArbeid: null
                 }
@@ -157,25 +157,25 @@ describe("Friskmelding", () => {
     describe("Jeg er usikker på om pasienten kan komme tilbake i arbeid", () => {
 
         it("Skal vise checkbox dersom sykmelding.utenArbeidsgiverTilbakemelding === (dato)", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
-                    utenArbeidsgiverTilbakemelding: { year: 2015, monthValue: 12, dayOfMonth: 31 }
+                    utenArbeidsgiverTilbakemelding: new Date("2015-12-31")
                 }
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-utenArbeidsgiverTilbakemelding").text()).to.equal("Jeg er usikker på om pasienten kan komme tilbake i arbeid")
         }); 
 
         it("Skal vise dato dersom sykmelding.utenArbeidsgiverTilbakemelding === (dato)", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
-                    utenArbeidsgiverTilbakemelding: { year: 2015, monthValue: 12, dayOfMonth: 31 }
+                    utenArbeidsgiverTilbakemelding: new Date("2015-12-31")
                 }
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-utenArbeidsgiverTilbakemeldingDato").text()).to.equal("31.12.2015");
         });         
 
         it("Skal ikke vise noe dersom sykmelding.utenArbeidsgiverAntarTilbakeIArbeid === null", () => {
-            component = mount(<Friskmelding sykmelding={getSykmelding({
+            component = mount(<Friskmelding sykmelding={getParsetSykmelding({
                 friskmelding: {
                     utenArbeidsgiverTilbakemelding: null
                 }

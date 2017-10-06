@@ -1,8 +1,8 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { scrollTo, erSynligIViewport } from '../utils';
 
-export class Utvidbar extends Component {
-
+class Utvidbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,7 +36,7 @@ export class Utvidbar extends Component {
                 harTransisjon: false,
             });
             if (this.state.erApen) {
-                scrollTo(this.refs.utvidbar, 600);
+                scrollTo(this.utvidbar, 600);
                 this.setState({
                     hindreToggle: false,
                 });
@@ -46,10 +46,10 @@ export class Utvidbar extends Component {
                     hindreToggle: false,
                     visInnhold: false,
                 });
-                if (!erSynligIViewport(this.refs.utvidbar)) {
-                    scrollTo(this.refs.utvidbar, 600);
+                if (!erSynligIViewport(this.utvidbar)) {
+                    scrollTo(this.utvidbar, 600);
                 }
-                this.refs['js-toggle'].focus();
+                this['js-toggle'].focus();
             }
         }
     }
@@ -86,7 +86,7 @@ export class Utvidbar extends Component {
             harTransisjon: true,
         });
         setTimeout(() => {
-            const hoyde = this.refs.innhold.offsetHeight;
+            const hoyde = this.innhold.offsetHeight;
             this.setState({
                 erApen: true,
                 hoyde,
@@ -95,7 +95,7 @@ export class Utvidbar extends Component {
     }
 
     lukk() {
-        const hoyde = this.refs.innhold.offsetHeight;
+        const hoyde = this.innhold.offsetHeight;
         this.setState({
             hoyde,
             hindreToggle: true,
@@ -125,14 +125,27 @@ export class Utvidbar extends Component {
     }
 
     render() {
-        return (<div ref="utvidbar" className={`utvidbar ${this.props.className ? this.props.className : ''}`}>
-            <a href="javscript:void(0)"
+        return (<div
+            ref={(c) => {
+                this.utvidbar = c;
+            }}
+            className={`utvidbar ${this.props.className ? this.props.className : ''}`}>
+            <a
+                href="javscript:void(0)"
                 aria-expanded={this.state.erApen}
-                ref="js-toggle"
+                ref={(c) => {
+                    this['js-toggle'] = c;
+                }}
                 role="button"
-                onMouseEnter={() => {this.onMouseEnter();}}
-                onMouseLeave={() => {this.onMouseLeave();}}
-                onClick={(event) => {this.toggle(event);}}
+                onMouseEnter={() => {
+                    this.onMouseEnter();
+                }}
+                onMouseLeave={() => {
+                    this.onMouseLeave();
+                }}
+                onClick={(event) => {
+                    this.toggle(event);
+                }}
                 className="utvidbar__toggle">
                 <this.props.Overskrift className={this.getHeaderClassName()}>
                     {
@@ -144,19 +157,32 @@ export class Utvidbar extends Component {
                     </em>
                 </this.props.Overskrift>
             </a>
-            <div ref="container" style={{ height: this.state.hoyde }} className={`utvidbar__innholdContainer${this.state.containerClassName}`} onTransitionEnd={() => {
-                this.onTransitionEnd();
-            }}>
-                <div className="utvidbar__innhold" ref="innhold">
+            <div
+                ref={(c) => {
+                    this.container = c;
+                }}
+                style={{ height: this.state.hoyde }}
+                className={`utvidbar__innholdContainer${this.state.containerClassName}`}
+                onTransitionEnd={() => {
+                    this.onTransitionEnd();
+                }}>
+                <div
+                    className="utvidbar__innhold"
+                    ref={(c) => {
+                        this.innhold = c;
+                    }}>
                     {
                         this.state.visInnhold && <div>
                             {this.props.children}
                             {this.props.visLukklenke && <div className="knapperad ikke-print">
-                                <button type="button"
+                                <button
+                                    type="button"
                                     className="lenke"
                                     aria-pressed={!this.state.erApen}
                                     tabIndex={this.state.erApen ? null : '-1'}
-                                    onClick={(event) => {this.toggle(event);}}>Lukk</button>
+                                    onClick={(event) => {
+                                        this.toggle(event);
+                                    }}>Lukk</button>
                             </div>}
                         </div>
                     }
@@ -169,7 +195,7 @@ export class Utvidbar extends Component {
 Utvidbar.propTypes = {
     erApen: PropTypes.bool.isRequired,
     tittel: PropTypes.string.isRequired,
-    children: PropTypes.object,
+    children: PropTypes.element,
     ikon: PropTypes.string,
     ikonHover: PropTypes.string,
     ikonAltTekst: PropTypes.string,
@@ -180,7 +206,7 @@ Utvidbar.propTypes = {
 
 Utvidbar.defaultProps = {
     erApen: false,
-    Overskrift: 'H3',
+    Overskrift: 'h3',
     visLukklenke: true,
 };
 

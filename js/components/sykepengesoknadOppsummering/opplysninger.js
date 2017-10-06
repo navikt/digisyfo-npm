@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export const Avkrysset = ({ tekst }) => {
     return (<div className="oppsummering__avkrysset">

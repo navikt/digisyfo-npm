@@ -7,11 +7,12 @@ const expect = chai.expect;
 import Soknad from '../../../js/components/sykepengesoknadOppsummering/Soknad';
 import Oppsummering from '../../../js/components/sykepengesoknadOppsummering/Oppsummering';
 import Utvidbar from '../../../js/components/Utvidbar';
+import { getParsetSoknad } from "../../mock/mockSoknader.js";
 
 describe("Soknad", () => {
 
     let component; 
-    let sykepengesoknad = { test: "OK" };
+    let sykepengesoknad = getParsetSoknad();
     let ledetekster = {"test": "ledetekst" };
 
     beforeEach(() => {

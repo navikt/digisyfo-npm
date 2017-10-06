@@ -1,26 +1,29 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Avkrysset } from './opplysninger';
 import { tidligsteFom } from '../../utils/periodeUtils';
 import { getLedetekst } from '../../ledetekster';
 import { getTomDato } from '../../utils/sykepengesoknadUtils';
 import { toDatePrettyPrint } from '../../utils/datoUtils';
+import { keyValue, sykepengesoknad as sykepengesoknadPt, periode as periodePt } from '../../propTypes';
+
 
 export const Perioder = ({ perioder, ledetekster }) => {
     return (<ul className="oppsummering__perioder js-perioder">
-    {
-        perioder.map((periode, index) => {
-            return (<li key={index}>
-                <span className="oppsummering__fom">{getLedetekst('sykepengesoknad.oppsummering.periode.fra', ledetekster)} {toDatePrettyPrint(periode.fom)} </span>
-                <span className="oppsummering__tom">{getLedetekst('sykepengesoknad.oppsummering.periode.til', ledetekster)} {toDatePrettyPrint(periode.tom)}</span>
-            </li>);
-        })
-    }
+        {
+            perioder.map((periode, index) => {
+                return (<li key={index}>
+                    <span className="oppsummering__fom">{getLedetekst('sykepengesoknad.oppsummering.periode.fra', ledetekster)} {toDatePrettyPrint(periode.fom)} </span>
+                    <span className="oppsummering__tom">{getLedetekst('sykepengesoknad.oppsummering.periode.til', ledetekster)} {toDatePrettyPrint(periode.tom)}</span>
+                </li>);
+            })
+        }
     </ul>);
 };
 
 Perioder.propTypes = {
-    perioder: PropTypes.array,
-    ledetekster: PropTypes.object,
+    perioder: PropTypes.arrayOf(periodePt),
+    ledetekster: keyValue,
 };
 
 const Egenmeldingsdager = ({ sykepengesoknad, ledetekster }) => {
@@ -34,8 +37,8 @@ const Egenmeldingsdager = ({ sykepengesoknad, ledetekster }) => {
 };
 
 Egenmeldingsdager.propTypes = {
-    sykepengesoknad: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykepengesoknad: sykepengesoknadPt,
+    ledetekster: keyValue,
 };
 
 const GjenopptattArbeidFulltUt = ({ sykepengesoknad, ledetekster }) => {
@@ -49,8 +52,8 @@ const GjenopptattArbeidFulltUt = ({ sykepengesoknad, ledetekster }) => {
 };
 
 GjenopptattArbeidFulltUt.propTypes = {
-    sykepengesoknad: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykepengesoknad: sykepengesoknadPt,
+    ledetekster: keyValue,
 };
 
 const Ferie = ({ perioder, ledetekster }) => {
@@ -61,8 +64,8 @@ const Ferie = ({ perioder, ledetekster }) => {
 };
 
 Ferie.propTypes = {
-    perioder: PropTypes.array,
-    ledetekster: PropTypes.object,
+    perioder: PropTypes.arrayOf(periodePt),
+    ledetekster: keyValue,
 };
 
 const Permisjon = ({ perioder, ledetekster }) => {
@@ -73,8 +76,8 @@ const Permisjon = ({ perioder, ledetekster }) => {
 };
 
 Permisjon.propTypes = {
-    perioder: PropTypes.array,
-    ledetekster: PropTypes.object,
+    perioder: PropTypes.arrayOf(periodePt),
+    ledetekster: keyValue,
 };
 
 const Utenlandsopphold = ({ perioder, soektOmSykepengerIPerioden, ledetekster }) => {
@@ -90,8 +93,8 @@ const Utenlandsopphold = ({ perioder, soektOmSykepengerIPerioden, ledetekster })
 
 Utenlandsopphold.propTypes = {
     soektOmSykepengerIPerioden: PropTypes.bool,
-    perioder: PropTypes.array,
-    ledetekster: PropTypes.object,
+    perioder: PropTypes.arrayOf(periodePt),
+    ledetekster: keyValue,
 };
 
 export const FeriePermisjonEllerUtenlandsopphold = ({ sykepengesoknad, ledetekster }) => {
@@ -131,8 +134,8 @@ export const FeriePermisjonEllerUtenlandsopphold = ({ sykepengesoknad, ledetekst
 };
 
 FeriePermisjonEllerUtenlandsopphold.propTypes = {
-    sykepengesoknad: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykepengesoknad: sykepengesoknadPt,
+    ledetekster: keyValue,
 };
 
 const FravaerOgFriskmelding = ({ sykepengesoknad, ledetekster }) => {
@@ -144,8 +147,8 @@ const FravaerOgFriskmelding = ({ sykepengesoknad, ledetekster }) => {
 };
 
 FravaerOgFriskmelding.propTypes = {
-    sykepengesoknad: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykepengesoknad: sykepengesoknadPt,
+    ledetekster: keyValue,
 };
 
 export default FravaerOgFriskmelding;

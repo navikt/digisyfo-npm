@@ -3,7 +3,7 @@ import React from 'react'
 import {mount, shallow} from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import ledetekster from "../../mock/mockLedetekster.js";
-import getSykmelding from "../../mock/mockSykmeldinger.js";
+import { getParsetSykmelding } from "../../mock/mockSykmeldinger.js";
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -17,16 +17,16 @@ describe("Tilbakedatering", () => {
     describe("dokumenterbarPasientkontakt", () => {
 
         it("Skal vise dersom sykmelding.dokumenterbarPasientkontakt === (dato)", () => {
-            let component = shallow(<Tilbakedatering sykmelding={getSykmelding({
+            let component = shallow(<Tilbakedatering sykmelding={getParsetSykmelding({
                 tilbakedatering: {
-                    dokumenterbarPasientkontakt: { year: 2015, monthValue: 12, dayOfMonth: 31 }
+                    dokumenterbarPasientkontakt: new Date("2015-12-31")
                 }
             })} ledetekster={ledetekster} />);
             expect(component.find(".js-dokumenterbarPasientkontakt").text()).to.equal("31.12.2015")
         });
 
         it("Skal ikke vise dersom sykmelding.dokumenterbarPasientkontakt !== (dato)", () => {
-            let component = shallow(<Tilbakedatering sykmelding={getSykmelding({
+            let component = shallow(<Tilbakedatering sykmelding={getParsetSykmelding({
                 tilbakedatering: {
                     dokumenterbarPasientkontakt: null
                 }
@@ -39,7 +39,7 @@ describe("Tilbakedatering", () => {
     describe("tilbakedatertBegrunnelse", () => {
 
             it("Skal vise dersom sykmelding.tilbakedatertBegrunnelse === (dato)", () => {
-            let component = shallow(<Tilbakedatering sykmelding={getSykmelding({
+            let component = shallow(<Tilbakedatering sykmelding={getParsetSykmelding({
                 tilbakedatering: {
                     tilbakedatertBegrunnelse: "God grunn"
                 }
@@ -48,7 +48,7 @@ describe("Tilbakedatering", () => {
         });
 
         it("Skal ikke vise dersom sykmelding.tilbakedatertBegrunnelse !== (dato)", () => {
-            let component = shallow(<Tilbakedatering sykmelding={getSykmelding({
+            let component = shallow(<Tilbakedatering sykmelding={getParsetSykmelding({
                 tilbakedatering: {
                     tilbakedatertBegrunnelse: null
                 }

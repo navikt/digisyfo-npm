@@ -1,9 +1,11 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import SykmeldingPerioder from '../sykmeldingOpplysninger/SykmeldingPerioder';
 import { SykmeldingNokkelOpplysning } from '../sykmeldingOpplysninger/SykmeldingOpplysning';
 import Utvidbar from '../Utvidbar';
 import { toDatePrettyPrint } from '../../utils/datoUtils';
 import { getLedetekst } from '../../ledetekster';
+import { keyValue, sykepengesoknad as sykepengesoknadPt } from '../../propTypes';
 
 const SykmeldingUtdrag = ({ erApen, sykepengesoknad, ledetekster }) => {
     const perioder = sykepengesoknad.aktiviteter.map((aktivitet) => {
@@ -15,12 +17,15 @@ const SykmeldingUtdrag = ({ erApen, sykepengesoknad, ledetekster }) => {
     });
 
     return (<div className="blokk">
-            <Utvidbar
-                Overskrift="h2"
-                erApen={erApen}
-                visLukklenke={!erApen}
-                tittel={getLedetekst('sykepengesoknad.sykmelding-utdrag.tittel', ledetekster)}
-                variant="lilla" ikon="svg/plaster.svg" ikonHover="svg/plaster_hover.svg" ikonAltTekst="Plaster-ikon">
+        <Utvidbar
+            Overskrift="h2"
+            erApen={erApen}
+            visLukklenke={!erApen}
+            tittel={getLedetekst('sykepengesoknad.sykmelding-utdrag.tittel', ledetekster)}
+            variant="lilla"
+            ikon="svg/plaster.svg"
+            ikonHover="svg/plaster_hover.svg"
+            ikonAltTekst="Plaster-ikon">
             <div>
                 <SykmeldingPerioder perioder={perioder} ledetekster={ledetekster} />
                 <SykmeldingNokkelOpplysning
@@ -38,8 +43,8 @@ const SykmeldingUtdrag = ({ erApen, sykepengesoknad, ledetekster }) => {
 
 SykmeldingUtdrag.propTypes = {
     erApen: PropTypes.bool,
-    sykepengesoknad: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykepengesoknad: sykepengesoknadPt,
+    ledetekster: keyValue,
 };
 
 export default SykmeldingUtdrag;

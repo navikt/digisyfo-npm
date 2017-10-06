@@ -1,7 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Oppsummering from './Oppsummering';
 import Utvidbar from '../Utvidbar';
 import { getHtmlLedetekst } from '../../ledetekster';
+import { keyValue, sykepengesoknad as sykepengesoknadPt } from '../../propTypes';
 
 const Soknad = ({ ledetekster, sykepengesoknad, apentUtdrag = true, tittel, visVaerKlarOverAt = true }) => {
     return (<div>
@@ -19,8 +21,8 @@ const Soknad = ({ ledetekster, sykepengesoknad, apentUtdrag = true, tittel, visV
 };
 
 Soknad.propTypes = {
-    ledetekster: PropTypes.object,
-    sykepengesoknad: PropTypes.object,
+    ledetekster: keyValue,
+    sykepengesoknad: sykepengesoknadPt,
     apentUtdrag: PropTypes.bool,
     tittel: PropTypes.string,
     visVaerKlarOverAt: PropTypes.bool,

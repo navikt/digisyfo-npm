@@ -1,4 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { sykmelding as sykmeldingPt, keyValue } from '../../propTypes';
 import { toDatePrettyPrint, getSykmeldingCheckbox } from '../../utils';
 import { getLedetekst } from '../../ledetekster';
 import Utvidbar from '../Utvidbar';
@@ -8,7 +10,7 @@ import { SykmeldingCheckbox } from './SykmeldingCheckbox';
 import FlereOpplysninger from './FlereOpplysninger';
 import Hjelpetekst from '../Hjelpetekst';
 
-const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'H2' }) => {
+const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'h2' }) => {
     return (<div className="dine-opplysninger">
         <Overskrift className="typo-innholdstittel blokk-l">
             {getLedetekst('din-sykmelding.tittel', ledetekster)}
@@ -39,9 +41,7 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'H2'
                             </div>
                             <p>
                                 <span className="js-hoveddiagnose-kode">{sykmelding.diagnose.hoveddiagnose.diagnosekode}</span>
-                                &nbsp;(
-                                    <span className="js-hoveddiagnose-system">{sykmelding.diagnose.hoveddiagnose.diagnosesystem}</span>
-                                )
+                                &nbsp;<span className="js-hoveddiagnose-system">{sykmelding.diagnose.hoveddiagnose.diagnosesystem}</span>
                             </p>
                         </div>
                     </div>
@@ -50,7 +50,9 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'H2'
             }
             {
                 sykmelding.diagnose.bidiagnoser && sykmelding.diagnose.bidiagnoser.map((bidiagnose, index) => {
-                    return (<div className="rad-container" key={index}>
+                    return (<div
+                        className="rad-container"
+                        key={index}>
                         <SykmeldingNokkelOpplysning
                             tittel={getLedetekst('din-sykmelding.bidiagnose.tittel', ledetekster)}>
                             <p className="js-bidiagnose">{bidiagnose.diagnose}</p>
@@ -58,53 +60,50 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'H2'
                         <SykmeldingNokkelOpplysning
                             tittel={getLedetekst('din-sykmelding.diagnosekode.tittel', ledetekster)}>
                             <p>
-                            <span
-                                className="js-bidiagnose-kode">{bidiagnose.diagnosekode}
-                            </span>
-                                &nbsp;(
                                 <span
-                                    className="js-bidiagnose-system">{bidiagnose.diagnosesystem}
+                                    className="js-bidiagnose-kode">{bidiagnose.diagnosekode}
                                 </span>
-                                )
+                                &nbsp;<span className="js-bidiagnose-system">{bidiagnose.diagnosesystem}</span>
                             </p>
                         </SykmeldingNokkelOpplysning>
                     </div>);
                 })
             }
             {
-                sykmelding.diagnose.fravaersgrunnLovfestet ?
-                    <SykmeldingNokkelOpplysning tittel="Lovfestet fraværsgrunn">
-                        <p className="js-fravaersgrunnLovfestet">{sykmelding.diagnose.fravaersgrunnLovfestet}</p>
-                    </SykmeldingNokkelOpplysning> : null
+                sykmelding.diagnose.fravaersgrunnLovfestet ? <SykmeldingNokkelOpplysning
+                    tittel="Lovfestet fraværsgrunn">
+                    <p className="js-fravaersgrunnLovfestet">{sykmelding.diagnose.fravaersgrunnLovfestet}</p>
+                </SykmeldingNokkelOpplysning> : null
             }
             {
-                sykmelding.diagnose.fravaerBeskrivelse ?
-                    <SykmeldingNokkelOpplysning tittel="Beskriv fraværet">
-                        <p className="js-fravaerBeskrivelse">{sykmelding.diagnose.fravaerBeskrivelse}</p>
-                    </SykmeldingNokkelOpplysning> : null
+                sykmelding.diagnose.fravaerBeskrivelse ? <SykmeldingNokkelOpplysning
+                    tittel="Beskriv fraværet">
+                    <p className="js-fravaerBeskrivelse">{sykmelding.diagnose.fravaerBeskrivelse}</p>
+                </SykmeldingNokkelOpplysning> : null
             }
             {
                 getSykmeldingCheckbox(sykmelding.diagnose, 'svangerskap', getLedetekst('din-sykmelding.svangerskap.tittel', ledetekster), 'blokk')
             }
             {
-                !sykmelding.diagnose.yrkesskadeDato ? null :
-                    <SykmeldingCheckbox tekst={getLedetekst('din-sykmelding.yrkesskade.tittel', ledetekster)}
-                        jsClassName="yrkesskade" />
+                !sykmelding.diagnose.yrkesskadeDato ? null : <SykmeldingCheckbox
+                    tekst={getLedetekst('din-sykmelding.yrkesskade.tittel', ledetekster)}
+                    jsClassName="yrkesskade" />
             }
             {
-                !sykmelding.diagnose.yrkesskadeDato ? null :
-                    <SykmeldingNokkelOpplysning tittel="Skadedato" className="subopplysning">
-                        <p className=" js-yrkesskadeDato">{toDatePrettyPrint(sykmelding.diagnose.yrkesskadeDato)}</p>
-                    </SykmeldingNokkelOpplysning>
+                !sykmelding.diagnose.yrkesskadeDato ? null : <SykmeldingNokkelOpplysning
+                    tittel="Skadedato"
+                    className="subopplysning">
+                    <p className=" js-yrkesskadeDato">{toDatePrettyPrint(sykmelding.diagnose.yrkesskadeDato)}</p>
+                </SykmeldingNokkelOpplysning>
             }
             {
                 getSykmeldingCheckbox(sykmelding.friskmelding, 'arbeidsfoerEtterPerioden', getLedetekst('din-sykmelding.arbeidsfoer.tittel', ledetekster), 'blokk')
             }
             {
-                !sykmelding.friskmelding.hensynPaaArbeidsplassen ? null :
-                    <SykmeldingNokkelOpplysning tittel={getLedetekst('din-sykmelding.hensyn.tittel', ledetekster)}>
-                        <p className="js-hensynPaaArbeidsplassen">{sykmelding.friskmelding.hensynPaaArbeidsplassen}</p>
-                    </SykmeldingNokkelOpplysning>
+                !sykmelding.friskmelding.hensynPaaArbeidsplassen ? null : <SykmeldingNokkelOpplysning
+                    tittel={getLedetekst('din-sykmelding.hensyn.tittel', ledetekster)}>
+                    <p className="js-hensynPaaArbeidsplassen">{sykmelding.friskmelding.hensynPaaArbeidsplassen}</p>
+                </SykmeldingNokkelOpplysning>
             }
             {
                 sykmelding.arbeidsgiver ? <SykmeldingNokkelOpplysning
@@ -119,8 +118,12 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'H2'
                 </SykmeldingNokkelOpplysning> : null
             }
         </div>
-        <Utvidbar tittel={getLedetekst('din-sykmelding.flere-opplysninger.tittel', ledetekster)}
-            ikon="svg/doctor-2.svg" ikonHover="svg/doctor-2_hover.svg" ikonAltTekst="Lege" className="blokk-s">
+        <Utvidbar
+            tittel={getLedetekst('din-sykmelding.flere-opplysninger.tittel', ledetekster)}
+            ikon="svg/doctor-2.svg"
+            ikonHover="svg/doctor-2_hover.svg"
+            ikonAltTekst="Lege"
+            className="blokk-s">
             <div className="sykmeldingSeksjoner">
                 <FlereOpplysninger sykmelding={sykmelding} ledetekster={ledetekster} />
             </div>
@@ -129,8 +132,8 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'H2'
 };
 
 DineSykmeldingOpplysninger.propTypes = {
-    sykmelding: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykmelding: sykmeldingPt,
+    ledetekster: keyValue,
     Overskrift: PropTypes.string,
 };
 

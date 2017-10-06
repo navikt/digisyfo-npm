@@ -1,6 +1,6 @@
-import { getCookie, log } from '../utils';
 import Ajax from 'simple-ajax';
 import fetch from 'isomorphic-fetch';
+import { getCookie, log } from '../utils';
 
 // Dette mangler tester
 
@@ -8,17 +8,17 @@ export function get(url) {
     return fetch(url, {
         credentials: 'include',
     })
-    .then((res) => {
-        if (res.status > 400) {
-            log(res);
-            throw new Error('Forespørsel feilet');
-        }
-        return res.json();
-    })
-    .catch((err) => {
-        log(err);
-        throw err;
-    });
+        .then((res) => {
+            if (res.status > 400) {
+                log(res);
+                throw new Error('Forespørsel feilet');
+            }
+            return res.json();
+        })
+        .catch((err) => {
+            log(err);
+            throw err;
+        });
 }
 
 export function getAjax(url) {
@@ -36,21 +36,21 @@ export function post(url, body) {
         credentials: 'include',
         method: 'POST',
         body: JSON.stringify(body),
-        headers: new Headers({
+        headers: new window.Headers({
             'Content-Type': 'application/json',
             'X-XSRF-TOKEN': getCookie('XSRF-TOKEN-SYFOREST'),
         }),
     })
-    .then((res) => {
-        if (res.status > 400) {
-            log(res);
-            throw new Error('Forespørsel feilet');
-        } else {
-            return res;
-        }
-    })
-    .catch((err) => {
-        log(err);
-        throw err;
-    });
+        .then((res) => {
+            if (res.status > 400) {
+                log(res);
+                throw new Error('Forespørsel feilet');
+            } else {
+                return res;
+            }
+        })
+        .catch((err) => {
+            log(err);
+            throw err;
+        });
 }

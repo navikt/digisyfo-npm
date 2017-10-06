@@ -3,7 +3,7 @@ import React from 'react'
 import {mount, shallow} from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import ledetekster from "../../mock/mockLedetekster.js";
-import getSykmelding from "../../mock/mockSykmeldinger.js";
+import { getParsetSykmelding } from "../../mock/mockSykmeldinger.js";
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -14,10 +14,10 @@ import ArbeidsgiversNokkelopplysninger from '../../../js/components/sykmeldingOp
 let component;
 
 
-describe("ArbeidsgiversArbeidsgiversNokkelopplysninger", () => {
+describe("ArbeidsgiversNokkelopplysninger", () => {
 
     beforeEach(() => {
-        component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getSykmelding()} ledetekster={ledetekster} />)
+        component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding()} ledetekster={ledetekster} />)
     });
 
     it("Skal vise perioder", () => {
@@ -25,7 +25,7 @@ describe("ArbeidsgiversArbeidsgiversNokkelopplysninger", () => {
     });
 
     it("Skal vise diagnose som et skravert felt dersom sykmelding.skalViseSkravertFelt === true", () => {
-        component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getSykmelding({
+        component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding({
             skalViseSkravertFelt: true
         })} ledetekster={ledetekster}/>);
         expect(component.find(".js-diagnose")).to.have.length(1);
@@ -33,7 +33,7 @@ describe("ArbeidsgiversArbeidsgiversNokkelopplysninger", () => {
     });
 
     it("Skal ikke vise diagnose som et skravert felt dersom sykmelding.skalViseSkravertFelt === false", () => {
-        component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getSykmelding({
+        component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding({
             skalViseSkravertFelt: false
         })} ledetekster={ledetekster}/>);
         expect(component.find(".js-diagnose")).to.have.length(0);
@@ -42,7 +42,7 @@ describe("ArbeidsgiversArbeidsgiversNokkelopplysninger", () => {
     describe("Hensyn på arbeidsplassen", () => {
 
         it("Skal vise dersom det finnes", () => {
-            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getSykmelding({
+            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding({
                 friskmelding: {
                     hensynPaaArbeidsplassen: "Ta godt vare på denne personen"
                 }
@@ -52,7 +52,7 @@ describe("ArbeidsgiversArbeidsgiversNokkelopplysninger", () => {
         });
 
         it("Skal ikke vise dersom det ikke finnes", () => {
-            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getSykmelding()} ledetekster={ledetekster}/>);
+            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding()} ledetekster={ledetekster}/>);
             expect(component.find(".js-hensynPaaArbeidsplassen").length).to.equal(0);
         });
 
@@ -61,7 +61,7 @@ describe("ArbeidsgiversArbeidsgiversNokkelopplysninger", () => {
     describe("Arbeidsgiver for denne sykmeldingen", () => {
 
         it("Skal vise dersom det finnes", () => {
-            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getSykmelding({
+            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding({
                 arbeidsgiver: "Hansen AS"
             })} ledetekster={ledetekster}/>);
             expect(component.find(".js-arbeidsgiver")).to.have.length(1);
@@ -69,7 +69,7 @@ describe("ArbeidsgiversArbeidsgiversNokkelopplysninger", () => {
         });
 
         it("Skal ikke vise dersom det ikke finnes", () => {
-            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getSykmelding({
+            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding({
                 arbeidsgiver: null
             })} ledetekster={ledetekster}/>);
             expect(component.find(".js-arbeidsgiver").length).to.equal(0);
@@ -80,13 +80,13 @@ describe("ArbeidsgiversArbeidsgiversNokkelopplysninger", () => {
     describe("Lege/sykmelder", () => {
 
         it("Skal vise dersom det finnes", () => {
-            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getSykmelding()} ledetekster={ledetekster}/>);
+            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding()} ledetekster={ledetekster}/>);
             expect(component.find(".js-sykmelder")).to.have.length(1);
             expect(component.find(".js-sykmelder").text()).to.equal("***REMOVED***");
         });
 
         it("Skal ikke vise dersom det ikke finnes", () => {
-            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getSykmelding({
+            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding({
                 bekreftelse: {
                     sykmelder: null
                 }

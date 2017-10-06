@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { getLedetekst } from '../../ledetekster';
 import { getSykmeldingOpplysning } from '../../utils';
+import { sykmelding as sykmeldingPt, keyValue } from '../../propTypes';
 
 const MeldingTilArbeidsgiver = ({ sykmelding, ledetekster }) => {
     const visSeksjon = sykmelding.innspillTilArbeidsgiver;
@@ -8,17 +9,17 @@ const MeldingTilArbeidsgiver = ({ sykmelding, ledetekster }) => {
         return <span />;
     }
     return (<div className="sykmeldingSeksjon">
-            <h4 className="sykmeldingSeksjon__tittel">{getLedetekst('din-sykmelding.meldingarbeidsgiver.tittel', ledetekster)}</h4>
-            {
-                getSykmeldingOpplysning(sykmelding, 'innspillTilArbeidsgiver', getLedetekst('din-sykmelding.meldingarbeidsgiver.innspill.tittel', ledetekster))
-            }
+        <h4 className="sykmeldingSeksjon__tittel">{getLedetekst('din-sykmelding.meldingarbeidsgiver.tittel', ledetekster)}</h4>
+        {
+            getSykmeldingOpplysning(sykmelding, 'innspillTilArbeidsgiver', getLedetekst('din-sykmelding.meldingarbeidsgiver.innspill.tittel', ledetekster))
+        }
     </div>);
 };
 
 
 MeldingTilArbeidsgiver.propTypes = {
-    sykmelding: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykmelding: sykmeldingPt,
+    ledetekster: keyValue,
 };
 
 export default MeldingTilArbeidsgiver;

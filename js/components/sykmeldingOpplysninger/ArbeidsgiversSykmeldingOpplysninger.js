@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { sykmelding as sykmeldingPt, keyValue } from '../../propTypes';
 import FlereOpplysninger from './FlereOpplysninger';
 import ArbeidsgiversNokkelopplysninger from './ArbeidsgiversNokkelopplysninger';
 
@@ -14,8 +15,8 @@ const ArbeidsgiversSykmeldingOpplysninger = ({ sykmelding, ledetekster }) => {
 };
 
 ArbeidsgiversSykmeldingOpplysninger.propTypes = {
-    sykmelding: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykmelding: sykmeldingPt,
+    ledetekster: keyValue,
 };
 
 export default ArbeidsgiversSykmeldingOpplysninger;

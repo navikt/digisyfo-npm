@@ -1,9 +1,11 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Avkrysset } from './opplysninger';
 import { tidligsteFom } from '../../utils/periodeUtils';
 import { getLedetekst, getHtmlLedetekst } from '../../ledetekster';
 import { toDatePrettyPrint } from '../../utils/datoUtils';
 import { getTomDato } from '../../utils/sykepengesoknadUtils';
+import { keyValue, sykepengesoknad as sykepengesoknadPt, soknadsaktivitet as aktivitetPt, annenInntektskilde as inntektskildePt } from '../../propTypes';
 
 const getLedetekstPrefix = (aktivitet) => {
     return aktivitet.grad === 100 ? 'sykepengesoknad.aktiviteter.ugradert' : 'sykepengesoknad.aktiviteter.gradert';
@@ -30,18 +32,21 @@ export const Avvik = ({ aktivitet, arbeidsgiver, ledetekster }) => {
                 })
             }</h4>
             <p>{antallMedLabel}</p>
-            { beregnetArbeidsgrad && timer && <p className="oppsummering__detteTilsvarer" dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.angi-tid.dette-tilsvarer',
-                ledetekster, {
-                    '%STILLINGSPROSENT%': beregnetArbeidsgrad,
-                })} /> }
+            { beregnetArbeidsgrad && timer && <p
+                className="oppsummering__detteTilsvarer"
+                dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.angi-tid.dette-tilsvarer',
+                    ledetekster, {
+                        '%STILLINGSPROSENT%': beregnetArbeidsgrad,
+                    })} />
+            }
         </div>
     </div>);
 };
 
 Avvik.propTypes = {
-    aktivitet: PropTypes.object,
+    aktivitet: aktivitetPt,
     arbeidsgiver: PropTypes.string,
-    ledetekster: PropTypes.object,
+    ledetekster: keyValue,
 };
 
 export const Aktivitet = ({ aktivitet, ledetekster, arbeidsgiver }) => {
@@ -63,10 +68,9 @@ export const Aktivitet = ({ aktivitet, ledetekster, arbeidsgiver }) => {
 };
 
 Aktivitet.propTypes = {
-    ledetekster: PropTypes.object,
-    aktivitet: PropTypes.object,
+    ledetekster: keyValue,
+    aktivitet: aktivitetPt,
     arbeidsgiver: PropTypes.string,
-    gjenopptattArbeidFulltUtDato: PropTypes.instanceOf(Date),
 };
 
 const AndreInntektskilderListe = ({ inntektskilder, ledetekster }) => {
@@ -88,8 +92,8 @@ const AndreInntektskilderListe = ({ inntektskilder, ledetekster }) => {
 };
 
 AndreInntektskilderListe.propTypes = {
-    inntektskilder: PropTypes.array,
-    ledetekster: PropTypes.object,
+    inntektskilder: PropTypes.arrayOf(inntektskildePt),
+    ledetekster: keyValue,
 };
 
 export const Inntektskilder = ({ sykepengesoknad, ledetekster }) => {
@@ -110,8 +114,8 @@ export const Inntektskilder = ({ sykepengesoknad, ledetekster }) => {
 };
 
 Inntektskilder.propTypes = {
-    sykepengesoknad: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykepengesoknad: sykepengesoknadPt,
+    ledetekster: keyValue,
 };
 
 export const Utdanning = ({ sykepengesoknad, ledetekster }) => {
@@ -145,8 +149,8 @@ export const Utdanning = ({ sykepengesoknad, ledetekster }) => {
 };
 
 Utdanning.propTypes = {
-    sykepengesoknad: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykepengesoknad: sykepengesoknadPt,
+    ledetekster: keyValue,
 };
 
 const AktiviteterISykmeldingsperioden = ({ sykepengesoknad, ledetekster }) => {
@@ -160,8 +164,8 @@ const AktiviteterISykmeldingsperioden = ({ sykepengesoknad, ledetekster }) => {
 };
 
 AktiviteterISykmeldingsperioden.propTypes = {
-    sykepengesoknad: PropTypes.object.isRequired,
-    ledetekster: PropTypes.object,
+    sykepengesoknad: sykepengesoknadPt.isRequired,
+    ledetekster: keyValue,
 };
 
 export default AktiviteterISykmeldingsperioden;

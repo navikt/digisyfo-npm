@@ -15,7 +15,9 @@ export const visFeilmelding = (skjemaData, field) => {
     if (!skjemaData.fields[field] || !skjemaData.syncErrors || !skjemaData.syncErrors[field]) {
         return false;
     }
-    for (const key in skjemaData.fields[field]) {
+    const keys = Object.keys(skjemaData.fields[field]);
+    for (let i = 0; i < keys.length; i += 1) {
+        const key = keys[i];
         if (skjemaData.fields[field][key].touched === true) {
             return true;
         }

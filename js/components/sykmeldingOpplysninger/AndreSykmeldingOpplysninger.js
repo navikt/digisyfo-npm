@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { sykmelding as sykmeldingPt, keyValue } from '../../propTypes';
 import { getLedetekst } from '../../ledetekster';
 import { getSykmeldingOpplysning } from '../../utils';
 
@@ -8,16 +9,16 @@ const AndreSykmeldingOpplysninger = ({ sykmelding, ledetekster }) => {
         return <span />;
     }
     return (<div className="sykmeldingSeksjon">
-            <h4 className="sykmeldingSeksjon__tittel">Annet</h4>
-            {
-                getSykmeldingOpplysning(sykmelding.bekreftelse, 'sykmelderTlf', getLedetekst('din-sykmelding.annet.telefon', ledetekster))
-            }
+        <h4 className="sykmeldingSeksjon__tittel">Annet</h4>
+        {
+            getSykmeldingOpplysning(sykmelding.bekreftelse, 'sykmelderTlf', getLedetekst('din-sykmelding.annet.telefon', ledetekster))
+        }
     </div>);
 };
 
 AndreSykmeldingOpplysninger.propTypes = {
-    sykmelding: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykmelding: sykmeldingPt,
+    ledetekster: keyValue,
 };
 
 export default AndreSykmeldingOpplysninger;

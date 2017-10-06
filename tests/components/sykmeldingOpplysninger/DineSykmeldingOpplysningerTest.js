@@ -3,7 +3,7 @@ import React from 'react'
 import { mount, shallow } from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import ledetekster from "../../mock/mockLedetekster.js";
-import getSykmelding from "../../mock/mockSykmeldinger.js";
+import { getParsetSykmelding } from "../../mock/mockSykmeldinger.js";
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -18,7 +18,7 @@ describe("DineSykmeldingOpplysninger", () => {
     let component;
 
     it("Skal vise perioder", () => {
-        component = shallow(<DineSykmeldingOpplysninger sykmelding={getSykmelding()} ledetekster={ledetekster}/>);
+        component = shallow(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding()} ledetekster={ledetekster}/>);
         expect(component.find(SykmeldingPerioder)).to.have.length(1)
     });
 
@@ -31,7 +31,7 @@ describe("DineSykmeldingOpplysninger", () => {
             ledetekster: { ledetekster },
         };
 
-        component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+        component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
             bekreftelse: {
                 sykmelder: null
             }
@@ -48,7 +48,7 @@ describe("DineSykmeldingOpplysninger", () => {
             ledetekster: { ledetekster },
         };
 
-        component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+        component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
             arbeidsgiver: null
         })} ledetekster={ledetekster}/>)
         expect(component.find(".js-arbeidsgiver").length).to.equal(0);
@@ -60,7 +60,7 @@ describe("DineSykmeldingOpplysninger", () => {
             ledetekster: { ledetekster },
         };
 
-        component = shallow(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+        component = shallow(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
             friskmelding: {
                 antarReturSammeArbeidsgiver: true
             }
@@ -75,7 +75,7 @@ describe("DineSykmeldingOpplysninger", () => {
                 ledetekster: { ledetekster },
             };
 
-            component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 friskmelding: {
                     hensynPaaArbeidsplassen: "Tekst"
                 }
@@ -88,7 +88,7 @@ describe("DineSykmeldingOpplysninger", () => {
                 ledetekster: { ledetekster },
             };
 
-            component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 friskmelding: {
                     hensynPaaArbeidsplassen: null
                 }
@@ -123,7 +123,7 @@ describe("DineSykmeldingOpplysninger", () => {
                 ledetekster: { ledetekster },
             };
 
-            component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 diagnose: {
                     hoveddiagnose: null
                 }
@@ -146,7 +146,7 @@ describe("DineSykmeldingOpplysninger", () => {
                 ledetekster: { ledetekster },
             };
 
-            component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 diagnose: {
                     bidiagnoser: [{
                         diagnose: "Mageknipe",
@@ -168,7 +168,7 @@ describe("DineSykmeldingOpplysninger", () => {
                 ledetekster: { ledetekster },
             };
 
-            component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 diagnose: {
                     svangerskap: null
                 }
@@ -181,7 +181,7 @@ describe("DineSykmeldingOpplysninger", () => {
                 ledetekster: { ledetekster },
             };
 
-            component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 diagnose: {
                     svangerskap: true
                 }
@@ -198,7 +198,7 @@ describe("DineSykmeldingOpplysninger", () => {
                 ledetekster: { ledetekster },
             };
 
-            component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 diagnose: {
                     yrkesskadeDato: null
                 }
@@ -211,9 +211,9 @@ describe("DineSykmeldingOpplysninger", () => {
                 ledetekster: { ledetekster },
             };
 
-            component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 diagnose: {
-                    yrkesskadeDato: { year: 2015, monthValue: 12, dayOfMonth: 31 }
+                    yrkesskadeDato: new Date("2015-12-31")
                 }
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-yrkesskade").length).to.equal(1);
@@ -229,7 +229,7 @@ describe("DineSykmeldingOpplysninger", () => {
                 ledetekster: { ledetekster },
             };
 
-            component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 diagnose: {
                     fravaersgrunnLovfestet: null
                 }
@@ -242,7 +242,7 @@ describe("DineSykmeldingOpplysninger", () => {
                 ledetekster: { ledetekster },
             };
 
-            component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 diagnose: {
                     fravaersgrunnLovfestet: "Min gode grunn"
                 }
@@ -259,7 +259,7 @@ describe("DineSykmeldingOpplysninger", () => {
                 ledetekster: { ledetekster },
             };
 
-            component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 diagnose: {
                     fravaerBeskrivelse: null
                 }
@@ -272,7 +272,7 @@ describe("DineSykmeldingOpplysninger", () => {
                 ledetekster: { ledetekster },
             };
 
-            component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 diagnose: {
                     fravaerBeskrivelse: "Beskrivelse av fraværet"
                 }
@@ -285,40 +285,14 @@ describe("DineSykmeldingOpplysninger", () => {
     describe("Arbeidsfør etter perioden", () => {
 
         it("Skal vise arbeidsfør etter perioden dersom sykmelding.friskmelding.arbeidsfoerEtterPerioden === true", () => {
-            let component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            let component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 "friskmelding": {
                     "arbeidsfoerEtterPerioden": true,
                     "hensynPaaArbeidsplassen": "MÃ¥ ta det pent",
                     "antarReturSammeArbeidsgiver": true,
-                    "antattDatoReturSammeArbeidsgiver": {
-                        "year": 2016,
-                        "month": "SEPTEMBER",
-                        "era": "CE",
-                        "dayOfMonth": 15,
-                        "dayOfWeek": "THURSDAY",
-                        "dayOfYear": 259,
-                        "leapYear": true,
-                        "monthValue": 9,
-                        "chronology": {
-                            "id": "ISO",
-                            "calendarType": "iso8601"
-                        }
-                    },
+                    "antattDatoReturSammeArbeidsgiver": new Date("2016-09-15"),
                     "antarReturAnnenArbeidsgiver": true,
-                    "tilbakemeldingReturArbeid": {
-                        "year": 2016,
-                        "month": "SEPTEMBER",
-                        "era": "CE",
-                        "dayOfMonth": 15,
-                        "dayOfWeek": "THURSDAY",
-                        "dayOfYear": 259,
-                        "leapYear": true,
-                        "monthValue": 9,
-                        "chronology": {
-                            "id": "ISO",
-                            "calendarType": "iso8601"
-                        }
-                    },
+                    "tilbakemeldingReturArbeid": new Date("2016-09-15"),
                     "utenArbeidsgiverAntarTilbakeIArbeid": false,
                     "utenArbeidsgiverAntarTilbakeIArbeidDato": null,
                     "utenArbeidsgiverTilbakemelding": null
@@ -329,40 +303,14 @@ describe("DineSykmeldingOpplysninger", () => {
         });
 
         it("Skal ikke vise arbeidsfør etter perioden dersom sykmelding.friskmelding.arbeidsfoerEtterPerioden === false", () => {
-            let component = mount(<DineSykmeldingOpplysninger sykmelding={getSykmelding({
+            let component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
                 "friskmelding": {
                     "arbeidsfoerEtterPerioden": false,
                     "hensynPaaArbeidsplassen": "MÃ¥ ta det pent",
                     "antarReturSammeArbeidsgiver": true,
-                    "antattDatoReturSammeArbeidsgiver": {
-                        "year": 2016,
-                        "month": "SEPTEMBER",
-                        "era": "CE",
-                        "dayOfMonth": 15,
-                        "dayOfWeek": "THURSDAY",
-                        "dayOfYear": 259,
-                        "leapYear": true,
-                        "monthValue": 9,
-                        "chronology": {
-                            "id": "ISO",
-                            "calendarType": "iso8601"
-                        }
-                    },
+                    "antattDatoReturSammeArbeidsgiver": new Date("2016-09-15"),
                     "antarReturAnnenArbeidsgiver": true,
-                    "tilbakemeldingReturArbeid": {
-                        "year": 2016,
-                        "month": "SEPTEMBER",
-                        "era": "CE",
-                        "dayOfMonth": 15,
-                        "dayOfWeek": "THURSDAY",
-                        "dayOfYear": 259,
-                        "leapYear": true,
-                        "monthValue": 9,
-                        "chronology": {
-                            "id": "ISO",
-                            "calendarType": "iso8601"
-                        }
-                    },
+                    "tilbakemeldingReturArbeid": new Date("2016-09-15"),
                     "utenArbeidsgiverAntarTilbakeIArbeid": false,
                     "utenArbeidsgiverAntarTilbakeIArbeidDato": null,
                     "utenArbeidsgiverTilbakemelding": null

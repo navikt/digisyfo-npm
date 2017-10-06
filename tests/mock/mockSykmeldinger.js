@@ -158,7 +158,7 @@ export const getParsetSykmelding = (sykmelding = {}) => {
           "tilbakemeldingReturArbeid": new Date("2017-07-07"),
           "utenArbeidsgiverAntarTilbakeIArbeid": false,
           "utenArbeidsgiverAntarTilbakeIArbeidDato": new Date("2017-03-10"),
-          "utenArbeidsgiverTilbakemelding": new Date("2017-03-10")
+          "utenArbeidsgiverTilbakemelding": new Date("2017-03-10"),
         },
         "utdypendeOpplysninger": {
           "sykehistorie": null,

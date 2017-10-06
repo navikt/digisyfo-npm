@@ -3,7 +3,7 @@ import React from 'react'
 import {mount, shallow} from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import ledetekster from "../../mock/mockLedetekster.js";
-import getSykmelding from "../../mock/mockSykmeldinger.js";
+import { getParsetSykmelding } from "../../mock/mockSykmeldinger.js";
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -19,7 +19,7 @@ let component;
 describe("ArbeidsgiversSykmelding", () => {
 
     beforeEach(() => {
-        component = shallow(<ArbeidsgiversSykmeldingOpplysninger sykmelding={getSykmelding()} ledetekster={ledetekster} />)
+        component = shallow(<ArbeidsgiversSykmeldingOpplysninger sykmelding={getParsetSykmelding()} ledetekster={ledetekster} />)
     });
 
     it("Skal vise fødselsnummer", () => {

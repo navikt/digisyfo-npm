@@ -1,7 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { toDatePrettyPrint } from '../../utils';
 import { getLedetekst } from '../../ledetekster';
 import HendelseIkon from './HendelseIkon';
+import { keyValue } from '../../propTypes';
 
 const HendelseTittel = (props) => {
     let titteltekst = getLedetekst(`${props.tekstkey}`, props.ledetekster);
@@ -24,11 +26,10 @@ const HendelseTittel = (props) => {
 };
 
 HendelseTittel.propTypes = {
-    erApen: PropTypes.bool,
-    ledetekster: PropTypes.object,
+    ledetekster: keyValue,
     type: PropTypes.string,
     tekstkey: PropTypes.string,
-    data: PropTypes.object,
+    data: keyValue,
 };
 
 export default HendelseTittel;

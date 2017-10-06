@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { getLedetekst } from '../../ledetekster';
 import { SykmeldingCheckboxSelvstendig } from './SykmeldingCheckbox';
+import { sykmelding as sykmeldingPt, keyValue } from '../../propTypes';
 
 const MeldingTilNAV = ({ sykmelding, ledetekster }) => {
     if (!sykmelding.meldingTilNav.navBoerTaTakISaken) {
@@ -10,8 +11,8 @@ const MeldingTilNAV = ({ sykmelding, ledetekster }) => {
         <h4 className="sykmeldingSeksjon__tittel">{getLedetekst('din-sykmelding.meldingnav.tittel', ledetekster)}</h4>
         <SykmeldingCheckboxSelvstendig tekst={getLedetekst('din-sykmelding.meldingnav.navboertatakisaken.tittel', ledetekster)} jsClassName="navBoerTaTakISaken" />
         {
-            !sykmelding.meldingTilNav.navBoerTaTakISakenBegrunnelse ? null :
-            <div className="opplysning subopplysning">
+            !sykmelding.meldingTilNav.navBoerTaTakISakenBegrunnelse ? null : <div
+                className="opplysning subopplysning">
                 <h6>{getLedetekst('din-sykmelding.meldingnav.navboertatakisaken.begrunnelse.tittel', ledetekster)}</h6>
                 <p className="opplysning__verdi js-navBoerTaTakISakenBegrunnelse">{sykmelding.meldingTilNav.navBoerTaTakISakenBegrunnelse}</p>
             </div>
@@ -20,8 +21,8 @@ const MeldingTilNAV = ({ sykmelding, ledetekster }) => {
 };
 
 MeldingTilNAV.propTypes = {
-    sykmelding: PropTypes.object,
-    ledetekster: PropTypes.object,
+    sykmelding: sykmeldingPt,
+    ledetekster: keyValue,
 };
 
 export default MeldingTilNAV;

@@ -1,8 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import SykmeldingPeriode from './SykmeldingPeriode';
 import { getDuration, sorterPerioderEldsteFoerst } from '../../utils';
+import { keyValue, periode as periodePt } from '../../propTypes';
 
-const SykmeldingPerioder = ({ perioder = [], ledetekster, Overskrift = 'H3' }) => {
+const SykmeldingPerioder = ({ perioder = [], ledetekster, Overskrift = 'h3' }) => {
     return (<div className={`sykmeldingPerioder ${perioder.length > 1 ? 'sykmeldingPerioder--flere' : ''}`}>
         {
             sorterPerioderEldsteFoerst(perioder).map((periode, index) => {
@@ -18,8 +20,8 @@ const SykmeldingPerioder = ({ perioder = [], ledetekster, Overskrift = 'H3' }) =
 };
 
 SykmeldingPerioder.propTypes = {
-    perioder: PropTypes.array.isRequired,
-    ledetekster: PropTypes.object,
+    perioder: PropTypes.arrayOf(periodePt),
+    ledetekster: keyValue,
     Overskrift: PropTypes.string,
 };
 

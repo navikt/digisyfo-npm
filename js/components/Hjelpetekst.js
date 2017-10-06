@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 let SET_FOCUS;
 let lukk;
@@ -22,14 +23,14 @@ class Hjelpetekst extends Component {
     componentDidUpdate() {
         if (SET_FOCUS) {
             const focusRef = this.state.erApen ? 'js-lukk' : 'js-apne';
-            this.refs[focusRef].focus();
+            this[focusRef].focus();
             SET_FOCUS = false;
         }
     }
 
     setVariant() {
         const LIMIT = 330;
-        const toggle = this.refs['js-apne'];
+        const toggle = this['js-apne'];
         if (toggle) {
             const rect = toggle.getBoundingClientRect();
             const right = window.innerWidth - rect.right;
@@ -82,14 +83,23 @@ class Hjelpetekst extends Component {
         const ariaId = `tooltip-${this.props.id}`;
         return (
             <div className="hjelpetekst">
-                <button type="button" className="hjelpetekst__apne js-apne" aria-describedby={ariaId}
-                    onClick={() => { this.toggle(); }} ref="js-apne">
+                <button
+                    type="button"
+                    className="hjelpetekst__apne js-apne"
+                    aria-describedby={ariaId}
+                    onClick={() => {
+                        this.toggle();
+                    }}
+                    ref={(c) => {
+                        this['js-apne'] = c;
+                    }}>
                     <span aria-hidden="true">?</span>
                     <span className="vekk">? Hjelpetekst</span>
                 </button>
                 {
-                    !this.state.erApen ? null :
-                    (<div role="tooltip" id={ariaId}
+                    !this.state.erApen ? null : <div
+                        role="tooltip"
+                        id={ariaId}
                         className={`hjelpetekst__tooltip${this.state.variant} js-tooltip`}>
                         <h3 className="hjelpetekst__tittel js-tittel">{this.props.tittel}</h3>
                         <div className="hjelpetekst__tekst js-tekst">
@@ -97,13 +107,17 @@ class Hjelpetekst extends Component {
                                 {this.props.tekst}
                             </p>
                         </div>
-                        <button type="button" className="hjelpetekst__lukk js-lukk"
+                        <button
+                            type="button"
+                            className="hjelpetekst__lukk js-lukk"
                             aria-controls={ariaId}
                             onClick={() => { this.lukk(); }}
-                            ref="js-lukk">
-                                <span className="vekk">Lukk</span>
+                            ref={(c) => {
+                                this['js-lukk'] = c;
+                            }}>
+                            <span className="vekk">Lukk</span>
                         </button>
-                    </div>)
+                    </div>
                 }
             </div>
         );

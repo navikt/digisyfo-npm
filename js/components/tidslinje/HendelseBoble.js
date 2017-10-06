@@ -1,8 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TidslinjeBudskap from './TidslinjeBudskap';
 import HendelseIkon from './HendelseIkon';
 import { scrollTo, toDatePrettyPrint } from '../../utils';
 import { getLedetekst } from '../../ledetekster';
+import { tidslinjehendelse as hendelsePt, keyValue } from '../../propTypes';
 
 export function getHtmlTittel(hendelse, ledetekster) {
     switch (hendelse.type) {
@@ -45,8 +47,7 @@ const BobleHeader = (props) => {
         className={!props.erApen ? 'tidslinjeBoble__header' : 'tidslinjeBoble__header tidslinjeBoble__header--erApen'}>
         <div
             className={!props.erApen ? 'tidslinjeBoble__tittel' : 'tidslinjeBoble__tittel tidslinjeBoble__tittel--erApen'}
-            dangerouslySetInnerHTML={{ __html: props.htmlTittel }}>
-        </div>
+            dangerouslySetInnerHTML={{ __html: props.htmlTittel }} />
     </a>);
 };
 
@@ -58,7 +59,6 @@ BobleHeader.propTypes = {
 };
 
 class HendelseBoble extends Component {
-
     onTransitionEnd() {
         if (!this.props.hendelse.erApen) {
             this.props.setHendelseState({
@@ -67,7 +67,7 @@ class HendelseBoble extends Component {
                 hindreToggle: false,
             });
         } else {
-            scrollTo(this.refs['boble-header'], 1000);
+            scrollTo(this['boble-header'], 1000);
             this.props.setHendelseState({
                 medAnimasjon: false,
                 hoyde: 'auto',
@@ -90,7 +90,7 @@ class HendelseBoble extends Component {
     }
 
     setNaavaerendeHoyde() {
-        const budskapHoyde = this.refs['js-budskap'].offsetHeight;
+        const budskapHoyde = this['js-budskap'].offsetHeight;
         const naaHoyde = !this.props.hendelse.erApen ? null : budskapHoyde;
 
         this.props.setHendelseState({
@@ -106,7 +106,7 @@ class HendelseBoble extends Component {
             hindreToggle: true,
         });
         setTimeout(() => {
-            const nyHoyde = `${this.refs['js-budskap'].offsetHeight}px`;
+            const nyHoyde = `${this['js-budskap'].offsetHeight}px`;
             this.props.setHendelseState({
                 hoyde: nyHoyde,
                 erApen: true,
@@ -146,8 +146,13 @@ class HendelseBoble extends Component {
                 <div className="tidslinjeHendelse__status">
                     <HendelseIkon type={hendelse.type} />
                 </div>
-                <div className="tidslinjeHendelse__innhold" ref="boble-header">
-                    <BobleHeader {...hendelse}
+                <div
+                    className="tidslinjeHendelse__innhold"
+                    ref={(c) => {
+                        this['boble-header'] = c;
+                    }}>
+                    <BobleHeader
+                        {...hendelse}
                         htmlTittel={getHtmlTittel(hendelse, ledetekster)}
                         clickHandler={(e) => {
                             this.toggle(e);
@@ -164,8 +169,10 @@ class HendelseBoble extends Component {
                         onTransitionEnd={() => {
                             this.onTransitionEnd();
                         }}>
-
-                        <div ref="js-budskap">
+                        <div
+                            ref={(c) => {
+                                this['js-budskap'] = c;
+                            }}>
                             <TidslinjeBudskap
                                 vis={hendelse.visBudskap}
                                 bilde={hendelse.bilde}
@@ -180,23 +187,9 @@ class HendelseBoble extends Component {
 }
 
 HendelseBoble.propTypes = {
-    ledetekster: PropTypes.object,
+    ledetekster: keyValue,
     setHendelseState: PropTypes.func,
-    hendelse: PropTypes.shape({
-        antallDager: PropTypes.number,
-        bilde: PropTypes.string,
-        data: PropTypes.object,
-        id: PropTypes.string,
-        inntruffetdato: PropTypes.date,
-        tekstkey: PropTypes.string,
-        type: PropTypes.string,
-        erApen: PropTypes.bool,
-        medAnimasjon: PropTypes.bool,
-        hindreToggle: PropTypes.bool,
-        hoyde: PropTypes.string,
-        visBudskap: PropTypes.bool,
-        alt: PropTypes.number,
-    }),
+    hendelse: hendelsePt,
 };
 
 export default HendelseBoble;

@@ -37,7 +37,7 @@ const parseAktivitetsdatoer = (aktiviteter) => {
         return Object.assign({}, aktivitet,
             {
                 periode: parseDatoerPeriode(aktivitet.periode),
-            }
+            },
         );
     });
 };
