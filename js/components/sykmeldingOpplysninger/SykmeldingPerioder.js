@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SykmeldingPeriode from './SykmeldingPeriode';
 import { getDuration, sorterPerioderEldsteFoerst } from '../../utils';
-import { keyValue, periode as periodePt } from '../../propTypes';
+import { keyValue, sykmeldingperiode as periodePt } from '../../propTypes';
 
 const SykmeldingPerioder = ({ perioder = [], ledetekster, Overskrift = 'h3' }) => {
     return (<div className={`sykmeldingPerioder ${perioder.length > 1 ? 'sykmeldingPerioder--flere' : ''}`}>

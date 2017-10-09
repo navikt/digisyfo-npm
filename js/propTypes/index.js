@@ -21,18 +21,21 @@ export const tidslinjehendelse = PropTypes.shape({
     alt: PropTypes.number,
 });
 
-export const keyValue = function (props, propNavn) {
+export const keyValue = function (props, propNavn, componentNavn) {
     const obj = props[propNavn];
+    if (!obj) {
+        return null;
+    }
     try {
         const keys = Object.keys(obj);
         for (let i = 0; i < keys.length; i += 1) {
             if (typeof obj[keys[i]] !== 'string') {
-                return new Error(`${propNavn} er ugyldig propType`);
+                return new Error(`${propNavn} er ugyldig propType - inneholder ugyldig key-value-par for nøkkel '${keys[i]}' i ${componentNavn}`);
             }
         }
         return null;
     } catch (e) {
-        return new Error(`${propNavn} er ugyldig propType`, e);
+        return new Error(`${propNavn} er ugyldig propType...`, e);
     }
 };
 

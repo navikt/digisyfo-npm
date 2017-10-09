@@ -17,20 +17,7 @@ const hendelserData = [{
     "antallDager": -1,
     "tekstkey": "tidslinje.forste-sykmeldingsdag",
     "data": {
-        startdato: {
-            "year": 2016,
-            "month": "JUNE",
-            "dayOfMonth": 12,
-            "dayOfWeek": "SUNDAY",
-            "dayOfYear": 164,
-            "leapYear": true,
-            "monthValue": 6,
-            "era": "CE",
-            "chronology": {
-                "id": "ISO",
-                "calendarType": "iso8601"
-            }
-        }
+        startdato: new Date("2016-06-12")
     }
 }, {
     "id": "01",

@@ -22,15 +22,15 @@ describe("SykmeldingPerioder", () => {
             {
                 "fom": new Date("2015-04-08"),
                 "tom": new Date("2015-04-18"),
-                "grad": "100"
+                "grad": 100
             }, {
                 "fom": new Date("2015-04-08"),
                 "tom": new Date("2015-04-18"),
-                "grad": "100"
+                "grad": 100
             }, {
                 "fom": new Date("2015-04-08"),
                 "tom": new Date("2015-04-18"),
-                "grad": "100"
+                "grad": 100
             }];
         const component = shallow(<SykmeldingPerioder perioder={perioder} ledetekster={ledetekster}/>);
         expect(component.find(SykmeldingPeriode)).to.have.length(3);
@@ -40,11 +40,11 @@ describe("SykmeldingPerioder", () => {
         const perioder = [{
             "fom": new Date("2015-04-08"),
             "tom": new Date("2015-04-18"),
-            "grad": "100"
+            "grad": 100
         }, {
             "fom": new Date("2015-04-07"),
             "tom": new Date("2015-04-14"),
-            "grad": "100"
+            "grad": 100
         }];
 
         const component = mount(<SykmeldingPerioder perioder={perioder} ledetekster={ledetekster}/>);
@@ -52,7 +52,7 @@ describe("SykmeldingPerioder", () => {
             {
                 "fom": new Date("2015-04-07"),
                 "tom": new Date("2015-04-14"),
-                "grad": "100"
+                "grad": 100
             }
         );
     });
@@ -61,18 +61,18 @@ describe("SykmeldingPerioder", () => {
         const perioder = [{
             "fom": new Date("2015-04-07"),
             "tom": new Date("2015-04-13"),
-            "grad": "100"
+            "grad": 100
         }, {
             "fom": new Date("2015-04-07"),
             "tom": new Date("2015-04-16"),
-            "grad": "100"
+            "grad": 100
         }];
 
         const component = mount(<SykmeldingPerioder perioder={perioder} ledetekster={ledetekster}/>);
         expect(component.find(SykmeldingPeriode).first().props().periode).to.deep.equal({
             "fom": new Date("2015-04-07"),
             "tom": new Date("2015-04-13"),
-            "grad": "100"
+            "grad": 100
         });
     })
 });

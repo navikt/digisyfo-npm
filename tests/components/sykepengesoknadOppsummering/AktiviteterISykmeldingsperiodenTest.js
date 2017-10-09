@@ -410,7 +410,7 @@ describe("AktiviteterISykmeldingsperioden (Oppsummering)", () => {
             beforeEach(() => {
                 component = render(<Utdanning ledetekster={ledetekster} sykepengesoknad={getParsetSoknad({
                     utdanning: {
-                        utdanningStartdato: "2017-01-15",
+                        utdanningStartdato: new Date("2017-01-15"),
                         erUtdanningFulltidsstudium: true
                     }
                 })} />);

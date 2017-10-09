@@ -29,7 +29,9 @@ HendelseTittel.propTypes = {
     ledetekster: keyValue,
     type: PropTypes.string,
     tekstkey: PropTypes.string,
-    data: keyValue,
+    data: PropTypes.shape({
+        startdato: PropTypes.instanceOf(Date),
+    }),
 };
 
 export default HendelseTittel;

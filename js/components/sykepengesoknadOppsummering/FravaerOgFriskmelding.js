@@ -5,7 +5,7 @@ import { tidligsteFom } from '../../utils/periodeUtils';
 import { getLedetekst } from '../../ledetekster';
 import { getTomDato } from '../../utils/sykepengesoknadUtils';
 import { toDatePrettyPrint } from '../../utils/datoUtils';
-import { keyValue, sykepengesoknad as sykepengesoknadPt, periode as periodePt } from '../../propTypes';
+import { keyValue, sykepengesoknad as sykepengesoknadPt, soknadperiode as periodePt } from '../../propTypes';
 
 
 export const Perioder = ({ perioder, ledetekster }) => {
