@@ -229,3 +229,11 @@ export const sykmelding = PropTypes.shape({
         sykmelderTlf: PropTypes.string,
     }),
 });
+
+export const togglesPt = PropTypes.shape({
+    data: PropTypes.map,
+    henter: PropTypes.bool,
+    hentingFeilet: PropTypes.bool,
+    hentet: PropTypes.bool,
+});
+
