@@ -43,3 +43,4 @@ export { Hjelpetekst };
 export * from './utils/sykepengesoknadUtils';
 export * from './utils/periodeUtils';
 export * from './utils/reducerUtils';
+export * from './enums';
