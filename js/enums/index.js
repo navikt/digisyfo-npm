@@ -7,11 +7,11 @@ import * as sykepengesoknadstatuser from './sykepengesoknadstatuser';
 import * as sykmeldingstatuser from './sykmeldingstatuser';
 
 export {
-	arbeidssituasjoner,
-	feilaktigeOpplysninger,
-	forskutterersvar,
-	inntektskildetyper,
-	nokkelopplysninger,
-	sykepengesoknadstatuser,
-	sykmeldingstatuser,
+    arbeidssituasjoner,
+    feilaktigeOpplysninger,
+    forskutterersvar,
+    inntektskildetyper,
+    nokkelopplysninger,
+    sykepengesoknadstatuser,
+    sykmeldingstatuser,
 };
