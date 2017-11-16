@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Forrige = ({ onClick }) => {
-    return <a className="stegnavigasjon__bla stegnavigasjon__bla--forrige" href="#" onClick={onClick}>Forrige</a>;
+const Forrige = ({ onClick, url }) => {
+    return <a className="stegnavigasjon__bla stegnavigasjon__bla--forrige" href={url} onClick={onClick}>Forrige</a>;
 };
 
 Forrige.propTypes = {
     onClick: PropTypes.func,
+    url: PropTypes.string.isRequired,
 };
 
-const Neste = ({ onClick }) => {
-    return <a className="stegnavigasjon__bla stegnavigasjon__bla--neste" href="#" onClick={onClick}>Neste</a>;
+const Neste = ({ onClick, url }) => {
+    return <a className="stegnavigasjon__bla stegnavigasjon__bla--neste" href={url} onClick={onClick}>Neste</a>;
 };
 
 Neste.propTypes = {
     onClick: PropTypes.func,
+    url: PropTypes.string.isRequired,
 };
 
 const Stegnavigasjon = ({ aktivtSteg, settAktivtSteg, disabled = false, stegliste }) => {
@@ -58,12 +60,14 @@ const Stegnavigasjon = ({ aktivtSteg, settAktivtSteg, disabled = false, steglist
         </ul>
         {
             aktivtSteg !== 0 && !disabled && (<Forrige
+                url={stegliste[aktivtSteg - 1].url}
                 onClick={(e) => {
                     onClick(aktivtSteg - 1, e);
                 }} />)
         }
         {
             aktivtSteg !== stegliste.length - 1 && !disabled && (<Neste
+                url={stegliste[aktivtSteg + 1].url}
                 onClick={(e) => {
                     onClick(aktivtSteg + 1, e);
                 }} />)
