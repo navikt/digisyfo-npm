@@ -14,6 +14,7 @@ import Tidslinje from './components/tidslinje/Tidslinje';
 import togglesSagas from './sagas/togglesSagas';
 import Radiofaner from './components/Radiofaner';
 import Hjelpetekst from './components/Hjelpetekst';
+import Stegnavigasjon from './components/Stegnavigasjon';
 import DineSykmeldingOpplysninger from './components/sykmeldingOpplysninger/DineSykmeldingOpplysninger';
 
 export { ArbeidsgiversSykmeldingOpplysninger };
@@ -40,6 +41,7 @@ export { Tidslinje };
 export { togglesSagas };
 export { Radiofaner };
 export { Hjelpetekst };
+export { Stegnavigasjon };
 export * from './utils/sykepengesoknadUtils';
 export * from './utils/periodeUtils';
 export * from './utils/reducerUtils';
