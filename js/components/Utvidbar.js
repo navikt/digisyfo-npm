@@ -153,7 +153,7 @@ class Utvidbar extends Component {
                     }
                     <span className={!this.state.erApen ? 'utvidbar__tittel' : 'utvidbar__tittel utvidbar__tittel--erApen'}>{this.props.tittel}</span>
                     <em className="utvidbar__handling">
-                        <span className="utvidbar__handling__tekst">{this.state.erApen ? 'Lukk' : 'Åpne'}</span>
+                        <div className="utvidbar__handling__tekst">{this.state.erApen ? 'Lukk' : 'Åpne'}</div>
                     </em>
                 </this.props.Overskrift>
             </a>
@@ -194,7 +194,10 @@ class Utvidbar extends Component {
 
 Utvidbar.propTypes = {
     erApen: PropTypes.bool.isRequired,
-    tittel: PropTypes.string.isRequired,
+    tittel: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+    ]),
     children: PropTypes.element,
     ikon: PropTypes.string,
     ikonHover: PropTypes.string,
