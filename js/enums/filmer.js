@@ -21,10 +21,3 @@ export const SOKNAD_SYKEPENGER = {
     captionSrc: `${window.APP_SETTINGS.APP_ROOT}/filmtekster/soknadsykepenger.vtt`,
     poster: `${window.APP_SETTINGS.APP_ROOT}/img/filmer/soknadsykepenger.jpg`,
 };
-
-export const filmtyper = {
-    AKTIVITETSPLIKT: 'AKTIVITETSPLIKT',
-    OPPFOLGINGSDIALOG: 'OPPFOLGINGSDIALOG',
-    NAERMESTE_LEDER: 'NAERMESTE_LEDER',
-    SOKNAD_SYKEPENGER: 'SOKNAD_SYKEPENGER',
-};
