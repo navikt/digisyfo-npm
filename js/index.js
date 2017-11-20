@@ -16,6 +16,7 @@ import Radiofaner from './components/Radiofaner';
 import Hjelpetekst from './components/Hjelpetekst';
 import Stegnavigasjon from './components/Stegnavigasjon';
 import DineSykmeldingOpplysninger from './components/sykmeldingOpplysninger/DineSykmeldingOpplysninger';
+import Video from './components/Video';
 
 export { ArbeidsgiversSykmeldingOpplysninger };
 export { ArbeidsgiversNokkelopplysninger };
@@ -24,6 +25,7 @@ export { DineSykmeldingOpplysninger };
 export { Soknad };
 export { SykmeldingUtdrag };
 export { Utvidbar };
+export { Video };
 export * from './components/sykmeldingOpplysninger/SykmeldingOpplysning';
 export { SykmeldingPerioder };
 export * from './ledetekster';

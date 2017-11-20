@@ -5,6 +5,7 @@ import * as inntektskildetyper from './inntektskildetyper';
 import * as nokkelopplysninger from './nokkelopplysninger';
 import * as sykepengesoknadstatuser from './sykepengesoknadstatuser';
 import * as sykmeldingstatuser from './sykmeldingstatuser';
+import * as filmer from './filmer';
 
 export {
     arbeidssituasjoner,
@@ -14,4 +15,5 @@ export {
     nokkelopplysninger,
     sykepengesoknadstatuser,
     sykmeldingstatuser,
+    filmer,
 };
