@@ -41,7 +41,7 @@ const Stegnavigasjon = ({ aktivtSteg, settAktivtSteg, disabled = false, steglist
             {
                 stegliste.map(({ url, tekst }, i) => {
                     const classNames = ['stegnavigasjon__trinn'];
-                    if (i === aktivtSteg) {
+                    if (i === aktivtSteg - 1) {
                         classNames.push('stegnavigasjon__trinn--aktivt');
                     }
                     return (<li className={classNames.join(' ')} key={`steg-${i}`}>
@@ -49,25 +49,25 @@ const Stegnavigasjon = ({ aktivtSteg, settAktivtSteg, disabled = false, steglist
                             className="stegnavigasjon__lenke"
                             role="tab"
                             aria-disabled={disabled}
-                            aria-selected={i === aktivtSteg}
+                            aria-selected={i === aktivtSteg - 1}
                             href={LinkEl === 'a' ? url : null}
                             onClick={(e) => {
-                                onClick(i, e);
+                                onClick(i + 1 , e);
                             }}>{tekst}</LinkEl>
                     </li>);
                 })
             }
         </ul>
         {
-            aktivtSteg !== 0 && !disabled && (<Forrige
-                url={stegliste[aktivtSteg - 1].url}
+            aktivtSteg !== 1 && !disabled && (<Forrige
+                url={stegliste[aktivtSteg - 2].url}
                 onClick={(e) => {
                     onClick(aktivtSteg - 1, e);
                 }} />)
         }
         {
-            aktivtSteg !== stegliste.length - 1 && !disabled && (<Neste
-                url={stegliste[aktivtSteg + 1].url}
+            aktivtSteg !== stegliste.length && !disabled && (<Neste
+                url={stegliste[aktivtSteg].url}
                 onClick={(e) => {
                     onClick(aktivtSteg + 1, e);
                 }} />)
