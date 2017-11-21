@@ -52,7 +52,7 @@ const Stegnavigasjon = ({ aktivtSteg, settAktivtSteg, disabled = false, steglist
                             aria-selected={i === aktivtSteg - 1}
                             href={LinkEl === 'a' ? url : null}
                             onClick={(e) => {
-                                onClick(i + 1 , e);
+                                onClick(i + 1, e);
                             }}>{tekst}</LinkEl>
                     </li>);
                 })
