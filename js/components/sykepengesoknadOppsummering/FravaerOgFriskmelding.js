@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Avkrysset } from './opplysninger';
-import { tidligsteFom } from '../../utils/periodeUtils';
 import { getLedetekst } from '../../ledetekster';
-import { getTomDato } from '../../utils/sykepengesoknadUtils';
+import { getTomDato, finnFomForFeriesporsmal } from '../../utils/sykepengesoknadUtils';
 import { toDatePrettyPrint } from '../../utils/datoUtils';
 import { keyValue, sykepengesoknad as sykepengesoknadPt, soknadperiode as periodePt } from '../../propTypes';
 
@@ -102,11 +101,8 @@ export const FeriePermisjonEllerUtenlandsopphold = ({ sykepengesoknad, ledetekst
     const harHattPermisjon = sykepengesoknad.permisjon && sykepengesoknad.permisjon.length > 0;
     const harHattUtenlandsopphold = sykepengesoknad.utenlandsopphold && sykepengesoknad.utenlandsopphold.perioder && sykepengesoknad.utenlandsopphold.perioder.length > 0;
     const harHattFeriePermisjonEllerUtenlandsopphold = harHattFerie || harHattPermisjon || harHattUtenlandsopphold;
-    const sykmeldingsperioder = sykepengesoknad.aktiviteter.map((aktivitet) => {
-        return aktivitet.periode;
-    });
     const senesteTom = getTomDato(sykepengesoknad);
-    const fom = sykepengesoknad.del === 1 && sykepengesoknad.forrigeSykeforloepTom ? sykepengesoknad.forrigeSykeforloepTom : tidligsteFom(sykmeldingsperioder);
+    const fom = finnFomForFeriesporsmal(sykepengesoknad);
 
     return (<div className="js-feriePermisjonUtenlandsopphold oppsummering__bolk">
         <h3 className="oppsummering__sporsmal">{getLedetekst('sykepengesoknad.ferie-permisjon-utenlandsopphold.janei.sporsmal', ledetekster, {

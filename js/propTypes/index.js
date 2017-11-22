@@ -134,6 +134,7 @@ export const sykepengesoknad = PropTypes.shape({
     fom: PropTypes.instanceOf(Date),
     tom: PropTypes.instanceOf(Date),
     sykmeldingId: PropTypes.string,
+    forrigeSendteSoknadTom: PropTypes.instanceOf(Date),
 });
 
 export const sykmeldingdiagnose = PropTypes.shape({

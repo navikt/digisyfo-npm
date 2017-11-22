@@ -75,26 +75,49 @@ describe("Oppsummering - FravaerOgFriskmelding -", () => {
         it("Skal bruke denne datoen minus én dag i spørsmål om ferie, permisjon eller utenlandsopphold", () => {
           const fragment = getFragment({
             gjenopptattArbeidFulltUtDato: new Date("2017-01-20"),
-          })
+          });
           expect(fragment.text()).to.contain("Har du hatt ferie, permisjon eller oppholdt deg i utlandet i perioden 01.01.2017 – 19.01.2017?");
         });
 
         it("Skal bruke denne datoen hvis datoen er den samme som tidligsteFom", () => {
           const fragment = getFragment({
             gjenopptattArbeidFulltUtDato: new Date("2017-01-01"),
-          })
+          });
           expect(fragment.text()).to.contain("Har du hatt ferie, permisjon eller oppholdt deg i utlandet i perioden 01.01.2017 – 01.01.2017?");
         });
 
       });
 
-      describe("Dersom søknaden har forrigeSykeforloepTom", () => {
+      describe("Dersom søknaden har forrigeSykeforloepTom og/eller forrigeSendteSoknadTom", () => {
 
-          it("Skal bruke denne datoen som tidligsteFom", () => {
+          it("Skal bruke tidligsteFom om vi ikke har en tidligere sendt soknad", () => {
             const fragment = getFragment({
               forrigeSykeforloepTom: new Date("2016-12-18"),
             });
             expect(fragment.text()).to.contain("Har du hatt ferie, permisjon eller oppholdt deg i utlandet i perioden 18.12.2016 – 25.01.2017?");
+          });
+
+          it("Skal bruke soknadFOM når vi har en søknad for en periode nærmere enn forrige sykeforloep", () => {
+              const fragment = getFragment({
+                  forrigeSykeforloepTom: new Date("2016-12-18"),
+                  forrigeSendteSoknadTom: new Date("2016-12-19"),
+              });
+              expect(fragment.text()).to.contain("Har du hatt ferie, permisjon eller oppholdt deg i utlandet i perioden 01.01.2017 – 25.01.2017?");
+          });
+
+          it("Skal bruke soknadFOM når vi har en søknad for en periode samme som forrige sykeforloep", () => {
+              const fragment = getFragment({
+                  forrigeSykeforloepTom: new Date("2016-12-18"),
+                  forrigeSendteSoknadTom: new Date("2016-12-18"),
+              });
+              expect(fragment.text()).to.contain("Har du hatt ferie, permisjon eller oppholdt deg i utlandet i perioden 01.01.2017 – 25.01.2017?");
+          });
+
+          it("Skal bruke soknadFOM når vi har tidligere innsendt søknad og ingen tidligere sykeforloep", () => {
+              const fragment = getFragment({
+                  forrigeSendteSoknadTom: new Date("2016-12-19"),
+              });
+              expect(fragment.text()).to.contain("Har du hatt ferie, permisjon eller oppholdt deg i utlandet i perioden 01.01.2017 – 25.01.2017?");
           });
 
       });
