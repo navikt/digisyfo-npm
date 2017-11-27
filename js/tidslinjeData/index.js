@@ -11,4 +11,10 @@ export const bilder = {
     'tidslinje.sluttfasen.UTEN_ARBEIDSGIVER': '/img/tidslinje/sluttfasen-3.svg',
     'tidslinje.aktivitetskrav-varsel.UTEN_ARBEIDSGIVER': '/img/tidslinje/uten-arbeidsgiver/varsel_aktivitetskrav.svg',
     'tidslinje.aktivitetskrav-varsel.MED_ARBEIDSGIVER': '/img/tidslinje/med-arbeidsgiver/varsel_aktivitetskrav.svg',
+    'sykefravaerarbeidsgiver.tidslinje.snakk-med-arbeidsgiver.MED_ARBEIDSGIVER': '/img/tidslinje/med-arbeidsgiver/innen4uker.svg',
+    'sykefravaerarbeidsgiver.tidslinje.dialogmote-arbeidsgiver.MED_ARBEIDSGIVER': '/img/tidslinje/med-arbeidsgiver/innen7uker.svg',
+    'sykefravaerarbeidsgiver.tidslinje.aktivitetskrav.MED_ARBEIDSGIVER': '/img/tidslinje/med-arbeidsgiver/innen8uker.svg',
+    'sykefravaerarbeidsgiver.tidslinje.dialogmote-nav.MED_ARBEIDSGIVER': '/img/tidslinje/med-arbeidsgiver/innen26uker.svg',
+    'sykefravaerarbeidsgiver.tidslinje.langtidssykmeldt.MED_ARBEIDSGIVER': '/img/tidslinje/med-arbeidsgiver/innen39uker.svg',
+    'sykefravaerarbeidsgiver.tidslinje.sluttfasen.MED_ARBEIDSGIVER': '/img/tidslinje/sluttfasen-3.svg',
 };

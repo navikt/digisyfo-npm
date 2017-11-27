@@ -7,6 +7,12 @@ import * as hendelserActions from '../../js/actions/hendelser_actions';
 
 describe('tidslinjer', () => {
 
+    beforeEach(() => {
+        window.APP_SETTINGS =  {
+            APP_ROOT: '/sykefravaer'
+        }
+    })
+
     describe("settHendelseIder", () => {
         it("Setter ID", () => {
             const tidslinjer = deepFreeze([{
@@ -24,7 +30,7 @@ describe('tidslinjer', () => {
     });
 
     describe("leggTilTidshendelser", () => {
-        it("Legger til tidshendelser", () => {
+        it("Legger til tidshendelser og standardhendelse om 'sykmeldt - hva nå'", () => {
             const data = deepFreeze([{
                 hendelser: [{
                     antallDager: 0
@@ -40,6 +46,10 @@ describe('tidslinjer', () => {
                     antallDager: 0,
                     type: "TITTEL",
                     "tekstkey": "tidslinje.sykefravaeret-starter"
+                }, {
+                    tekstkey: 'tidslinje.sykmeldt-hva-naa',
+                    type: 'BOBLE',
+                    antallDager: 1,
                 }, {
                     antallDager: 28,
                 }, {
@@ -216,67 +226,72 @@ describe('tidslinjer', () => {
                         }
                     }
                 }, {
-                    "id": "01",
+                    tekstkey: 'tidslinje.sykmeldt-hva-naa',
+                    type: 'BOBLE',
+                    id: "01",
+                    antallDager: 1,
+                }, {
+                    "id": "02",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 27,
                     "tekstkey": "tidslinje.snakk-med-arbeidsgiver.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen4uker.svg'
                 }, {
-                    "id": "02",
+                    "id": "03",
                     "type": "TID",
                     "antallDager": 28,
                     "tekstkey": "tidslinje.antall-uker.4"
                 }, {
-                    "id": "03",
+                    "id": "04",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 48,
                     "tekstkey": "tidslinje.dialogmote-arbeidsgiver.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen7uker.svg'
                 }, {
-                    "id": "04",
+                    "id": "05",
                     "type": "TID",
                     "antallDager": 49,
                     "tekstkey": "tidslinje.antall-uker.7"
                 }, {
-                    "id": "05",
+                    "id": "06",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 55,
                     "tekstkey": "tidslinje.aktivitetskrav.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen8uker.svg',
                 }, {
-                    "id": "06",
+                    "id": "07",
                     "type": "TID",
                     "antallDager": 56,
                     "tekstkey": "tidslinje.antall-uker.8"
                 }, {
-                    "id": "07",
+                    "id": "08",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 181,
                     "tekstkey": "tidslinje.dialogmote-nav.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen26uker.svg'
                 }, {
-                    "id": "08",
+                    "id": "09",
                     "type": "TID",
                     "antallDager": 182,
                     "tekstkey": "tidslinje.antall-uker.26"
                 }, {
-                    "id": "09",
+                    "id": "010",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 272,
                     "tekstkey": "tidslinje.langtidssykmeldt.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen39uker.svg'
                 }, {
-                    "id": "010",
+                    "id": "011",
                     "type": "TID",
                     "antallDager": 273,
                     "tekstkey": "tidslinje.antall-uker.39"
                 }, {
-                    "id": "011",
+                    "id": "012",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 364,
@@ -345,67 +360,72 @@ describe('tidslinjer', () => {
                     "antallDager": 0,
                     "tekstkey": "tidslinje.sykefravaeret-starter",
                 }, {
-                    "id": "01",
+                    tekstkey: 'tidslinje.sykmeldt-hva-naa',
+                    type: 'BOBLE',
+                    id: "01",
+                    antallDager: 1,
+                }, {
+                    "id": "02",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 27,
                     "tekstkey": "tidslinje.snakk-med-arbeidsgiver.MED_ARBEIDSGIVER",
                     "bilde": "/sykefravaer/img/tidslinje/med-arbeidsgiver/innen4uker.svg"
                 }, {
-                    "id": "02",
+                    "id": "03",
                     "type": "TID",
                     "antallDager": 28,
                     "tekstkey": "tidslinje.antall-uker.4"
                 }, {
-                    "id": "03",
+                    "id": "04",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 48,
                     "tekstkey": "tidslinje.dialogmote-arbeidsgiver.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen7uker.svg',
                 }, {
-                    "id": "04",
+                    "id": "05",
                     "type": "TID",
                     "antallDager": 49,
                     "tekstkey": "tidslinje.antall-uker.7"
                 }, {
-                    "id": "05",
+                    "id": "06",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 55,
                     "tekstkey": "tidslinje.aktivitetskrav.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen8uker.svg'
                 }, {
-                    "id": "06",
+                    "id": "07",
                     "type": "TID",
                     "antallDager": 56,
                     "tekstkey": "tidslinje.antall-uker.8"
                 }, {
-                    "id": "07",
+                    "id": "08",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 181,
                     "tekstkey": "tidslinje.dialogmote-nav.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen26uker.svg',
                 }, {
-                    "id": "08",
+                    "id": "09",
                     "type": "TID",
                     "antallDager": 182,
                     "tekstkey": "tidslinje.antall-uker.26"
                 }, {
-                    "id": "09",
+                    "id": "010",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 272,
                     "tekstkey": "tidslinje.langtidssykmeldt.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen39uker.svg',
                 }, {
-                    "id": "010",
+                    "id": "011",
                     "type": "TID",
                     "antallDager": 273,
                     "tekstkey": "tidslinje.antall-uker.39"
                 }, {
-                    "id": "011",
+                    "id": "012",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 364,
@@ -516,14 +536,19 @@ describe('tidslinjer', () => {
                         }
                     }
                 }, {
-                    "id": "01",
+                    tekstkey: 'tidslinje.sykmeldt-hva-naa',
+                    type: 'BOBLE',
+                    id: "01",
+                    antallDager: 1,
+                }, {
+                    "id": "02",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 27,
                     "tekstkey": "tidslinje.snakk-med-arbeidsgiver.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen4uker.svg'
                 }, {
-                    "id": "02",
+                    "id": "03",
                     "type": "TID",
                     "antallDager": 28,
                     "tekstkey": "tidslinje.antall-uker.4"
@@ -535,48 +560,48 @@ describe('tidslinjer', () => {
                     "tekstkey": "tidslinje.dialogmote-arbeidsgiver.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen7uker.svg'
                 }, {
-                    "id": "04",
+                    "id": "05",
                     "type": "TID",
                     "antallDager": 49,
                     "tekstkey": "tidslinje.antall-uker.7"
                 }, {
-                    "id": "05",
+                    "id": "06",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 55,
                     "tekstkey": "tidslinje.aktivitetskrav.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen8uker.svg',
                 }, {
-                    "id": "06",
+                    "id": "07",
                     "type": "TID",
                     "antallDager": 56,
                     "tekstkey": "tidslinje.antall-uker.8"
                 }, {
-                    "id": "07",
+                    "id": "08",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 181,
                     "tekstkey": "tidslinje.dialogmote-nav.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen26uker.svg'
                 }, {
-                    "id": "08",
+                    "id": "09",
                     "type": "TID",
                     "antallDager": 182,
                     "tekstkey": "tidslinje.antall-uker.26"
                 }, {
-                    "id": "09",
+                    "id": "010",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 272,
                     "tekstkey": "tidslinje.langtidssykmeldt.MED_ARBEIDSGIVER",
                     "bilde": '/sykefravaer/img/tidslinje/med-arbeidsgiver/innen39uker.svg'
                 }, {
-                    "id": "010",
+                    "id": "011",
                     "type": "TID",
                     "antallDager": 273,
                     "tekstkey": "tidslinje.antall-uker.39"
                 }, {
-                    "id": "011",
+                    "id": "012",
                     "inntruffetdato": null,
                     "type": "BOBLE",
                     "antallDager": 364,

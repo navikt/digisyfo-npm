@@ -71,6 +71,11 @@ export const leggTilTidshendelser = (_tidslinjer, arbeidssituasjon) => {
                 type: 'TITTEL',
             });
         }
+        hendelser.splice(1, 0, {
+            tekstkey: 'tidslinje.sykmeldt-hva-naa',
+            type: 'BOBLE',
+            antallDager: 1,
+        });
         return Object.assign({}, tidslinje, { hendelser });
     });
 };
