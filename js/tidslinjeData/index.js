@@ -11,4 +11,6 @@ export const bilder = {
     'tidslinje.sluttfasen.UTEN_ARBEIDSGIVER': '/img/tidslinje/sluttfasen-3.svg',
     'tidslinje.aktivitetskrav-varsel.UTEN_ARBEIDSGIVER': '/img/tidslinje/uten-arbeidsgiver/varsel_aktivitetskrav.svg',
     'tidslinje.aktivitetskrav-varsel.MED_ARBEIDSGIVER': '/img/tidslinje/med-arbeidsgiver/varsel_aktivitetskrav.svg',
+    'tidslinje.sykmeldt-hva-naa.MED_ARBEIDSGIVER': '/img/tidslinje/sykmeldt-hva-naa.svg',
+    'tidslinje.sykmeldt-hva-naa.UTEN_ARBEIDSGIVER': '/img/tidslinje/sykmeldt-hva-naa.svg',
 };
