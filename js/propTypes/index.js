@@ -173,6 +173,7 @@ export const sykmelding = PropTypes.shape({
     pasient: PropTypes.shape({
         fnr: PropTypes.string,
         fornavn: PropTypes.string,
+        mellomnavn: PropTypes.string,
         etternavn: PropTypes.string,
     }),
     arbeidsgiver: PropTypes.string,

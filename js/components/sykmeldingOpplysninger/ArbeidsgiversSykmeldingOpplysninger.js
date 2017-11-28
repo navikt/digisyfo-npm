@@ -6,7 +6,7 @@ import ArbeidsgiversNokkelopplysninger from './ArbeidsgiversNokkelopplysninger';
 const ArbeidsgiversSykmeldingOpplysninger = ({ sykmelding, ledetekster }) => {
     return (<div className="side-innhold arbeidsgiversSykmelding">
         <header className="arbeidsgiversSykmelding__header">
-            <h3 className="arbeidsgiversSykmelding__tittel">{sykmelding.pasient.fornavn} {sykmelding.pasient.etternavn}</h3>
+            <h3 className="arbeidsgiversSykmelding__tittel">{sykmelding.pasient.fornavn} {sykmelding.pasient.mellomnavn} {sykmelding.pasient.etternavn}</h3>
             <p className="js-fnr arbeidsgiversSykmelding__fodselsnummer">{sykmelding.pasient.fnr}</p>
         </header>
         <ArbeidsgiversNokkelopplysninger sykmelding={sykmelding} ledetekster={ledetekster} />
