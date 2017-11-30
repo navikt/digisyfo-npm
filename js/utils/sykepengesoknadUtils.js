@@ -14,3 +14,15 @@ export const getTomDato = (sykepengesoknad) => {
     }
     return senesteTom(perioder);
 };
+
+export const finnFomForFeriesporsmal = (sykepengesoknad) => {
+    const { forrigeSykeforloepTom, forrigeSendteSoknadTom } = sykepengesoknad;
+
+    if (forrigeSykeforloepTom !== null && forrigeSendteSoknadTom !== null) {
+        if (forrigeSendteSoknadTom >= forrigeSykeforloepTom) {
+            return sykepengesoknad.fom;
+        }
+    }
+
+    return forrigeSykeforloepTom || sykepengesoknad.fom;
+};

@@ -73,5 +73,6 @@ export const parseSykepengesoknad = (soknad) => {
         fom: toDate(fom),
         tom: toDate(tom),
         avbruttDato: toDate(soknad.avbruttDato),
+        forrigeSendteSoknadTom: toDate(soknad.forrigeSendteSoknadTom),
     });
 };
