@@ -13,4 +13,6 @@ export const bilder = {
     'tidslinje.aktivitetskrav-varsel.MED_ARBEIDSGIVER': '/img/tidslinje/med-arbeidsgiver/varsel_aktivitetskrav.svg',
     'tidslinje.sykmeldt-hva-naa.MED_ARBEIDSGIVER': '/img/tidslinje/sykmeldt-hva-naa.svg',
     'tidslinje.sykmeldt-hva-naa.UTEN_ARBEIDSGIVER': '/img/tidslinje/sykmeldt-hva-naa.svg',
+    'tidslinje.sykmeldt-hva-naa__modia.MED_ARBEIDSGIVER': '/img/tidslinje/sykmeldt-hva-naa.svg',
+    'tidslinje.sykmeldt-hva-naa__modia.UTEN_ARBEIDSGIVER': '/img/tidslinje/sykmeldt-hva-naa.svg',
 };
