@@ -91,7 +91,7 @@ class Utvidbar extends Component {
                 erApen: true,
                 hoyde,
             });
-        }, 0);
+        }, 10);
     }
 
     lukk() {
@@ -107,7 +107,7 @@ class Utvidbar extends Component {
                 hoyde: '0',
                 erApen: false,
             });
-        }, 0);
+        }, 10);
     }
 
     toggle(e) {
