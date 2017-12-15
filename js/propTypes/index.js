@@ -215,7 +215,7 @@ export const sykmelding = PropTypes.shape({
             sporsmal: PropTypes.arrayOf(PropTypes.shape({
                 id: PropTypes.string,
                 svar: PropTypes.string,
-            }))
+            })),
         })),
     }),
     arbeidsevne: PropTypes.shape({
