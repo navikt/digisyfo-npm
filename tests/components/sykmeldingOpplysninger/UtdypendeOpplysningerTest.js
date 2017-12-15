@@ -94,4 +94,31 @@ describe("Utdypende opplysninger", () => {
         });
     });    
 
+    describe("Utdypende opplysninger i liste", () => {
+        it("Rendrer en opplysning", () => {
+            let component = mount(<UtdypendeOpplysninger sykmelding={getParsetSykmelding({
+                utdypendeOpplysninger: {
+                    henvisningUtredningBehandling: 'opplysning',
+                    grupper: [
+                        {
+                            id: '6.2',
+                            sporsmal: [
+                                {
+                                    id: '6.2.1',
+                                    svar: 'svar 6.2.1',
+                                },
+                                {
+                                    id: '6.2.2',
+                                    svar: 'svar 6.2.2',
+                                }
+                            ]
+                        }]
+                }
+            })} ledetekster={ledetekster} />);
+
+            expect(component.find(".opplysning__tittel").length).to.equal(2);
+            expect(component.find(".opplysning__verdi").length).to.equal(2);
+
+        })
+    })
 }); 

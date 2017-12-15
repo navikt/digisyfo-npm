@@ -210,6 +210,13 @@ export const sykmelding = PropTypes.shape({
         paavirkningArbeidsevne: PropTypes.string,
         resultatAvBehandling: PropTypes.string,
         henvisningUtredningBehandling: PropTypes.string,
+        grupper: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.string,
+            sporsmal: PropTypes.arrayOf(PropTypes.shape({
+                id: PropTypes.string,
+                svar: PropTypes.string,
+            }))
+        })),
     }),
     arbeidsevne: PropTypes.shape({
         tilretteleggingArbeidsplass: PropTypes.string,
