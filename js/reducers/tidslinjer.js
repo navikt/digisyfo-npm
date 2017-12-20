@@ -26,6 +26,9 @@ export const settHendelseIder = (_tidslinjer) => {
 export const sorterHendelser = (_hendelser) => {
     const hendelser = [..._hendelser];
     return hendelser.sort((a, b) => {
+        if (a.antallDager === b.antallDager) {
+            return a.id > b.id ? 1 : -1;
+        }
         return a.antallDager > b.antallDager ? 1 : -1;
     });
 };
