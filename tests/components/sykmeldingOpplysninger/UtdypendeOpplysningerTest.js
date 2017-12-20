@@ -116,9 +116,21 @@ describe("Utdypende opplysninger", () => {
                 }
             })} ledetekster={ledetekster} />);
 
+            expect(component.find(".sykmeldingSeksjon__tittel").length).to.equal(1);
             expect(component.find(".opplysning__tittel").length).to.equal(2);
             expect(component.find(".opplysning__verdi").length).to.equal(2);
 
+        });
+
+        it("Tegner ikke seksjonene ved tom liste", () => {
+            let component = mount(<UtdypendeOpplysninger sykmelding={getParsetSykmelding({
+                utdypendeOpplysninger: {
+                    henvisningUtredningBehandling: null,
+                    grupper: []
+                }
+            })} ledetekster={ledetekster} />);
+
+            expect(component.find(".sykmeldingSeksjon__tittel").length).to.equal(0);
         })
     })
 }); 

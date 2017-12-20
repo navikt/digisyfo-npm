@@ -10,7 +10,7 @@ const UtdypendeOpplysninger = ({ sykmelding, ledetekster }) => {
         sykmelding.utdypendeOpplysninger.resultatAvBehandling ||
         sykmelding.utdypendeOpplysninger.henvisningUtredningBehandling;
 
-    if (sykmelding.utdypendeOpplysninger.grupper) {
+    if (sykmelding.utdypendeOpplysninger.grupper && sykmelding.utdypendeOpplysninger.grupper.length > 0) {
         return (<div className="sykmeldingSeksjon">
             <h4 className="sykmeldingSeksjon__tittel">{getLedetekst('din-sykmelding.utdypende.tittel', ledetekster)}</h4>
 
