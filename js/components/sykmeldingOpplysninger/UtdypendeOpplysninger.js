@@ -28,6 +28,7 @@ const UtdypendeOpplysninger = ({ sykmelding, ledetekster }) => {
     }
     return (
         <div className="sykmeldingSeksjon">
+            <h4 className="sykmeldingSeksjon__tittel">{getLedetekst('din-sykmelding.utdypende.tittel', ledetekster)}</h4>
             {
                 getSykmeldingOpplysning(sykmelding.utdypendeOpplysninger,
                     'sykehistorie',

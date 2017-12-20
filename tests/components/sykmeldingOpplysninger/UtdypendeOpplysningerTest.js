@@ -133,4 +133,16 @@ describe("Utdypende opplysninger", () => {
             expect(component.find(".sykmeldingSeksjon__tittel").length).to.equal(0);
         })
     })
+
+    it("Viser tittel på legacy visning", () => {
+        let component = mount(<UtdypendeOpplysninger sykmelding={getParsetSykmelding({
+            utdypendeOpplysninger: {
+                henvisningUtredningBehandling: 'opplysning',
+            }
+        })} ledetekster={ledetekster} />);
+
+        expect(component.find(".sykmeldingSeksjon__tittel").length).to.equal(1);
+        expect(component.find(".opplysning__tittel").length).to.equal(1);
+        expect(component.find(".opplysning__verdi").length).to.equal(1);
+    })
 }); 
