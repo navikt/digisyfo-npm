@@ -1,31 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Oppsummering from './Oppsummering';
-import Utvidbar from '../Utvidbar';
-import { getHtmlLedetekst } from '../../ledetekster';
-import { keyValue, sykepengesoknad as sykepengesoknadPt } from '../../propTypes';
+import SoknadOppsummering, { Sporsmal } from './Oppsummering';
+import { oppsummeringsoknad as oppsummeringsoknadPt } from '../../propTypes';
 
-const Soknad = ({ ledetekster, sykepengesoknad, apentUtdrag = true, tittel, visVaerKlarOverAt = true }) => {
-    return (<div>
-        <div className="blokk">
-            <Utvidbar tittel={tittel} erApen={apentUtdrag} Overskrift="h2">
-                <Oppsummering ledetekster={ledetekster} sykepengesoknad={sykepengesoknad} />
-            </Utvidbar>
-        </div>
-        {
-            visVaerKlarOverAt && <div
-                className="panel blokk js-vaer-klar-over-at"
-                dangerouslySetInnerHTML={getHtmlLedetekst('sykepengesoknad.oppsummering.vaer-klar-over-at', ledetekster)} />
-        }
-    </div>);
+export { SoknadOppsummering };
+
+export const VaerKlarOverAt = ({ oppsummeringsoknad }) => {
+    const tekst = oppsummeringsoknad.ansvarserklaring.beskrivelse.tekst;
+    return <div className="panel blokk js-vaer-klar-over-at" dangerouslySetInnerHTML={{ __html: tekst }} />;
 };
 
-Soknad.propTypes = {
-    ledetekster: keyValue,
-    sykepengesoknad: sykepengesoknadPt,
-    apentUtdrag: PropTypes.bool,
-    tittel: PropTypes.string,
-    visVaerKlarOverAt: PropTypes.bool,
+VaerKlarOverAt.propTypes = {
+    oppsummeringsoknad: oppsummeringsoknadPt,
 };
 
-export default Soknad;
+export const BekreftetKorrektInformasjon = ({ oppsummeringsoknad }) => {
+    return <Sporsmal sporsmal={oppsummeringsoknad.bekreftetKorrektInformasjon} />;
+};
+
+BekreftetKorrektInformasjon.propTypes = {
+    oppsummeringsoknad: oppsummeringsoknadPt,
+};

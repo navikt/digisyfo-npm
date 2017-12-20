@@ -4,6 +4,7 @@ import * as sykmldstatuser from '../enums/sykmeldingstatuser';
 import * as soknadstatuser from '../enums/sykepengesoknadstatuser';
 import * as inntektskildetyper from '../enums/inntektskildetyper';
 import * as forskutterersvar from '../enums/forskutterersvar';
+import * as sykepengesoknadsvartyper from '../enums/sykepengesoknadsvartyper';
 
 export const tidslinjehendelse = PropTypes.shape({
     antallDager: PropTypes.number,
@@ -246,3 +247,27 @@ export const togglesPt = PropTypes.shape({
     hentet: PropTypes.bool,
 });
 
+export const sykepengesoknadoppsummeringtekst = PropTypes.shape({
+    nokkel: PropTypes.string,
+    tekst: PropTypes.string,
+    verdier: PropTypes.shape(),
+});
+
+export const sykepengesoknadoppsummeringsvar = PropTypes.shape({
+    svartekst: sykepengesoknadoppsummeringtekst,
+    type: PropTypes.oneOf(Object.keys(sykepengesoknadsvartyper)),
+    beskrivelse: sykepengesoknadoppsummeringtekst,
+});
+
+export const sykepengesoknadoppsummeringsporsmal = PropTypes.shape({
+    sporsmalstekst: sykepengesoknadoppsummeringtekst,
+    svar: PropTypes.arrayOf(sykepengesoknadoppsummeringsvar),
+});
+
+export const oppsummeringsoknad = PropTypes.shape({
+    bekreftetKorrektInformasjon: sykepengesoknadoppsummeringsporsmal,
+    oppsummering: PropTypes.arrayOf(sykepengesoknadoppsummeringsporsmal),
+    ansvarserklaring: PropTypes.shape({
+        beskrivelse: sykepengesoknadoppsummeringtekst,
+    }),
+});
