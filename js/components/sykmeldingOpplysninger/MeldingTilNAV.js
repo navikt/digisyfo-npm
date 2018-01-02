@@ -13,7 +13,7 @@ const MeldingTilNAV = ({ sykmelding, ledetekster }) => {
         {
             !sykmelding.meldingTilNav.navBoerTaTakISakenBegrunnelse ? null : <div
                 className="opplysning subopplysning">
-                <h6>{getLedetekst('din-sykmelding.meldingnav.navboertatakisaken.begrunnelse.tittel', ledetekster)}</h6>
+                <h6 className="opplysning__tittel">{getLedetekst('din-sykmelding.meldingnav.navboertatakisaken.begrunnelse.tittel', ledetekster)}</h6>
                 <p className="opplysning__verdi js-navBoerTaTakISakenBegrunnelse">{sykmelding.meldingTilNav.navBoerTaTakISakenBegrunnelse}</p>
             </div>
         }
