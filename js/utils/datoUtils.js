@@ -24,3 +24,28 @@ export const toDatePrettyPrint = (dato) => {
 export function getDuration(from, to) {
     return Math.round(Math.floor(toDate(to) - toDate(from)) / (1000 * 60 * 60 * 24)) + 1;
 }
+
+export const fraInputdatoTilJSDato = (inputDato) => {
+    const datoSplit = inputDato.split('.');
+    let ar = datoSplit[2];
+    if (ar.length === 2) {
+        ar = `20${ar}`;
+    }
+    const s = `${ar}-${datoSplit[1]}-${datoSplit[0]}`;
+    return new Date(s);
+};
+
+export const erGyldigDatoformat = (dato) => {
+    const d = dato.replace(/\./g, '');
+    let s = `${parseInt(d, 10)}`;
+    if (dato.startsWith('0')) {
+        s = `0${s}`;
+    }
+    if (dato.trim().length !== 10) {
+        return false;
+    }
+    if (s.length !== 8) {
+        return false;
+    }
+    return true;
+};
