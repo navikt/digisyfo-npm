@@ -25,6 +25,9 @@ export function scrollTo(el, duration = 500, callback) {
     const context = window;
     const start = context.scrollTop || window.pageYOffset;
     let end;
+    if (!el) {
+        return;
+    }
     if (typeof el === 'number') {
         end = parseInt(el, 10);
     } else {
