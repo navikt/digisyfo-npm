@@ -4,8 +4,7 @@ import { getLedetekst, getHtmlLedetekst, setLedetekster, erReplacements } from '
 describe("LABELS", function () {
 
     afterEach(() => {
-        localStorage.setItem("visLedetekster", null);
-        setLedetekster(undefined);
+        window.APP_SETTINGS.VIS_LEDETEKSTNOKLER = false;
     });
 
     describe("getLedetekst", () => {
@@ -54,8 +53,8 @@ describe("LABELS", function () {
             expect(label).to.equal("0. % sykmeldt");
         });
 
-        it("viser key dersom visLedetekster er satt i localstorage ", function() {
-            localStorage.setItem('visLedetekster', true);
+        it("viser key dersom APP_SETTINGS.VIS_LEDETEKSTNOKLER = true", function() {
+            window.APP_SETTINGS.VIS_LEDETEKSTNOKLER = true;
             const label = getLedetekst("min.ledetekst", {
                 "min.ledetekst": "sykmeldt"
             });
