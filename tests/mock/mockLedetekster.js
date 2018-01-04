@@ -131,6 +131,8 @@ const ledetekster = {
     "din-sykmelding.arbeidsevne.tiltaknav": "Tiltak i regi av/innspill til NAV",
     "din-sykmelding.arbeidssituasjon.tittel": "Din arbeidssituasjon (for denne sykmeldingen)",
     "din-sykmelding.mulighet.for.arbeid.medisinsk.beskriv.tittel": "Beskriv årsaken til at arbeidsrelatert aktivitet ikke er mulig",
+    "din-sykmelding.mulighet.for.arbeid.medisinsk.beskriv.tittel.standard": "Beskriv nærmere",
+    "din-sykmelding.mulighet.for.arbeid.medisinsk.beskriv.tittel.7-uker": "Begrunnelse til NAVs vurdering av aktivitetskravet",
     "sykmelding.teaser.tekst.reisetilskudd.en-dag": "Du har reisetilskudd i %DAGER% dag",
     "tidslinje.uten-arbeidsgiver.dialog.budskap": "<p>NAV skal hjelpe deg med å vurdere dine aktivitetsmuligheter og vil eventuelt innkalle deg til samtale. Husk at du kan registrere din CV på nav.no. Her får du også tilgang til alle offentlig utlyste stillinger. Opplysningene du legger inn, kan brukes i dialogen med NAV.</p><p>Du kan selv ta kontakt med NAV-kontoret der du bor hvis du ikke har fått innkalling og ønsker en samtale med en veileder.</p>",
     "tidslinje.uten-arbeidsgiver.dialog.tittel": "Har du snakket med NAV om sykefraværet?",
