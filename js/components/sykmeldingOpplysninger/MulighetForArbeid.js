@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getLedetekst } from '../../ledetekster';
 import { SykmeldingOpplysning } from './SykmeldingOpplysning';
 import { SykmeldingCheckbox } from './SykmeldingCheckbox';
-import { getSykmeldingCheckbox, getSykmeldingOpplysning } from '../../utils';
+import { getSykmeldingCheckbox, getSykmeldingOpplysning, senesteTom } from '../../utils';
 import { sykmelding as sykmeldingPt, keyValue } from '../../propTypes';
 
 const fjernAnnet = (array) => {
@@ -53,9 +53,22 @@ const MulighetForArbeid = ({ sykmelding, ledetekster }) => {
                 </SykmeldingOpplysning> : null
         }
         {
-            getSykmeldingOpplysning(sykmelding.mulighetForArbeid,
-                'aarsakAktivitetIkkeMulig433',
-                getLedetekst('din-sykmelding.mulighet.for.arbeid.medisinsk.beskriv.tittel', ledetekster))
+            (() => {
+                let nokkel = 'din-sykmelding.mulighet.for.arbeid.medisinsk.beskriv.tittel.standard';
+                if (sykmelding.startLegemeldtFravaer) {
+                    const tom = senesteTom(sykmelding.mulighetForArbeid.perioder);
+                    const ETT_DOGN = 1000 * 60 * 60 * 24;
+                    const SJU_UKER = 7 * 7;
+                    const SYTTEN_UKER = 7 * 17;
+                    const antallDager = ((tom.getTime() - sykmelding.startLegemeldtFravaer.getTime()) / ETT_DOGN) + 1;
+                    if (antallDager >= SJU_UKER && antallDager < SYTTEN_UKER) {
+                        nokkel = 'din-sykmelding.mulighet.for.arbeid.medisinsk.beskriv.tittel.7-uker';
+                    }
+                }
+                return getSykmeldingOpplysning(sykmelding.mulighetForArbeid,
+                    'aarsakAktivitetIkkeMulig433',
+                    getLedetekst(nokkel, ledetekster));
+            })()
         }
         {
             (sykmelding.mulighetForArbeid.aktivitetIkkeMulig434 && sykmelding.mulighetForArbeid.aktivitetIkkeMulig434.length > 0) ?
