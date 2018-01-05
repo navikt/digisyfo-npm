@@ -7,6 +7,7 @@ export * from './sykepengesoknadSporsmal';
 export * from './sykepengesoknadUtils';
 export * from './sykmeldingUtils';
 export * from './valideringUtils';
+export * from './sykeforloepUtils';
 
 // Fra Stack Overflow <3
 Object.byString = function byString(o, s) {
