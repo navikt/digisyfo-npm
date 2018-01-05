@@ -14,6 +14,8 @@ const antallDagerMellom = (dato1, dato2) => {
     return Math.round((dato1 - dato2) / (1000 * 60 * 60 * 24));
 };
 
+const ANTALL_DAGER_MELLOM_TO_SYKEFORLOEP = 16;
+
 export const finnNyesteSykeforloepHosBedrift = (sykmeldinger, virksomhetsnummer) => {
     return sykmeldinger
         .filter((sykmelding) => {
@@ -39,7 +41,7 @@ export const finnNyesteSykeforloepHosBedrift = (sykmeldinger, virksomhetsnummer)
         .reduce((acc, periode) => {
             return {
                 senesteTom: acc.senesteTom,
-                tidligsteFom: antallDagerMellom(acc.tidligsteFom.dato, periode.senesteTom.dato) <= 16 ? periode.tidligsteFom : acc.tidligsteFom,
+                tidligsteFom: antallDagerMellom(acc.tidligsteFom.dato, periode.senesteTom.dato) <= ANTALL_DAGER_MELLOM_TO_SYKEFORLOEP ? periode.tidligsteFom : acc.tidligsteFom,
             };
         });
 };
