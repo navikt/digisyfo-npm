@@ -1,10 +1,10 @@
-const senesteTom = (perioder) => {
+const senestePeriode = (perioder) => {
     return perioder.sort((periode1, periode2) => {
         return periode1.tom.getTime() - periode2.tom.getTime();
     })[0];
 };
 
-const tidligsteFom = (perioder) => {
+const tidligstePeriode = (perioder) => {
     return perioder.sort((periode1, periode2) => {
         return periode2.fom.getTime() - periode1.fom.getTime();
     })[0];
@@ -20,17 +20,17 @@ export const finnNyesteSykeforloepHosBedrift = (sykmeldinger, virksomhetsnummer)
             return sykmelding.orgnummer === virksomhetsnummer;
         })
         .sort((sykmelding1, sykmelding2) => {
-            return senesteTom(sykmelding1.mulighetForArbeid.perioder).tom.getTime() - senesteTom(sykmelding2.mulighetForArbeid.perioder).tom.getTime();
+            return senestePeriode(sykmelding1.mulighetForArbeid.perioder).tom.getTime() - senestePeriode(sykmelding2.mulighetForArbeid.perioder).tom.getTime();
         })
         .map((sykmelding) => {
             return {
                 senesteTom: {
-                    dato: senesteTom(sykmelding.mulighetForArbeid.perioder).tom,
-                    grad: senesteTom(sykmelding.mulighetForArbeid.perioder).grad,
+                    dato: senestePeriode(sykmelding.mulighetForArbeid.perioder).tom,
+                    grad: senestePeriode(sykmelding.mulighetForArbeid.perioder).grad,
                 },
                 tidligsteFom: {
-                    dato: tidligsteFom(sykmelding.mulighetForArbeid.perioder).fom,
-                    grad: tidligsteFom(sykmelding.mulighetForArbeid.perioder).grad,
+                    dato: tidligstePeriode(sykmelding.mulighetForArbeid.perioder).fom,
+                    grad: tidligstePeriode(sykmelding.mulighetForArbeid.perioder).grad,
                     identdato: sykmelding.identdato,
                 },
             };
