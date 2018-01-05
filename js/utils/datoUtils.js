@@ -49,3 +49,10 @@ export const erGyldigDatoformat = (dato) => {
     }
     return true;
 };
+
+const maaneder = ['januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'desember'];
+
+export const langtDatoFormat = (_dato) => {
+    const dato = new Date(_dato);
+    return `${dato.getDate()}. ${maaneder[dato.getMonth()]} ${dato.getFullYear()}`;
+};
