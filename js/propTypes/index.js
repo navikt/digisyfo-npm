@@ -271,3 +271,15 @@ export const oppsummeringsoknad = PropTypes.shape({
         beskrivelse: sykepengesoknadoppsummeringtekst,
     }),
 });
+
+export const sykeforloep = PropTypes.shape({
+    senesteTom: {
+        grad: PropTypes.number,
+        dato: PropTypes.date,
+    },
+    tidligsteFom: {
+        grad: PropTypes.number,
+        dato: PropTypes.date,
+        identdato: PropTypes.date,
+    },
+});
