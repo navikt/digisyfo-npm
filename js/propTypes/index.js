@@ -136,6 +136,7 @@ export const sykepengesoknad = PropTypes.shape({
     tom: PropTypes.instanceOf(Date),
     sykmeldingId: PropTypes.string,
     forrigeSendteSoknadTom: PropTypes.instanceOf(Date),
+    oppsummering: PropTypes.object,
 });
 
 export const sykmeldingdiagnose = PropTypes.shape({
@@ -247,29 +248,32 @@ export const togglesPt = PropTypes.shape({
     hentet: PropTypes.bool,
 });
 
-export const sykepengesoknadoppsummeringtekst = PropTypes.shape({
+export const ledetekst = PropTypes.shape({
     nokkel: PropTypes.string,
     tekst: PropTypes.string,
-    verdier: PropTypes.shape(),
+    verdier: PropTypes.object,
+});
+
+export const tilleggstekst = PropTypes.shape({
+    ledetekst,
+    type: PropTypes.oneOf(Object.keys(sykepengesoknadsvartyper)),
 });
 
 export const sykepengesoknadoppsummeringsvar = PropTypes.shape({
-    svartekst: sykepengesoknadoppsummeringtekst,
+    ledetekst,
     type: PropTypes.oneOf(Object.keys(sykepengesoknadsvartyper)),
-    beskrivelse: sykepengesoknadoppsummeringtekst,
+    tilleggstekst,
 });
 
 export const sykepengesoknadoppsummeringsporsmal = PropTypes.shape({
-    sporsmalstekst: sykepengesoknadoppsummeringtekst,
+    ledetekst,
     svar: PropTypes.arrayOf(sykepengesoknadoppsummeringsvar),
 });
 
 export const oppsummeringsoknad = PropTypes.shape({
     bekreftetKorrektInformasjon: sykepengesoknadoppsummeringsporsmal,
     oppsummering: PropTypes.arrayOf(sykepengesoknadoppsummeringsporsmal),
-    ansvarserklaring: PropTypes.shape({
-        beskrivelse: sykepengesoknadoppsummeringtekst,
-    }),
+    vaerKlarOverAt: tilleggstekst,
 });
 
 export const sykeforloep = PropTypes.shape({

@@ -23,7 +23,7 @@ describe("AndreSykmeldingOpplysninger", () => {
             bekreftelse: {
                 sykmelderTlf: null
             }
-        })} ledetekster={ledetekster}/>)
+        })} ledetekster={ledetekster}/>);
         expect(component.find(".js-sykmelderTlf").length).to.equal(0);
     });
 
