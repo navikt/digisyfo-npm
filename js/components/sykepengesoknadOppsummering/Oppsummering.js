@@ -5,7 +5,7 @@ import {
     oppsummeringsoknad as oppsummeringsoknadPt,
     sykepengesoknadoppsummeringsporsmal as sykepengesoknadoppsummeringsporsmalPt,
     sykepengesoknadoppsummeringsvar,
-    tilleggstekst as tilleggstekstPt,
+    sykepengesoknadoppsummeringtilleggstekst as tilleggstekstPt,
 } from '../../propTypes';
 
 const Avkrysset = ({ tekst }) => {
@@ -44,18 +44,7 @@ const Svarliste = ({ svarliste = [], overskriftsnivaa }) => {
                 undersporsmalsliste={svar.undersporsmal}
                 overskriftsnivaa={overskriftsnivaa} />);
         switch (svar.type) {
-            case CHECKBOX: {
-                return (
-                    <Svar
-                        key={index}
-                        klasser="oppsummering__svarliste"
-                        tilleggstekst={svar.tilleggstekst}
-                        sporsmalsliste={sporsmalsliste}
-                        index={index}>
-                        <Avkrysset tekst={svar.ledetekst.tekst} key={index} />
-                    </Svar>
-                );
-            }
+            case CHECKBOX:
             case RADIOKNAPPER: {
                 return (
                     <Svar

@@ -83,7 +83,6 @@ describe("mapSkjemasoknadToOppsummeringSoknad", () => {
         it("Skal mappe ansvarBekreftet når ansvar er bekreftet", () => {
             skjemasoknad.ansvarBekreftet = true;
             const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
-            console.log(verdier)
             expect(verdier.soknad[0]).to.deep.equal({
                 ledetekst: null,
                 svar: [{
@@ -1073,7 +1072,7 @@ describe("mapSkjemasoknadToOppsummeringSoknad", () => {
     })
 
     describe("Ansvarserklæring", () => {
-        it("Skal mappe om til en tilleggstekst", () => {
+        it("Skal mappe om til en sykepengesoknadoppsummeringtilleggstekst", () => {
             const soknad = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
             expect(soknad.vaerKlarOverAt).to.deep.equal({
                 ledetekst: {
