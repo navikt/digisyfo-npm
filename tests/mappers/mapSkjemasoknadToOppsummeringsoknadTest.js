@@ -1093,7 +1093,7 @@ describe("mapSkjemasoknadToOppsummeringSoknad", () => {
                         tekst: 'Jeg har lest all informasjonen jeg har fått i søknaden og bekrefter at opplysningene jeg har gitt er korrekte.',
                         nokkel: 'sykepengesoknad.oppsummering.bekreft-korrekt-informasjon.label',
                     },
-                    type: "HTML",
+                    type: "CHECKBOX",
                     undersporsmal: [],
                 }]
             });

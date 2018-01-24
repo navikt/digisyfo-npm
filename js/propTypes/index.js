@@ -27,7 +27,7 @@ export const keyValue = function (props, propNavn, componentNavn) {
 export const sykepengesoknadoppsummeringledetekst = PropTypes.shape({
     nokkel: PropTypes.string,
     tekst: PropTypes.string,
-    verdier: keyValue,
+    verdier: PropTypes.shape({}),
 });
 
 export const sykepengesoknadoppsummeringtilleggstekst = PropTypes.shape({

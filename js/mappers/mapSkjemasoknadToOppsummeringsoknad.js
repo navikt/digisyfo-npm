@@ -334,6 +334,6 @@ export default (skjemasoknad, sykepengesoknad) => {
     return {
         soknad,
         vaerKlarOverAt: new Tilleggstekst(getNokkelOgVerdier(nokler[ansvarserklaring]), HTML),
-        bekreftetKorrektInformasjon: new Sporsmal(null, [new Svar(getNokkelOgVerdier(nokler[bekreftetKorrektInformasjon]), HTML)]),
+        bekreftetKorrektInformasjon: new Sporsmal(null, [new Svar(getNokkelOgVerdier(nokler[bekreftetKorrektInformasjon]), CHECKBOX)]),
     };
 };
