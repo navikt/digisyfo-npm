@@ -36,7 +36,6 @@ describe("mapSkjemasoknadToOppsummeringSoknad", () => {
             'sykepengesoknad.ferie-permisjon-utenlandsopphold.janei.sporsmal': 'Har du hatt ferie, permisjon eller oppholdt deg utenfor Norge i perioden %FOM%–%TOM%?',
             'sykepengesoknad.ferie-permisjon-utenlandsopphold.tatt-ut-ferie': 'hatt ferie',
             'sykepengesoknad.ferie-permisjon-utenlandsopphold.hatt-permisjon': 'hatt permisjon',
-            'sykepengesoknad.ferie-permisjon-utenlandsopphold.hatt-permisjon': 'hatt permisjon',
             'sykepengesoknad.ferie-permisjon-utenlandsopphold.oppholdt-meg-utenfor-norge': 'oppholdt meg utenfor Norge',
             'sykepengesoknad.ferie-permisjon-utenlandsopphold.sokt-om-sykepenger.sporsmal': 'Har du søkt om å beholde sykepenger under dette oppholdet utenfor Norge?',
             'sykepengesoknad.aktiviteter.ugradert.spoersmal-2': 'I perioden %FOM%–%TOM% var du 100 % sykmeldt fra %ARBEIDSGIVER%. Jobbet du noe i denne perioden?',
@@ -44,7 +43,7 @@ describe("mapSkjemasoknadToOppsummeringSoknad", () => {
             'sykepengesoknad.angi-tid.normal-arbeidstimer.sporsmal': 'Hvor mange timer jobber du normalt per uke?',
             'sykepengesoknad.angi-tid.normal-arbeidstimer.label-med-verdi': '%ANTALL% timer per uke',
             'sykepengesoknad.aktiviteter.avvik.hvor-mye-har-du-jobbet-totalt': 'Hvor mye jobbet du totalt i denne perioden hos %ARBEIDSGIVER%?',
-            'sykepengesoknad.angi-tid.velg-enhet.label.timer-med-verdi': '%ANTALL% timer per uke',
+            'sykepengesoknad.angi-tid.velg-enhet.label.timer-med-verdi': '%ANTALL% timer totalt',
             'sykepengesoknad.angi-tid.velg-enhet.label.prosent-med-verdi': '%ANTALL% prosent per uke',
             'sykepengesoknad.angi-tid.dette-tilsvarer': 'Vår foreløpige beregning er at du jobbet <strong>%STILLINGSPROSENT% %</strong> av stillingen din.',
             'sykepengesoknad.andre-inntektskilder.janei.sporsmal': 'Har du andre inntektskilder, eller jobber du for andre enn %ARBEIDSGIVER%?',
@@ -711,7 +710,7 @@ describe("mapSkjemasoknadToOppsummeringSoknad", () => {
                                 svar: [{
                                     ledetekst: {
                                         nokkel: 'sykepengesoknad.angi-tid.velg-enhet.label.timer-med-verdi',
-                                        tekst: "15 timer per uke",
+                                        tekst: "15 timer totalt",
                                         verdier: {
                                             '%ANTALL%': "15",
                                         },
