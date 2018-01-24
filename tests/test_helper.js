@@ -27,7 +27,7 @@ const localS = {
 
 global.HTMLElement = window.HTMLElement;
 global.localStorage = localS;
-
+window.APP_SETTINGS = {};
 global.window = window;
 global.document = window.document;
 global.navigator = {

@@ -15,10 +15,10 @@ describe("ledetekster_actions", () => {
 	});
 
 	it("Should have a ledeteksterHentet action that returns a proper function", () => {
-		expect(actions.ledeteksterHentet({tekst: "Min ledetekst"})).to.deep.equal({
+		expect(actions.ledeteksterHentet({tekst: "Min sykepengesoknadoppsummeringledetekst"})).to.deep.equal({
 			type: 'LEDETEKSTER_HENTET',
 			ledetekster: {
-				tekst: "Min ledetekst"
+				tekst: "Min sykepengesoknadoppsummeringledetekst"
 			}
 		});
 	});

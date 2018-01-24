@@ -9,7 +9,7 @@ describe("LABELS", function () {
 
     describe("getLedetekst", () => {
 
-        it("Skal gi beskjed hvis en ledetekst ikke finnes", function () {
+        it("Skal gi beskjed hvis en sykepengesoknadoppsummeringledetekst ikke finnes", function () {
             const ledetekster = {
                 "min.tekst": "Min tekst"
             }

@@ -6,22 +6,6 @@ import * as inntektskildetyper from '../enums/inntektskildetyper';
 import * as forskutterersvar from '../enums/forskutterersvar';
 import * as sykepengesoknadsvartyper from '../enums/sykepengesoknadsvartyper';
 
-export const tidslinjehendelse = PropTypes.shape({
-    antallDager: PropTypes.number,
-    bilde: PropTypes.string,
-    data: PropTypes.object,
-    id: PropTypes.string,
-    inntruffetdato: PropTypes.date,
-    tekstkey: PropTypes.string,
-    type: PropTypes.string,
-    erApen: PropTypes.bool,
-    medAnimasjon: PropTypes.bool,
-    hindreToggle: PropTypes.bool,
-    hoyde: PropTypes.string,
-    visBudskap: PropTypes.bool,
-    alt: PropTypes.number,
-});
-
 export const keyValue = function (props, propNavn, componentNavn) {
     const obj = props[propNavn];
     if (!obj) {
@@ -39,6 +23,50 @@ export const keyValue = function (props, propNavn, componentNavn) {
         return new Error(`${propNavn} er ugyldig propType...`, e);
     }
 };
+
+export const sykepengesoknadoppsummeringledetekst = PropTypes.shape({
+    nokkel: PropTypes.string,
+    tekst: PropTypes.string,
+    verdier: keyValue,
+});
+
+export const sykepengesoknadoppsummeringtilleggstekst = PropTypes.shape({
+    ledetekst: sykepengesoknadoppsummeringledetekst,
+    type: PropTypes.oneOf(Object.keys(sykepengesoknadsvartyper)),
+});
+
+export const sykepengesoknadoppsummeringsvar = PropTypes.shape({
+    ledetekst: sykepengesoknadoppsummeringledetekst,
+    type: PropTypes.oneOf(Object.keys(sykepengesoknadsvartyper)),
+    tilleggstekst: sykepengesoknadoppsummeringtilleggstekst,
+});
+
+export const sykepengesoknadoppsummeringsporsmal = PropTypes.shape({
+    ledetekst: sykepengesoknadoppsummeringledetekst,
+    svar: PropTypes.arrayOf(sykepengesoknadoppsummeringsvar),
+});
+
+export const oppsummeringsoknad = PropTypes.shape({
+    bekreftetKorrektInformasjon: sykepengesoknadoppsummeringsporsmal,
+    oppsummering: PropTypes.arrayOf(sykepengesoknadoppsummeringsporsmal),
+    vaerKlarOverAt: sykepengesoknadoppsummeringtilleggstekst,
+});
+
+export const tidslinjehendelse = PropTypes.shape({
+    antallDager: PropTypes.number,
+    bilde: PropTypes.string,
+    data: PropTypes.object,
+    id: PropTypes.string,
+    inntruffetdato: PropTypes.date,
+    tekstkey: PropTypes.string,
+    type: PropTypes.string,
+    erApen: PropTypes.bool,
+    medAnimasjon: PropTypes.bool,
+    hindreToggle: PropTypes.bool,
+    hoyde: PropTypes.string,
+    visBudskap: PropTypes.bool,
+    alt: PropTypes.number,
+});
 
 export const arbeidssituasjon = PropTypes.oneOf([
     arbeidssituasjoner.ARBEIDSTAKER,
@@ -136,6 +164,7 @@ export const sykepengesoknad = PropTypes.shape({
     tom: PropTypes.instanceOf(Date),
     sykmeldingId: PropTypes.string,
     forrigeSendteSoknadTom: PropTypes.instanceOf(Date),
+    oppsummering: oppsummeringsoknad,
 });
 
 export const sykmeldingdiagnose = PropTypes.shape({
@@ -245,31 +274,6 @@ export const togglesPt = PropTypes.shape({
     henter: PropTypes.bool,
     hentingFeilet: PropTypes.bool,
     hentet: PropTypes.bool,
-});
-
-export const sykepengesoknadoppsummeringtekst = PropTypes.shape({
-    nokkel: PropTypes.string,
-    tekst: PropTypes.string,
-    verdier: PropTypes.shape(),
-});
-
-export const sykepengesoknadoppsummeringsvar = PropTypes.shape({
-    svartekst: sykepengesoknadoppsummeringtekst,
-    type: PropTypes.oneOf(Object.keys(sykepengesoknadsvartyper)),
-    beskrivelse: sykepengesoknadoppsummeringtekst,
-});
-
-export const sykepengesoknadoppsummeringsporsmal = PropTypes.shape({
-    sporsmalstekst: sykepengesoknadoppsummeringtekst,
-    svar: PropTypes.arrayOf(sykepengesoknadoppsummeringsvar),
-});
-
-export const oppsummeringsoknad = PropTypes.shape({
-    bekreftetKorrektInformasjon: sykepengesoknadoppsummeringsporsmal,
-    oppsummering: PropTypes.arrayOf(sykepengesoknadoppsummeringsporsmal),
-    ansvarserklaring: PropTypes.shape({
-        beskrivelse: sykepengesoknadoppsummeringtekst,
-    }),
 });
 
 export const sykeforloep = PropTypes.shape({
