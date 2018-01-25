@@ -93,7 +93,7 @@ Svarliste.propTypes = {
 };
 
 const Undersporsmalsliste = ({ undersporsmalsliste, overskriftsnivaa }) => {
-    if (!undersporsmalsliste) {
+    if (!undersporsmalsliste || undersporsmalsliste.length === 0) {
         return null;
     }
     if (undersporsmalsliste.length === 1 && !undersporsmalsliste[0].ledetekst) {
