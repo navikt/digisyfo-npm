@@ -320,9 +320,9 @@ export default (skjemasoknad, sykepengesoknad) => {
         return new Sporsmal(getSporsmalsledetekst(felt, sykepengesoknad, skjemasoknad), getJaEllerNeiSvar(Object.byString(skjemasoknad, felt)));
     });
 
-
     /* Arbeidsspørsmålet er et array av Sporsmal, mens de andre spørsmålene er Sporsmal-instanser.
     Vi må derfor pakke arbeidsspørsmålet ut slik at det ligger på samme nivå som de andre spørsmålene */
+
     const indeksForArbeidssporsmal = 4;
     const soknad = [...returverdi.slice(0, indeksForArbeidssporsmal),
         ...returverdi[indeksForArbeidssporsmal],

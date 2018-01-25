@@ -1,21 +1,21 @@
 import React from 'react';
 import SoknadOppsummering, { Sporsmal, Tilleggstekst } from './Oppsummering';
-import { sykepengesoknadoppsummeringsporsmal, sykepengesoknadoppsummeringtilleggstekst } from '../../propTypes/';
+import { oppsummeringsoknad as oppsummeringsoknadPt } from '../../propTypes';
 
-export const VaerKlarOverAt = ({ vaerKlarOverAt }) => {
-    return (<Tilleggstekst tilleggstekst={vaerKlarOverAt} stylingklasser="panel blokk js-vaer-klar-over-at" />);
+export const VaerKlarOverAt = ({ oppsummeringsoknad }) => {
+    return (<Tilleggstekst tilleggstekst={oppsummeringsoknad.vaerKlarOverAt} stylingklasser="panel blokk js-vaer-klar-over-at" />);
 };
 
 VaerKlarOverAt.propTypes = {
-    vaerKlarOverAt: sykepengesoknadoppsummeringtilleggstekst,
+    oppsummeringsoknad: oppsummeringsoknadPt,
 };
 
-export const BekreftetKorrektInformasjon = ({ bekreftetKorrektInformasjon }) => {
-    return <Sporsmal sporsmal={bekreftetKorrektInformasjon} />;
+export const BekreftetKorrektInformasjon = ({ oppsummeringsoknad }) => {
+    return <Sporsmal sporsmal={oppsummeringsoknad.bekreftetKorrektInformasjon} />;
 };
 
 BekreftetKorrektInformasjon.propTypes = {
-    bekreftetKorrektInformasjon: sykepengesoknadoppsummeringsporsmal,
+    oppsummeringsoknad: oppsummeringsoknadPt,
 };
 
 export { SoknadOppsummering };
