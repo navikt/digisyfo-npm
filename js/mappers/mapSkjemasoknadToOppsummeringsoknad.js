@@ -102,7 +102,7 @@ sporsmalIder[harGjenopptattArbeidFulltUt] = gjenopptattArbeidFulltUtId;
 sporsmalIder[harHattFeriePermisjonEllerUtenlandsopphold] = feriePermisjonUtenlandsoppholdId;
 sporsmalIder[aktiviteter] = aktiviteterId;
 sporsmalIder[harAndreInntektskilder] = inntektskilderId;
-sporsmalIder[underUtdanningISykmeldingsperioden] = utdanningId
+sporsmalIder[underUtdanningISykmeldingsperioden] = utdanningId;
 sporsmalIder[arbeidsgiverForskutterer] = arbeidsgiverForskuttererId;
 
 const getNokkelOgVerdier = (nokkel, verdier) => {
@@ -205,7 +205,7 @@ const tilGjenopptattArbeidFulltUt = (skjemasoknad, sykepengesoknad, felt) => {
     return new Sporsmal(
         getSporsmalsledetekst(felt, sykepengesoknad, skjemasoknad),
         getJaEllerNeiSvar(Object.byString(skjemasoknad, felt), [undersporsmalGjenopptattArbeid]),
-        sporsmalIder[felt]
+        sporsmalIder[felt],
     );
 };
 
@@ -239,7 +239,7 @@ const tilFeriePermisjonOgUtenlandsopphold = (skjemasoknad, sykepengesoknad, felt
         getSporsmalsledetekst(felt, sykepengesoknad, skjemasoknad),
         getJaEllerNeiSvar(Object.byString(skjemasoknad, felt), [undersporsmal]),
         sporsmalIder[felt],
-        );
+    );
 };
 
 const tilAktiviteterSpm = (skjemasoknad, sykepengesoknad, felt) => {
@@ -277,8 +277,8 @@ const tilAktiviteterSpm = (skjemasoknad, sykepengesoknad, felt) => {
         return new Sporsmal(
             getAktivitetssporsmal(aktivitet, sykepengesoknad.arbeidsgiver.navn, getNokkelOgVerdier),
             getJaEllerNeiSvar(harAvvik, undersporsmal),
-            `${sporsmalIder[felt]}-${aktivitetIndex}`
-            );
+            `${sporsmalIder[felt]}-${aktivitetIndex}`,
+        );
     });
 };
 
@@ -343,8 +343,8 @@ export default (skjemasoknad, sykepengesoknad) => {
             return new Sporsmal(
                 getSporsmalsledetekst(felt, sykepengesoknad, skjemasoknad),
                 getJaEllerNeiSvar(Object.byString(skjemasoknad, felt), [startdatoSporsmal, fulltidsstudiumSporsmal]),
-                sporsmalIder[felt]
-                );
+                sporsmalIder[felt],
+            );
         }
 
         if (felt === arbeidsgiverForskutterer) {
