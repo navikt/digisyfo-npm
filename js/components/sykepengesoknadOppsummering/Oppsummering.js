@@ -116,7 +116,7 @@ Undersporsmalsliste.propTypes = {
 export const Sporsmal = ({ sporsmal, overskriftsnivaa = 1 }) => {
     const Overskriftstag = `h${overskriftsnivaa}`;
     if (sporsmal.ledetekst) {
-        return (<div className="oppsummering__sporsmalscontainer">
+        return (<div className="oppsummering__sporsmalscontainer" id={sporsmal.id ? `${sporsmal.id}-sporsmal` : null}>
             <Overskriftstag className="oppsummering__sporsmal">{sporsmal.ledetekst.tekst}</Overskriftstag>
             <Svarliste svarliste={sporsmal.svar} overskriftsnivaa={overskriftsnivaa + 1} />
         </div>);
