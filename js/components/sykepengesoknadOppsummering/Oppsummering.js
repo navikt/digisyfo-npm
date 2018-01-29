@@ -140,7 +140,7 @@ export const getSporsmalid = (type, index) => {
     };
 
     const typetekst = sporsmalstypeMap[type];
-    return type === aktiviteterType ? `${typetekst}-${index}` : typetekst;
+    return type === aktiviteterType ? `${typetekst}-${index}-sporsmal` : `${typetekst}-sporsmal`;
 };
 
 export const Sporsmal = ({ sporsmal, overskriftsnivaa = 1, index }) => {

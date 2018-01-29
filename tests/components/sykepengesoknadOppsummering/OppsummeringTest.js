@@ -8,11 +8,11 @@ const expect = chai.expect;
 describe('Oppsummering', () => {
     it('skal ha med index i sporsmalsid for aktiviteter spørsmål', () => {
         const sporsmalsid = getSporsmalid(aktiviteterType, 10);
-        expect(sporsmalsid).to.equal('aktiviteter-10');
+        expect(sporsmalsid).to.equal('aktiviteter-10-sporsmal');
     });
 
     it('skal ikke ha med index i sporsmalsid for ansvarbekreftet spørsmål', () => {
         const sporsmalsid = getSporsmalid(ansvarBekreftetType, 1);
-        expect(sporsmalsid).to.equal('ansvarBekreftet');
+        expect(sporsmalsid).to.equal('ansvarBekreftet-sporsmal');
     });
 });
