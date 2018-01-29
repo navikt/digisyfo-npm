@@ -15,7 +15,6 @@ import {
     feriePermisjonUtenlandsoppholdType,
     gjenopptattArbeidFulltUtType,
     inntektskilderType,
-    sporsmalstyper,
     utdanningType,
 } from '../../enums/sporsmalstyper';
 
@@ -124,7 +123,7 @@ Undersporsmalsliste.propTypes = {
     overskriftsnivaa: PropTypes.number,
 };
 
-const getSporsmalid = (type, index) => {
+export const getSporsmalid = (type, index) => {
     if (!type) {
         return null;
     }
@@ -141,7 +140,7 @@ const getSporsmalid = (type, index) => {
     };
 
     const typetekst = sporsmalstypeMap[type];
-    return type === sporsmalstyper[aktiviteterType] ? `${typetekst}-${index}` : typetekst;
+    return type === aktiviteterType ? `${typetekst}-${index}` : typetekst;
 };
 
 export const Sporsmal = ({ sporsmal, overskriftsnivaa = 1, index }) => {

@@ -5,6 +5,7 @@ import * as soknadstatuser from '../enums/sykepengesoknadstatuser';
 import * as inntektskildetyper from '../enums/inntektskildetyper';
 import * as forskutterersvar from '../enums/forskutterersvar';
 import * as sykepengesoknadsvartyper from '../enums/sykepengesoknadsvartyper';
+import sporsmalstyper from '../enums/sporsmalstyper';
 
 export const keyValue = function (props, propNavn, componentNavn) {
     const obj = props[propNavn];
@@ -44,6 +45,7 @@ export const sykepengesoknadoppsummeringsvar = PropTypes.shape({
 export const sykepengesoknadoppsummeringsporsmal = PropTypes.shape({
     ledetekst: sykepengesoknadoppsummeringledetekst,
     svar: PropTypes.arrayOf(sykepengesoknadoppsummeringsvar),
+    type: PropTypes.oneOf(Object.values(sporsmalstyper)),
 });
 
 export const oppsummeringsoknad = PropTypes.shape({

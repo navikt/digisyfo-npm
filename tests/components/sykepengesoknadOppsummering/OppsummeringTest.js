@@ -1,0 +1,18 @@
+/* eslint-env mocha */
+import chai from 'chai';
+import { getSporsmalid } from '../../../js/components/sykepengesoknadOppsummering/Oppsummering';
+import { aktiviteterType, ansvarBekreftetType } from '../../../js/enums/sporsmalstyper';
+
+const expect = chai.expect;
+
+describe('Oppsummering', () => {
+    it('skal ha med index i sporsmalsid for aktiviteter spørsmål', () => {
+        const sporsmalsid = getSporsmalid(aktiviteterType, 10);
+        expect(sporsmalsid).to.equal('aktiviteter-10');
+    });
+
+    it('skal ikke ha med index i sporsmalsid for ansvarbekreftet spørsmål', () => {
+        const sporsmalsid = getSporsmalid(ansvarBekreftetType, 1);
+        expect(sporsmalsid).to.equal('ansvarBekreftet');
+    });
+});
