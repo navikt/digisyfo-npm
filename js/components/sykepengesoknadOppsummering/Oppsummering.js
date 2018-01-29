@@ -7,6 +7,17 @@ import {
     sykepengesoknadoppsummeringsvar,
     sykepengesoknadoppsummeringtilleggstekst as tilleggstekstPt,
 } from '../../propTypes';
+import {
+    aktiviteterType,
+    ansvarBekreftetType,
+    arbeidsgiverForskuttererType,
+    egenmeldingsdagerType,
+    feriePermisjonUtenlandsoppholdType,
+    gjenopptattArbeidFulltUtType,
+    inntektskilderType,
+    sporsmalstyper,
+    utdanningType,
+} from '../../enums/sporsmalstyper';
 
 const Avkrysset = ({ tekst }) => {
     return (<div className="oppsummering__avkrysset">
@@ -113,10 +124,30 @@ Undersporsmalsliste.propTypes = {
     overskriftsnivaa: PropTypes.number,
 };
 
-export const Sporsmal = ({ sporsmal, overskriftsnivaa = 1 }) => {
+const getSporsmalid = (type, index) => {
+    if (!type) {
+        return null;
+    }
+
+    const sporsmalstypeMap = {
+        [ansvarBekreftetType]: 'ansvarBekreftet',
+        [egenmeldingsdagerType]: 'egenmeldingsdager',
+        [gjenopptattArbeidFulltUtType]: 'gjenopptattArbeidFulltUt',
+        [feriePermisjonUtenlandsoppholdType]: 'feriePermisjonUtenlandsopphold',
+        [aktiviteterType]: 'aktiviteter',
+        [inntektskilderType]: 'inntektskilder',
+        [utdanningType]: 'utdanning',
+        [arbeidsgiverForskuttererType]: 'arbeidsgiverForskutterer',
+    };
+
+    const typetekst = sporsmalstypeMap[type];
+    return type === sporsmalstyper[aktiviteterType] ? `${typetekst}-${index}` : typetekst;
+};
+
+export const Sporsmal = ({ sporsmal, overskriftsnivaa = 1, index }) => {
     const Overskriftstag = `h${overskriftsnivaa}`;
     if (sporsmal.ledetekst) {
-        return (<div className="oppsummering__sporsmalscontainer" id={sporsmal.id ? `${sporsmal.id}-sporsmal` : null}>
+        return (<div className="oppsummering__sporsmalscontainer" id={getSporsmalid(sporsmal.type, index)}>
             <Overskriftstag className="oppsummering__sporsmal">{sporsmal.ledetekst.tekst}</Overskriftstag>
             <Svarliste svarliste={sporsmal.svar} overskriftsnivaa={overskriftsnivaa + 1} />
         </div>);
@@ -127,6 +158,7 @@ export const Sporsmal = ({ sporsmal, overskriftsnivaa = 1 }) => {
 Sporsmal.propTypes = {
     sporsmal: sykepengesoknadoppsummeringsporsmalPt,
     overskriftsnivaa: PropTypes.number,
+    index: PropTypes.number,
 };
 
 export const Tilleggstekst = ({ tilleggstekst, stylingklasser }) => {
@@ -157,7 +189,7 @@ const SoknadOppsummering = ({ oppsummeringsoknad }) => {
         {
             oppsummeringsoknad.soknad.map((hovedsporsmal, i) => {
                 return (<div className="oppsummering__seksjon" key={`seksjon-${i}`}>
-                    <Sporsmal sporsmal={hovedsporsmal} overskriftsnivaa={3} />
+                    <Sporsmal sporsmal={hovedsporsmal} overskriftsnivaa={3} index={i} />
                 </div>);
             })
         }

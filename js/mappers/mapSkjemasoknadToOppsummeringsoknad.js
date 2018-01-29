@@ -11,6 +11,7 @@ import {
 import { CHECKBOX, DATO, DATOSPENN, HTML, RADIOKNAPPER, TEKSTSVAR } from '../enums/sykepengesoknadsvartyper';
 import { ANNET } from '../enums/inntektskildetyper';
 import * as skjemafelter from '../enums/sykepengesoknadskjemafelter';
+import sporsmalstyper from '../enums/sporsmalstyper';
 
 const {
     ansvarBekreftet,
@@ -85,26 +86,6 @@ nokler.nei = 'sykepengesoknad.nei';
 nokler[ansvarserklaring] = 'sykepengesoknad.oppsummering.vaer-klar-over-at';
 nokler[bekreftetKorrektInformasjon] = 'sykepengesoknad.oppsummering.bekreft-korrekt-informasjon.label';
 
-export const sporsmalIder = {};
-
-export const ansvarBekreftetId = 'ansvarBekreftet';
-export const egenmeldingsdagerId = 'egenmeldingsdager';
-export const gjenopptattArbeidFulltUtId = 'gjenopptattArbeidFulltUt';
-export const feriePermisjonUtenlandsoppholdId = 'feriePermisjonUtenlandsopphold';
-export const aktiviteterId = 'aktiviteter';
-export const inntektskilderId = 'inntektskilder';
-export const utdanningId = 'utdanning';
-export const arbeidsgiverForskuttererId = 'arbeidsgiverForskutterer';
-
-sporsmalIder[ansvarBekreftet] = ansvarBekreftetId;
-sporsmalIder[bruktEgenmeldingsdagerFoerLegemeldtFravaer] = egenmeldingsdagerId;
-sporsmalIder[harGjenopptattArbeidFulltUt] = gjenopptattArbeidFulltUtId;
-sporsmalIder[harHattFeriePermisjonEllerUtenlandsopphold] = feriePermisjonUtenlandsoppholdId;
-sporsmalIder[aktiviteter] = aktiviteterId;
-sporsmalIder[harAndreInntektskilder] = inntektskilderId;
-sporsmalIder[underUtdanningISykmeldingsperioden] = utdanningId;
-sporsmalIder[arbeidsgiverForskutterer] = arbeidsgiverForskuttererId;
-
 const getNokkelOgVerdier = (nokkel, verdier) => {
     const tekst = getLedetekst(nokkel, verdier);
     if (verdier) {
@@ -165,11 +146,11 @@ export const Tilleggstekst = function (ledetekst, type) {
     this.type = type;
 };
 
-export const Sporsmal = function (ledetekst, svar, id) {
+export const Sporsmal = function (ledetekst, svar, type) {
     this.ledetekst = ledetekst;
     this.svar = svar;
-    if (id) {
-        this.id = id;
+    if (type) {
+        this.type = type;
     }
 };
 
@@ -193,7 +174,7 @@ const tilEgenmeldingFoerLegemeldt = (skjemasoknad, sykepengesoknad, felt) => {
     return new Sporsmal(
         getSporsmalsledetekst(felt, sykepengesoknad, skjemasoknad),
         getJaEllerNeiSvar(Object.byString(skjemasoknad, felt), [undersporsmalEgenmeldingsperioder]),
-        sporsmalIder[felt],
+        sporsmalstyper[felt],
     );
 };
 
@@ -205,7 +186,7 @@ const tilGjenopptattArbeidFulltUt = (skjemasoknad, sykepengesoknad, felt) => {
     return new Sporsmal(
         getSporsmalsledetekst(felt, sykepengesoknad, skjemasoknad),
         getJaEllerNeiSvar(Object.byString(skjemasoknad, felt), [undersporsmalGjenopptattArbeid]),
-        sporsmalIder[felt],
+        sporsmalstyper[felt],
     );
 };
 
@@ -238,12 +219,12 @@ const tilFeriePermisjonOgUtenlandsopphold = (skjemasoknad, sykepengesoknad, felt
     return new Sporsmal(
         getSporsmalsledetekst(felt, sykepengesoknad, skjemasoknad),
         getJaEllerNeiSvar(Object.byString(skjemasoknad, felt), [undersporsmal]),
-        sporsmalIder[felt],
+        sporsmalstyper[felt],
     );
 };
 
 const tilAktiviteterSpm = (skjemasoknad, sykepengesoknad, felt) => {
-    return skjemasoknad.aktiviteter.map((aktivitet, aktivitetIndex) => {
+    return skjemasoknad.aktiviteter.map((aktivitet) => {
         const harAvvik = aktivitet.jobbetMerEnnPlanlagt;
         let undersporsmal = [];
 
@@ -277,7 +258,7 @@ const tilAktiviteterSpm = (skjemasoknad, sykepengesoknad, felt) => {
         return new Sporsmal(
             getAktivitetssporsmal(aktivitet, sykepengesoknad.arbeidsgiver.navn, getNokkelOgVerdier),
             getJaEllerNeiSvar(harAvvik, undersporsmal),
-            `${sporsmalIder[felt]}-${aktivitetIndex}`,
+            sporsmalstyper[felt],
         );
     });
 };
@@ -300,7 +281,7 @@ const tilAndreInntektskilder = (skjemasoknad, sykepengesoknad, felt) => {
     return new Sporsmal(
         getSporsmalsledetekst(felt, sykepengesoknad, skjemasoknad),
         getJaEllerNeiSvar(Object.byString(skjemasoknad, felt), undersporsmal),
-        sporsmalIder[felt],
+        sporsmalstyper[felt],
     );
 };
 
@@ -325,7 +306,7 @@ export default (skjemasoknad, sykepengesoknad) => {
                 }
                 case ansvarBekreftet: {
                     const svar = new Svar(getNokkelOgVerdier(nokler[ansvarBekreftet]), CHECKBOX);
-                    return new Sporsmal(null, [svar], sporsmalIder[felt]);
+                    return new Sporsmal(null, [svar], sporsmalstyper[felt]);
                 }
                 default: {
                     break;
@@ -343,7 +324,7 @@ export default (skjemasoknad, sykepengesoknad) => {
             return new Sporsmal(
                 getSporsmalsledetekst(felt, sykepengesoknad, skjemasoknad),
                 getJaEllerNeiSvar(Object.byString(skjemasoknad, felt), [startdatoSporsmal, fulltidsstudiumSporsmal]),
-                sporsmalIder[felt],
+                sporsmalstyper[felt],
             );
         }
 
@@ -354,10 +335,10 @@ export default (skjemasoknad, sykepengesoknad) => {
             const nokkel = nokler[`arbeidsgiverForskuttererSvar${skjemasoknad.arbeidsgiverForskutterer}`];
             const svar = new Svar(getNokkelOgVerdier(nokkel), RADIOKNAPPER);
 
-            return new Sporsmal(getSporsmalsledetekst(arbeidsgiverForskutterer), [svar], sporsmalIder[felt]);
+            return new Sporsmal(getSporsmalsledetekst(arbeidsgiverForskutterer), [svar], sporsmalstyper[felt]);
         }
 
-        return new Sporsmal(getSporsmalsledetekst(felt, sykepengesoknad, skjemasoknad), getJaEllerNeiSvar(Object.byString(skjemasoknad, felt)), sporsmalIder[felt]);
+        return new Sporsmal(getSporsmalsledetekst(felt, sykepengesoknad, skjemasoknad), getJaEllerNeiSvar(Object.byString(skjemasoknad, felt)), sporsmalstyper[felt]);
     });
 
     /* Arbeidsspørsmålet er et array av Sporsmal, mens de andre spørsmålene er Sporsmal-instanser.

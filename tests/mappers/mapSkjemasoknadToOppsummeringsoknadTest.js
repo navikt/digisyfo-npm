@@ -3,18 +3,15 @@ import deepFreeze from 'deep-freeze';
 import { setLedetekster } from '../../js/ledetekster';
 
 import { getSoknad } from '../mock/mockSoknader';
-import mapSkjemasoknadToOppsummeringSoknad, { 
-    ansvarBekreftetId,
-    egenmeldingsdagerId,
-    gjenopptattArbeidFulltUtId,
-    feriePermisjonUtenlandsoppholdId,
-    aktiviteterId,
-    inntektskilderId,
-    utdanningId,
-    arbeidsgiverForskuttererId } from '../../js/mappers/mapSkjemasoknadToOppsummeringsoknad';
+import mapSkjemasoknadToOppsummeringSoknad from '../../js/mappers/mapSkjemasoknadToOppsummeringsoknad';
 import * as inntektskildetyper_ from '../../js/enums/inntektskildetyper';
 
-import * as utils from '../../js/utils'
+import {
+    aktiviteterType, ansvarBekreftetType,
+    arbeidsgiverForskuttererType, egenmeldingsdagerType, feriePermisjonUtenlandsoppholdType,
+    gjenopptattArbeidFulltUtType, inntektskilderType,
+    utdanningType
+} from '../../js/enums/sporsmalstyper';
 
 const expect = chai.expect;
 
@@ -24,7 +21,7 @@ const inntektskildetyper = Object.keys(inntektskildetyper_).map((key) => {
     };
 });
 
-describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
+describe("mapSkjemasoknadToOppsummeringSoknad", () => {
 
     let skjemasoknad;
     let sykepengesoknad;
@@ -91,7 +88,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
             skjemasoknad.ansvarBekreftet = true;
             const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
             expect(verdier.soknad[0]).to.deep.equal({
-                id: ansvarBekreftetId,
+                type: ansvarBekreftetType,
                 ledetekst: null,
                 svar: [{
                     ledetekst: {
@@ -115,7 +112,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
                 sykepengesoknad.identdato = new Date("2017-02-18");
                 const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
                 expect(verdier.soknad[1]).to.deep.equal({
-                    id: egenmeldingsdagerId,
+                    type: egenmeldingsdagerType,
                     ledetekst: {
                         nokkel: 'sykepengesoknad.egenmeldingsdager.janei.sporsmal',
                         verdier: {
@@ -147,7 +144,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
                 it("Skal mappe bruktEgenmeldingsdagerFoerLegemeldtFravaer og egenmeldingsperioder", () => {
                     const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
                     expect(verdier.soknad[1]).to.deep.equal({
-                        id: egenmeldingsdagerId,
+                        type: egenmeldingsdagerType,
                         ledetekst: {
                             nokkel: 'sykepengesoknad.egenmeldingsdager.janei.sporsmal',
                             verdier: {
@@ -190,7 +187,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
                 skjemasoknad.harGjenopptattArbeidFulltUt = false;
                 const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
                 expect(verdier.soknad[2]).to.deep.equal({
-                    id: gjenopptattArbeidFulltUtId,
+                    type: gjenopptattArbeidFulltUtType,
                     ledetekst: {
                         nokkel: 'sykepengesoknad.gjenopptatt-arbeid-fullt-ut.janei.sporsmal',
                         verdier: {
@@ -214,7 +211,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
                 skjemasoknad.gjenopptattArbeidFulltUtDato = "05.01.2017";
                 const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
                 expect(verdier.soknad[2]).to.deep.equal({
-                    id: gjenopptattArbeidFulltUtId,
+                    type: gjenopptattArbeidFulltUtType,
                     ledetekst: {
                         nokkel: 'sykepengesoknad.gjenopptatt-arbeid-fullt-ut.janei.sporsmal',
                         verdier: {
@@ -253,7 +250,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
                 skjemasoknad.harHattFeriePermisjonEllerUtenlandsopphold = false;
                 const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
                 expect(verdier.soknad[3]).to.deep.equal({
-                    id: feriePermisjonUtenlandsoppholdId,
+                    type: feriePermisjonUtenlandsoppholdType,
                     ledetekst: {
                         nokkel: 'sykepengesoknad.ferie-permisjon-utenlandsopphold.janei.sporsmal',
                         verdier: {
@@ -283,7 +280,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
                 const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
 
                 expect(verdier.soknad[3]).to.deep.equal({
-                    id: feriePermisjonUtenlandsoppholdId,
+                    type: feriePermisjonUtenlandsoppholdType,
                     ledetekst: {
                         nokkel: 'sykepengesoknad.ferie-permisjon-utenlandsopphold.janei.sporsmal',
                         verdier: {
@@ -343,7 +340,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
                 const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
 
                 expect(verdier.soknad[3]).to.deep.equal({
-                    id: feriePermisjonUtenlandsoppholdId,
+                    type: feriePermisjonUtenlandsoppholdType,
                     ledetekst: {
                         nokkel: 'sykepengesoknad.ferie-permisjon-utenlandsopphold.janei.sporsmal',
                         verdier: {
@@ -407,7 +404,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
                 const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
 
                 expect(verdier.soknad[3]).to.deep.equal({
-                    id: feriePermisjonUtenlandsoppholdId,
+                    type: feriePermisjonUtenlandsoppholdType,
                     ledetekst: {
                         nokkel: 'sykepengesoknad.ferie-permisjon-utenlandsopphold.janei.sporsmal',
                         verdier: {
@@ -498,7 +495,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
                 const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
 
                 expect(verdier.soknad[3]).to.deep.equal({
-                    id: feriePermisjonUtenlandsoppholdId,
+                    type: feriePermisjonUtenlandsoppholdType,
                     ledetekst: {
                         nokkel: 'sykepengesoknad.ferie-permisjon-utenlandsopphold.janei.sporsmal',
                         verdier: {
@@ -626,10 +623,10 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
                 skjemasoknad.aktiviteter = [aktivitet1];
                 const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
                 expect(verdier.soknad[4]).to.deep.equal({
-                    id: `${aktiviteterId}-0`,
+                    type: aktiviteterType,
                     ledetekst: {
-                        nokkel: "sykepengesoknad.aktiviteter.ugradert.spoersmal-2",
-                        tekst: "I perioden 01.01.2017–15.01.2017 var du 100 % sykmeldt fra Olsens Sykkelservice. Jobbet du noe i denne perioden?",
+                        nokkel: 'sykepengesoknad.aktiviteter.ugradert.spoersmal-2',
+                        tekst: 'I perioden 01.01.2017–15.01.2017 var du 100 % sykmeldt fra Olsens Sykkelservice. Jobbet du noe i denne perioden?',
                         verdier: {
                             '%FOM%': '01.01.2017',
                             '%TOM%': '15.01.2017',
@@ -687,7 +684,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
                 skjemasoknad.aktiviteter = [aktivitet2];
                 const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
                 expect(verdier.soknad[4]).to.deep.equal({
-                    id: `${aktiviteterId}-0`,
+                    type: aktiviteterType,
                     ledetekst: {
                         nokkel: "sykepengesoknad.aktiviteter.ugradert.spoersmal-2",
                         tekst: "I perioden 01.01.2017–15.01.2017 var du 100 % sykmeldt fra Olsens Sykkelservice. Jobbet du noe i denne perioden?",
@@ -757,10 +754,10 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
                 skjemasoknad.aktiviteter = [aktivitetIkkeJobbetMerEnnPlanlagt];
                 const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
                 expect(verdier.soknad[4]).to.deep.equal({
-                    id: `${aktiviteterId}-0`,
+                    type: aktiviteterType,
                     ledetekst: {
-                        nokkel: "sykepengesoknad.aktiviteter.ugradert.spoersmal-2",
-                        tekst: "I perioden 01.01.2017–15.01.2017 var du 100 % sykmeldt fra Olsens Sykkelservice. Jobbet du noe i denne perioden?",
+                        nokkel: 'sykepengesoknad.aktiviteter.ugradert.spoersmal-2',
+                        tekst: 'I perioden 01.01.2017–15.01.2017 var du 100 % sykmeldt fra Olsens Sykkelservice. Jobbet du noe i denne perioden?',
                         verdier: {
                             '%FOM%': '01.01.2017',
                             '%TOM%': '15.01.2017',
@@ -812,7 +809,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
             it("Skal mappe", () => {
                 const resultat = mapSkjemasoknadToOppsummeringSoknad(skjemasoknad, sykepengesoknad);
                 expect(resultat.soknad[4]).to.deep.equal({
-                    id: inntektskilderId,
+                    type: inntektskilderType,
                     ledetekst: {
                         nokkel: 'sykepengesoknad.andre-inntektskilder.janei.sporsmal',
                         tekst: 'Har du andre inntektskilder, eller jobber du for andre enn Olsens Sykkelservice?',
@@ -872,7 +869,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
             const soknad = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
 
             expect(soknad.soknad[4]).to.deep.equal({
-                id: inntektskilderId,
+                type: inntektskilderType,
                 ledetekst: {
                     nokkel: 'sykepengesoknad.andre-inntektskilder.janei.sporsmal',
                     tekst: 'Har du andre inntektskilder, eller jobber du for andre enn Olsens Sykkelservice?',
@@ -931,7 +928,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
             it("Skal mappe utdanning", () => {
                 const soknad = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
                 expect(soknad.soknad[5]).to.deep.equal({
-                    id: utdanningId,
+                    type: utdanningType,
                     ledetekst: {
                         nokkel: 'sykepengesoknad.utdanning.ja-nei.sporsmal',
                         verdier: {
@@ -965,7 +962,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
             it("Skal mappe utdanning", () => {
                 const soknad = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
                 expect(soknad.soknad[5]).to.deep.equal({
-                    id: utdanningId,
+                    type: utdanningType,
                     ledetekst: {
                         nokkel: 'sykepengesoknad.utdanning.ja-nei.sporsmal',
                         verdier: {
@@ -1023,7 +1020,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
             skjemasoknad.arbeidsgiverForskutterer = 'JA';
             const soknad = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
             expect(soknad.soknad[6]).to.deep.equal({
-                id: arbeidsgiverForskuttererId,
+                type: arbeidsgiverForskuttererType,
                 ledetekst: {
                     nokkel: 'sykepengesoknad.forskutterer-arbeidsgiver.sporsmal',
                     tekst: 'Betaler arbeidsgiveren lønnen din når du er syk?',
@@ -1043,7 +1040,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
             skjemasoknad.arbeidsgiverForskutterer = 'NEI';
             const soknad = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
             expect(soknad.soknad[6]).to.deep.equal({
-                id: arbeidsgiverForskuttererId,
+                type: arbeidsgiverForskuttererType,
                 ledetekst: {
                     nokkel: 'sykepengesoknad.forskutterer-arbeidsgiver.sporsmal',
                     tekst: 'Betaler arbeidsgiveren lønnen din når du er syk?',
@@ -1063,7 +1060,7 @@ describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
             skjemasoknad.arbeidsgiverForskutterer = 'VET_IKKE';
             const soknad = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
             expect(soknad.soknad[6]).to.deep.equal({
-                id: arbeidsgiverForskuttererId,
+                type: arbeidsgiverForskuttererType,
                 ledetekst: {
                     nokkel: 'sykepengesoknad.forskutterer-arbeidsgiver.sporsmal',
                     tekst: 'Betaler arbeidsgiveren lønnen din når du er syk?',
