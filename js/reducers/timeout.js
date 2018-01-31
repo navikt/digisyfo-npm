@@ -1,7 +1,7 @@
 import * as actiontyper from '../actions/actiontyper';
 
-const STANDARD_TIMEOUT = 2;
-const VIS_TIMEOUTBOKS_MINUTTER_FOER_UTLOGGING = 1;
+const STANDARD_TIMEOUT = 30;
+const VIS_TIMEOUTBOKS_MINUTTER_FOER_UTLOGGING = 5;
 export const MILLIES_MELLOM_VIS_BOKS_OG_TIMEOUT = VIS_TIMEOUTBOKS_MINUTTER_FOER_UTLOGGING * 60 * 1000;
 
 const hentErInnloggetTil = () => {
