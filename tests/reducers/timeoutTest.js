@@ -1,8 +1,12 @@
-import { expect } from 'chai';
+import chaiEnzyme from 'chai-enzyme';
+import chai from 'chai';
 import deepFreeze from 'deep-freeze';
+import sinon from 'sinon';
 import timeout from '../../js/reducers/timeout';
 import * as actions from '../../js/actions/timeout_actions';
-import sinon from 'sinon';
+
+chai.use(chaiEnzyme());
+const expect = chai.expect;
 
 describe('timeout', () => {
     let clock;
@@ -10,8 +14,15 @@ describe('timeout', () => {
         clock = sinon.useFakeTimers(1484523000000); // 16. januar 2017 00:30
     });
 
+    afterEach(() => {
+        clock.restore();
+    });
+
     it('Håndterer FORLENG_INNLOGGET_SESJON ', () => {
-        const initialState = deepFreeze(timeout());
+        const initialState = deepFreeze({
+            erInnloggetTil: new Date(2017, 0, 16, 0, 0, 0),
+            brukerSnartUtlogget: false,
+        });
         const action = actions.forlengInnloggetSesjon();
         const nextState = timeout(initialState, action);
         expect(nextState).to.deep.equal({
@@ -21,11 +32,16 @@ describe('timeout', () => {
     });
 
     it('Håndterer SNART_UTLOGGET ', () => {
-        const initialState = deepFreeze(timeout());
+        const initialState = deepFreeze({
+            erInnloggetTil: new Date(2017, 0, 16, 0, 0, 0),
+            brukerSnartUtlogget: false,
+        });
         const action = actions.snartUtlogget();
         const nextState = timeout(initialState, action);
+
         expect(nextState).to.deep.equal({
             brukerSnartUtlogget: true,
+            erInnloggetTil: new Date(2017, 0, 16, 0, 0, 0),
         });
     });
 });

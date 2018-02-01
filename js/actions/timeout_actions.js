@@ -11,3 +11,10 @@ export const snartUtlogget = () => {
         type: actiontyper.SNART_UTLOGGET,
     };
 };
+
+export const sjekkInnloggingssesjon = () => {
+    return {
+        type: actiontyper.SJEKK_INNLOGGINGSSESJON,
+    };
+};
+
