@@ -10,6 +10,14 @@ const hentErInnloggetTil = () => {
     return date;
 };
 
+const erBrukerUtlogget = (state) => {
+    return state.erInnloggetTil.getTime() - new Date().getTime() < 0;
+};
+
+const erBrukerSnartUtlogget = (state) => {
+    return state.erInnloggetTil.getTime() - new Date().getTime() - MILLIES_MELLOM_VIS_BOKS_OG_TIMEOUT < 0;
+};
+
 const initiellState = {
     erInnloggetTil: hentErInnloggetTil(),
     brukerSnartUtlogget: false,
@@ -18,15 +26,23 @@ const initiellState = {
 export default function timeout(state = initiellState, action = {}) {
     switch (action.type) {
         case actiontyper.FORLENG_INNLOGGET_SESJON: {
-            return {
+            return Object.assign({}, state, {
                 erInnloggetTil: hentErInnloggetTil(),
                 brukerSnartUtlogget: false,
-            };
+            });
         }
         case actiontyper.SNART_UTLOGGET: {
-            return {
+            return Object.assign({}, state, {
                 brukerSnartUtlogget: true,
-            };
+            });
+        }
+        case actiontyper.SJEKK_INNLOGGINGSSESJON: {
+            if (erBrukerUtlogget(state)) {
+                window.location = '/esso/logout';
+            }
+            return Object.assign({}, state, {
+                brukerSnartUtlogget: erBrukerSnartUtlogget(state),
+            });
         }
         default: {
             return state;
