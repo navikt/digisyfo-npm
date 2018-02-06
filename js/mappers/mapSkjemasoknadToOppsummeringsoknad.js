@@ -39,7 +39,6 @@ const {
 const jegHar = 'jegHar';
 
 const hovedsporsmalsliste = [
-    ansvarBekreftet,
     bruktEgenmeldingsdagerFoerLegemeldtFravaer,
     harGjenopptattArbeidFulltUt,
     harHattFeriePermisjonEllerUtenlandsopphold,
@@ -47,6 +46,7 @@ const hovedsporsmalsliste = [
     harAndreInntektskilder,
     underUtdanningISykmeldingsperioden,
     arbeidsgiverForskutterer,
+    ansvarBekreftet,
 ];
 
 const nokler = {};
@@ -344,7 +344,7 @@ export default (skjemasoknad, sykepengesoknad) => {
     /* Arbeidsspørsmålet er et array av Sporsmal, mens de andre spørsmålene er Sporsmal-instanser.
     Vi må derfor pakke arbeidsspørsmålet ut slik at det ligger på samme nivå som de andre spørsmålene */
 
-    const indeksForArbeidssporsmal = 4;
+    const indeksForArbeidssporsmal = 3;
     const soknad = [...returverdi.slice(0, indeksForArbeidssporsmal),
         ...returverdi[indeksForArbeidssporsmal],
         ...returverdi.slice(indeksForArbeidssporsmal + 1, returverdi.length)]
