@@ -61,11 +61,8 @@ export const get = (url) => {
 };
 
 //  Hvis man har logget ut i en annen fane eller lignende kan man fange opp dette i testmiljøer at man får en 302 redirect
-//  I prodlike miljøer vil man få en feilmelding som inneholder noe med preflight-is-invalid-redirect og idporten. Dette må nesten sjekkes en runde i Q0 (eneste miljø med ID-Porten)
 const erBrukerUtlogget = (res) => {
-    console.log('res', res);
-    console.log('res.message', res.message);
-    return res.redirected || (res.message && res.message.includes('idporten'));
+    return res.redirected;
 };
 
 export const post = (url, body) => {
@@ -99,6 +96,13 @@ export const post = (url, body) => {
             }
         })
         .catch((err) => {
+            console.log(err);
+            console.log(err.message);
+            //  For å fange opp redirects til idporten (ikke innlogget lenger).
+            if (err.includes('idporten')) {
+                window.location = '/esso/logout';
+                return null;
+            }
             log(err);
             throw err;
         });
