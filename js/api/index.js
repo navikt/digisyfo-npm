@@ -96,10 +96,11 @@ export const post = (url, body) => {
             }
         })
         .catch((err) => {
-            console.log(err);
-            console.log(err.message);
-            //  For å fange opp redirects til idporten (ikke innlogget lenger).
-            if (err.includes('idporten')) {
+            // Fetch API only rejects a promise when a “network error is encountered,
+            // although this usually means permissions issues or similar.
+            // User is offline, or some unlikely networking error occurs, such a DNS lookup failure.
+            // Dette skjer i vårt tilfelle om brukerens esso-token er timet ut / slettet / logget ut i annen fane.
+            if (err.message === 'Failed to fetch') {
                 window.location = '/esso/logout';
                 return null;
             }
