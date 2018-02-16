@@ -21,7 +21,7 @@ const inntektskildetyper = Object.keys(inntektskildetyper_).map((key) => {
     };
 });
 
-describe("mapSkjemasoknadToOppsummeringSoknad", () => {
+describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
 
     let skjemasoknad;
     let sykepengesoknad;
@@ -33,7 +33,7 @@ describe("mapSkjemasoknadToOppsummeringSoknad", () => {
             'sykepengesoknad.bekreft-ansvar.label': "Jeg bekrefter ditt og datt",
             'sykepengesoknad.egenmeldingsdager.janei.sporsmal': "Vi har registrert at dette legemeldte sykefraværet startet %DATO%. Var du borte fra jobb på grunn av sykdom før dette?",
             'sykepengesoknad.egenmeldingsdager.dato.sporsmal': "Når gjorde du dette?",
-            'sykepengesoknad.gjenopptatt-arbeid-fullt-ut.janei.sporsmal': 'Var du tilbake i fullt arbeid hos %ARBEIDSGIVER% før sykmeldingsperioden utløp?',
+            'sykepengesoknad.gjenopptatt-arbeid-fullt-ut.janei.sporsmal-2': 'Var du tilbake i fullt arbeid hos %ARBEIDSGIVER% før %DATO%?',
             'sykepengesoknad.gjenopptatt-arbeid-fullt-ut.dato.sporsmal': 'Fra hvilken dato ble arbeidet gjenopptatt?',
             'sykepengesoknad.ferie-permisjon-utenlandsopphold.jeg-har': 'Jeg har...',
             'sykepengesoknad.oppsummering.periode.fra-til': 'Fra %FOM% til %TOM%',
@@ -189,11 +189,12 @@ describe("mapSkjemasoknadToOppsummeringSoknad", () => {
                 expect(verdier.soknad[1]).to.deep.equal({
                     type: gjenopptattArbeidFulltUtType,
                     ledetekst: {
-                        nokkel: 'sykepengesoknad.gjenopptatt-arbeid-fullt-ut.janei.sporsmal',
+                        nokkel: 'sykepengesoknad.gjenopptatt-arbeid-fullt-ut.janei.sporsmal-2',
                         verdier: {
-                            '%ARBEIDSGIVER%': 'Olsens Sykkelservice'
+                            '%ARBEIDSGIVER%': 'Olsens Sykkelservice',
+                            '%DATO%': '25.01.2017'
                         },
-                        tekst: 'Var du tilbake i fullt arbeid hos Olsens Sykkelservice før sykmeldingsperioden utløp?'
+                        tekst: 'Var du tilbake i fullt arbeid hos Olsens Sykkelservice før 25.01.2017?'
                     },
                     svar: [{
                         ledetekst: {
@@ -213,11 +214,12 @@ describe("mapSkjemasoknadToOppsummeringSoknad", () => {
                 expect(verdier.soknad[1]).to.deep.equal({
                     type: gjenopptattArbeidFulltUtType,
                     ledetekst: {
-                        nokkel: 'sykepengesoknad.gjenopptatt-arbeid-fullt-ut.janei.sporsmal',
+                        nokkel: 'sykepengesoknad.gjenopptatt-arbeid-fullt-ut.janei.sporsmal-2',
                         verdier: {
-                            '%ARBEIDSGIVER%': 'Olsens Sykkelservice'
+                            '%ARBEIDSGIVER%': 'Olsens Sykkelservice',
+                            '%DATO%': '25.01.2017'
                         },
-                        tekst: 'Var du tilbake i fullt arbeid hos Olsens Sykkelservice før sykmeldingsperioden utløp?'
+                        tekst: 'Var du tilbake i fullt arbeid hos Olsens Sykkelservice før 25.01.2017?'
                     },
                     svar: [{
                         ledetekst: {

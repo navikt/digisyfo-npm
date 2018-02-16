@@ -12,6 +12,7 @@ import { CHECKBOX, DATO, DATOSPENN, HTML, RADIOKNAPPER, TEKSTSVAR } from '../enu
 import { ANNET } from '../enums/inntektskildetyper';
 import * as skjemafelter from '../enums/sykepengesoknadskjemafelter';
 import sporsmalstyper from '../enums/sporsmalstyper';
+import { senesteTom } from '../utils';
 
 const {
     ansvarBekreftet,
@@ -53,7 +54,7 @@ const nokler = {};
 nokler[ansvarBekreftet] = 'sykepengesoknad.bekreft-ansvar.label';
 nokler[bruktEgenmeldingsdagerFoerLegemeldtFravaer] = 'sykepengesoknad.egenmeldingsdager.janei.sporsmal';
 nokler[egenmeldingsperioder] = 'sykepengesoknad.egenmeldingsdager.dato.sporsmal';
-nokler[harGjenopptattArbeidFulltUt] = 'sykepengesoknad.gjenopptatt-arbeid-fullt-ut.janei.sporsmal';
+nokler[harGjenopptattArbeidFulltUt] = 'sykepengesoknad.gjenopptatt-arbeid-fullt-ut.janei.sporsmal-2';
 nokler[gjenopptattArbeidFulltUtDato] = 'sykepengesoknad.gjenopptatt-arbeid-fullt-ut.dato.sporsmal';
 nokler[harHattFeriePermisjonEllerUtenlandsopphold] = 'sykepengesoknad.ferie-permisjon-utenlandsopphold.janei.sporsmal';
 nokler[harHattFerie] = 'sykepengesoknad.ferie-permisjon-utenlandsopphold.tatt-ut-ferie';
@@ -105,6 +106,13 @@ const getSporsmalsledetekst = (felt, sykepengesoknad, skjemasoknad) => {
             });
         }
         case harGjenopptattArbeidFulltUt:
+            const perioder = sykepengesoknad.aktiviteter.map((aktivitet) => {
+                return aktivitet.periode;
+            });
+            return getNokkelOgVerdier(nokkel, {
+                '%ARBEIDSGIVER%': sykepengesoknad.arbeidsgiver.navn,
+                '%DATO%': toDatePrettyPrint(senesteTom(perioder)),
+            });
         case harAndreInntektskilder: {
             return getNokkelOgVerdier(nokkel, {
                 '%ARBEIDSGIVER%': sykepengesoknad.arbeidsgiver.navn,
