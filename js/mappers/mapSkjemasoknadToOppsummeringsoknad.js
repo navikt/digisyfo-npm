@@ -99,6 +99,9 @@ const getNokkelOgVerdier = (nokkel, verdier) => {
 
 const getSporsmalsledetekst = (felt, sykepengesoknad, skjemasoknad) => {
     const nokkel = nokler[felt];
+    const perioder = sykepengesoknad && sykepengesoknad.aktiviteter ? sykepengesoknad.aktiviteter.map((aktivitet) => {
+        return aktivitet.periode;
+    }) : [];
     switch (felt) {
         case bruktEgenmeldingsdagerFoerLegemeldtFravaer: {
             return getNokkelOgVerdier(nokkel, {
@@ -106,9 +109,6 @@ const getSporsmalsledetekst = (felt, sykepengesoknad, skjemasoknad) => {
             });
         }
         case harGjenopptattArbeidFulltUt:
-            const perioder = sykepengesoknad.aktiviteter.map((aktivitet) => {
-                return aktivitet.periode;
-            });
             return getNokkelOgVerdier(nokkel, {
                 '%ARBEIDSGIVER%': sykepengesoknad.arbeidsgiver.navn,
                 '%DATO%': toDatePrettyPrint(senesteTom(perioder)),

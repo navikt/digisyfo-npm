@@ -21,7 +21,7 @@ const inntektskildetyper = Object.keys(inntektskildetyper_).map((key) => {
     };
 });
 
-describe.only("mapSkjemasoknadToOppsummeringSoknad", () => {
+describe("mapSkjemasoknadToOppsummeringSoknad", () => {
 
     let skjemasoknad;
     let sykepengesoknad;
