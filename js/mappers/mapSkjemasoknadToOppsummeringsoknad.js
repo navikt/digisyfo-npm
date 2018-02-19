@@ -104,8 +104,11 @@ const getSporsmalsledetekst = (felt, sykepengesoknad, skjemasoknad) => {
     }) : [];
     switch (felt) {
         case bruktEgenmeldingsdagerFoerLegemeldtFravaer: {
+            const startSykeforloep = sykepengesoknad.oppfoelgingsdato && sykepengesoknad.oppfoelgingsdato < sykepengesoknad.identdato
+                ? sykepengesoknad.oppfoelgingsdato
+                : sykepengesoknad.identdato;
             return getNokkelOgVerdier(nokkel, {
-                '%DATO%': toDatePrettyPrint(sykepengesoknad.identdato),
+                '%DATO%': toDatePrettyPrint(startSykeforloep),
             });
         }
         case harGjenopptattArbeidFulltUt:
