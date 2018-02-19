@@ -7,6 +7,7 @@ import {
     getInntektskildeLabel,
     getTotalJobbingSporsmal,
     getUtdanningssporsmal,
+    getEgenmeldingsdagerSporsmal,
 } from '../utils/sykepengesoknadSporsmal';
 import { CHECKBOX, DATO, DATOSPENN, HTML, RADIOKNAPPER, TEKSTSVAR } from '../enums/sykepengesoknadsvartyper';
 import { ANNET } from '../enums/inntektskildetyper';
@@ -104,12 +105,7 @@ const getSporsmalsledetekst = (felt, sykepengesoknad, skjemasoknad) => {
     }) : [];
     switch (felt) {
         case bruktEgenmeldingsdagerFoerLegemeldtFravaer: {
-            const startSykeforloep = sykepengesoknad.oppfoelgingsdato && sykepengesoknad.oppfoelgingsdato < sykepengesoknad.identdato
-                ? sykepengesoknad.oppfoelgingsdato
-                : sykepengesoknad.identdato;
-            return getNokkelOgVerdier(nokkel, {
-                '%DATO%': toDatePrettyPrint(startSykeforloep),
-            });
+            return getEgenmeldingsdagerSporsmal(sykepengesoknad, getNokkelOgVerdier);
         }
         case harGjenopptattArbeidFulltUt:
             return getNokkelOgVerdier(nokkel, {
