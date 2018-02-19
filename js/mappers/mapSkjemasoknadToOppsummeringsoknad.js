@@ -248,7 +248,7 @@ const tilAktiviteterSpm = (skjemasoknad, sykepengesoknad, felt) => {
             const svarnokkel = valgtEnhet === prosent ? nokler.angiArbeidsgrad : nokler.angiArbeidstimer;
             const faktiskjobbingSvar = new Svar(getNokkelOgVerdier(svarnokkel, arbeidsgradverdier));
 
-            if (valgtEnhet !== prosent) {
+            if (valgtEnhet !== prosent && aktivitet.avvik.beregnetArbeidsgrad) {
                 faktiskjobbingSvar.tilleggstekst = new Tilleggstekst(getNokkelOgVerdier(nokler.detteTilsvarer, {
                     '%STILLINGSPROSENT%': aktivitet.avvik.beregnetArbeidsgrad,
                 }), HTML);
