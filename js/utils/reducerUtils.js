@@ -65,6 +65,7 @@ export const parseSykepengesoknad = (soknad) => {
         utdanning: parseUtdanningsDato(soknad.utdanning),
         gjenopptattArbeidFulltUtDato: toDate(soknad.gjenopptattArbeidFulltUtDato),
         identdato: toDate(soknad.identdato),
+        oppfoelgingsdato: toDate(soknad.oppfoelgingsdato),
         sendtTilArbeidsgiverDato: toDate(soknad.sendtTilArbeidsgiverDato),
         sendtTilNAVDato: toDate(soknad.sendtTilNAVDato),
         opprettetDato: toDate(soknad.opprettetDato),

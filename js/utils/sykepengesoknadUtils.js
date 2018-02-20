@@ -17,6 +17,12 @@ export const getTomDato = (sykepengesoknad) => {
     return senesteTom(perioder);
 };
 
+export const getTidligsteStartdatoSykeforloep = (sykepengesoknad) => {
+    return sykepengesoknad.oppfoelgingsdato && sykepengesoknad.oppfoelgingsdato < sykepengesoknad.identdato
+        ? sykepengesoknad.oppfoelgingsdato
+        : sykepengesoknad.identdato;
+};
+
 export const finnFomForFeriesporsmal = (sykepengesoknad) => {
     const { forrigeSykeforloepTom, forrigeSendteSoknadTom } = sykepengesoknad;
 

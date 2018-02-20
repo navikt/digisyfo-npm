@@ -10,6 +10,7 @@ export const getSoknad = (soknad = {}) => {
       "naermesteLeder": null
     },
     "identdato": "2016-07-15",
+    "oppfoelgingsdato": "2017-12-24",
     "ansvarBekreftet": false,
     "bekreftetKorrektInformasjon": false,
     "arbeidsgiverUtbetalerLoenn": false,
@@ -61,6 +62,7 @@ export const getParsetSoknad = (soknad = {}) => {
       "naermesteLeder": null
     },
     "identdato": new Date("2016-07-15"),
+    "oppfoelgingsdato": new Date("2017-12-24"),
     "ansvarBekreftet": false,
     "bekreftetKorrektInformasjon": false,
     "arbeidsgiverUtbetalerLoenn": false,

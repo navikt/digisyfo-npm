@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getTomDato, mapAktiviteter, getGjenopptattArbeidFulltUtDato } from '../../js/utils/sykepengesoknadUtils';
+import { getTomDato, mapAktiviteter, getGjenopptattArbeidFulltUtDato, getTidligsteStartdatoSykeforloep } from '../../js/utils/sykepengesoknadUtils';
 import getSoknad from '../mock/mockSoknader';
 import deepFreeze from 'deep-freeze';
 
@@ -281,5 +281,37 @@ describe("sykepengesoknadUtils", () => {
       });
 
     }); 
+
+    describe("getTidligsteStartdatoSykeforloep", () => {
+        let skjemasoknad;
+        let tidligsteDato = new Date("2017-12-24");
+        let senesteDato = new Date("2018-01-01");
+
+        beforeEach(() => {
+            skjemasoknad = {
+                oppfoelgingsdato: tidligsteDato,
+                identdato: senesteDato,
+            }
+        });
+
+        it("skal returnere oppfølgingsdato hvis den er tidligere enn identdato", () =>  {
+            const dato = getTidligsteStartdatoSykeforloep(skjemasoknad);
+            expect(dato).to.deep.equal(tidligsteDato);
+        });
+
+        it("skal returnere identdato hvis oppfoelgingsdato er null", () =>  {
+            skjemasoknad.oppfoelgingsdato = null;
+            const dato = getTidligsteStartdatoSykeforloep(skjemasoknad);
+            expect(dato).to.deep.equal(senesteDato);
+        });
+
+        it("skal returnere identdato hvis den er tidligere enn oppfølgingsdato", () =>  {
+            skjemasoknad.oppfoelgingsdato = senesteDato;
+            skjemasoknad.oppfoelgingsdato = tidligsteDato;
+            const dato = getTidligsteStartdatoSykeforloep(skjemasoknad);
+            expect(dato).to.deep.equal(tidligsteDato);
+        });
+
+    });
 
 })

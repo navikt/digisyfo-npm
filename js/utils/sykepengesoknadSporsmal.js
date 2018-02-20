@@ -1,4 +1,4 @@
-import { finnFomForFeriesporsmal, getTomDato } from './sykepengesoknadUtils';
+import { finnFomForFeriesporsmal, getTomDato, getTidligsteStartdatoSykeforloep } from './sykepengesoknadUtils';
 import { getLedetekst } from '../ledetekster';
 import { toDatePrettyPrint } from './datoUtils';
 import { tidligsteFom } from './periodeUtils';
@@ -55,5 +55,11 @@ export const getUtdanningssporsmal = (sykepengesoknad, gjenopptattArbeidFulltUtD
     return callback('sykepengesoknad.utdanning.ja-nei.sporsmal', {
         '%STARTDATO%': toDatePrettyPrint(_tidligsteFom),
         '%SLUTTDATO%': toDatePrettyPrint(_senesteTom),
+    });
+};
+
+export const getEgenmeldingsdagerSporsmal = (sykepengesoknad, callback = getLedetekst) => {
+    return callback('sykepengesoknad.egenmeldingsdager.janei.sporsmal', {
+        '%DATO%': toDatePrettyPrint(getTidligsteStartdatoSykeforloep(sykepengesoknad)),
     });
 };

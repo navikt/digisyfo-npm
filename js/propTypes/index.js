@@ -142,6 +142,7 @@ export const sykepengesoknad = PropTypes.shape({
     opprettetDato: PropTypes.instanceOf(Date),
     arbeidsgiver,
     identdato: PropTypes.instanceOf(Date),
+    oppfoelgingsdato: PropTypes.instanceOf(Date),
     ansvarBekreftet: PropTypes.bool,
     bekreftetKorrektInformasjon: PropTypes.bool,
     arbeidsgiverForskutterer: PropTypes.oneOf([null, forskutterersvar.JA, forskutterersvar.NEI, forskutterersvar.VET_IKKE]),
