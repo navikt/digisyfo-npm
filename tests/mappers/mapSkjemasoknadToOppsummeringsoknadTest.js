@@ -5,6 +5,7 @@ import { setLedetekster } from '../../js/ledetekster';
 import { getSoknad } from '../mock/mockSoknader';
 import mapSkjemasoknadToOppsummeringSoknad from '../../js/mappers/mapSkjemasoknadToOppsummeringsoknad';
 import * as inntektskildetyper_ from '../../js/enums/inntektskildetyper';
+import { parseSykepengesoknad } from '../../js/utils/reducerUtils';
 
 import {
     aktiviteterType, ansvarBekreftetType,
@@ -590,6 +591,7 @@ describe("mapSkjemasoknadToOppsummeringSoknad", () => {
             let aktivitet1;
             let aktivitet2;
             let aktivitetIkkeJobbetMerEnnPlanlagt;
+            let aktivitetMedArbeidsgradLikNull;
 
             beforeEach(() => {
                 aktivitet1 = Object.assign({}, sykepengesoknad.aktiviteter[0], {
@@ -619,6 +621,22 @@ describe("mapSkjemasoknadToOppsummeringSoknad", () => {
                         "arbeidstimerNormalUke": "37,5",
                     }
                 });
+
+                aktivitetMedArbeidsgradLikNull =     {
+                  "periode": {
+                    "fom": "2018-02-17T00:00:00.000Z",
+                    "tom": "2018-02-18T00:00:00.000Z"
+                  },
+                  "grad": 100,
+                  "avvik": {
+                    "enhet": "timer",
+                    "arbeidstimerNormalUke": "37",
+                    "arbeidsgrad": null,
+                    "timer": "2"
+                  },
+                  "id": 104640,
+                  "jobbetMerEnnPlanlagt": true
+                }
             });
 
             it("Skal mappe arbeidsspørsmål for ugraderte perioder når bruker har jobbet mer enn planlagt og oppgitt dette i prosent", () => {
@@ -776,6 +794,12 @@ describe("mapSkjemasoknadToOppsummeringSoknad", () => {
                         undersporsmal: [],
                     }]
                 });
+            });
+
+            it("Skal ikke lage tilleggstekst med beregnet arbeidsgrad når arbeidsgrad er null", () => {
+                skjemasoknad.aktiviteter = [aktivitetMedArbeidsgradLikNull];
+                const verdier = mapSkjemasoknadToOppsummeringSoknad(deepFreeze(skjemasoknad), deepFreeze(sykepengesoknad));
+                expect(verdier.soknad[3].svar[0].undersporsmal[1].svar[0].tilleggstekst).to.be.undefined
             });
 
         });
