@@ -3,8 +3,6 @@ export * from './datoUtils';
 export * from './periodeUtils';
 export * from './reducerUtils';
 export * from './sorterSykmeldingerUtils';
-export * from './sykepengesoknadSporsmal';
-export * from './sykepengesoknadUtils';
 export * from './sykmeldingUtils';
 export * from './valideringUtils';
 export * from './sykeforloepUtils';

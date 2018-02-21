@@ -18,8 +18,6 @@ import Hjelpetekst from './components/Hjelpetekst';
 import Stegnavigasjon from './components/Stegnavigasjon';
 import DineSykmeldingOpplysninger from './components/sykmeldingOpplysninger/DineSykmeldingOpplysninger';
 import Video from './components/Video';
-import mapBackendsoknadToSkjemasoknad from './mappers/mapBackendsoknadToSkjemasoknad';
-import mapSkjemasoknadToOppsummeringsoknad from './mappers/mapSkjemasoknadToOppsummeringsoknad';
 
 export { ArbeidsgiversSykmeldingOpplysninger };
 export { ArbeidsgiversNokkelopplysninger };
@@ -50,7 +48,5 @@ export { Hjelpetekst };
 export { Stegnavigasjon };
 export * from './enums';
 export * from './api/index';
-export { mapBackendsoknadToSkjemasoknad };
-export { mapSkjemasoknadToOppsummeringsoknad };
 export * from './components/sykepengesoknadOppsummering/Soknad';
 export { TimeoutBox };
