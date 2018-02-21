@@ -15,6 +15,7 @@ import {
 } from '../../js/utils/tidslinjeUtils';
 
 describe('tidslinjeUtils', () => {
+
     describe('sorterTidslinjerSisteFoerst', () => {
         it('sorterer Tidslinjer etter startdato', () => {
             const tidslinjer = [
@@ -108,14 +109,19 @@ describe('tidslinjeUtils', () => {
         it('returnerer statisk tidslinje, med rett sett med hendelser hvor tekstnoekler har blitt endret ihht. type MED_ARBEIDSGIVER', () => {
             const tidslinjeType = TIDSLINJE_TYPER.MED_ARBEIDSGIVER;
             expect(hentStatiskTidslinje(tidslinjeType)).to.deep.equal({
-                hendelser: leggTypePaaTekstnokkel(hentHendelserMedArbeidsgiver(tidslinjeType)),
+                hendelser: leggTypePaaTekstnokkel(hentHendelserMedArbeidsgiver(tidslinjeType), tidslinjeType),
             });
         });
     });
 
     describe('hentTidslinjerFraSykeforloep', () => {
-        it('returnerer tidslinjer kun med statisk hendelser, om det ikke eksisterer sykeforloep', () => {
-            const arbeidssituasjon = TIDSLINJE_TYPER.MED_ARBEIDSGIVER;
+        let tidslinjeType;
+
+        beforeEach(() => {
+            tidslinjeType = TIDSLINJE_TYPER.MED_ARBEIDSGIVER;
+        });
+
+        it('returnerer tidslinjer med statiske hendelser og hendelser ifra sykeforloep, om det eksisterer sykeforloep', () => {
             const sykeforloep = [
                 {
                     sykmeldinger: null,
@@ -132,20 +138,19 @@ describe('tidslinjeUtils', () => {
                     oppfoelgingsdato: new Date('2018-01-01'),
                 },
             ];
-            expect(hentTidslinjerFraSykeforloep(sykeforloep, arbeidssituasjon)).to.deep.equal([
+            expect(hentTidslinjerFraSykeforloep(sykeforloep, tidslinjeType)).to.deep.equal([
                 {
                     startdato: new Date(sykeforloep[0].oppfoelgingsdato),
                     hendelser: leggTypePaaTekstnokkel(
-                        hentStatiskeHendelser(arbeidssituasjon).concat(leggTilFelterForSykeforloepHendelser(sykeforloep[0], arbeidssituasjon))
-                        , arbeidssituasjon),
+                        hentStatiskeHendelser(tidslinjeType).concat(leggTilFelterForSykeforloepHendelser(sykeforloep[0], tidslinjeType))
+                        , tidslinjeType),
                 },
             ]);
         });
 
         it('returnerer tidslinjer kun med statisk hendelser, om det ikke eksisterer sykeforloep', () => {
             const sykeforloep = [];
-            const arbeidssituasjon = TIDSLINJE_TYPER.MED_ARBEIDSGIVER;
-            expect(hentTidslinjerFraSykeforloep(sykeforloep, arbeidssituasjon)).to.deep.equal([hentStatiskTidslinje(arbeidssituasjon)]);
+            expect(hentTidslinjerFraSykeforloep(sykeforloep, tidslinjeType)).to.deep.equal([hentStatiskTidslinje(tidslinjeType)]);
         });
     });
 });

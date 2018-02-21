@@ -194,7 +194,7 @@ export const hentStatiskeHendelser = (type) => {
 
 export const hentStatiskTidslinje = (type) => {
     return {
-        hendelser: leggTypePaaTekstnokkel(hentStatiskeHendelser(type)),
+        hendelser: leggTypePaaTekstnokkel(hentStatiskeHendelser(type), type),
     };
 };
 
