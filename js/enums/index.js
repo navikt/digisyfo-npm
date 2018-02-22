@@ -6,8 +6,8 @@ import * as nokkelopplysninger from './nokkelopplysninger';
 import * as sykepengesoknadstatuser from './sykepengesoknadstatuser';
 import * as sykmeldingstatuser from './sykmeldingstatuser';
 import * as filmer from './filmer';
-import * as sykepengesoknadskjemafelter from './sykepengesoknadskjemafelter';
 import * as sykepengesoknadsvartyper from './sykepengesoknadsvartyper';
+import * as sporsmalstyper from './sporsmalstyper';
 
 export {
     arbeidssituasjoner,
@@ -18,6 +18,6 @@ export {
     sykepengesoknadstatuser,
     sykmeldingstatuser,
     filmer,
-    sykepengesoknadskjemafelter,
     sykepengesoknadsvartyper,
+    sporsmalstyper,
 };

@@ -5,7 +5,8 @@ import * as soknadstatuser from '../enums/sykepengesoknadstatuser';
 import * as inntektskildetyper from '../enums/inntektskildetyper';
 import * as forskutterersvar from '../enums/forskutterersvar';
 import * as sykepengesoknadsvartyper from '../enums/sykepengesoknadsvartyper';
-import sporsmalstyper from '../enums/sporsmalstyper';
+import * as sporsmalstyper from '../enums/sporsmalstyper';
+
 
 export const keyValue = function (props, propNavn, componentNavn) {
     const obj = props[propNavn];
