@@ -1,3 +1,5 @@
+export const ANTALL_MS_DAG = 1000 * 60 * 60 * 24;
+
 const erLocalDate = (dato) => { return dato.year && dato.monthValue && dato.dayOfMonth; };
 
 export const toDate = (dato) => {

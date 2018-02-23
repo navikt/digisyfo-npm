@@ -1,29 +1,19 @@
 import * as actiontyper from './actiontyper';
+import { TIDSLINJE_TYPER } from '../utils/tidslinjeUtils';
 
-export function hentTidslinjerFeilet() {
-    return {
-        type: actiontyper.HENT_TIDSLINJER_FEILET,
-    };
-}
-
-export function henterTidslinjer() {
-    return {
-        type: actiontyper.HENTER_TIDSLINJER,
-    };
-}
-
-export function setTidslinjer(tidslinjer = [], arbeidssituasjon) {
-    return {
-        type: actiontyper.SET_TIDSLINJER,
-        tidslinjer,
-        arbeidssituasjon,
-    };
-}
-
-export function hentTidslinjer(apneHendelseIder = [], arbeidssituasjon = 'MED_ARBEIDSGIVER') {
+export function hentTidslinjer(apneHendelseIder = [], arbeidssituasjon = TIDSLINJE_TYPER.MED_ARBEIDSGIVER, sykeforloep = []) {
     return {
         type: actiontyper.HENT_TIDSLINJER_FORESPURT,
         apneHendelseIder,
         arbeidssituasjon,
+        sykeforloep,
+    };
+}
+
+export function setTidslinjer(arbeidssituasjon, sykeforloep = []) {
+    return {
+        type: actiontyper.SET_TIDSLINJER,
+        arbeidssituasjon,
+        sykeforloep,
     };
 }

@@ -1,11 +1,12 @@
 import { bilder } from '../tidslinjeData';
 import * as actiontyper from '../actions/actiontyper';
+import {
+    HENDELSE_TYPER,
+    TIDSLINJE_TYPER,
+    hentTidslinjerFraSykeforloep,
+} from '../utils/tidslinjeUtils';
 
 const initiellState = {
-    henter: false,
-    hentingFeilet: false,
-    hentet: false,
-    ikkeTilgang: false,
     data: [],
 };
 
@@ -49,13 +50,13 @@ export const leggTilBilder = (_tidslinjer) => {
 
 export const leggTilTidshendelser = (_tidslinjer, arbeidssituasjon) => {
     let uker = [4, 7, 8, 26, 39];
-    if (arbeidssituasjon === 'UTEN_ARBEIDSGIVER') {
+    if (arbeidssituasjon === TIDSLINJE_TYPER.UTEN_ARBEIDSGIVER) {
         uker = [8, 12, 39];
     }
     const tidshendelser = uker.map((uke) => {
         return {
             antallDager: (uke * 7),
-            type: 'TID',
+            type: HENDELSE_TYPER.TID,
             tekstkey: `tidslinje.antall-uker.${uke}`,
         };
     });
@@ -71,47 +72,30 @@ export const leggTilTidshendelser = (_tidslinjer, arbeidssituasjon) => {
         } else {
             hendelser[0] = Object.assign({}, hendelser[0], {
                 tekstkey: 'tidslinje.sykefravaeret-starter',
-                type: 'TITTEL',
+                type: HENDELSE_TYPER.TITTEL,
             });
         }
         return Object.assign({}, tidslinje, { hendelser });
     });
 };
 
+
 export default function tidslinjer(state = initiellState, action) {
     switch (action.type) {
-        case actiontyper.HENT_TIDSLINJER_FEILET: {
+        case actiontyper.SYKEFORLOEP_HENTET: {
+            const arbeidssituasjon = TIDSLINJE_TYPER.MED_ARBEIDSGIVER;
+            const tidslinjerFraSykeforloep = hentTidslinjerFraSykeforloep(action.data, arbeidssituasjon);
+            const data = leggTilBilder(settHendelseIder(leggTilTidshendelser(tidslinjerFraSykeforloep, arbeidssituasjon)));
             return Object.assign({}, state, {
-                data: [],
-                henter: false,
-                hentingFeilet: true,
-                hentet: true,
+                data,
             });
         }
-        case actiontyper.HENTER_TIDSLINJER: {
-            return {
-                data: [],
-                henter: true,
-                hentingFeilet: false,
-                hentet: false,
-            };
-        }
         case actiontyper.SET_TIDSLINJER: {
-            const data = leggTilBilder(settHendelseIder(leggTilTidshendelser(action.tidslinjer, action.arbeidssituasjon)));
-            return {
-                henter: false,
-                hentingFeilet: false,
-                data,
-                hentet: true,
-            };
-        }
-        case actiontyper.HENT_TIDSLINJER_IKKE_TILGANG: {
+            const arbeidssituasjon = action.arbeidssituasjon;
+            const tidslinjerFraSykeforloep = hentTidslinjerFraSykeforloep(action.sykeforloep, arbeidssituasjon);
+            const data = leggTilBilder(settHendelseIder(leggTilTidshendelser(tidslinjerFraSykeforloep, arbeidssituasjon)));
             return Object.assign({}, state, {
-                data: [],
-                henter: false,
-                hentingFeilet: false,
-                ikkeTilgang: true,
-                hentet: true,
+                data,
             });
         }
         case actiontyper.APNE_HENDELSER: {
@@ -120,16 +104,15 @@ export default function tidslinjer(state = initiellState, action) {
             }
             const data = state.data.map((tidslinje) => {
                 return Object.assign({}, tidslinje, {
-                    hendelser: tidslinje.hendelser.map((hendelse) => {
-                        let obj = hendelse;
+                    hendelser: [...tidslinje.hendelser].map((hendelse) => {
                         if (action.hendelseIder.indexOf(hendelse.id) !== -1) {
-                            obj = Object.assign({}, hendelse, {
+                            return Object.assign({}, hendelse, {
                                 erApen: true,
                                 visBudskap: true,
                                 hoyde: 'auto',
                             });
                         }
-                        return obj;
+                        return hendelse;
                     }),
                 });
             });
@@ -142,23 +125,14 @@ export default function tidslinjer(state = initiellState, action) {
             const data = state.data.map((tidslinje) => {
                 return Object.assign({}, tidslinje, {
                     hendelser: tidslinje.hendelser.map((hendelse) => {
-                        let obj = hendelse;
                         if (action.hendelseId === hendelse.id) {
-                            obj = Object.assign({}, hendelse, action.data);
+                            return Object.assign({}, hendelse, action.data);
                         }
-                        return obj;
+                        return hendelse;
                     }),
                 });
             });
             return Object.assign({}, state, { data });
-        }
-        case actiontyper.BRUKER_ER_UTLOGGET: {
-            return {
-                data: [],
-                hentingFeilet: false,
-                henter: false,
-                hentet: true,
-            };
         }
         default: {
             return state;
