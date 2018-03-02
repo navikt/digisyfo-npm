@@ -291,3 +291,32 @@ export const sykeforloep = PropTypes.shape({
         identdato: PropTypes.date,
     },
 });
+
+export const fnrvirksomhetsnummer = PropTypes.shape({
+    fnr: PropTypes.string,
+    virksomhetsnummer: PropTypes.string,
+});
+
+export const sykeforloepPeriodePt = PropTypes.shape({
+    fom: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.instanceOf(Date),
+    ]),
+    tom: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.instanceOf(Date),
+    ]),
+    grad: PropTypes.number,
+    aktivitet: PropTypes.string,
+});
+
+export const sykeforloepsPerioderReducerPt = PropTypes.shape({
+    data: PropTypes.arrayOf(PropTypes.shape({
+        fnr: PropTypes.string,
+        virksomhetsnummer: PropTypes.string,
+        periodeListe: PropTypes.arrayOf(sykeforloepPeriodePt),
+    })),
+    henter: PropTypes.arrayOf(fnrvirksomhetsnummer),
+    hentet: PropTypes.arrayOf(fnrvirksomhetsnummer),
+    hentingFeilet: PropTypes.arrayOf(fnrvirksomhetsnummer),
+});
