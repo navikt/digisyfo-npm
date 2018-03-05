@@ -101,7 +101,9 @@ class Hjelpetekst extends Component {
                         role="tooltip"
                         id={ariaId}
                         className={`hjelpetekst__tooltip${this.state.variant} js-tooltip`}>
-                        <h3 className="hjelpetekst__tittel js-tittel">{this.props.tittel}</h3>
+                        {
+                            this.props.tittel && <h3 className="hjelpetekst__tittel js-tittel">{this.props.tittel}</h3>
+                        }
                         <div className="hjelpetekst__tekst js-tekst">
                             <p>
                                 {this.props.tekst}
