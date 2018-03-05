@@ -20,7 +20,7 @@ describe('sykeforloepsPerioderSagas', () => {
         });
 
         it('Skal dernest kalle resttjenesten', () => {
-            const nextCall = call(get, `${window.APP_SETTINGS.REST_ROOT}/sykeforloep?fnr=***REMOVED***&orgnr=***REMOVED***`);
+            const nextCall = call(get, `${window.APP_SETTINGS.REST_ROOT}/sykeforloep/siste/perioder?fnr=***REMOVED***&orgnr=***REMOVED***`);
             expect(generator.next().value).to.deep.equal(nextCall);
         });
 
