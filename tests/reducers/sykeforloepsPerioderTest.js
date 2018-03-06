@@ -1,5 +1,5 @@
-import deepFreeze from 'deep-freeze';
 import { expect } from 'chai';
+import deepFreeze from 'deep-freeze';
 import * as actions from '../../js/actions/sykeforloepsPerioder_actions';
 import sykeforloepsPerioder from '../../js/reducers/sykeforloepsPerioder';
 
@@ -16,7 +16,7 @@ describe('sykeforloepsPerioder', () => {
             const action = actions.henterSykeforloepsPerioder('fnr', 'virksomhetsnummer');
             const nextState = sykeforloepsPerioder(initialState, action);
             expect(nextState).to.deep.equal({
-                henter: ['fnr', 'virksomhetsnummer'],
+                henter: [{ fnr: 'fnr', virksomhetsnummer: 'virksomhetsnummer' }],
                 hentet: [],
                 hentingFeilet: [],
                 data: [],
@@ -25,7 +25,7 @@ describe('sykeforloepsPerioder', () => {
 
         it('håndterer SYKEFORLOEPSPERIODE_HENTET', () => {
             const state = deepFreeze({
-                henter: ['fnr', 'virksomhetsnummer'],
+                henter: [{ fnr: 'fnr', virksomhetsnummer: 'virksomhetsnummer' }],
                 hentet: [],
                 hentingFeilet: [],
                 data: [],
@@ -38,12 +38,12 @@ describe('sykeforloepsPerioder', () => {
                     aktivitet: 'Test aktivitet',
                 },
                 'fnr',
-                'virksomhetsnummer'
+                'virksomhetsnummer',
             );
             const nextState = sykeforloepsPerioder(state, action);
             expect(nextState).to.deep.equal({
                 henter: [],
-                hentet: ['fnr', 'virksomhetsnummer'],
+                hentet: [{ fnr: 'fnr', virksomhetsnummer: 'virksomhetsnummer' }],
                 hentingFeilet: [],
                 data: [{
                     periodeListe: {
@@ -59,12 +59,12 @@ describe('sykeforloepsPerioder', () => {
         });
 
         it('håndterer HENT_SYKEFORLOEPSPERIODE_FEILET', () => {
-            const action = actions.hentKontaktinfoFeilet('fnr', 'virksomhetsnummer');
+            const action = actions.hentSykeforloepsPerioderFeilet('fnr', 'virksomhetsnummer');
             const nextState = sykeforloepsPerioder(initialState, action);
             expect(nextState).to.deep.equal({
                 henter: [],
                 hentet: [],
-                hentingFeilet: ['fnr', 'virksomhetsnummer'],
+                hentingFeilet: [{ fnr: 'fnr', virksomhetsnummer: 'virksomhetsnummer' }],
                 data: [],
             });
         });

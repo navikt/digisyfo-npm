@@ -17,7 +17,7 @@ describe('sykeforloepsPerioder_actions', () => {
 
     it('Skal ha en hentSykeforloepsPerioder()-funksjon som returnerer riktig action', () => {
         expect(actions.hentSykeforloepsPerioder('fnr', 'virksomhetsnummer')).to.deep.equal({
-            type: actiontyper.HENT_ARBEIDSFORHOLD_FORESPURT,
+            type: actiontyper.HENT_SYKEFORLOEPSPERIODER_FORESPURT,
             fnr: 'fnr',
             virksomhetsnummer: 'virksomhetsnummer',
         });

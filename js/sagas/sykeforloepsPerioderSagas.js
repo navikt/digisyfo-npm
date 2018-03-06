@@ -7,7 +7,7 @@ import * as actiontyper from '../actions/actiontyper';
 export function* hentSykeforloepsPerioderSaga(action) {
     yield put(actions.henterSykeforloepsPerioder(action.fnr, action.virksomhetsnummer));
     try {
-        const periodeListe = yield call(get, `${window.APP_SETTINGS.REST_ROOT}/sykeforloep/siste/perioder/?fnr=${action.fnr}&orgnr=${action.virksomhetsnummer}`);
+        const periodeListe = yield call(get, `${window.APP_SETTINGS.REST_ROOT}/sykeforloep/siste/perioder?fnr=${action.fnr}&orgnr=${action.virksomhetsnummer}`);
         yield put(actions.sykeforloepsPerioderHentet(periodeListe, action.fnr, action.virksomhetsnummer));
     } catch (e) {
         log(e);
