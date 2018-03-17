@@ -6,7 +6,7 @@ import { get } from '../../js/api';
 describe('ledeteksterSagas', () => {
     beforeEach(() => {
         window.APP_SETTINGS = {
-            SYFOTEKSTERREST_ROOT: 'http://tjenester.nav.no/syfotekster',
+            SYFOTEKSTERREST_ROOT: 'https://tjenester.nav.no/syfotekster/api',
         };
     });
 
@@ -18,7 +18,7 @@ describe('ledeteksterSagas', () => {
     });
 
     it('Skal dernest hente ledetekster', () => {
-        const nextCall = call(get, 'http://tjenester.nav.no/syfotekster/tekster');
+        const nextCall = call(get, 'https://tjenester.nav.no/syfotekster/api/tekster');
         expect(generator.next().value).to.deep.equal(nextCall);
     });
 
