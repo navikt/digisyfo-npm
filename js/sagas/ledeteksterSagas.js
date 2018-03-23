@@ -8,7 +8,7 @@ import { setLedetekster } from '../ledetekster';
 export function* hentLedetekster() {
     yield put(actions.henterLedetekster());
     try {
-        const ledetekster = yield call(get, `${window.APP_SETTINGS.REST_ROOT}/informasjon/tekster`);
+        const ledetekster = yield call(get, `${window.APP_SETTINGS.SYFOTEKSTERREST_ROOT}/tekster`);
         setLedetekster(ledetekster);
         yield put(actions.ledeteksterHentet(ledetekster));
     } catch (e) {

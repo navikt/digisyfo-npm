@@ -1,36 +1,32 @@
 import { expect } from 'chai';
-import { hentLedetekster } from '../../js/sagas/ledeteksterSagas.js';
-import { get } from '../../js/api';
 import { put, call } from 'redux-saga/effects';
-import * as ledetekster from '../../js/ledetekster';
-import sinon from 'sinon';
+import { hentLedetekster } from '../../js/sagas/ledeteksterSagas';
+import { get } from '../../js/api';
 
-describe("ledeteksterSagas", () => {
-
+describe('ledeteksterSagas', () => {
     beforeEach(() => {
         window.APP_SETTINGS = {
-            REST_ROOT: "http://tjenester.nav.no/syforest"
-        }
+            SYFOTEKSTERREST_ROOT: 'https://tjenester.nav.no/syfotekster/api',
+        };
     });
 
     const generator = hentLedetekster();
 
-    it("Skal dispatche HENTER_LEDETEKSTER", () => {
-        const nextPut = put({type: 'HENTER_LEDETEKSTER'});
+    it('Skal dispatche HENTER_LEDETEKSTER', () => {
+        const nextPut = put({ type: 'HENTER_LEDETEKSTER' });
         expect(generator.next().value).to.deep.equal(nextPut);
     });
 
-    it("Skal dernest hente ledetekster", () => {
-        const nextCall = call(get, "http://tjenester.nav.no/syforest/informasjon/tekster");
+    it('Skal dernest hente ledetekster', () => {
+        const nextCall = call(get, 'https://tjenester.nav.no/syfotekster/api/tekster');
         expect(generator.next().value).to.deep.equal(nextCall);
     });
 
-    it("Skal dernest sette ledetekster", () => {
+    it('Skal dernest sette ledetekster', () => {
         const nextPut = put({
             type: 'LEDETEKSTER_HENTET',
-            ledetekster: {"min.ledetekst": "Hello world!"}
-        })
-        expect(generator.next({"min.ledetekst": "Hello world!"}).value).to.deep.equal(nextPut);
+            ledetekster: { 'min.ledetekst': 'Hello world!' },
+        });
+        expect(generator.next({ 'min.ledetekst': 'Hello world!' }).value).to.deep.equal(nextPut);
     });
-
 });
