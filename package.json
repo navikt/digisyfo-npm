@@ -1,6 +1,6 @@
 {
   "name": "digisyfo-npm",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "description": "Felleskomponenter for DigiSyfo - Digitalisering av sykefraværsoppfølgingen",
   "main": "lib/index.js",
   "files": [
@@ -20,7 +20,7 @@
   },
   "author": "digisyfo@nav.no",
   "publishConfig": {
-    "registry": "http://maven.adeo.no/nexus/content/repositories/npm-internal/"
+    "registry": "https://repo.adeo.no/repository/npm-internal/"
   },
   "license": "ISC",
   "dependencies": {
