@@ -60,13 +60,13 @@
     "redux-saga": "0.12.0"
   },
   "peerDependencies": {
-    "prop-types": "15.6.0",
-    "fetch": "1.0.1",
-    "react": "16.0.0",
-    "react-dom": "16.0.0",
-    "react-redux": "5.0.6",
-    "redux": "3.5.2",
-    "simple-ajax": "2.6.0",
-    "redux-saga": "0.12.0"
+    "prop-types": "15.x.x",
+    "fetch": "1.0.x",
+    "react": "16.x.x",
+    "react-dom": "16.x.x",
+    "react-redux": "5.0.x",
+    "redux": "3.5.x",
+    "simple-ajax": "2.6.x",
+    "redux-saga": "0.12.x"
   }
 }
