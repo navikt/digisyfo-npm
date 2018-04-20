@@ -16,6 +16,7 @@ export const getSykmelding = (sykmelding = {}) => {
           "etternavn": "Frost"
         },
         "arbeidsgiver": "Selskapet AS",
+        "stillingsprosent": 100,
         "diagnose": {
           "hoveddiagnose": {
             "diagnose": "Influensa",
@@ -111,6 +112,7 @@ export const getParsetSykmelding = (sykmelding = {}) => {
           "etternavn": "Frost"
         },
         "arbeidsgiver": "Selskapet AS",
+        "stillingsprosent": 100,
         "diagnose": {
           "hoveddiagnose": {
             "diagnose": "Influensa",

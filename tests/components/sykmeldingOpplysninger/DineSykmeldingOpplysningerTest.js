@@ -54,6 +54,21 @@ describe("DineSykmeldingOpplysninger", () => {
         expect(component.find(".js-arbeidsgiver").length).to.equal(0);
     });
 
+    it("Skal vise stillingsprosent", () => {
+        component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding()} ledetekster={ledetekster}/>);
+        expect(component.find(".js-stillingsprosent").text()).to.equal("100 % stilling");
+    });
+
+    it("Skal ikke vise stillingsprosent dersom det ikke finnes", () => {
+        const getState = {
+            ledetekster: { ledetekster },
+        };
+
+        component = mount(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding({
+            stillingsprosent: null
+        })} ledetekster={ledetekster} />);
+        expect(component.find(".js-stillingsprosent").length).to.equal(0);
+    });
 
     it("Viser flere opplysninger", () => {
         const getState = {
