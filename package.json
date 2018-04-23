@@ -1,6 +1,6 @@
 {
   "name": "digisyfo-npm",
-  "version": "7.1.1",
+  "version": "8.0.0",
   "description": "Felleskomponenter for DigiSyfo - Digitalisering av sykefraværsoppfølgingen",
   "main": "lib/index.js",
   "files": [
@@ -24,25 +24,15 @@
   },
   "license": "ISC",
   "dependencies": {
-    "babel-cli": "6.26.0",
+    "fetch-ponyfill": "4.1.0",
+    "babel-polyfill": "6.26.0"
+  },
+  "devDependencies": {
     "babel-core": "6.26.0",
-    "babel-polyfill": "6.26.0",
+    "babel-cli": "6.26.0",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
     "babelify": "7.3.0",
-    "fetch": "1.0.1",
-    "fetch-ponyfill": "4.1.0",
-    "isomorphic-fetch": "2.2.1",
-    "prop-types": "15.6.0",
-    "react": "16.0.0",
-    "react-dom": "16.0.0",
-    "react-redux": "5.0.6",
-    "redux": "3.5.2",
-    "redux-saga": "0.12.0",
-    "simple-ajax": "2.6.0"
-  },
-  "devDependencies": {
-    "babel-cli": "6.26.0",
     "babel-eslint": "8.0.1",
     "babel-preset-env": "1.6.0",
     "chai": "4.1.2",
@@ -60,6 +50,23 @@
     "mocha": "4.0.0",
     "parallelshell": "2.0.0",
     "react-test-renderer": "16.0.0",
-    "sinon": "1.17.6"
+    "sinon": "1.17.6",
+    "prop-types": "15.6.0",
+    "react": "16.0.0",
+    "react-dom": "16.0.0",
+    "react-redux": "5.0.6",
+    "redux": "3.5.2",
+    "simple-ajax": "2.6.0",
+    "redux-saga": "0.12.0"
+  },
+  "peerDependencies": {
+    "prop-types": "15.x.x",
+    "fetch": "1.0.x",
+    "react": "16.x.x",
+    "react-dom": "16.x.x",
+    "react-redux": "5.0.x",
+    "redux": "3.5.x",
+    "simple-ajax": "2.6.x",
+    "redux-saga": "0.12.x"
   }
 }
