@@ -258,7 +258,8 @@ const ledetekster = {
     'sykepengesoknad.angi-tid.antall.label-totalt.prosent': 'prosent',
     'sykepengesoknad.angi-tid.antall.label-totalt.timer': 'timer totalt',
     'sykepengesoknad.angi-tid.dette-tilsvarer': 'Dette tilsvarer <strong>%STILLINGSPROSENT% %</strong> av din stilling',
-    'sykepengesoknad.aktiviteter.avvik.hvor-mye-har-du-jobbet-totalt': 'Hvor hvor mye jobbet du totalt i denne perioden hos %ARBEIDSGIVER%?'
+    'sykepengesoknad.aktiviteter.avvik.hvor-mye-har-du-jobbet-totalt': 'Hvor hvor mye jobbet du totalt i denne perioden hos %ARBEIDSGIVER%?',
+    'din-sykmelding.stillingsprosent': '%STILLINGSPROSENT% % stilling',
 };
 
 export default ledetekster;

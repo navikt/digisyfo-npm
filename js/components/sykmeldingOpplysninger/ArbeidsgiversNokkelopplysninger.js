@@ -38,7 +38,9 @@ const ArbeidsgiversNokkelopplysninger = ({ sykmelding, ledetekster }) => {
                 <p className="js-arbeidsgiver">{sykmelding.arbeidsgiver}</p>
                 {
                     sykmelding.stillingsprosent
-                        ? <p className="js-stillingsprosent">{`${sykmelding.stillingsprosent} % stilling`}</p>
+                        ? <p className="js-stillingsprosent">{getLedetekst('din-sykmelding.stillingsprosent', ledetekster, {
+                            '%STILLINGSPROSENT%': sykmelding.stillingsprosent,
+                        })}</p>
                         : null
                 }
             </SykmeldingNokkelOpplysning>
