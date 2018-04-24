@@ -36,6 +36,11 @@ const ArbeidsgiversNokkelopplysninger = ({ sykmelding, ledetekster }) => {
                 tittel={getLedetekst('send-til-arbeidsgiver.arbeidsgiver.tittel', ledetekster)}
                 Overskrift="h4">
                 <p className="js-arbeidsgiver">{sykmelding.arbeidsgiver}</p>
+                {
+                    sykmelding.stillingsprosent
+                        ? <p className="js-stillingsprosent">{`${sykmelding.stillingsprosent} % stilling`}</p>
+                        : null
+                }
             </SykmeldingNokkelOpplysning>
         }
         {

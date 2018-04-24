@@ -60,7 +60,7 @@ describe("ArbeidsgiversNokkelopplysninger", () => {
 
     describe("Arbeidsgiver for denne sykmeldingen", () => {
 
-        it("Skal vise dersom det finnes", () => {
+        it("Skal vise arbeidsgiver dersom det finnes", () => {
             component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding({
                 arbeidsgiver: "Hansen AS"
             })} ledetekster={ledetekster}/>);
@@ -68,11 +68,23 @@ describe("ArbeidsgiversNokkelopplysninger", () => {
             expect(component.find(".js-arbeidsgiver").text()).to.equal("Hansen AS");
         });
 
-        it("Skal ikke vise dersom det ikke finnes", () => {
+        it("Skal ikke vise arbeidsgiver dersom det ikke finnes", () => {
             component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding({
                 arbeidsgiver: null
             })} ledetekster={ledetekster}/>);
             expect(component.find(".js-arbeidsgiver").length).to.equal(0);
+        });
+
+        it("Skal vise stillingsprosent dersom det finnes", () => {
+            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding()} ledetekster={ledetekster}/>);
+            expect(component.find(".js-stillingsprosent").text()).to.equal("100 % stilling");
+        });
+
+        it("Skal ikke vise stillingsprosent dersom det ikke finnes", () => {
+            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding({
+                stillingsprosent: null
+            })} ledetekster={ledetekster}/>);
+            expect(component.find(".js-stillingsprosent").length).to.equal(0);
         });
 
     });

@@ -109,6 +109,11 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'h2'
                 sykmelding.arbeidsgiver ? <SykmeldingNokkelOpplysning
                     tittel={getLedetekst('din-sykmelding.arbeidsgiver.tittel', ledetekster)}>
                     <p className="js-arbeidsgiver">{sykmelding.arbeidsgiver}</p>
+                    {
+                        sykmelding.stillingsprosent
+                            ? <p className="js-stillingsprosent">{`${sykmelding.stillingsprosent} % stilling`}</p>
+                            : null
+                    }
                 </SykmeldingNokkelOpplysning> : null
             }
             {

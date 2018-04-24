@@ -212,6 +212,7 @@ export const sykmelding = PropTypes.shape({
         etternavn: PropTypes.string,
     }),
     arbeidsgiver: PropTypes.string,
+    stillingsprosent: PropTypes.number,
     diagnose: PropTypes.shape({
         hoveddiagnose: sykmeldingdiagnose,
         bidiagnoser: PropTypes.arrayOf(sykmeldingdiagnose),
