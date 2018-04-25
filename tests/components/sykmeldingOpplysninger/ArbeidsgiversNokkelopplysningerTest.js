@@ -75,9 +75,22 @@ describe("ArbeidsgiversNokkelopplysninger", () => {
             expect(component.find(".js-arbeidsgiver").length).to.equal(0);
         });
 
-        it("Skal vise stillingsprosent dersom det finnes", () => {
-            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding()} ledetekster={ledetekster}/>);
+        it("Skal vise stillingsprosent dersom det finnes og sykmelding har fom lik/etter 2018-04-26", () => {
+            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding({
+                "mulighetForArbeid": {
+                    "perioder": [
+                        {
+                            "fom": new Date("2018-04-26"),
+                        }
+                    ]
+                }
+            })} ledetekster={ledetekster}/>);
             expect(component.find(".js-stillingsprosent").text()).to.equal("100 % stilling");
+        });
+
+        it("Skal ikke vise stillingsprosent for sykmeldinger med fom før 2018-04-26", () => {
+            component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding()} ledetekster={ledetekster}/>);
+            expect(component.find(".js-stillingsprosent").length).to.equal(0);
         });
 
         it("Skal ikke vise stillingsprosent dersom det ikke finnes", () => {

@@ -9,6 +9,7 @@ import SykmeldingPerioder from './SykmeldingPerioder';
 import { SykmeldingCheckbox } from './SykmeldingCheckbox';
 import FlereOpplysninger from './FlereOpplysninger';
 import Hjelpetekst from '../Hjelpetekst';
+import { tidligsteFom } from '../../../lib/utils/periodeUtils';
 
 const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'h2' }) => {
     return (<div className="dine-opplysninger">
@@ -110,7 +111,8 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'h2'
                     tittel={getLedetekst('din-sykmelding.arbeidsgiver.tittel', ledetekster)}>
                     <p className="js-arbeidsgiver">{sykmelding.arbeidsgiver}</p>
                     {
-                        sykmelding.stillingsprosent
+                        // periode-sjekken kan fjernes etter 1.august 2018 (Når sykmeldinger med fom før 26.april uansett ikke vises)
+                        sykmelding.stillingsprosent && (tidligsteFom(sykmelding.mulighetForArbeid.perioder) >= new Date('2018-04-26'))
                             ? <p className="js-stillingsprosent">{getLedetekst('din-sykmelding.stillingsprosent', ledetekster, {
                                 '%STILLINGSPROSENT%': sykmelding.stillingsprosent,
                             })}</p>
