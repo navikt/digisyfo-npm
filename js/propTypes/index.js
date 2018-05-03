@@ -308,7 +308,9 @@ export const sykeforloepPeriodePt = PropTypes.shape({
         PropTypes.instanceOf(Date),
     ]),
     grad: PropTypes.number,
-    aktivitet: PropTypes.string,
+    behandlingsdager: PropTypes.number,
+    reisetilskudd: PropTypes.bool,
+    avventende: PropTypes.string,
 });
 
 export const sykeforloepsPerioderReducerPt = PropTypes.shape({
