@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import deepFreeze from 'deep-freeze';
-import * as actions from '../../js/actions/sykeforloepsPerioder_actions';
-import sykeforloepsPerioder from '../../js/reducers/sykeforloepsPerioder';
+import * as actions from '../../js/actions/sykeforlopsPerioder_actions';
+import sykeforlopsPerioder from '../../js/reducers/sykeforlopsPerioder';
 
-describe('sykeforloepsPerioder', () => {
+describe('sykeforlopsPerioder', () => {
     describe('henter', () => {
         const initialState = deepFreeze({
             henter: [],
@@ -12,9 +12,9 @@ describe('sykeforloepsPerioder', () => {
             data: [],
         });
 
-        it('håndterer HENTER_SYKEFORLOEPSPERIODER', () => {
-            const action = actions.henterSykeforloepsPerioder('fnr', 'virksomhetsnummer');
-            const nextState = sykeforloepsPerioder(initialState, action);
+        it('håndterer HENTER_SYKEFORLOPSPERIODER', () => {
+            const action = actions.henterSykeforlopsPerioder('fnr', 'virksomhetsnummer');
+            const nextState = sykeforlopsPerioder(initialState, action);
             expect(nextState).to.deep.equal({
                 henter: [{ fnr: 'fnr', virksomhetsnummer: 'virksomhetsnummer' }],
                 hentet: [],
@@ -23,14 +23,14 @@ describe('sykeforloepsPerioder', () => {
             });
         });
 
-        it('håndterer SYKEFORLOEPSPERIODE_HENTET', () => {
+        it('håndterer SYKEFORLOPSPERIODE_HENTET', () => {
             const state = deepFreeze({
                 henter: [{ fnr: 'fnr', virksomhetsnummer: 'virksomhetsnummer' }],
                 hentet: [],
                 hentingFeilet: [],
                 data: [],
             });
-            const action = actions.sykeforloepsPerioderHentet(
+            const action = actions.sykeforlopsPerioderHentet(
                 {
                     fom: '1.1.2017',
                     tom: '2.1.2017',
@@ -40,7 +40,7 @@ describe('sykeforloepsPerioder', () => {
                 'fnr',
                 'virksomhetsnummer',
             );
-            const nextState = sykeforloepsPerioder(state, action);
+            const nextState = sykeforlopsPerioder(state, action);
             expect(nextState).to.deep.equal({
                 henter: [],
                 hentet: [{ fnr: 'fnr', virksomhetsnummer: 'virksomhetsnummer' }],
@@ -58,9 +58,9 @@ describe('sykeforloepsPerioder', () => {
             });
         });
 
-        it('håndterer HENT_SYKEFORLOEPSPERIODE_FEILET', () => {
-            const action = actions.hentSykeforloepsPerioderFeilet('fnr', 'virksomhetsnummer');
-            const nextState = sykeforloepsPerioder(initialState, action);
+        it('håndterer HENT_SYKEFORLOPSPERIODE_FEILET', () => {
+            const action = actions.hentSykeforlopsPerioderFeilet('fnr', 'virksomhetsnummer');
+            const nextState = sykeforlopsPerioder(initialState, action);
             expect(nextState).to.deep.equal({
                 henter: [],
                 hentet: [],

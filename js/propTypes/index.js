@@ -298,7 +298,7 @@ export const fnrvirksomhetsnummer = PropTypes.shape({
     virksomhetsnummer: PropTypes.string,
 });
 
-export const sykeforloepPeriodePt = PropTypes.shape({
+export const sykeforlopPeriodePt = PropTypes.shape({
     fom: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.instanceOf(Date),
@@ -313,11 +313,11 @@ export const sykeforloepPeriodePt = PropTypes.shape({
     avventende: PropTypes.string,
 });
 
-export const sykeforloepsPerioderReducerPt = PropTypes.shape({
+export const sykeforlopsPerioderReducerPt = PropTypes.shape({
     data: PropTypes.arrayOf(PropTypes.shape({
         fnr: PropTypes.string,
         virksomhetsnummer: PropTypes.string,
-        periodeListe: PropTypes.arrayOf(sykeforloepPeriodePt),
+        periodeListe: PropTypes.arrayOf(sykeforlopPeriodePt),
     })),
     henter: PropTypes.arrayOf(fnrvirksomhetsnummer),
     hentet: PropTypes.arrayOf(fnrvirksomhetsnummer),

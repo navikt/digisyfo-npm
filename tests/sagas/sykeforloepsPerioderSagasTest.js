@@ -2,21 +2,21 @@ import { expect } from 'chai';
 import { put, call } from 'redux-saga/effects';
 import { get } from '../../js/api/index';
 import * as actiontyper from '../../js/actions/actiontyper';
-import { hentSykeforloepsPerioderSaga } from '../../js/sagas/sykeforloepsPerioderSagas';
+import { hentSykeforlopsPerioderSaga } from '../../js/sagas/sykeforlopsPerioderSagas';
 
-describe('sykeforloepsPerioderSagas', () => {
+describe('sykeforlopsPerioderSagas', () => {
 
-    describe('hentSykeforloepsPerioder', () => {
-        const generator = hentSykeforloepsPerioderSaga({
+    describe('hentSykeforlopsPerioder', () => {
+        const generator = hentSykeforlopsPerioderSaga({
             fnr: '123',
             virksomhetsnummer: '456',
         });
 
-        it('Skal dispatche HENTER_SYKEFORLOEPSPERIODER', () => {
+        it('Skal dispatche HENTER_SYKEFORLOPSPERIODER', () => {
             const nextPut = put({
                 fnr: '123',
                 virksomhetsnummer: '456',
-                type: actiontyper.HENTER_SYKEFORLOEPSPERIODER,
+                type: actiontyper.HENTER_SYKEFORLOPSPERIODER,
             });
             expect(generator.next().value).to.deep.equal(nextPut);
         });
@@ -26,9 +26,9 @@ describe('sykeforloepsPerioderSagas', () => {
             expect(generator.next().value).to.deep.equal(nextCall);
         });
 
-        it('Skal dernest sette SYKEFORLOEPSPERIODER_HENTET', () => {
+        it('Skal dernest sette SYKEFORLOPSPERIODER_HENTET', () => {
             const nextPut = put({
-                type: actiontyper.SYKEFORLOEPSPERIODER_HENTET,
+                type: actiontyper.SYKEFORLOPSPERIODER_HENTET,
                 periodeListe: undefined,
                 fnr: '123',
                 virksomhetsnummer: '456',

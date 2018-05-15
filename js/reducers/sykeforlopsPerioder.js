@@ -7,9 +7,9 @@ const initiellState = {
     data: [],
 };
 
-const sykeforloepsPerioder = (state = initiellState, action = {}) => {
+const sykeforlopsPerioder = (state = initiellState, action = {}) => {
     switch (action.type) {
-        case actiontyper.HENTER_SYKEFORLOEPSPERIODER: {
+        case actiontyper.HENTER_SYKEFORLOPSPERIODER: {
             return Object.assign({}, state, {
                 henter: state.henter.concat({ fnr: action.fnr, virksomhetsnummer: action.virksomhetsnummer }),
                 hentingFeilet: state.hentingFeilet.filter((hentingFeilet) => {
@@ -17,7 +17,7 @@ const sykeforloepsPerioder = (state = initiellState, action = {}) => {
                 }),
             });
         }
-        case actiontyper.SYKEFORLOEPSPERIODER_HENTET: {
+        case actiontyper.SYKEFORLOPSPERIODER_HENTET: {
             return Object.assign({}, state, {
                 henter: state.hentingFeilet.filter((henter) => {
                     return henter.fnr !== action.fnr && henter.virksomhetsnummer !== action.virksomhetsnummer;
@@ -29,7 +29,7 @@ const sykeforloepsPerioder = (state = initiellState, action = {}) => {
                 data: state.data.concat({ fnr: action.fnr, virksomhetsnummer: action.virksomhetsnummer, periodeListe: action.periodeListe }),
             });
         }
-        case actiontyper.HENT_SYKEFORLOEPSPERIODER_FEILET: {
+        case actiontyper.HENT_SYKEFORLOPSPERIODER_FEILET: {
             return Object.assign({}, state, {
                 henter: state.henter.filter((henter) => {
                     return henter.fnr !== action.fnr && henter.virksomhetsnummer !== action.virksomhetsnummer;
@@ -42,4 +42,4 @@ const sykeforloepsPerioder = (state = initiellState, action = {}) => {
     }
 };
 
-export default sykeforloepsPerioder;
+export default sykeforlopsPerioder;
