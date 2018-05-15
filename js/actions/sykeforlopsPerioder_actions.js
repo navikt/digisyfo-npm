@@ -1,6 +1,6 @@
 import * as actiontyper from '../actions/actiontyper';
 
-export const hentSYKEFORLOPSPERIODER = (fnr, virksomhetsnummer) => {
+export const hentSykeforlopsPerioder = (fnr, virksomhetsnummer) => {
     return {
         type: actiontyper.HENT_SYKEFORLOPSPERIODER_FORESPURT,
         fnr,
@@ -8,7 +8,7 @@ export const hentSYKEFORLOPSPERIODER = (fnr, virksomhetsnummer) => {
     };
 };
 
-export const henterSYKEFORLOPSPERIODER = (fnr, virksomhetsnummer) => {
+export const henterSykeforlopsPerioder = (fnr, virksomhetsnummer) => {
     return {
         type: actiontyper.HENTER_SYKEFORLOPSPERIODER,
         fnr,
@@ -16,7 +16,7 @@ export const henterSYKEFORLOPSPERIODER = (fnr, virksomhetsnummer) => {
     };
 };
 
-export const SYKEFORLOPSPERIODERHentet = (periodeListe, fnr, virksomhetsnummer) => {
+export const sykeforlopsPerioderHentet = (periodeListe, fnr, virksomhetsnummer) => {
     return {
         type: actiontyper.SYKEFORLOPSPERIODER_HENTET,
         periodeListe,
@@ -25,7 +25,7 @@ export const SYKEFORLOPSPERIODERHentet = (periodeListe, fnr, virksomhetsnummer) 
     };
 };
 
-export const hentSYKEFORLOPSPERIODERFeilet = (fnr, virksomhetsnummer) => {
+export const hentSykeforlopsPerioderFeilet = (fnr, virksomhetsnummer) => {
     return {
         type: actiontyper.HENT_SYKEFORLOPSPERIODER_FEILET,
         fnr,
