@@ -9,7 +9,7 @@ import SykmeldingPerioder from './SykmeldingPerioder';
 import { SykmeldingCheckbox } from './SykmeldingCheckbox';
 import FlereOpplysninger from './FlereOpplysninger';
 import Hjelpetekst from '../Hjelpetekst';
-import { tidligsteFom } from '../../../lib/utils/periodeUtils';
+import { tidligsteFom } from '../../utils/periodeUtils';
 
 const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'h2' }) => {
     return (<div className="dine-opplysninger">
