@@ -4,7 +4,7 @@ import SykmeldingPerioder from './SykmeldingPerioder';
 import { SykmeldingNokkelOpplysning } from './SykmeldingOpplysning';
 import { getSykmeldingCheckbox } from '../../utils';
 import { getLedetekst } from '../../ledetekster';
-import { tidligsteFom } from '../../../lib/utils/periodeUtils';
+import { tidligsteFom } from '../../utils/periodeUtils';
 
 const ArbeidsgiversNokkelopplysninger = ({ sykmelding, ledetekster }) => {
     return (<div className="arbeidsgiversSykmelding__nokkelopplysninger">
