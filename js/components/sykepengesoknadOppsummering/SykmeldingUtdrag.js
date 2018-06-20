@@ -5,17 +5,9 @@ import { SykmeldingNokkelOpplysning } from '../sykmeldingOpplysninger/Sykmelding
 import Utvidbar from '../Utvidbar';
 import { toDatePrettyPrint } from '../../utils/datoUtils';
 import { getLedetekst } from '../../ledetekster';
-import { keyValue, sykepengesoknad as sykepengesoknadPt } from '../../propTypes';
+import { keyValue, sykmelding as sykmeldingPt } from '../../propTypes';
 
-const SykmeldingUtdrag = ({ erApen, sykepengesoknad, ledetekster }) => {
-    const perioder = sykepengesoknad.aktiviteter.map((aktivitet) => {
-        return {
-            fom: aktivitet.periode.fom,
-            tom: aktivitet.periode.tom,
-            grad: aktivitet.grad,
-        };
-    });
-
+const SykmeldingUtdrag = ({ erApen, sykmelding, ledetekster }) => {
     return (<div className="blokk">
         <Utvidbar
             Overskrift="h2"
@@ -27,14 +19,14 @@ const SykmeldingUtdrag = ({ erApen, sykepengesoknad, ledetekster }) => {
             ikonHover="svg/plaster_hover.svg"
             ikonAltTekst="Plaster-ikon">
             <div>
-                <SykmeldingPerioder perioder={perioder} ledetekster={ledetekster} />
+                <SykmeldingPerioder perioder={sykmelding.mulighetForArbeid.perioder} ledetekster={ledetekster} />
                 <SykmeldingNokkelOpplysning
                     tittel={getLedetekst('sykepengesoknad.sykmelding-utdrag.arbeidsgiver', ledetekster)}>
-                    <p className="js-arbeidsgiver">{sykepengesoknad.arbeidsgiver.navn}</p>
+                    <p className="js-arbeidsgiver">{sykmelding.mottakendeArbeidsgiver.navn}</p>
                 </SykmeldingNokkelOpplysning>
                 <SykmeldingNokkelOpplysning
                     tittel={getLedetekst('sykepengesoknad.sykmelding-utdrag.dato-sykmeldingen-ble-skrevet', ledetekster)}>
-                    <p className="js-utstedelsesdato">{toDatePrettyPrint(sykepengesoknad.sykmeldingSkrevetDato)}</p>
+                    <p className="js-utstedelsesdato">{toDatePrettyPrint(sykmelding.bekreftelse.utstedelsesdato)}</p>
                 </SykmeldingNokkelOpplysning>
             </div>
         </Utvidbar>
@@ -43,7 +35,7 @@ const SykmeldingUtdrag = ({ erApen, sykepengesoknad, ledetekster }) => {
 
 SykmeldingUtdrag.propTypes = {
     erApen: PropTypes.bool,
-    sykepengesoknad: sykepengesoknadPt,
+    sykmelding: sykmeldingPt,
     ledetekster: keyValue,
 };
 

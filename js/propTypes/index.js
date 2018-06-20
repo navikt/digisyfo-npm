@@ -203,6 +203,11 @@ export const sykmelding = PropTypes.shape({
     naermesteLederStatus: PropTypes.string,
     innsendtArbeidsgivernavn: PropTypes.string,
     valgtArbeidssituasjon: arbeidssituasjon,
+    mottakendeArbeidsgiver: PropTypes.shape({
+        navn: PropTypes.string,
+        virksomhetsnummer: PropTypes.string,
+        juridiskOrgnummer: PropTypes.string,
+    }),
     orgnummer: PropTypes.string,
     sendtDato: PropTypes.instanceOf(Date),
     pasient: PropTypes.shape({
