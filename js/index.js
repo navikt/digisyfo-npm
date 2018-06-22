@@ -24,6 +24,7 @@ import Hjelpetekst from './components/Hjelpetekst';
 import Stegnavigasjon from './components/Stegnavigasjon';
 import DineSykmeldingOpplysninger from './components/sykmeldingOpplysninger/DineSykmeldingOpplysninger';
 import Video from './components/Video';
+import logger from './logger/logger';
 
 export { ArbeidsgiversSykmeldingOpplysninger };
 export { ArbeidsgiversNokkelopplysninger };
@@ -32,6 +33,7 @@ export { DineSykmeldingOpplysninger };
 export { SykmeldingUtdrag };
 export { Utvidbar };
 export { Video };
+export { logger };
 export * from './components/sykmeldingOpplysninger/SykmeldingOpplysning';
 export { SykmeldingPerioder };
 export * from './ledetekster';
