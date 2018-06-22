@@ -1,6 +1,6 @@
 {
   "name": "digisyfo-npm",
-  "version": "9.0.0",
+  "version": "9.1.0",
   "description": "Felleskomponenter for DigiSyfo - Digitalisering av sykefraværsoppfølgingen",
   "main": "lib/index.js",
   "files": [
@@ -49,6 +49,7 @@
     "fetch-mock": "5.5.0",
     "jsdom": "11.3.0",
     "mocha": "4.0.0",
+    "nav-logger": "2.0.3",
     "parallelshell": "2.0.0",
     "prop-types": "15.6.0",
     "react": "16.0.0",
@@ -69,6 +70,7 @@
     "react-redux": "5.0.x",
     "redux": "3.5.x",
     "simple-ajax": "2.6.x",
-    "redux-saga": "0.12.x"
+    "redux-saga": "0.12.x",
+    "nav-logger": "2.0.x"
   }
 }

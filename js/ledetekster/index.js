@@ -1,3 +1,5 @@
+import logger from '../logger/logger';
+
 let ledetekster = {};
 
 function replace(str, replacements) {
@@ -78,6 +80,9 @@ export function getLedetekst(...args) {
     }
     const label = labels[key];
     if (!label) {
+        if (logger && logger.error) {
+            logger.error(`${key} [MANGLER LEDETEKST]`);
+        }
         return `${key} [MANGLER LEDETEKST]`;
     }
     if (!replacements) {
