@@ -2,6 +2,16 @@ import logger from '../logger/logger';
 
 let ledetekster = {};
 
+const manglendeLedetekster = [];
+
+const loggManglendeLedetekst = (key) => {
+    const erLoggetFoer = manglendeLedetekster.indexOf(key) > -1;
+    if (logger && logger.error && !erLoggetFoer) {
+        manglendeLedetekster.push(key);
+        logger.error(`${key} [MANGLER LEDETEKST]`);
+    }
+};
+
 function replace(str, replacements) {
     return str.replace(/%\w+%+([.,:;?]{0}?)/g, (all) => {
         return `${replacements[all]}` || all;
@@ -80,9 +90,7 @@ export function getLedetekst(...args) {
     }
     const label = labels[key];
     if (!label) {
-        if (logger && logger.error) {
-            logger.error(`${key} [MANGLER LEDETEKST]`);
-        }
+        loggManglendeLedetekst(key);
         return `${key} [MANGLER LEDETEKST]`;
     }
     if (!replacements) {
