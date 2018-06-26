@@ -11,18 +11,24 @@ const Hjelpeboble = (
         className = '',
         hvit = false,
         stor = false,
+        vertikal = false,
     }) => {
+    const classNames = cn(`hjelpeboble ${className}`, {
+        'hjelpeboble--horisontal': !vertikal,
+    });
     const bobleClassNames = cn({
         hjelpeboble__boble: true,
         'hjelpeboble__boble--hvit': hvit,
         'hjelpeboble__boble--stor': stor,
+        'hjelpeboble__boble--horisontal': !vertikal,
     });
     const bildeClassNames = cn({
         hjelpeboble__bilde: true,
         'hjelpeboble__bilde--hvit': hvit,
         'hjelpeboble__bilde--stor': stor,
+        'hjelpeboble__bilde--horisontal': !vertikal,
     });
-    return (<div className={`hjelpeboble ${className}`}>
+    return (<div className={classNames}>
         <div className={bobleClassNames}>
             {children}
         </div>
@@ -38,6 +44,7 @@ Hjelpeboble.propTypes = {
     children: PropTypes.element,
     hvit: PropTypes.bool,
     stor: PropTypes.bool,
+    vertikal: PropTypes.bool,
     className: PropTypes.string,
 };
 
@@ -47,12 +54,14 @@ export const Bjorn = (
         children,
         hvit,
         stor,
+        vertikal,
         className = '',
         rootUrl = '',
     }) => {
     return (<Hjelpeboble
         hvit={hvit}
         stor={stor}
+        vertikal={vertikal}
         className={className}
         bilde={`${rootUrl}/img/svg/nav-ansatt--mannlig.svg`}
         bildeAlt="NAV-ansatt">
@@ -69,6 +78,7 @@ Bjorn.propTypes = {
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]),
     hvit: PropTypes.bool,
     stor: PropTypes.bool,
+    vertikal: PropTypes.bool,
     className: PropTypes.string,
     rootUrl: PropTypes.string,
 };
