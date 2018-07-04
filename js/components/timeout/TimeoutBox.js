@@ -1,27 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+/* eslint-disable */
+import Modal from 'nav-frontend-modal';
+/* eslint-enable */
 import { connect } from 'react-redux';
-import LightBox from '../LightBox';
 import * as toggleActions from '../../actions/toggles_actions';
-import { getLedetekst } from '../../ledetekster/index';
+import { getLedetekst } from '../../ledetekster';
 
-export const TimeoutBoxSide = ({ brukerSnartUtlogget, hentToggles }) => {
-    if (!brukerSnartUtlogget) {
-        return null;
-    }
-    return (<LightBox>
+export const TimeoutBoxSide = ({ hentToggles, brukerSnartUtlogget }) => {
+    const appEl = document.getElementById('maincontent');
+    Modal.setAppElement(appEl);
+
+    return (<Modal isOpen={brukerSnartUtlogget} closeButton={false} contentLabel={getLedetekst('sykefravaer.timeout.tittel')}>
         <h2 className="panel__tittel">{getLedetekst('sykefravaer.timeout.tittel')}</h2>
-        <label className="blokk">{getLedetekst('sykefravaer.timeout.tekst')}</label>
-        <div style={{ textAlign: 'center' }}>
-            <button type="button" style={{ marginRight: '2em' }} className="knapp" onClick={() => { hentToggles(); }}>{getLedetekst('sykefravaer.timeout.knapp.bli')}</button>
-            <a className="rammeknapp" href="/esso/logout">{getLedetekst('sykefravaer.timeout.knapp.logg.ut')}</a>
+        <p className="blokk">{getLedetekst('sykefravaer.timeout.tekst')}</p>
+        <div className="knapperad">
+            <button type="button" style={{ marginRight: '2em' }} className="knapp knapp--hoved" onClick={() => { hentToggles(); }}>{getLedetekst('sykefravaer.timeout.knapp.bli')}</button>
+            <a className="knapp" href="/esso/logout">{getLedetekst('sykefravaer.timeout.knapp.logg.ut')}</a>
         </div>
-    </LightBox>);
+    </Modal>);
 };
 
 TimeoutBoxSide.propTypes = {
-    brukerSnartUtlogget: PropTypes.bool,
     hentToggles: PropTypes.func,
+    brukerSnartUtlogget: PropTypes.bool,
 };
 
 export function mapStateToProps(state) {
