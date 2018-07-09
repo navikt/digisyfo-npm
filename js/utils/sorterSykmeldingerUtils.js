@@ -21,13 +21,21 @@ export function sorterSykmeldingerEldsteFoerst(sykmeldinger) {
     });
 }
 
+const hentArbeidsgivernavn = (sykmelding) => {
+    return sykmelding.mottakendeArbeidsgiver
+        ? sykmelding.mottakendeArbeidsgiver.navn
+        : sykmelding.arbeidsgiver
+            ? sykmelding.arbeidsgiver
+            : '';
+};
+
 export function sorterSykmeldinger(sykmeldinger = [], kriterium = 'fom') {
     sykmeldinger.map((sykmelding) => {
         const perioder = sorterPerioderEldsteFoerst(sykmelding.mulighetForArbeid.perioder);
         return Object.assign(sykmelding.mulighetForArbeid, { perioder });
     });
     return sykmeldinger.sort((a, b) => {
-        if (kriterium === 'fom' || a.arbeidsgiver.trim().toUpperCase() === b.arbeidsgiver.trim().toUpperCase()) {
+        if (kriterium === 'fom' || hentArbeidsgivernavn(a).trim().toUpperCase() === hentArbeidsgivernavn(b).toUpperCase()) {
             if (toDate(utils.getSykmeldingStartdato(a)).getTime() !== toDate(utils.getSykmeldingStartdato(b)).getTime()) {
                 // Hvis a og b har ulik startdato, sorterer vi etter startdato
                 return toDate(utils.getSykmeldingStartdato(b)) - toDate(utils.getSykmeldingStartdato(a));
