@@ -1,6 +1,6 @@
 {
   "name": "digisyfo-npm",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "description": "Felleskomponenter for DigiSyfo - Digitalisering av sykefraværsoppfølgingen",
   "main": "lib/index.js",
   "files": [
@@ -24,17 +24,19 @@
   },
   "license": "ISC",
   "dependencies": {
-    "babel-polyfill": "6.26.0",
     "fetch-ponyfill": "4.1.0",
-    "nav-frontend-modal": "1.0.7"
+    "nav-frontend-modal": "1.0.7",
+    "nav-frontend-hjelpetekst": "1.0.15"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "8.0.1",
+    "babel-polyfill": "6.26.0",
     "babel-preset-env": "1.6.0",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
+    "babel-runtime": "6.26.0",
     "babelify": "7.3.0",
     "chai": "4.1.2",
     "chai-enzyme": "1.0.0-beta.0",
@@ -51,12 +53,16 @@
     "ignore-styles": "5.0.1",
     "jsdom": "11.3.0",
     "mocha": "4.0.0",
-    "nav-frontend-modal": "1.0.7",
     "nav-frontend-core": "4.0.5",
+    "nav-frontend-hjelpetekst-style": "0.3.14",
+    "nav-frontend-ikoner-assets": "0.2.27",
     "nav-frontend-lukknapp": "1.0.6",
     "nav-frontend-lukknapp-style": "0.2.7",
+    "nav-frontend-modal": "1.0.7",
     "nav-frontend-modal-style": "0.3.12",
     "nav-frontend-paneler-style": "0.3.9",
+    "nav-frontend-typografi": "2.0.5",
+    "nav-frontend-typografi-style": "1.0.9",
     "nav-logger": "2.0.3",
     "parallelshell": "2.0.0",
     "prop-types": "15.6.0",

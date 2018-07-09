@@ -16,10 +16,7 @@ const arbeidssituasjoner = (ledetekster) => {
     }, {
         tittel: getLedetekst('tidslinje.filter.uten-arbeidsgiver', ledetekster),
         verdi: TIDSLINJE_TYPER.UTEN_ARBEIDSGIVER,
-        hjelpetekst: {
-            tittel: getLedetekst('tidslinje.filter.med-arbeidsgiver.hjelpetekst.tittel', ledetekster),
-            tekst: getLedetekst('tidslinje.filter.med-arbeidsgiver.hjelpetekst.tekst', ledetekster),
-        },
+        hjelpetekst: getLedetekst('tidslinje.filter.med-arbeidsgiver.hjelpetekst.tekst', ledetekster),
     }];
 };
 

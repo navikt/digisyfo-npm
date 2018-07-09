@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { sykmelding as sykmeldingPt, keyValue } from '../../propTypes';
 import { toDatePrettyPrint, getSykmeldingCheckbox } from '../../utils';
 import { getLedetekst } from '../../ledetekster';
@@ -8,7 +9,6 @@ import { SykmeldingNokkelOpplysning } from './SykmeldingOpplysning';
 import SykmeldingPerioder from './SykmeldingPerioder';
 import { SykmeldingCheckbox } from './SykmeldingCheckbox';
 import FlereOpplysninger from './FlereOpplysninger';
-import Hjelpetekst from '../Hjelpetekst';
 import { tidligsteFom } from '../../utils/periodeUtils';
 
 const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'h2' }) => {
@@ -36,9 +36,7 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'h2'
                                 <h3 className="nokkelopplysning__tittel">
                                     {getLedetekst('din-sykmelding.diagnosekode.tittel', ledetekster)}
                                 </h3>
-                                <Hjelpetekst
-                                    tittel={getLedetekst('din-sykmelding.diagnosekode.hjelpetekst.tittel', ledetekster)}
-                                    tekst={getLedetekst('din-sykmelding.diagnosekode.hjelpetekst.tekst', ledetekster)} />
+                                <Hjelpetekst>{getLedetekst('din-sykmelding.diagnosekode.hjelpetekst.tekst', ledetekster)}</Hjelpetekst>
                             </div>
                             <p>
                                 <span className="js-hoveddiagnose-kode">{sykmelding.diagnose.hoveddiagnose.diagnosekode}</span>
@@ -109,15 +107,17 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'h2'
             {
                 sykmelding.arbeidsgiver ? <SykmeldingNokkelOpplysning
                     tittel={getLedetekst('din-sykmelding.arbeidsgiver.tittel', ledetekster)}>
-                    <p className="js-arbeidsgiver">{sykmelding.arbeidsgiver}</p>
-                    {
-                        // periode-sjekken kan fjernes etter 1.august 2018 (Når sykmeldinger med fom før 26.april uansett ikke vises)
-                        sykmelding.stillingsprosent && (tidligsteFom(sykmelding.mulighetForArbeid.perioder) >= new Date('2018-04-26'))
-                            ? <p className="js-stillingsprosent">{getLedetekst('din-sykmelding.stillingsprosent', ledetekster, {
-                                '%STILLINGSPROSENT%': sykmelding.stillingsprosent,
-                            })}</p>
-                            : null
-                    }
+                    <div>
+                        <p className="js-arbeidsgiver">{sykmelding.arbeidsgiver}</p>
+                        {
+                            // periode-sjekken kan fjernes etter 1.august 2018 (Når sykmeldinger med fom før 26.april uansett ikke vises)
+                            sykmelding.stillingsprosent && (tidligsteFom(sykmelding.mulighetForArbeid.perioder) >= new Date('2018-04-26'))
+                                ? <p className="js-stillingsprosent">{getLedetekst('din-sykmelding.stillingsprosent', ledetekster, {
+                                    '%STILLINGSPROSENT%': sykmelding.stillingsprosent,
+                                })}</p>
+                                : null
+                        }
+                    </div>
                 </SykmeldingNokkelOpplysning> : null
             }
             {

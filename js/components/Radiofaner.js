@@ -1,6 +1,6 @@
 import React from 'react';
+import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import PropTypes from 'prop-types';
-import Hjelpetekst from './Hjelpetekst';
 
 const Radiofaner = ({ alternativer = [], valgtAlternativ, changeHandler, className, radioName }) => {
     return (<div className="radiofaner">
@@ -10,11 +10,11 @@ const Radiofaner = ({ alternativer = [], valgtAlternativ, changeHandler, classNa
                     const erValgt = a.verdi === valgtAlternativ;
                     const divClassname = a.hjelpetekst ? 'medHjelpetekst' : '';
                     const inputId = `radio-${a.verdi}`;
-                    return (<li className="skjema__input" key={index}>
+                    return (<li className="skjemaelement" key={index}>
                         <div className={divClassname}>
                             <input
                                 type="radio"
-                                className={`radioknapp radioknapp--mork js-${a.verdi}`}
+                                className={`skjemaelement__input radioknapp js-${a.verdi}`}
                                 name={radioName}
                                 value={a.verdi}
                                 id={inputId}
@@ -22,9 +22,9 @@ const Radiofaner = ({ alternativer = [], valgtAlternativ, changeHandler, classNa
                                 onChange={() => {
                                     changeHandler(a.verdi);
                                 }} />
-                            <label htmlFor={inputId}>{a.tittel}</label>
+                            <label className="skjemaelement__label" htmlFor={inputId}>{a.tittel}</label>
                             {
-                                a.hjelpetekst ? <Hjelpetekst id="velg-arbeidssituasjon" {...a.hjelpetekst} /> : null
+                                a.hjelpetekst ? <Hjelpetekst id="velg-arbeidssituasjon">{a.hjelpetekst}</Hjelpetekst> : null
                             }
                         </div>
                     </li>);

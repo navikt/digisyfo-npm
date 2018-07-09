@@ -4,7 +4,6 @@ export * from './periodeUtils';
 export * from './reducerUtils';
 export * from './sorterSykmeldingerUtils';
 export * from './sykmeldingUtils';
-export * from './valideringUtils';
 export * from './sykeforloepUtils';
 
 // Fra Stack Overflow <3
