@@ -5,9 +5,10 @@ import { SykmeldingNokkelOpplysning } from '../sykmeldingOpplysninger/Sykmelding
 import Utvidbar from '../Utvidbar';
 import { toDatePrettyPrint } from '../../utils/datoUtils';
 import { getLedetekst } from '../../ledetekster';
-import { keyValue, sykmelding as sykmeldingPt } from '../../propTypes';
+import { keyValue, sykepengesoknad as sykepengesoknadPt, sykmelding as sykmeldingPt } from '../../propTypes';
+import { Bjorn } from '../Hjelpeboble';
 
-const SykmeldingUtdrag = ({ erApen, sykmelding, ledetekster }) => {
+const SykmeldingUtdrag = ({ erApen, sykmelding, sykepengesoknad, ledetekster, rootUrl }) => {
     return (<div className="blokk">
         <Utvidbar
             Overskrift="h2"
@@ -20,6 +21,7 @@ const SykmeldingUtdrag = ({ erApen, sykmelding, ledetekster }) => {
             ikonAltTekst="Plaster-ikon">
             <div>
                 <SykmeldingPerioder perioder={sykmelding.mulighetForArbeid.perioder} ledetekster={ledetekster} />
+                { sykepengesoknad._erOppdelt && <Bjorn rootUrl={rootUrl} className="blokk" nokkel="sykepengesoknad.sykmelding-utdrag.oppdelt.bjorn" /> }
                 <SykmeldingNokkelOpplysning
                     tittel={getLedetekst('sykepengesoknad.sykmelding-utdrag.arbeidsgiver', ledetekster)}>
                     <p className="js-arbeidsgiver">{sykmelding.mottakendeArbeidsgiver.navn}</p>
@@ -36,7 +38,9 @@ const SykmeldingUtdrag = ({ erApen, sykmelding, ledetekster }) => {
 SykmeldingUtdrag.propTypes = {
     erApen: PropTypes.bool,
     sykmelding: sykmeldingPt,
+    sykepengesoknad: sykepengesoknadPt,
     ledetekster: keyValue,
+    rootUrl: PropTypes.string.isRequired,
 };
 
 export default SykmeldingUtdrag;
