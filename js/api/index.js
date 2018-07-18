@@ -2,6 +2,19 @@ import ponyfill from 'fetch-ponyfill';
 import Ajax from 'simple-ajax';
 import { getCookie, log } from '../utils';
 
+export const hentLoginUrl = () => {
+    if (window.location.href.indexOf('tjenester.nav') > -1) {
+        // Prod
+        return 'https://loginservice.nav.no/login';
+    } else if (window.location.href.indexOf('localhost') > -1) {
+        // Lokalt
+        return 'http://localhost:8080/syfoapi/local/cookie';
+    }
+    // Preprod
+    return 'https://loginservice-q.nav.no/login';
+};
+
+
 const ponyfills = ponyfill();
 const isEdge = () => {
     return window.navigator.userAgent.indexOf('Edge') > -1;
@@ -36,6 +49,10 @@ export const get = (url) => {
         credentials: 'include',
     })
         .then((res) => {
+            if (res.status === 401) {
+                log(res, 'Redirect til login');
+                window.location.href = `${hentLoginUrl()}?redirect=${window.location.href}`;
+            }
             if (res.status === 403) {
                 log(res);
                 throw new Error('403');
@@ -81,6 +98,10 @@ export const post = (url, body) => {
         .then((res) => {
             if (erBrukerUtlogget(res)) {
                 window.location = '/esso/logout';
+                return null;
+            } else if (res.status === 401) {
+                log(res, 'Redirect til login');
+                window.location.href = `${hentLoginUrl()}?redirect=${window.location.href}`;
                 return null;
             } else if (res.status === 409) {
                 log(res);
