@@ -21,7 +21,11 @@ const SykmeldingUtdrag = ({ erApen, sykmelding, sykepengesoknad, ledetekster, ro
             ikonAltTekst="Plaster-ikon">
             <div>
                 <SykmeldingPerioder perioder={sykmelding.mulighetForArbeid.perioder} ledetekster={ledetekster} />
-                { sykepengesoknad._erOppdelt && <Bjorn rootUrl={rootUrl} className="blokk" nokkel="sykepengesoknad.sykmelding-utdrag.oppdelt.bjorn" /> }
+                {
+                    sykepengesoknad
+                    && sykepengesoknad._erOppdelt
+                    && <Bjorn rootUrl={rootUrl} className="blokk" nokkel="sykepengesoknad.sykmelding-utdrag.oppdelt.bjorn" />
+                }
                 <SykmeldingNokkelOpplysning
                     tittel={getLedetekst('sykepengesoknad.sykmelding-utdrag.arbeidsgiver', ledetekster)}>
                     <p className="js-arbeidsgiver">{sykmelding.mottakendeArbeidsgiver.navn}</p>
