@@ -9,7 +9,7 @@ import Tilbakedatering from './Tilbakedatering';
 import MeldingTilArbeidsgiver from './MeldingTilArbeidsgiver';
 import AndreSykmeldingOpplysninger from './AndreSykmeldingOpplysninger';
 import { getLedetekst } from '../../ledetekster';
-import { toDatePrettyPrint, getSykmeldingOpplysning } from '../../utils';
+import { tilLesbarDatoMedArstall, getSykmeldingOpplysning } from '../../utils';
 
 const FlereOpplysninger = ({ sykmelding, ledetekster }) => {
     return (<div>
@@ -18,12 +18,12 @@ const FlereOpplysninger = ({ sykmelding, ledetekster }) => {
                 getSykmeldingOpplysning(sykmelding.bekreftelse,
                     'utstedelsesdato',
                     getLedetekst('din-sykmelding.annet.utstedelsesdato', ledetekster),
-                    toDatePrettyPrint(sykmelding.bekreftelse.utstedelsesdato), 'h4')
+                    tilLesbarDatoMedArstall(sykmelding.bekreftelse.utstedelsesdato), 'h4')
             }
             {
                 getSykmeldingOpplysning(sykmelding, 'startLegemeldtFravaer',
                     getLedetekst('din-sykmelding.mulighet.for.arbeid.start.legemeldt.fravaer.tittel', ledetekster),
-                    toDatePrettyPrint(sykmelding.startLegemeldtFravaer), 'h4')
+                    tilLesbarDatoMedArstall(sykmelding.startLegemeldtFravaer), 'h4')
             }
         </div>
         <MulighetForArbeid sykmelding={sykmelding} ledetekster={ledetekster} />

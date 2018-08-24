@@ -239,7 +239,7 @@ describe("DineSykmeldingOpplysninger", () => {
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-yrkesskade").length).to.equal(1);
             expect(component.find(".js-yrkesskade").text()).to.equal("Sykdommen kan skyldes en skade/yrkessykdom")
-            expect(component.find(".js-yrkesskadeDato").text()).to.contain("31.12.2015")
+            expect(component.find(".js-yrkesskadeDato").text()).to.contain("31. desember 2015")
         });
     })
 

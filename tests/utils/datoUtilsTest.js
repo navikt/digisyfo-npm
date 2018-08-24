@@ -1,5 +1,18 @@
 import { expect } from 'chai';
-import { toDatePrettyPrint, getDuration, getPeriodeSpenn, getSykmeldingStartdato, toDate, fraInputdatoTilJSDato, erGyldigDatoformat, langtDatoFormat } from '../../js/utils/datoUtils';
+import {
+    toDatePrettyPrint,
+    getDuration,
+    getPeriodeSpenn,
+    getSykmeldingStartdato,
+    toDate,
+    fraInputdatoTilJSDato,
+    erGyldigDatoformat,
+    langtDatoFormat,
+    tilLesbarDatoUtenAarstall,
+    tilLesbarDatoMedArstall,
+    tilLesbarPeriodeMedArstall,
+    tilLesbarPeriodeUtenArstall,
+} from '../../js/utils/datoUtils';
 
 describe('datoUtils', () => {
 
@@ -10,7 +23,7 @@ describe('datoUtils', () => {
 
         it('Skal ta hensyn til tidssoner', () => {
             expect(toDatePrettyPrint({ year: 2016, monthValue: 5, dayOfMonth: 10 })).to.equal('10.05.2016');
-        }); 
+        });
 
         it('Skal ta hensyn til skuddår', () => {
             expect(toDatePrettyPrint({ year: 1984, monthValue: 2, dayOfMonth: 29 })).to.equal('29.02.1984');
@@ -105,6 +118,66 @@ describe('datoUtils', () => {
         it('Takler å få tekst-dato inn', () => {
             const d = langtDatoFormat('2017-09-25');
             expect(d).to.equal('25. september 2017');
+        });
+    });
+
+    describe('tilLesbarDatoMedArstall', () => {
+        it("Skal returnere tall for dag, uten null foran, når datoen er mellom 1 og 9", () => {
+            const dato = new Date('2018-01-02');
+            expect(tilLesbarDatoMedArstall(dato)).to.equal("2. januar 2018");
+
+            const dato2 = new Date('2017-03-09');
+            expect(tilLesbarDatoMedArstall(dato2)).to.equal("9. mars 2017")
+        });
+    });
+
+    describe('tilLesbarDatoUtenArstall', () => {
+        it("Skal returnere tall for dag, uten null foran, når datoen er mellom 1 og 9", () => {
+            const dato = new Date('2018-01-02');
+            expect(tilLesbarDatoUtenAarstall(dato)).to.equal("2. januar");
+
+            const dato2 = new Date('2017-03-09');
+            expect(tilLesbarDatoUtenAarstall(dato2)).to.equal("9. mars");
+        });
+    });
+
+    describe('tilLesbarPeriodeMedArstall', () => {
+        it("Skal returnere to datoer og ett årstall når datoene er i to forskjellige måneder", () => {
+            const fom = new Date('2018-01-01');
+            const tom = new Date('2018-02-14');
+            expect(tilLesbarPeriodeMedArstall(fom, tom)).to.equal('1. januar – 14. februar 2018');
+        });
+
+        it("Skal returnere to datoer, én måned og ett årstall når datoene er i samme måned", () => {
+            const fom = new Date('2018-01-01');
+            const tom = new Date('2018-01-14');
+            expect(tilLesbarPeriodeMedArstall(fom, tom)).to.equal('1. – 14. januar 2018');
+        });
+
+        it("Skal returnere to årstall når datoene er i to forskjellige år", () => {
+            const fom = new Date('2016-01-01');
+            const tom = new Date('2018-02-14');
+            expect(tilLesbarPeriodeMedArstall(fom, tom)).to.equal('1. januar 2016 – 14. februar 2018');
+        });
+    });
+
+    describe('tilLesbarPeriodeUtenArstall', () => {
+        it("Skal returnere to datoer når datoene er i to forskjellige måneder", () => {
+            const fom = new Date('2018-01-01');
+            const tom = new Date('2018-02-14');
+            expect(tilLesbarPeriodeUtenArstall(fom, tom)).to.equal('1. januar – 14. februar');
+        });
+
+        it("Skal returnere to datoer, én måned og ett årstall når datoene er i samme måned", () => {
+            const fom = new Date('2018-01-01');
+            const tom = new Date('2018-01-14');
+            expect(tilLesbarPeriodeUtenArstall(fom, tom)).to.equal('1. – 14. januar');
+        });
+
+        it("Skal returnere to datoer når datoene er i to forskjellige år", () => {
+            const fom = new Date('2016-01-01');
+            const tom = new Date('2018-02-14');
+            expect(tilLesbarPeriodeUtenArstall(fom, tom)).to.equal('1. januar – 14. februar');
         });
     });
 });

@@ -17,13 +17,13 @@ describe("HendelseBoble", () => {
                 antallDager: 20,
                 type: 'AKTIVITETSKRAV_VARSEL',
                 tekstkey: 'key',
-                inntruffetdato: { year: 2016, monthValue: 2, dayOfMonth: 28 },
+                inntruffetdato: '2016-02-28',
 
             };
             const ledetekster = { 'key.tittel': '%DATO%' };
             const html = getHtmlTittel(hendelse, ledetekster);
 
-            expect(html).to.be.equal('28.02.2016')
+            expect(html).to.be.equal('28. februar 2016')
         });
 
         it("ny-naermesteLeder-varsel faar nearmesteLeder-tekst", () => {
@@ -35,7 +35,7 @@ describe("HendelseBoble", () => {
                         navn: 'navn',
                     }
                 },
-                inntruffetdato: { year: 2016, monthValue: 2, dayOfMonth: 28 },
+                inntruffetdato: '2016-02-28',
                 tekstkey: 'key',
             };
 
@@ -44,7 +44,7 @@ describe("HendelseBoble", () => {
             };
             const html = getHtmlTittel(hendelse, ledetekster)
 
-            expect(html).to.be.equal('<h3>28.02.2016</h3><p>Din arbeidsgiver har oppgitt <b>navn</b> som din personalansvarlige leder</p>')
+            expect(html).to.be.equal('<h3>28. februar 2016</h3><p>Din arbeidsgiver har oppgitt <b>navn</b> som din personalansvarlige leder</p>')
         });
 
         it("default hendelse faar default tittel", () => {
@@ -65,7 +65,7 @@ describe("HendelseBoble", () => {
                 type: 'NY_NAERMESTE_LEDER',
                 data: {
                     naermesteLeder: {
-                        aktivTom: {year: 2016, monthValue: 2, dayOfMonth: 2},
+                        aktivTom: '2016-02-02',
                         navn: 'navn'
                     }
                 }
@@ -75,7 +75,7 @@ describe("HendelseBoble", () => {
             };
             const html = getHtmlBudskap(hendelse, ledetekster)
 
-            expect(html).to.be.equal('<p>Koblingen mellom deg og navn er opphørt den 02.02.2016</p>')
+            expect(html).to.be.equal('<p>Koblingen mellom deg og navn er opphørt den 2. februar 2016</p>')
         });
 
         it("ny naermeste leder hendelse aktiv", () => {

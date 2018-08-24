@@ -15,7 +15,7 @@ SykmeldingCheckbox.propTypes = {
 };
 
 export const SykmeldingCheckboxSelvstendig = ({ tekst, jsClassName }) => {
-    return (<SykmeldingCheckbox tekst={tekst} jsClassName={jsClassName} className="typo-element" />);
+    return (<SykmeldingCheckbox tekst={tekst} jsClassName={jsClassName} className="typo-element blokk-m" />);
 };
 
 SykmeldingCheckboxSelvstendig.propTypes = {

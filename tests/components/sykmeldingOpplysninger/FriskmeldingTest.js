@@ -41,7 +41,7 @@ describe("Friskmelding", () => {
                     antattDatoReturSammeArbeidsgiver: new Date("2015-12-31")
                 }
             })} ledetekster={ledetekster}/>)
-            expect(component.find(".js-antattDatoReturSammeArbeidsgiver").text()).to.equal("31.12.2015");
+            expect(component.find(".js-antattDatoReturSammeArbeidsgiver").text()).to.equal("31. desember 2015");
         });
 
         it("Skal ikke vise dato dersom dette ikke finnes", () => {
@@ -52,7 +52,7 @@ describe("Friskmelding", () => {
                 }
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-antattDatoReturSammeArbeidsgiver").length).to.equal(0);
-        });        
+        });
 
     });
 
@@ -95,7 +95,7 @@ describe("Friskmelding", () => {
                     tilbakemeldingReturArbeid: new Date("2015-12-31")
                 }
             })} ledetekster={ledetekster}/>)
-            expect(component.find(".js-tilbakemeldingReturArbeidDato").text()).to.equal("31.12.2015")
+            expect(component.find(".js-tilbakemeldingReturArbeidDato").text()).to.equal("31. desember 2015")
         });
 
         it("Skal ikke vise noe dersom sykmelding.tilbakemeldingReturArbeid === null", () => {
@@ -129,7 +129,7 @@ describe("Friskmelding", () => {
                 }
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-utenArbeidsgiverAntarTilbakeIArbeidDato").length).to.equal(0)
-        });        
+        });
 
         it("Skal vise datoen dersom sykmelding.utenArbeidsgiverAntarTilbakeIArbeidDato === (dato)", () => {
             component = mount(<Friskmelding sykmelding={getParsetSykmelding({
@@ -138,7 +138,7 @@ describe("Friskmelding", () => {
                     utenArbeidsgiverAntarTilbakeIArbeidDato: new Date("2015-12-31")
                 }
             })} ledetekster={ledetekster}/>)
-            expect(component.find(".js-utenArbeidsgiverAntarTilbakeIArbeidDato").text()).to.equal("31.12.2015")
+            expect(component.find(".js-utenArbeidsgiverAntarTilbakeIArbeidDato").text()).to.equal("31. desember 2015")
         });
 
         it("Skal ikke vise noe dersom sykmelding.utenArbeidsgiverAntarTilbakeIArbeid === null", () => {
@@ -152,7 +152,7 @@ describe("Friskmelding", () => {
         });
 
 
-    }); 
+    });
 
     describe("Jeg er usikker på om pasienten kan komme tilbake i arbeid", () => {
 
@@ -163,7 +163,7 @@ describe("Friskmelding", () => {
                 }
             })} ledetekster={ledetekster}/>)
             expect(component.find(".js-utenArbeidsgiverTilbakemelding").text()).to.equal("Jeg er usikker på om pasienten kan komme tilbake i arbeid")
-        }); 
+        });
 
         it("Skal vise dato dersom sykmelding.utenArbeidsgiverTilbakemelding === (dato)", () => {
             component = mount(<Friskmelding sykmelding={getParsetSykmelding({
@@ -171,8 +171,8 @@ describe("Friskmelding", () => {
                     utenArbeidsgiverTilbakemelding: new Date("2015-12-31")
                 }
             })} ledetekster={ledetekster}/>)
-            expect(component.find(".js-utenArbeidsgiverTilbakemeldingDato").text()).to.equal("31.12.2015");
-        });         
+            expect(component.find(".js-utenArbeidsgiverTilbakemeldingDato").text()).to.equal("31. desember 2015");
+        });
 
         it("Skal ikke vise noe dersom sykmelding.utenArbeidsgiverAntarTilbakeIArbeid === null", () => {
             component = mount(<Friskmelding sykmelding={getParsetSykmelding({
