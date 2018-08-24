@@ -1,6 +1,6 @@
 {
   "name": "digisyfo-npm",
-  "version": "12.0.0",
+  "version": "12.1.0",
   "description": "Felleskomponenter for DigiSyfo - Digitalisering av sykefraværsoppfølgingen",
   "main": "lib/index.js",
   "files": [
