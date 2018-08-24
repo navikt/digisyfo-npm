@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TidslinjeBudskap from './TidslinjeBudskap';
 import HendelseIkon from './HendelseIkon';
-import { scrollTo, toDatePrettyPrint } from '../../utils';
+import { scrollTo, tilLesbarDatoMedArstall } from '../../utils';
 import { getLedetekst } from '../../ledetekster';
 import { tidslinjehendelse as hendelsePt, keyValue } from '../../propTypes';
 
@@ -10,12 +10,12 @@ export function getHtmlTittel(hendelse, ledetekster) {
     switch (hendelse.type) {
         case 'AKTIVITETSKRAV_VARSEL': {
             return getLedetekst(`${hendelse.tekstkey}.tittel`, ledetekster, {
-                '%DATO%': toDatePrettyPrint(hendelse.inntruffetdato),
+                '%DATO%': tilLesbarDatoMedArstall(hendelse.inntruffetdato),
             });
         }
         case 'NY_NAERMESTE_LEDER': {
             return getLedetekst(`${hendelse.tekstkey}.tittel`, ledetekster, {
-                '%DATO%': toDatePrettyPrint(hendelse.inntruffetdato),
+                '%DATO%': tilLesbarDatoMedArstall(hendelse.inntruffetdato),
                 '%ARBEIDSGIVER%': hendelse.data.naermesteLeder.organisasjonsnavn,
                 '%NAERMESTELEDER%': hendelse.data.naermesteLeder.navn,
             });
@@ -27,7 +27,7 @@ export function getHtmlTittel(hendelse, ledetekster) {
 
 export function getHtmlBudskap(hendelse, ledetekster) {
     if (hendelse.type === 'NY_NAERMESTE_LEDER') {
-        const aktivTom = toDatePrettyPrint(hendelse.data.naermesteLeder.aktivTom);
+        const aktivTom = tilLesbarDatoMedArstall(hendelse.data.naermesteLeder.aktivTom);
         return getLedetekst(`${hendelse.tekstkey}.budskap`, ledetekster, {
             '%NAVN%': hendelse.data.naermesteLeder.navn,
             '%STATUS%': aktivTom ? `opphørt den ${aktivTom}` : 'aktiv',

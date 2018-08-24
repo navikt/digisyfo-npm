@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { toDatePrettyPrint } from '../../utils';
+import { tilLesbarDatoMedArstall } from '../../utils';
 import { getLedetekst } from '../../ledetekster';
 import HendelseIkon from './HendelseIkon';
 import { keyValue } from '../../propTypes';
@@ -9,7 +9,7 @@ const HendelseTittel = (props) => {
     let titteltekst = getLedetekst(`${props.tekstkey}`, props.ledetekster);
     if (props.type === 'FØRSTE_SYKMELDINGSDAG') {
         titteltekst = getLedetekst(`${props.tekstkey}`, props.ledetekster, {
-            '%DATO%': toDatePrettyPrint(props.data.startdato),
+            '%DATO%': tilLesbarDatoMedArstall(props.data.startdato),
         });
     }
 

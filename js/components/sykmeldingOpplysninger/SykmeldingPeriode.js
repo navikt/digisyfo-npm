@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { toDatePrettyPrint } from '../../utils';
+import { tilLesbarDatoMedArstall } from '../../utils';
 import { getLedetekst } from '../../ledetekster';
 import { sykmeldingperiode as periodePt, keyValue } from '../../propTypes';
 
@@ -9,7 +9,7 @@ const SykmeldingPeriode = ({ periode, antallDager = 1, ledetekster, Overskrift =
     return (<div className="nokkelopplysning">
         <Overskrift className="nokkelopplysning__tittel">{getLedetekst('din-sykmelding.periode.tittel', ledetekster)}</Overskrift>
         <p className="js-periode blokk-xxs">
-            <strong>{toDatePrettyPrint(periode.fom)} &ndash; {toDatePrettyPrint(periode.tom)}</strong> &bull; {antallDager}&nbsp;{getLedetekst(dagNokkel, ledetekster)}
+            <strong>{tilLesbarDatoMedArstall(periode.fom, periode.tom)}</strong> &bull; {antallDager}&nbsp;{getLedetekst(dagNokkel, ledetekster)}
         </p>
         {
             periode.grad ? <p className="js-grad">

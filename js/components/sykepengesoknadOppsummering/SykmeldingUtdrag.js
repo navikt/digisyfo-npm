@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SykmeldingPerioder from '../sykmeldingOpplysninger/SykmeldingPerioder';
 import { SykmeldingNokkelOpplysning } from '../sykmeldingOpplysninger/SykmeldingOpplysning';
 import Utvidbar from '../Utvidbar';
-import { toDatePrettyPrint } from '../../utils/datoUtils';
+import { tilLesbarDatoMedArstall } from '../../utils/datoUtils';
 import { getLedetekst } from '../../ledetekster';
 import { keyValue, sykepengesoknad as sykepengesoknadPt, sykmelding as sykmeldingPt } from '../../propTypes';
 import { Bjorn } from '../Hjelpeboble';
@@ -32,7 +32,7 @@ const SykmeldingUtdrag = ({ erApen, sykmelding, sykepengesoknad, ledetekster, ro
                 </SykmeldingNokkelOpplysning>
                 <SykmeldingNokkelOpplysning
                     tittel={getLedetekst('sykepengesoknad.sykmelding-utdrag.dato-sykmeldingen-ble-skrevet', ledetekster)}>
-                    <p className="js-utstedelsesdato">{toDatePrettyPrint(sykmelding.bekreftelse.utstedelsesdato)}</p>
+                    <p className="js-utstedelsesdato">{tilLesbarDatoMedArstall(sykmelding.bekreftelse.utstedelsesdato)}</p>
                 </SykmeldingNokkelOpplysning>
             </div>
         </Utvidbar>

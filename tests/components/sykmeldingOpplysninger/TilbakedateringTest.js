@@ -22,7 +22,7 @@ describe("Tilbakedatering", () => {
                     dokumenterbarPasientkontakt: new Date("2015-12-31")
                 }
             })} ledetekster={ledetekster} />);
-            expect(component.find(".js-dokumenterbarPasientkontakt").text()).to.equal("31.12.2015")
+            expect(component.find(".js-dokumenterbarPasientkontakt").text()).to.equal("31. desember 2015")
         });
 
         it("Skal ikke vise dersom sykmelding.dokumenterbarPasientkontakt !== (dato)", () => {
@@ -32,9 +32,9 @@ describe("Tilbakedatering", () => {
                 }
             })} ledetekster={ledetekster} />);
             expect(component.find(".js-dokumenterbarPasientkontakt").length).to.equal(0);
-        });        
+        });
 
-    }); 
+    });
 
     describe("tilbakedatertBegrunnelse", () => {
 
@@ -54,9 +54,9 @@ describe("Tilbakedatering", () => {
                 }
             })} ledetekster={ledetekster} />);
             expect(component.find(".js-tilbakedatertBegrunnelse").length).to.equal(0);
-        });        
+        });
 
     });
 
-     
-}); 
+
+});

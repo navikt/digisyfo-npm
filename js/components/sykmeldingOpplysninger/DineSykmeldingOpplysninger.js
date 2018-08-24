@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { sykmelding as sykmeldingPt, keyValue } from '../../propTypes';
-import { toDatePrettyPrint, getSykmeldingCheckbox } from '../../utils';
+import { tilLesbarDatoMedArstall, getSykmeldingCheckbox } from '../../utils';
 import { getLedetekst } from '../../ledetekster';
 import Utvidbar from '../Utvidbar';
 import { SykmeldingNokkelOpplysning } from './SykmeldingOpplysning';
@@ -92,7 +92,7 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'h2'
                 !sykmelding.diagnose.yrkesskadeDato ? null : <SykmeldingNokkelOpplysning
                     tittel="Skadedato"
                     className="subopplysning">
-                    <p className=" js-yrkesskadeDato">{toDatePrettyPrint(sykmelding.diagnose.yrkesskadeDato)}</p>
+                    <p className=" js-yrkesskadeDato">{tilLesbarDatoMedArstall(sykmelding.diagnose.yrkesskadeDato)}</p>
                 </SykmeldingNokkelOpplysning>
             }
             {
