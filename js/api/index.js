@@ -48,7 +48,7 @@ export const hentRedirectBaseUrl = (windowLocationHref) => {
     } else if (redirectUrl.indexOf('sykefravaer') > -1) {
         redirectUrl = `${redirectUrl.split('sykefravaer')[0]}sykefravaer`;
     }
-    return `${hentLoginUrl()}?redirect=${redirectUrl}`;
+    return redirectUrl;
 };
 
 export const get = (url) => {
