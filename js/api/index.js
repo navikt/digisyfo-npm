@@ -61,7 +61,7 @@ export const get = (url) => {
         .then((res) => {
             if (res.status === 401) {
                 log(res, 'Redirect til login');
-                window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location)}`;
+                window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location.href)}`;
             }
             if (res.status === 403) {
                 log(res);
@@ -111,7 +111,7 @@ export const post = (url, body) => {
                 return null;
             } else if (res.status === 401) {
                 log(res, 'Redirect til login');
-                window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location)}`;
+                window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location.href)}`;
                 return null;
             } else if (res.status === 409) {
                 log(res);
