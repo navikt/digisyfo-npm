@@ -41,6 +41,16 @@ export const setPerformOnHttpCalls = (_performOnHttpCalls) => {
     performOnHttpCalls = _performOnHttpCalls;
 };
 
+export const hentRedirectBaseUrl = (windowLocationHref) => {
+    let redirectUrl = windowLocationHref;
+    if (redirectUrl.indexOf('sykefravaerarbeidsgiver') > -1) {
+        redirectUrl = `${redirectUrl.split('sykefravaerarbeidsgiver')[0]}sykefravaerarbeidsgiver`;
+    } else if (redirectUrl.indexOf('sykefravaer') > -1) {
+        redirectUrl = `${redirectUrl.split('sykefravaer')[0]}sykefravaer`;
+    }
+    return `${hentLoginUrl()}?redirect=${redirectUrl}`;
+};
+
 export const get = (url) => {
     const fetchX = getFetch();
     performOnHttpCalls();
@@ -51,7 +61,7 @@ export const get = (url) => {
         .then((res) => {
             if (res.status === 401) {
                 log(res, 'Redirect til login');
-                window.location.href = `${hentLoginUrl()}?redirect=${window.location.href}`;
+                window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location)}`;
             }
             if (res.status === 403) {
                 log(res);
@@ -101,7 +111,7 @@ export const post = (url, body) => {
                 return null;
             } else if (res.status === 401) {
                 log(res, 'Redirect til login');
-                window.location.href = `${hentLoginUrl()}?redirect=${window.location.href}`;
+                window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location)}`;
                 return null;
             } else if (res.status === 409) {
                 log(res);
