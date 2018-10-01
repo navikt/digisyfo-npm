@@ -1,5 +1,4 @@
-import { put, fork } from 'redux-saga/effects';
-import { takeEvery } from 'redux-saga';
+import { put, fork, takeEvery } from 'redux-saga/effects';
 import { setTidslinjer } from '../actions/tidslinjer_actions';
 import { apneHendelser } from '../actions/hendelser_actions';
 import {

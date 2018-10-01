@@ -1,9 +1,9 @@
-import { call, put, fork } from 'redux-saga/effects';
-import { takeEvery } from 'redux-saga';
+import { call, put, fork, takeEvery } from 'redux-saga/effects';
 import { get } from '../api';
 import { log } from '../utils';
 import * as actions from '../actions/ledetekster_actions';
 import { setLedetekster } from '../ledetekster';
+import { HENT_LEDETEKSTER_FORESPURT } from '../actions/actiontyper';
 
 export function* hentLedetekster() {
     yield put(actions.henterLedetekster());
@@ -18,7 +18,7 @@ export function* hentLedetekster() {
 }
 
 function* watchHentLedetekster() {
-    yield* takeEvery('HENT_LEDETEKSTER_FORESPURT', hentLedetekster);
+    yield* takeEvery(HENT_LEDETEKSTER_FORESPURT, hentLedetekster);
 }
 
 export default function* ledeteksterSagas() {

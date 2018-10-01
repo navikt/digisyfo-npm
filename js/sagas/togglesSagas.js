@@ -1,5 +1,4 @@
-import { call, put, fork } from 'redux-saga/effects';
-import { takeEvery } from 'redux-saga';
+import { call, put, fork, takeEvery } from 'redux-saga/effects';
 import { get } from '../api';
 import * as actions from '../actions/toggles_actions';
 import * as actiontyper from '../actions/actiontyper';

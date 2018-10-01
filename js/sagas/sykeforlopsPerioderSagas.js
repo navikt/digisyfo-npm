@@ -1,5 +1,4 @@
-import { call, put, fork } from 'redux-saga/effects';
-import { takeEvery } from 'redux-saga';
+import { call, put, fork, takeEvery } from 'redux-saga/effects';
 import { get, log } from '../index';
 import * as actions from '../actions/sykeforlopsPerioder_actions';
 import * as actiontyper from '../actions/actiontyper';
@@ -20,7 +19,5 @@ function* watchHentSykeforlopsPerioder() {
 }
 
 export default function* sykeforlopsPerioderSagas() {
-    yield [
-        fork(watchHentSykeforlopsPerioder),
-    ];
+    yield fork(watchHentSykeforlopsPerioder);
 }

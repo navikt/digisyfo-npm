@@ -14,9 +14,13 @@ export const TimeoutBoxSide = ({ hentToggles, brukerSnartUtlogget }) => {
     return (<Modal isOpen={brukerSnartUtlogget} closeButton={false} contentLabel={getLedetekst('sykefravaer.timeout.tittel')}>
         <h2 className="panel__tittel">{getLedetekst('sykefravaer.timeout.tittel')}</h2>
         <p className="blokk">{getLedetekst('sykefravaer.timeout.tekst')}</p>
-        <div className="knapperad">
-            <button type="button" style={{ marginRight: '2em' }} className="knapp knapp--hoved" onClick={() => { hentToggles(); }}>{getLedetekst('sykefravaer.timeout.knapp.bli')}</button>
-            <a className="knapp" href="/esso/logout">{getLedetekst('sykefravaer.timeout.knapp.logg.ut')}</a>
+        <div className="knapperad knapperad--forrigeNeste">
+            <div className="knapperad__element">
+                <button type="button" className="knapp knapp--hoved" onClick={() => { hentToggles(); }}>{getLedetekst('sykefravaer.timeout.knapp.bli')}</button>
+            </div>
+            <div className="knapperad__element">
+                <a className="knapp" href="/esso/logout">{getLedetekst('sykefravaer.timeout.knapp.logg.ut')}</a>
+            </div>
         </div>
     </Modal>);
 };
