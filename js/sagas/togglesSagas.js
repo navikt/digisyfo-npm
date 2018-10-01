@@ -14,7 +14,7 @@ export function* hentToggles() {
 }
 
 function* watchHentToggles() {
-    yield* takeEvery(actiontyper.HENT_TOGGLES_FORESPURT, hentToggles);
+    yield takeEvery(actiontyper.HENT_TOGGLES_FORESPURT, hentToggles);
 }
 
 export default function* toggleSagas() {

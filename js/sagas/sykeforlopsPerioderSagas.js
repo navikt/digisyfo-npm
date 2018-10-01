@@ -15,7 +15,7 @@ export function* hentSykeforlopsPerioderSaga(action) {
 }
 
 function* watchHentSykeforlopsPerioder() {
-    yield* takeEvery(actiontyper.HENT_SYKEFORLOPSPERIODER_FORESPURT, hentSykeforlopsPerioderSaga);
+    yield takeEvery(actiontyper.HENT_SYKEFORLOPSPERIODER_FORESPURT, hentSykeforlopsPerioderSaga);
 }
 
 export default function* sykeforlopsPerioderSagas() {

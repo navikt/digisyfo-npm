@@ -18,7 +18,7 @@ export function* hentLedetekster() {
 }
 
 function* watchHentLedetekster() {
-    yield* takeEvery(HENT_LEDETEKSTER_FORESPURT, hentLedetekster);
+    yield takeEvery(HENT_LEDETEKSTER_FORESPURT, hentLedetekster);
 }
 
 export default function* ledeteksterSagas() {

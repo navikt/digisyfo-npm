@@ -13,7 +13,7 @@ export function* hentTidslinjer(action) {
 }
 
 function* watchHentTidslinjer() {
-    yield* takeEvery(HENT_TIDSLINJER_FORESPURT, hentTidslinjer);
+    yield takeEvery(HENT_TIDSLINJER_FORESPURT, hentTidslinjer);
 }
 
 export default function* tidslinjerSagas() {
