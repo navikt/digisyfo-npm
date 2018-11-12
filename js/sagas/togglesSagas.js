@@ -6,7 +6,7 @@ import * as actiontyper from '../actions/actiontyper';
 export function* hentToggles() {
     yield put(actions.henterToggles());
     try {
-        const data = yield call(get, `${window.APP_SETTINGS.REST_ROOT}/informasjon/toggles`);
+        const data = yield call(get, `${process.env.REACT_APP_SYFOREST_ROOT}/informasjon/toggles`);
         yield put(actions.togglesHentet(data));
     } catch (e) {
         yield put(actions.hentTogglesFeilet());

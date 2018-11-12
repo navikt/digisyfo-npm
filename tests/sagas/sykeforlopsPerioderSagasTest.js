@@ -22,7 +22,7 @@ describe('sykeforlopsPerioderSagas', () => {
         });
 
         it('Skal dernest kalle resttjenesten', () => {
-            const nextCall = call(get, `${window.APP_SETTINGS.REST_ROOT}/sykeforloep/siste/perioder?fnr=123&orgnr=456`);
+            const nextCall = call(get, '/syforest/sykeforloep/siste/perioder?fnr=123&orgnr=456');
             expect(generator.next().value).to.deep.equal(nextCall);
         });
 

@@ -6,7 +6,7 @@ import * as actiontyper from '../actions/actiontyper';
 export function* hentSykeforlopsPerioderSaga(action) {
     yield put(actions.henterSykeforlopsPerioder(action.fnr, action.virksomhetsnummer));
     try {
-        const periodeListe = yield call(get, `${window.APP_SETTINGS.REST_ROOT}/sykeforloep/siste/perioder?fnr=${action.fnr}&orgnr=${action.virksomhetsnummer}`);
+        const periodeListe = yield call(get, `${process.env.REACT_APP_SYFOREST_ROOT}/sykeforloep/siste/perioder?fnr=${action.fnr}&orgnr=${action.virksomhetsnummer}`);
         yield put(actions.sykeforlopsPerioderHentet(periodeListe, action.fnr, action.virksomhetsnummer));
     } catch (e) {
         log(e);

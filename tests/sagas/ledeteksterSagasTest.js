@@ -4,12 +4,6 @@ import { hentLedetekster } from '../../js/sagas/ledeteksterSagas';
 import { get } from '../../js/api';
 
 describe('ledeteksterSagas', () => {
-    beforeEach(() => {
-        window.APP_SETTINGS = {
-            SYFOTEKSTERREST_ROOT: 'https://tjenester.nav.no/syfotekster/api',
-        };
-    });
-
     const generator = hentLedetekster();
 
     it('Skal dispatche HENTER_LEDETEKSTER', () => {
@@ -18,7 +12,7 @@ describe('ledeteksterSagas', () => {
     });
 
     it('Skal dernest hente ledetekster', () => {
-        const nextCall = call(get, 'https://tjenester.nav.no/syfotekster/api/tekster');
+        const nextCall = call(get, '/syfotekster/api/tekster');
         expect(generator.next().value).to.deep.equal(nextCall);
     });
 

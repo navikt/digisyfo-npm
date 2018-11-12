@@ -54,7 +54,7 @@ export function getLedetekst(...args) {
     const _labels = args[1];
     const _replacements = args[2];
 
-    if (window.APP_SETTINGS.VIS_LEDETEKSTNOKLER) {
+    if (window.VIS_LEDETEKSTNOKLER) {
         return key;
     }
 
@@ -101,7 +101,7 @@ export function getLedetekst(...args) {
 
 export function getHtmlLedetekst(...args) {
     const key = args[0];
-    if (window.APP_SETTINGS.VIS_LEDETEKSTNOKLER) {
+    if (window.VIS_LEDETEKSTNOKLER) {
         return { __html: key };
     }
     return {

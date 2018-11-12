@@ -20,7 +20,7 @@ import {
 
 const Avkrysset = ({ tekst }) => {
     return (<div className="oppsummering__avkrysset">
-        <img src={`${window.APP_SETTINGS.APP_ROOT}/img/png/check-box-1.png`} alt="Avkrysset" />
+        <img src={`${process.env.REACT_APP_CONTEXT_ROOT}/img/png/check-box-1.png`} alt="Avkrysset" />
         <span>{tekst}</span>
     </div>);
 };

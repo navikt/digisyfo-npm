@@ -17,7 +17,7 @@ const ArbeidsgiversNokkelopplysninger = ({ sykmelding, ledetekster }) => {
                 tittel={getLedetekst('send-til-arbeidsgiver.diagnose.tittel', ledetekster)}
                 Overskrift="h4">
                 <img
-                    src={`${window.APP_SETTINGS.APP_ROOT}/img/svg/sladd.svg`}
+                    src={`${process.env.REACT_APP_CONTEXT_ROOT}/img/svg/sladd.svg`}
                     className="js-diagnose"
                     alt={getLedetekst('send-til-arbeidsgiver.diagnose.skjult', ledetekster)} />
             </SykmeldingNokkelOpplysning>

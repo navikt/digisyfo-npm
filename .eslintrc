@@ -5,6 +5,9 @@
         "window": true,
         "document": true,
         "localStorage": true,
+        "it": true,
+        "beforeEach": true,
+        "describe": true,
     },
     "rules": {
         "indent": ["error", 4, {"SwitchCase": 1}],

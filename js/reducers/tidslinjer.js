@@ -39,7 +39,7 @@ export const leggTilBilder = (_tidslinjer) => {
         const hendelser = tidslinje.hendelser.map((hendelse) => {
             if (bilder[hendelse.tekstkey]) {
                 return Object.assign({}, hendelse, {
-                    bilde: `${window.APP_SETTINGS.APP_ROOT}${bilder[hendelse.tekstkey]}`,
+                    bilde: `${process.env.REACT_APP_CONTEXT_ROOT}${bilder[hendelse.tekstkey]}`,
                 });
             }
             return hendelse;

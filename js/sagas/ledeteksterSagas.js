@@ -8,7 +8,7 @@ import { HENT_LEDETEKSTER_FORESPURT } from '../actions/actiontyper';
 export function* hentLedetekster() {
     yield put(actions.henterLedetekster());
     try {
-        const ledetekster = yield call(get, `${window.APP_SETTINGS.SYFOTEKSTERREST_ROOT}/tekster`);
+        const ledetekster = yield call(get, `${process.env.REACT_APP_SYFOTEKSTER_ROOT}/api/tekster`);
         setLedetekster(ledetekster);
         yield put(actions.ledeteksterHentet(ledetekster));
     } catch (e) {

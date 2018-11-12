@@ -1,6 +1,6 @@
 {
   "name": "digisyfo-npm",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "description": "Felleskomponenter for DigiSyfo - Digitalisering av sykefraværsoppfølgingen",
   "main": "lib/index.js",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "npm run compile",
-    "test": "mocha --compilers js:babel-core/register --require babel-polyfill --require ignore-styles ./tests/test_helper.js \"tests/**/*.@(js|jsx)\"",
+    "test": "set REACT_APP_SYFOREST_ROOT=/syforest&&set REACT_APP_SYFOTEKSTER_ROOT=/syfotekster&& mocha --compilers js:babel-core/register --require babel-polyfill --require ignore-styles ./tests/test_helper.js \"tests/**/*.@(js|jsx)\"",
     "watch": "npm run test -- --watch",
     "compile": "babel --require ignore-styles --presets env -d lib/ js/",
     "prepublish": "npm run test && npm run lint && npm run compile",
@@ -42,8 +42,8 @@
     "chai-enzyme": "1.0.0-beta.0",
     "classnames": "2.2.5",
     "deep-freeze": "0.0.1",
-    "enzyme": "3.1.0",
-    "enzyme-adapter-react-16": "1.0.1",
+    "enzyme": "3.7.0",
+    "enzyme-adapter-react-16": "1.7.0",
     "eslint": "4.8.0",
     "eslint-config-airbnb": "15.1.0",
     "eslint-plugin-import": "2.7.0",
@@ -66,8 +66,8 @@
     "nav-logger": "2.0.3",
     "parallelshell": "2.0.0",
     "prop-types": "15.6.0",
-    "react": "16.0.0",
-    "react-dom": "16.0.0",
+    "react": "16.5.2",
+    "react-dom": "16.5.2",
     "react-modal": "3.4.5",
     "react-redux": "5.0.6",
     "react-test-renderer": "16.0.0",

@@ -4,7 +4,7 @@ import { getLedetekst, getHtmlLedetekst, setLedetekster, erReplacements } from '
 describe("LABELS", function () {
 
     afterEach(() => {
-        window.APP_SETTINGS.VIS_LEDETEKSTNOKLER = false;
+        window.VIS_LEDETEKSTNOKLER = false;
     });
 
     describe("getLedetekst", () => {
@@ -33,7 +33,7 @@ describe("LABELS", function () {
                 "%OBJEKT%": "Kari"
             });
             expect(label).to.equal("Hei Ola, hvordan går det med Kari?");
-        });        
+        });
 
         it("Skal erstatte 0", function() {
             const label = getLedetekst("min.ledetekst", {
@@ -53,8 +53,8 @@ describe("LABELS", function () {
             expect(label).to.equal("0. % sykmeldt");
         });
 
-        it("viser key dersom APP_SETTINGS.VIS_LEDETEKSTNOKLER = true", function() {
-            window.APP_SETTINGS.VIS_LEDETEKSTNOKLER = true;
+        it("viser key dersom window.VIS_LEDETEKSTNOKLER = true", function() {
+            window.VIS_LEDETEKSTNOKLER = true;
             const label = getLedetekst("min.ledetekst", {
                 "min.ledetekst": "sykmeldt"
             });
@@ -107,7 +107,7 @@ describe("LABELS", function () {
                 const ledetekster = {
                     "min.tekst": "<p>Min tekst</p>"
                 };
-                setLedetekster(ledetekster)                
+                setLedetekster(ledetekster)
             });
 
             it("Skal returnere { __html: label}", () => {
@@ -229,4 +229,4 @@ describe("LABELS", function () {
 
     });
 
-}); 
+});
