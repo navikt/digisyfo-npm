@@ -1,6 +1,6 @@
 {
   "name": "digisyfo-npm",
-  "version": "14.1.0",
+  "version": "14.2.0",
   "description": "Felleskomponenter for DigiSyfo - Digitalisering av sykefraværsoppfølgingen",
   "main": "lib/index.js",
   "files": [
@@ -12,7 +12,8 @@
     "watch": "npm run test -- --watch",
     "compile": "babel --require ignore-styles --presets env -d lib/ js/",
     "prepublish": "npm run test && npm run lint && npm run compile",
-    "lint": "eslint js/. --ext .js"
+    "lint": "eslint js/. --ext .js",
+    "lint:fix": "eslint js/. --ext .js --fix"
   },
   "repository": {
     "type": "git",

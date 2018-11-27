@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { getHtmlLedetekst } from '../ledetekster';
+import BjornBildeStor from './BjornBildeStor';
+import BjornBildeLiten from './BjornBildeLiten';
 
 const Hjelpeboble = (
     {
-        bilde,
-        bildeAlt,
         children,
         className = '',
         hvit = false,
         stor = false,
         vertikal = false,
+        bildeAlt,
     }) => {
     const classNames = cn(`hjelpeboble ${className}`, {
         'hjelpeboble--horisontal': !vertikal,
@@ -28,18 +29,18 @@ const Hjelpeboble = (
         'hjelpeboble__bilde--stor': stor,
         'hjelpeboble__bilde--horisontal': !vertikal,
     });
+    const Bilde = stor ? BjornBildeStor : BjornBildeLiten;
     return (<div className={classNames}>
         <div className={bobleClassNames}>
             {children}
         </div>
         <div className={bildeClassNames}>
-            <img src={bilde} alt={bildeAlt} />
+            <Bilde alt={bildeAlt} />
         </div>
     </div>);
 };
 
 Hjelpeboble.propTypes = {
-    bilde: PropTypes.string,
     bildeAlt: PropTypes.string,
     children: PropTypes.element,
     hvit: PropTypes.bool,
@@ -56,14 +57,12 @@ export const Bjorn = (
         stor,
         vertikal,
         className = '',
-        rootUrl = '',
     }) => {
     return (<Hjelpeboble
         hvit={hvit}
         stor={stor}
         vertikal={vertikal}
         className={className}
-        bilde={`${rootUrl}/img/svg/nav-ansatt--mannlig.svg`}
         bildeAlt="NAV-ansatt">
         {
             nokkel
@@ -80,7 +79,6 @@ Bjorn.propTypes = {
     stor: PropTypes.bool,
     vertikal: PropTypes.bool,
     className: PropTypes.string,
-    rootUrl: PropTypes.string,
 };
 
 export default Hjelpeboble;
