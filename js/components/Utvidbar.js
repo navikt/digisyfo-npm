@@ -198,7 +198,7 @@ Utvidbar.propTypes = {
         PropTypes.element,
         PropTypes.string,
     ]),
-    children: PropTypes.element,
+    children: PropTypes.node,
     ikon: PropTypes.string,
     ikonHover: PropTypes.string,
     ikonAltTekst: PropTypes.string,
