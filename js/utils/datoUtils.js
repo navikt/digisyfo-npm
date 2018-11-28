@@ -52,8 +52,13 @@ export const erGyldigDatoformat = (dato) => {
     return true;
 };
 
+export const ukedager = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
 const maaneder = ['januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'desember'];
 const SKILLETEGN_PERIODE = '–';
+
+export const capitalizeForsteBokstav = (ord) => {
+    return ord.charAt(0).toUpperCase() + ord.slice(1);
+};
 
 export const langtDatoFormat = (_dato) => {
     const dato = new Date(_dato);
@@ -96,4 +101,10 @@ export const tilLesbarPeriodeUtenArstall = (fomArg, tomArg) => {
     return erSammeMaaned
         ? `${fom.getDate()}. ${SKILLETEGN_PERIODE} ${tilLesbarDatoUtenAarstall(tom)}`
         : `${tilLesbarDatoUtenAarstall(fom)} ${SKILLETEGN_PERIODE} ${tilLesbarDatoUtenAarstall(tom)}`;
+};
+
+export const tilLesbarDatoMedArstallOgUkedag = (datoArg) => {
+    return datoArg
+        ? `${capitalizeForsteBokstav(ukedager[new Date(datoArg).getDay()])} ${tilLesbarDatoUtenAarstall(new Date(datoArg))} ${new Date(datoArg).getFullYear()}`
+        : null;
 };
