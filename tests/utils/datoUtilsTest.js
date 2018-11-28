@@ -10,7 +10,6 @@ import {
     langtDatoFormat,
     tilLesbarDatoUtenAarstall,
     tilLesbarDatoMedArstall,
-    tilLesbarDatoMedArstallOgUkedag,
     tilLesbarPeriodeMedArstall,
     tilLesbarPeriodeUtenArstall,
 } from '../../js/utils/datoUtils';
@@ -129,17 +128,6 @@ describe('datoUtils', () => {
 
             const dato2 = new Date('2017-03-09');
             expect(tilLesbarDatoMedArstall(dato2)).to.equal("9. mars 2017")
-        });
-    });
-
-    describe
-    ('tilLesbarDatoMedArstallOgUkedag', () => {
-        it('Skal returnere dato med ukedag og tall for dag, uten null foran, når datoen er mellom 1 og 9', () => {
-            const dato = new Date('2018-01-02');
-            expect(tilLesbarDatoMedArstallOgUkedag(dato)).to.equal('Tirsdag 2. januar 2018');
-
-            const dato2 = new Date('2019-03-09');
-            expect(tilLesbarDatoMedArstallOgUkedag(dato2)).to.equal('Lørdag 9. mars 2019');
         });
     });
 
