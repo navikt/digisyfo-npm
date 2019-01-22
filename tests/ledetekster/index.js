@@ -78,6 +78,15 @@ describe("LABELS", function () {
             expect(label).to.equal("");
         });
 
+        it("Skal returnere variabel-navn dersom variabel ikke finnes blant innsendte variabler", () => {
+            setLedetekster({
+                "min.ledetekst.med.replacement": "Hei %NAVN%",
+            });
+            const label = getLedetekst("min.ledetekst.med.replacement", {
+                "%TEST%": "Test"
+            });
+            expect(label).to.equal("Hei %NAVN%");
+        });
     });
 
     describe("getHtmlLedetekst", () => {
@@ -99,6 +108,19 @@ describe("LABELS", function () {
             const tekst = getHtmlLedetekst("min.undefined.tekst", ledetekster);
             expect(tekst).to.deep.equal({
                 __html: "min.undefined.tekst [MANGLER LEDETEKST]"
+            });
+        });
+
+        it("Skal returnere variabel-navn dersom variabel ikke finnes blant innsendte variabler", () => {
+            setLedetekster({
+                "min.ledetekst.med.replacement": "<p>Hei %NAVN%, du er født %DATO%</p>",
+            });
+            const label = getHtmlLedetekst("min.ledetekst.med.replacement", {
+                "%TEST%": "Testverdi",
+                "%DATO%": "17. mai 1814",
+            });
+            expect(label).to.deep.equal({
+                "__html": "<p>Hei %NAVN%, du er født 17. mai 1814</p>",
             });
         });
 
