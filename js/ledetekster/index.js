@@ -14,7 +14,10 @@ const loggManglendeLedetekst = (key) => {
 
 function replace(str, replacements) {
     return str.replace(/%\w+%+([.,:;?]{0}?)/g, (all) => {
-        return `${replacements[all]}` || all;
+        const replacement = replacements[all];
+        return replacement !== undefined
+            ? `${replacement}`
+            : all;
     });
 }
 
