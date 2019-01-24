@@ -5,8 +5,8 @@ export const getSoknad = (soknad = {}) => {
     "innsendtDato": null,
     "opprettetDato": "2017-01-18",
     "arbeidsgiver": {
-      "navn": "***REMOVED***",
-      "orgnummer": "***REMOVED***",
+      "navn": "TESTBEDRIFT AS",
+      "orgnummer": "999888777",
       "naermesteLeder": null
     },
     "identdato": "2016-07-15",
@@ -57,8 +57,8 @@ export const getParsetSoknad = (soknad = {}) => {
     "innsendtDato": null,
     "opprettetDato": new Date("2017-01-18"),
     "arbeidsgiver": {
-      "navn": "***REMOVED***",
-      "orgnummer": "***REMOVED***",
+      "navn": "TESTBEDRIFT AS",
+      "orgnummer": "999888777",
       "naermesteLeder": null
     },
     "identdato": new Date("2016-07-15"),

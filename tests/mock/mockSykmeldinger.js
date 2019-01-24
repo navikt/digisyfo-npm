@@ -6,12 +6,12 @@ export const getSykmelding = (sykmelding = {}) => {
         "identdato": "2017-07-07",
         "status": "SENDT",
         "naermesteLederStatus": null,
-        "innsendtArbeidsgivernavn": "***REMOVED***",
+        "innsendtArbeidsgivernavn": "TESTBEDRIFT AS",
         "valgtArbeidssituasjon": null,
-        "orgnummer": "***REMOVED***",
+        "orgnummer": "999888777",
         "sendtdato": "2017-07-24T10:19:15",
         "pasient": {
-          "fnr": "***REMOVED***",
+          "fnr": "12121200000",
           "fornavn": "Frida",
           "etternavn": "Frost"
         },
@@ -88,8 +88,8 @@ export const getSykmelding = (sykmelding = {}) => {
         },
         "bekreftelse": {
           "utstedelsesdato": "2017-07-24",
-          "sykmelder": "***REMOVED***",
-          "sykmelderTlf": "***REMOVED***"
+          "sykmelder": "Test Testesen",
+          "sykmelderTlf": "12345678"
         }
       }, sykmelding);
 };
@@ -102,12 +102,12 @@ export const getParsetSykmelding = (sykmelding = {}) => {
         "identdato": new Date("2017-07-07"),
         "status": "SENDT",
         "naermesteLederStatus": null,
-        "innsendtArbeidsgivernavn": "***REMOVED***",
+        "innsendtArbeidsgivernavn": "TESTBEDRIFT AS",
         "valgtArbeidssituasjon": null,
-        "orgnummer": "***REMOVED***",
+        "orgnummer": "999888777",
         "sendtdato": new Date("2017-07-24T10:19:15"),
         "pasient": {
-          "fnr": "***REMOVED***",
+          "fnr": "12121200000",
           "fornavn": "Frida",
           "etternavn": "Frost"
         },
@@ -184,8 +184,8 @@ export const getParsetSykmelding = (sykmelding = {}) => {
         },
         "bekreftelse": {
           "utstedelsesdato": new Date("2017-07-24"),
-          "sykmelder": "***REMOVED***",
-          "sykmelderTlf": "***REMOVED***"
+          "sykmelder": "Test Testesen",
+          "sykmelderTlf": "12345678"
         }
       }, sykmelding);
 };

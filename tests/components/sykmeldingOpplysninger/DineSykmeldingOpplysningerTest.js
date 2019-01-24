@@ -22,7 +22,7 @@ describe("DineSykmeldingOpplysninger", () => {
     });
 
     it("Skal vise avsender", () => {
-        expect(component.find(".js-avsender").text()).to.contain("***REMOVED***");
+        expect(component.find(".js-avsender").text()).to.contain("Test Testesen");
     });
 
     it("Skal ikke vise avsender dersom det ikke finnes", () => {

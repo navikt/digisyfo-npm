@@ -107,7 +107,7 @@ describe("ArbeidsgiversNokkelopplysninger", () => {
         it("Skal vise dersom det finnes", () => {
             component = shallow(<ArbeidsgiversNokkelopplysninger sykmelding={getParsetSykmelding()} ledetekster={ledetekster}/>);
             expect(component.find(".js-sykmelder")).to.have.length(1);
-            expect(component.find(".js-sykmelder").text()).to.equal("***REMOVED***");
+            expect(component.find(".js-sykmelder").text()).to.equal("Test Testesen");
         });
 
         it("Skal ikke vise dersom det ikke finnes", () => {

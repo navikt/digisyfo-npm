@@ -23,7 +23,7 @@ describe("ArbeidsgiversSykmelding", () => {
     });
 
     it("Skal vise fødselsnummer", () => {
-        expect(component.find(".js-fnr").text()).to.equal("***REMOVED***")
+        expect(component.find(".js-fnr").text()).to.equal("12121200000")
     });
 
     it("Viser Nokkelopplysninger", () => {
