@@ -1,78 +1,77 @@
 import chai from 'chai';
-import React from 'react'
-import { mount, shallow } from 'enzyme';
+import React from 'react';
+import { shallow, mount } from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
-import ledetekster from "../../mock/mockLedetekster";
+import ledetekster from '../../mock/mockLedetekster';
+import SykmeldingPeriode from '../../../js/components/sykmeldingOpplysninger/SykmeldingPeriode';
+import SykmeldingPerioder from '../../../js/components/sykmeldingOpplysninger/SykmeldingPerioder';
 
+const expect = chai.expect;
 
 chai.use(chaiEnzyme());
-const expect = chai.expect;
-import SykmeldingPeriode from "../../../js/components/sykmeldingOpplysninger/SykmeldingPeriode";
-import SykmeldingPerioder from "../../../js/components/sykmeldingOpplysninger/SykmeldingPerioder";
 
-describe("SykmeldingPerioder", () => {
-
-    it("Viser ingen perioder dersom man ikke har noen perioder", function () {
-        const component = shallow(<SykmeldingPerioder perioder={[]} ledetekster={ledetekster}/>);
+describe('SykmeldingPerioder', () => {
+    it('Viser ingen perioder dersom man ikke har noen perioder', () => {
+        const component = shallow(<SykmeldingPerioder perioder={[]} ledetekster={ledetekster} />);
         expect(component.find(SykmeldingPeriode)).to.have.length(0);
     });
 
-    it("Viser en periode per periode dersom man har perioder", function () {
+    it('Viser en periode per periode dersom man har perioder', () => {
         const perioder = [
             {
-                "fom": new Date("2015-04-08"),
-                "tom": new Date("2015-04-18"),
-                "grad": 100
+                fom: new Date('2015-04-08'),
+                tom: new Date('2015-04-18'),
+                grad: 100,
             }, {
-                "fom": new Date("2015-04-08"),
-                "tom": new Date("2015-04-18"),
-                "grad": 100
+                fom: new Date('2015-04-08'),
+                tom: new Date('2015-04-18'),
+                grad: 100,
             }, {
-                "fom": new Date("2015-04-08"),
-                "tom": new Date("2015-04-18"),
-                "grad": 100
+                fom: new Date('2015-04-08'),
+                tom: new Date('2015-04-18'),
+                grad: 100,
             }];
-        const component = shallow(<SykmeldingPerioder perioder={perioder} ledetekster={ledetekster}/>);
+        const component = shallow(<SykmeldingPerioder perioder={perioder} ledetekster={ledetekster} />);
         expect(component.find(SykmeldingPeriode)).to.have.length(3);
     });
 
-    it("Viser perioder sortert på eldste først", function () {
+    it('Viser perioder sortert på eldste først', () => {
         const perioder = [{
-            "fom": new Date("2015-04-08"),
-            "tom": new Date("2015-04-18"),
-            "grad": 100
+            fom: new Date('2015-04-08'),
+            tom: new Date('2015-04-18'),
+            grad: 100,
         }, {
-            "fom": new Date("2015-04-07"),
-            "tom": new Date("2015-04-14"),
-            "grad": 100
+            fom: new Date('2015-04-07'),
+            tom: new Date('2015-04-14'),
+            grad: 100,
         }];
 
-        const component = mount(<SykmeldingPerioder perioder={perioder} ledetekster={ledetekster}/>);
+        const component = mount(<SykmeldingPerioder perioder={perioder} ledetekster={ledetekster} />);
         expect(component.find(SykmeldingPeriode).at(0).props().periode).to.deep.equal(
             {
-                "fom": new Date("2015-04-07"),
-                "tom": new Date("2015-04-14"),
-                "grad": 100
-            }
+                fom: new Date('2015-04-07'),
+                tom: new Date('2015-04-14'),
+                grad: 100,
+            },
         );
     });
 
-    it("Viser korteste perioder først ved samme FOM", function () {
+    it('Viser korteste perioder først ved samme FOM', () => {
         const perioder = [{
-            "fom": new Date("2015-04-07"),
-            "tom": new Date("2015-04-13"),
-            "grad": 100
+            fom: new Date('2015-04-07'),
+            tom: new Date('2015-04-13'),
+            grad: 100,
         }, {
-            "fom": new Date("2015-04-07"),
-            "tom": new Date("2015-04-16"),
-            "grad": 100
+            fom: new Date('2015-04-07'),
+            tom: new Date('2015-04-16'),
+            grad: 100,
         }];
 
-        const component = mount(<SykmeldingPerioder perioder={perioder} ledetekster={ledetekster}/>);
+        const component = mount(<SykmeldingPerioder perioder={perioder} ledetekster={ledetekster} />);
         expect(component.find(SykmeldingPeriode).first().props().periode).to.deep.equal({
-            "fom": new Date("2015-04-07"),
-            "tom": new Date("2015-04-13"),
-            "grad": 100
+            fom: new Date('2015-04-07'),
+            tom: new Date('2015-04-13'),
+            grad: 100,
         });
-    })
+    });
 });

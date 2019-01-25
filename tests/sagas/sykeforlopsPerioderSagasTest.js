@@ -5,7 +5,6 @@ import * as actiontyper from '../../js/actions/actiontyper';
 import { hentSykeforlopsPerioderSaga } from '../../js/sagas/sykeforlopsPerioderSagas';
 
 describe('sykeforlopsPerioderSagas', () => {
-
     describe('hentSykeforlopsPerioder', () => {
         const generator = hentSykeforlopsPerioderSaga({
             fnr: '123',
@@ -35,7 +34,5 @@ describe('sykeforlopsPerioderSagas', () => {
             });
             expect(generator.next().value).to.deep.equal(nextPut);
         });
-
     });
-
 });

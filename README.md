@@ -1,12 +1,31 @@
-Felles kode i Team Sykefravær.
+digisyfo-npm
+================
 
-Publisering til Nexus:
+Felles kode for digitalisering av sykefraværsoppfølgingen.
 
-```
-npm install
-npm version [major | minor | patch]
-npm publish
-git push
-```
+# Komme i gang
 
-Merk at du må ha tilgang til å publisere til repo.adeo.no; auth-token må legges inn i din lokale `.npmrc`-fil. 
+`npm install`
+
+Kjør tester:
+
+`npm test`
+
+Kjøre tester kontinuerlig under utvikling. 
+
+`npm run watch`
+
+Se ellers flere kommandoer i `package.json`.
+
+---
+
+# Henvendelser
+
+Spørsmål knyttet til koden eller prosjektet kan rettes mot:
+
+* digisyfo@nav.no
+* Meld inn issues i dette repoet
+
+## For NAV-ansatte
+
+Interne henvendelser kan sendes via Slack i kanalen #sykefravaer.

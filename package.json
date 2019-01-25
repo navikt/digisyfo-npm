@@ -1,6 +1,6 @@
 {
   "name": "digisyfo-npm",
-  "version": "14.3.0",
+  "version": "15.0.0",
   "description": "Felleskomponenter for DigiSyfo - Digitalisering av sykefraværsoppfølgingen",
   "main": "lib/index.js",
   "files": [
@@ -8,22 +8,25 @@
   ],
   "scripts": {
     "build": "npm run compile",
-    "test": "set REACT_APP_SYFOREST_ROOT=/syforest&&set REACT_APP_SYFOTEKSTER_ROOT=/syfotekster&& mocha --compilers js:babel-core/register --require babel-polyfill --require ignore-styles ./tests/test_helper.js \"tests/**/*.@(js|jsx)\"",
+    "test": "REACT_APP_SYFOREST_ROOT=/syforest REACT_APP_SYFOTEKSTER_ROOT=/syfotekster mocha --compilers js:babel-core/register --require babel-polyfill --require ignore-styles ./tests/test_helper.js \"tests/**/*.@(js|jsx)\"",
     "watch": "npm run test -- --watch",
     "compile": "babel --require ignore-styles --presets env -d lib/ js/",
-    "prepublish": "npm run test && npm run lint && npm run compile",
+    "prepublish": "npm run test && npm run lint && npm run linttest && npm run compile",
     "lint": "eslint js/. --ext .js",
-    "lint:fix": "eslint js/. --ext .js --fix"
+    "lint:fix": "eslint js/. --ext .js --fix",
+    "linttest": "eslint tests/. --ext .js",
+    "linttest:fix": "eslint tests/. --ext .js --fix"
   },
   "repository": {
-    "type": "git",
-    "url": "ssh://git@stash.devillo.no:7999/syfo/digisyfo-npm.git"
+    "type" : "git",
+    "url" : "https://github.com/navikt/digisyfo-npm.git"
   },
-  "author": "digisyfo@nav.no",
-  "publishConfig": {
-    "registry": "https://repo.adeo.no/repository/npm-internal/"
+  "bugs": {
+    "url" : "https://github.com/navikt/digisyfo-npm/issues",
+    "email" : "digisyfo@nav.no"
   },
-  "license": "ISC",
+  "license": "MIT",
+  "author": "NAV",
   "dependencies": {
     "fetch-ponyfill": "4.1.0",
     "nav-frontend-modal": "1.0.7",
@@ -64,7 +67,6 @@
     "nav-frontend-paneler-style": "0.3.9",
     "nav-frontend-typografi": "2.0.5",
     "nav-frontend-typografi-style": "1.0.9",
-    "nav-logger": "2.0.3",
     "parallelshell": "2.0.0",
     "prop-types": "15.6.0",
     "react": "16.5.2",
@@ -88,7 +90,6 @@
     "redux": "3.5.x",
     "simple-ajax": "2.6.x",
     "redux-saga": "0.16.x",
-    "nav-logger": "2.0.x",
     "nav-frontend-core": "4.x.x",
     "nav-frontend-modal": "1.0.x",
     "nav-frontend-lukknapp": "1.x.x",
