@@ -1,14 +1,12 @@
-import logger from '../logger/logger';
-
 let ledetekster = {};
 
 const manglendeLedetekster = [];
 
 const loggManglendeLedetekst = (key) => {
     const erLoggetFoer = manglendeLedetekster.indexOf(key) > -1;
-    if (logger && logger.error && !erLoggetFoer) {
+    if (window.frontendlogger && window.frontendlogger.error && !erLoggetFoer) {
         manglendeLedetekster.push(key);
-        logger.error(`${key} [MANGLER LEDETEKST]`);
+        window.frontendlogger.error(`${key} [MANGLER LEDETEKST]`);
     }
 };
 
