@@ -16,15 +16,14 @@ import {
 } from '../../js/utils/tidslinjeUtils';
 
 describe('tidslinjer', () => {
-
     describe('settHendelseIder', () => {
         it('Setter ID', () => {
-            const tidslinjer = deepFreeze([{
+            const tidslinjerData = deepFreeze([{
                 hendelser: [{}, {}],
             }, {
                 hendelser: [{}, {}, {}],
             }]);
-            const res = settHendelseIder(tidslinjer);
+            const res = settHendelseIder(tidslinjerData);
             expect(res).to.deep.equal([{
                 hendelser: [{ id: '00' }, { id: '01' }],
             }, {

@@ -1,4 +1,4 @@
-import {expect} from 'chai';
+import { expect } from 'chai';
 import deepFreeze from 'deep-freeze';
 
 import toggles from '../../js/reducers/toggles';

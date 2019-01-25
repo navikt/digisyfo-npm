@@ -8,12 +8,14 @@
   ],
   "scripts": {
     "build": "npm run compile",
-    "test": "set REACT_APP_SYFOREST_ROOT=/syforest&&set REACT_APP_SYFOTEKSTER_ROOT=/syfotekster&& mocha --compilers js:babel-core/register --require babel-polyfill --require ignore-styles ./tests/test_helper.js \"tests/**/*.@(js|jsx)\"",
+    "test": "REACT_APP_SYFOREST_ROOT=/syforest REACT_APP_SYFOTEKSTER_ROOT=/syfotekster mocha --compilers js:babel-core/register --require babel-polyfill --require ignore-styles ./tests/test_helper.js \"tests/**/*.@(js|jsx)\"",
     "watch": "npm run test -- --watch",
     "compile": "babel --require ignore-styles --presets env -d lib/ js/",
-    "prepublish": "npm run test && npm run lint && npm run compile",
+    "prepublish": "npm run test && npm run lint && npm run linttest && npm run compile",
     "lint": "eslint js/. --ext .js",
-    "lint:fix": "eslint js/. --ext .js --fix"
+    "lint:fix": "eslint js/. --ext .js --fix",
+    "linttest": "eslint tests/. --ext .js",
+    "linttest:fix": "eslint tests/. --ext .js --fix"
   },
   "repository": {
     "type" : "git",

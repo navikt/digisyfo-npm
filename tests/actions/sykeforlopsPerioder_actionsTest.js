@@ -7,7 +7,6 @@ chai.use(chaiEnzyme());
 const expect = chai.expect;
 
 describe('sykeforlopsPerioder_actions', () => {
-
     beforeEach(() => {
         window = window || {};
         window.APP_SETTINGS = {

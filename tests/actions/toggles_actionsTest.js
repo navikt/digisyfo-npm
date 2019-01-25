@@ -1,5 +1,4 @@
 import chai from 'chai';
-import React from 'react';
 import chaiEnzyme from 'chai-enzyme';
 import * as actions from '../../js/actions/toggles_actions';
 

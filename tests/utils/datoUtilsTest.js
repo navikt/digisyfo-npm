@@ -2,8 +2,6 @@ import { expect } from 'chai';
 import {
     toDatePrettyPrint,
     getDuration,
-    getPeriodeSpenn,
-    getSykmeldingStartdato,
     toDate,
     fraInputdatoTilJSDato,
     erGyldigDatoformat,
@@ -15,7 +13,6 @@ import {
 } from '../../js/utils/datoUtils';
 
 describe('datoUtils', () => {
-
     describe('toDatePrettyPrint', () => {
         it('Skal formatere dato', () => {
             expect(toDatePrettyPrint({ year: 2014, monthValue: 2, dayOfMonth: 28 })).to.equal('28.02.2014');
@@ -29,13 +26,13 @@ describe('datoUtils', () => {
             expect(toDatePrettyPrint({ year: 1984, monthValue: 2, dayOfMonth: 29 })).to.equal('29.02.1984');
         });
 
-        it('Kan formattere dato på ISO-format',() => {
-            expect(toDatePrettyPrint('2017-02-02')).to.equal('02.02.2017')
-        })
+        it('Kan formattere dato på ISO-format', () => {
+            expect(toDatePrettyPrint('2017-02-02')).to.equal('02.02.2017');
+        });
 
-        it('Kan formattere dato på ISO-format når argument er JS-dato',() => {
-            expect(toDatePrettyPrint(new Date('2017-02-02'))).to.equal('02.02.2017')
-        })
+        it('Kan formattere dato på ISO-format når argument er JS-dato', () => {
+            expect(toDatePrettyPrint(new Date('2017-02-02'))).to.equal('02.02.2017');
+        });
     });
 
     describe('getDuration', () => {
@@ -44,10 +41,10 @@ describe('datoUtils', () => {
             expect(getDuration({ year: 2014, monthValue: 6, dayOfMonth: 30 }, { year: 2014, monthValue: 7, dayOfMonth: 5 })).to.equal(6);
         });
 
-        it('Kan regne ut varighet på ISO-format',() => {
+        it('Kan regne ut varighet på ISO-format', () => {
             expect(getDuration('2014-02-27', '2014-03-08')).to.equal(10);
             expect(getDuration('2014-06-30', '2014-07-05')).to.equal(6);
-        })
+        });
     });
 
     describe('toDate', () => {
@@ -60,7 +57,7 @@ describe('datoUtils', () => {
         });
 
         it('Skal returnere null hvis vi sender inn null', () => {
-            expect(toDate(null)).to.be.null;
+            expect(toDate(null)).to.equal(null);
         });
     });
 
@@ -81,33 +78,33 @@ describe('datoUtils', () => {
     describe('erGyldigDatoformat', () => {
         it('Skal returnere true ved 12.02.2017', () => {
             const d = erGyldigDatoformat('12.02.2017');
-            expect(d).to.be.true;
+            expect(d).to.equal(true);
         });
 
         it('Skal returnere false ved dd.mm.yy', () => {
             const d = erGyldigDatoformat('02.01.17');
-            expect(d).to.be.false;
-        })
+            expect(d).to.equal(false);
+        });
 
         it('Skal returnere false ved aa.bb.cccc', () => {
             const d = erGyldigDatoformat('aa.bb.cccc');
-            expect(d).to.be.false;
+            expect(d).to.equal(false);
         });
 
         it('Skal returnere false ved 02.02.____', () => {
             const d = erGyldigDatoformat('02.02.____');
-            expect(d).to.be.false;
+            expect(d).to.equal(false);
         });
 
         it('Skal returnere false ved 02.0a.1234', () => {
             const d = erGyldigDatoformat('02.02.____');
-            expect(d).to.be.false;
+            expect(d).to.equal(false);
         });
 
         it('Skal returnere true ved 42.01.2020', () => {
             const d = erGyldigDatoformat('42.01.2020');
-            expect(d).to.be.true;
-        })
+            expect(d).to.equal(true);
+        });
     });
 
     describe('langtDatoFormat', () => {
@@ -122,39 +119,39 @@ describe('datoUtils', () => {
     });
 
     describe('tilLesbarDatoMedArstall', () => {
-        it("Skal returnere tall for dag, uten null foran, når datoen er mellom 1 og 9", () => {
+        it('Skal returnere tall for dag, uten null foran, når datoen er mellom 1 og 9', () => {
             const dato = new Date('2018-01-02');
-            expect(tilLesbarDatoMedArstall(dato)).to.equal("2. januar 2018");
+            expect(tilLesbarDatoMedArstall(dato)).to.equal('2. januar 2018');
 
             const dato2 = new Date('2017-03-09');
-            expect(tilLesbarDatoMedArstall(dato2)).to.equal("9. mars 2017")
+            expect(tilLesbarDatoMedArstall(dato2)).to.equal('9. mars 2017');
         });
     });
 
     describe('tilLesbarDatoUtenArstall', () => {
-        it("Skal returnere tall for dag, uten null foran, når datoen er mellom 1 og 9", () => {
+        it('Skal returnere tall for dag, uten null foran, når datoen er mellom 1 og 9', () => {
             const dato = new Date('2018-01-02');
-            expect(tilLesbarDatoUtenAarstall(dato)).to.equal("2. januar");
+            expect(tilLesbarDatoUtenAarstall(dato)).to.equal('2. januar');
 
             const dato2 = new Date('2017-03-09');
-            expect(tilLesbarDatoUtenAarstall(dato2)).to.equal("9. mars");
+            expect(tilLesbarDatoUtenAarstall(dato2)).to.equal('9. mars');
         });
     });
 
     describe('tilLesbarPeriodeMedArstall', () => {
-        it("Skal returnere to datoer og ett årstall når datoene er i to forskjellige måneder", () => {
+        it('Skal returnere to datoer og ett årstall når datoene er i to forskjellige måneder', () => {
             const fom = new Date('2018-01-01');
             const tom = new Date('2018-02-14');
             expect(tilLesbarPeriodeMedArstall(fom, tom)).to.equal('1. januar – 14. februar 2018');
         });
 
-        it("Skal returnere to datoer, én måned og ett årstall når datoene er i samme måned", () => {
+        it('Skal returnere to datoer, én måned og ett årstall når datoene er i samme måned', () => {
             const fom = new Date('2018-01-01');
             const tom = new Date('2018-01-14');
             expect(tilLesbarPeriodeMedArstall(fom, tom)).to.equal('1. – 14. januar 2018');
         });
 
-        it("Skal returnere to årstall når datoene er i to forskjellige år", () => {
+        it('Skal returnere to årstall når datoene er i to forskjellige år', () => {
             const fom = new Date('2016-01-01');
             const tom = new Date('2018-02-14');
             expect(tilLesbarPeriodeMedArstall(fom, tom)).to.equal('1. januar 2016 – 14. februar 2018');
@@ -162,19 +159,19 @@ describe('datoUtils', () => {
     });
 
     describe('tilLesbarPeriodeUtenArstall', () => {
-        it("Skal returnere to datoer når datoene er i to forskjellige måneder", () => {
+        it('Skal returnere to datoer når datoene er i to forskjellige måneder', () => {
             const fom = new Date('2018-01-01');
             const tom = new Date('2018-02-14');
             expect(tilLesbarPeriodeUtenArstall(fom, tom)).to.equal('1. januar – 14. februar');
         });
 
-        it("Skal returnere to datoer, én måned og ett årstall når datoene er i samme måned", () => {
+        it('Skal returnere to datoer, én måned og ett årstall når datoene er i samme måned', () => {
             const fom = new Date('2018-01-01');
             const tom = new Date('2018-01-14');
             expect(tilLesbarPeriodeUtenArstall(fom, tom)).to.equal('1. – 14. januar');
         });
 
-        it("Skal returnere to datoer når datoene er i to forskjellige år", () => {
+        it('Skal returnere to datoer når datoene er i to forskjellige år', () => {
             const fom = new Date('2016-01-01');
             const tom = new Date('2018-02-14');
             expect(tilLesbarPeriodeUtenArstall(fom, tom)).to.equal('1. januar – 14. februar');

@@ -15,7 +15,6 @@ import {
 } from '../../js/utils/tidslinjeUtils';
 
 describe('tidslinjeUtils', () => {
-
     describe('sorterTidslinjerSisteFoerst', () => {
         it('sorterer Tidslinjer etter startdato', () => {
             const tidslinjer = [
