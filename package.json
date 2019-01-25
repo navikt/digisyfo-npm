@@ -1,6 +1,6 @@
 {
   "name": "digisyfo-npm",
-  "version": "14.3.0",
+  "version": "15.0.0",
   "description": "Felleskomponenter for DigiSyfo - Digitalisering av sykefraværsoppfølgingen",
   "main": "lib/index.js",
   "files": [
@@ -16,14 +16,15 @@
     "lint:fix": "eslint js/. --ext .js --fix"
   },
   "repository": {
-    "type": "git",
-    "url": "ssh://git@stash.devillo.no:7999/syfo/digisyfo-npm.git"
+    "type" : "git",
+    "url" : "https://github.com/navikt/digisyfo-npm.git"
   },
-  "author": "digisyfo@nav.no",
-  "publishConfig": {
-    "registry": "https://repo.adeo.no/repository/npm-internal/"
+  "bugs": {
+    "url" : "https://github.com/navikt/digisyfo-npm/issues",
+    "email" : "digisyfo@nav.no"
   },
-  "license": "ISC",
+  "license": "MIT",
+  "author": "NAV",
   "dependencies": {
     "fetch-ponyfill": "4.1.0",
     "nav-frontend-modal": "1.0.7",
