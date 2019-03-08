@@ -149,7 +149,11 @@ class Utvidbar extends Component {
                 className="utvidbar__toggle">
                 <this.props.Overskrift className={this.getHeaderClassName()}>
                     {
-                        this.state.ikon && <img src={`${process.env.REACT_APP_CONTEXT_ROOT}/img/${this.state.ikon}`} alt={this.props.ikonAltTekst} className="utvidbar__ikon" />
+                        this.state.ikon && (<img
+                            aria-hidden="true"
+                            src={`${process.env.REACT_APP_CONTEXT_ROOT}/img/${this.state.ikon}`}
+                            alt={this.props.ikonAltTekst}
+                            className="utvidbar__ikon" />)
                     }
                     <div className={!this.state.erApen ? 'utvidbar__tittel' : 'utvidbar__tittel utvidbar__tittel--erApen'}>{this.props.tittel}</div>
                     <em className="utvidbar__handling">
