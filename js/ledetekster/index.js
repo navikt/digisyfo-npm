@@ -11,6 +11,7 @@ const loggManglendeLedetekst = (key) => {
         if (window.frontendlogger.event) {
             window.frontendlogger.event(
                 'Sykefravaer [MANGLER LEDETEKST]',
+                {},
                 { nokkel: key },
             );
         }
