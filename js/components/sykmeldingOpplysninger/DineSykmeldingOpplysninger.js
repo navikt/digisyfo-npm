@@ -51,7 +51,7 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'h2'
                 sykmelding.diagnose.bidiagnoser && sykmelding.diagnose.bidiagnoser.map((bidiagnose, index) => {
                     return (<div
                         className="rad-container"
-                        key={index}>
+                        key={`${sykmelding.id}-bidiagnose-${index}`}>
                         <SykmeldingNokkelOpplysning
                             tittel={getLedetekst('din-sykmelding.bidiagnose.tittel', ledetekster)}>
                             <p className="js-bidiagnose">{bidiagnose.diagnose}</p>

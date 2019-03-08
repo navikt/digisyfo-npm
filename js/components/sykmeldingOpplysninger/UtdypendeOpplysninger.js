@@ -16,7 +16,9 @@ const UtdypendeOpplysninger = ({ sykmelding, ledetekster }) => {
 
             {sykmelding.utdypendeOpplysninger.grupper.map((gruppe) => {
                 return (gruppe.sporsmal.map((sporsmal) => {
-                    return (<SykmeldingOpplysning tittel={getLedetekst(`din-sykmelding.utdypende.${sporsmal.id}.tittel`, ledetekster)}>
+                    return (<SykmeldingOpplysning
+                        key={`${sykmelding.id}-${sporsmal.id}`}
+                        tittel={getLedetekst(`din-sykmelding.utdypende.${sporsmal.id}.tittel`, ledetekster)}>
                         <p className="opplysning__verdi">{sporsmal.svar}</p>
                     </SykmeldingOpplysning>);
                 }));
