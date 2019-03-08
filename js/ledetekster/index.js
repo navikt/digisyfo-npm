@@ -7,6 +7,13 @@ const loggManglendeLedetekst = (key) => {
     if (window.frontendlogger && window.frontendlogger.error && !erLoggetFoer) {
         manglendeLedetekster.push(key);
         window.frontendlogger.error(`${key} [MANGLER LEDETEKST]`);
+
+        if (window.frontendlogger.event) {
+            window.frontendlogger.event(
+                'Sykefravaer [MANGLER LEDETEKST]',
+                { nokkel: key },
+            );
+        }
     }
 };
 
