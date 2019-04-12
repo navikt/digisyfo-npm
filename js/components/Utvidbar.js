@@ -144,6 +144,9 @@ class Utvidbar extends Component {
                     this.onMouseLeave();
                 }}
                 onClick={(event) => {
+                    if (this.props.onClick) {
+                        this.props.onClick(this.state.erApen);
+                    }
                     this.toggle(event);
                 }}
                 className="utvidbar__toggle">
@@ -209,6 +212,7 @@ Utvidbar.propTypes = {
     className: PropTypes.string,
     variant: PropTypes.string,
     visLukklenke: PropTypes.bool.isRequired,
+    onClick: PropTypes.func,
 };
 
 Utvidbar.defaultProps = {
