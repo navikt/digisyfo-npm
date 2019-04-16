@@ -3,7 +3,7 @@ import SoknadOppsummering, { Sporsmal, Tilleggstekst } from './Oppsummering';
 import { oppsummeringsoknad as oppsummeringsoknadPt } from '../../propTypes';
 
 export const VaerKlarOverAt = ({ oppsummeringsoknad }) => {
-    return (<Tilleggstekst tilleggstekst={oppsummeringsoknad.vaerKlarOverAt} stylingklasser="panel blokk js-vaer-klar-over-at" />);
+    return (<Tilleggstekst tilleggstekst={oppsummeringsoknad.vaerKlarOverAt} stylingklasser="js-vaer-klar-over-at" />);
 };
 
 VaerKlarOverAt.propTypes = {
