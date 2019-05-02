@@ -3,6 +3,12 @@ import { SykmeldingOpplysning } from '../components/sykmeldingOpplysninger/Sykme
 import { SykmeldingCheckbox } from '../components/sykmeldingOpplysninger/SykmeldingCheckbox';
 import { toDate, getDuration, sorterPerioderEldsteFoerst } from './index';
 
+export const hentPerioderForSykmelding = (sykmelding) => {
+    return sykmelding.mulighetForArbeid
+        ? sykmelding.mulighetForArbeid.perioder
+        : sykmelding.sykmeldingsperioder;
+};
+
 export const getSykmeldingCheckbox = (sykmeldingBolk, felt, tekst, className) => {
     if (sykmeldingBolk[felt]) {
         return (<SykmeldingCheckbox tekst={tekst} jsClassName={felt} className={className} />);
@@ -20,9 +26,9 @@ export const getSykmeldingOpplysning = (sykmeldingBolk, felt, tittel, opplysning
 };
 
 export function getSykmelding(sykmeldinger, sykmeldingId) {
-    return sykmeldinger.filter((sykmld) => {
+    return sykmeldinger.find((sykmld) => {
         return `${sykmld.id}` === `${sykmeldingId}`;
-    })[0];
+    });
 }
 
 export function getPeriodeSpenn(perioder) {
@@ -36,5 +42,6 @@ export function getPeriodeSpenn(perioder) {
 }
 
 export function getSykmeldingStartdato(sykmelding) {
-    return sorterPerioderEldsteFoerst(sykmelding.mulighetForArbeid.perioder)[0].fom;
+    const perioder = hentPerioderForSykmelding(sykmelding);
+    return sorterPerioderEldsteFoerst(perioder)[0].fom;
 }

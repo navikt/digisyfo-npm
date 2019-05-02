@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { sorterSykmeldinger, sorterPerioderEldsteFoerst, sorterSykmeldingerEldsteFoerst } from '../../js/utils/sorterSykmeldingerUtils';
 import getSykmelding from '../mock/mockSykmeldinger';
+import mockSmSykmelding from '../mock/mockSmSykmelding';
 
 describe('sorterSykmeldinger', () => {
     const sykmeldinger = [{
@@ -845,6 +846,23 @@ describe('sorterSykmeldinger', () => {
             expect(s[2].id).to.equal(3);
             expect(s[3].id).to.equal(2);
             expect(s[4].id).to.equal(4);
+        });
+
+        it('Skal håndtere sykmeldinger fra sm-register', () => {
+            const sykmelding1 = getSykmelding({
+                id: 1,
+                mulighetForArbeid: {
+                    perioder: [{
+                        fom: '2015-01-01',
+                        tom: '2015-01-10',
+                        grad: '80',
+                    }],
+                },
+            });
+            const sykmelding2 = mockSmSykmelding();
+            const sykmeldingerOgSmSykmeldinger = [sykmelding1, sykmelding2];
+            const sortert = sorterSykmeldinger(sykmeldingerOgSmSykmeldinger);
+            expect(sortert).to.deep.equal([sykmelding2, sykmelding1]);
         });
     });
 });
