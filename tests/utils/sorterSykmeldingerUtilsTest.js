@@ -8,8 +8,8 @@ describe('sorterSykmeldinger', () => {
         arbeidsgiver: 'Drammen Frisør',
         mulighetForArbeid: {
             perioder: [{
-                fom: { year: 2014, monthValue: 1, dayOfMonth: 24 },
-                tom: { year: 2014, monthValue: 2, dayOfMonth: 9 },
+                fom: '2014-01-24',
+                tom: '2014-02-09',
                 grad: '80',
             }],
         },
@@ -18,8 +18,8 @@ describe('sorterSykmeldinger', () => {
         arbeidsgiver: 'Ålesund Frisør',
         mulighetForArbeid: {
             perioder: [{
-                fom: { year: 2014, monthValue: 12, dayOfMonth: 31 },
-                tom: { year: 2015, monthValue: 1, dayOfMonth: 30 },
+                fom: '2014-12-31',
+                tom: '2015-01-30',
                 grad: '25',
             }],
         },
@@ -28,8 +28,8 @@ describe('sorterSykmeldinger', () => {
         arbeidsgiver: 'Alnabru Frisør',
         mulighetForArbeid: {
             perioder: [{
-                fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                tom: { year: 2015, monthValue: 4, dayOfMonth: 15 },
+                fom: '2015-04-08',
+                tom: '2015-04-15',
                 grad: '100',
             }],
         },
@@ -38,8 +38,8 @@ describe('sorterSykmeldinger', () => {
         arbeidsgiver: 'Alnabru Frisør',
         mulighetForArbeid: {
             perioder: [{
-                fom: { year: 2015, monthValue: 5, dayOfMonth: 17 },
-                tom: { year: 2015, monthValue: 5, dayOfMonth: 31 },
+                fom: '2015-05-17',
+                tom: '2015-05-31',
                 grad: '100',
             }],
         },
@@ -48,8 +48,8 @@ describe('sorterSykmeldinger', () => {
         arbeidsgiver: 'Alnabru Frisør',
         mulighetForArbeid: {
             perioder: [{
-                fom: { year: 2015, monthValue: 8, dayOfMonth: 31 },
-                tom: { year: 2015, monthValue: 9, dayOfMonth: 13 },
+                fom: '2015-08-31',
+                tom: '2015-09-13',
                 grad: '100',
             }],
         },
@@ -58,8 +58,8 @@ describe('sorterSykmeldinger', () => {
         arbeidsgiver: 'Bærum Idrettslag',
         mulighetForArbeid: {
             perioder: [{
-                fom: { year: 2016, monthValue: 3, dayOfMonth: 31 },
-                tom: { year: 2016, monthValue: 8, dayOfMonth: 13 },
+                fom: '2016-03-31',
+                tom: '2016-08-13',
                 grad: '29',
             }],
         },
@@ -72,8 +72,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Bærum Idrettslag',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2016, monthValue: 3, dayOfMonth: 31 },
-                    tom: { year: 2016, monthValue: 8, dayOfMonth: 13 },
+                    fom: '2016-03-31',
+                    tom: '2016-08-13',
                     grad: '29',
                 }],
             },
@@ -82,8 +82,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 8, dayOfMonth: 31 },
-                    tom: { year: 2015, monthValue: 9, dayOfMonth: 13 },
+                    fom: '2015-08-31',
+                    tom: '2015-09-13',
                     grad: '100',
                 }],
             },
@@ -92,8 +92,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 5, dayOfMonth: 17 },
-                    tom: { year: 2015, monthValue: 5, dayOfMonth: 31 },
+                    fom: '2015-05-17',
+                    tom: '2015-05-31',
                     grad: '100',
                 }],
             },
@@ -102,8 +102,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 4, dayOfMonth: 15 },
+                    fom: '2015-04-08',
+                    tom: '2015-04-15',
                     grad: '100',
                 }],
             },
@@ -112,8 +112,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Ålesund Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 12, dayOfMonth: 31 },
-                    tom: { year: 2015, monthValue: 1, dayOfMonth: 30 },
+                    fom: '2014-12-31',
+                    tom: '2015-01-30',
                     grad: '25',
                 }],
             },
@@ -122,8 +122,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Drammen Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 1, dayOfMonth: 24 },
-                    tom: { year: 2014, monthValue: 2, dayOfMonth: 9 },
+                    fom: '2014-01-24',
+                    tom: '2014-02-09',
                     grad: '80',
                 }],
             },
@@ -137,16 +137,16 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Bærum Idrettslag',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2016, monthValue: 8, dayOfMonth: 31 },
-                    tom: { year: 2016, monthValue: 9, dayOfMonth: 13 },
+                    fom: '2016-08-31',
+                    tom: '2016-09-13',
                     grad: '100',
                 }, {
-                    fom: { year: 2016, monthValue: 8, dayOfMonth: 31 },
-                    tom: { year: 2016, monthValue: 12, dayOfMonth: 13 },
+                    fom: '2016-08-31',
+                    tom: '2016-12-13',
                     grad: '29',
                 }, {
-                    fom: { year: 2015, monthValue: 7, dayOfMonth: 9 },
-                    tom: { year: 2015, monthValue: 7, dayOfMonth: 13 },
+                    fom: '2015-07-09',
+                    tom: '2015-07-13',
                     grad: '60',
                 }],
             },
@@ -156,16 +156,16 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Bærum Idrettslag',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 7, dayOfMonth: 9 },
-                    tom: { year: 2015, monthValue: 7, dayOfMonth: 13 },
+                    fom: '2015-07-09',
+                    tom: '2015-07-13',
                     grad: '60',
                 }, {
-                    fom: { year: 2016, monthValue: 8, dayOfMonth: 31 },
-                    tom: { year: 2016, monthValue: 9, dayOfMonth: 13 },
+                    fom: '2016-08-31',
+                    tom: '2016-09-13',
                     grad: '100',
                 }, {
-                    fom: { year: 2016, monthValue: 8, dayOfMonth: 31 },
-                    tom: { year: 2016, monthValue: 12, dayOfMonth: 13 },
+                    fom: '2016-08-31',
+                    tom: '2016-12-13',
                     grad: '29',
                 }],
             },
@@ -178,16 +178,16 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Bærum Idrettslag',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2016, monthValue: 8, dayOfMonth: 31 },
-                    tom: { year: 2016, monthValue: 12, dayOfMonth: 22 },
+                    fom: '2016-08-31',
+                    tom: '2016-12-22',
                     grad: '100',
                 }, {
-                    fom: { year: 2016, monthValue: 3, dayOfMonth: 31 },
-                    tom: { year: 2016, monthValue: 8, dayOfMonth: 13 },
+                    fom: '2016-03-31',
+                    tom: '2016-08-13',
                     grad: '29',
                 }, {
-                    fom: { year: 2015, monthValue: 7, dayOfMonth: 9 },
-                    tom: { year: 2015, monthValue: 7, dayOfMonth: 13 },
+                    fom: '2015-07-09',
+                    tom: '2015-07-13',
                     grad: '60',
                 }],
             },
@@ -197,16 +197,16 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Bærum Idrettslag',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 7, dayOfMonth: 9 },
-                    tom: { year: 2015, monthValue: 7, dayOfMonth: 13 },
+                    fom: '2015-07-09',
+                    tom: '2015-07-13',
                     grad: '60',
                 }, {
-                    fom: { year: 2016, monthValue: 3, dayOfMonth: 31 },
-                    tom: { year: 2016, monthValue: 8, dayOfMonth: 13 },
+                    fom: '2016-03-31',
+                    tom: '2016-08-13',
                     grad: '29',
                 }, {
-                    fom: { year: 2016, monthValue: 8, dayOfMonth: 31 },
-                    tom: { year: 2016, monthValue: 12, dayOfMonth: 22 },
+                    fom: '2016-08-31',
+                    tom: '2016-12-22',
                     grad: '100',
                 }],
             },
@@ -219,16 +219,16 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Bærum Idrettslag',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2016, monthValue: 8, dayOfMonth: 31 },
-                    tom: { year: 2016, monthValue: 9, dayOfMonth: 13 },
+                    fom: '2016-08-31',
+                    tom: '2016-09-13',
                     grad: '100',
                 }, {
-                    fom: { year: 2016, monthValue: 8, dayOfMonth: 31 },
-                    tom: { year: 2016, monthValue: 12, dayOfMonth: 13 },
+                    fom: '2016-08-31',
+                    tom: '2016-12-13',
                     grad: '29',
                 }, {
-                    fom: { year: 2015, monthValue: 7, dayOfMonth: 9 },
-                    tom: { year: 2015, monthValue: 7, dayOfMonth: 13 },
+                    fom: '2015-07-09',
+                    tom: '2015-07-13',
                     grad: '60',
                 }],
             },
@@ -238,16 +238,16 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Bærum Idrettslag',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 7, dayOfMonth: 9 },
-                    tom: { year: 2015, monthValue: 7, dayOfMonth: 13 },
+                    fom: '2015-07-09',
+                    tom: '2015-07-13',
                     grad: '60',
                 }, {
-                    fom: { year: 2016, monthValue: 8, dayOfMonth: 31 },
-                    tom: { year: 2016, monthValue: 9, dayOfMonth: 13 },
+                    fom: '2016-08-31',
+                    tom: '2016-09-13',
                     grad: '100',
                 }, {
-                    fom: { year: 2016, monthValue: 8, dayOfMonth: 31 },
-                    tom: { year: 2016, monthValue: 12, dayOfMonth: 13 },
+                    fom: '2016-08-31',
+                    tom: '2016-12-13',
                     grad: '29',
                 }],
             },
@@ -260,8 +260,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 4, dayOfMonth: 15 },
+                    fom: '2015-04-08',
+                    tom: '2015-04-15',
                     grad: '100',
                 }],
             },
@@ -270,8 +270,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Ålesund Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 12, dayOfMonth: 31 },
-                    tom: { year: 2015, monthValue: 1, dayOfMonth: 30 },
+                    fom: '2014-12-31',
+                    tom: '2015-01-30',
                     grad: '25',
                 }],
             },
@@ -280,8 +280,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Drammen Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 1, dayOfMonth: 24 },
-                    tom: { year: 2014, monthValue: 2, dayOfMonth: 9 },
+                    fom: '2014-01-24',
+                    tom: '2014-02-09',
                     grad: '80',
                 }],
             },
@@ -292,8 +292,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 4, dayOfMonth: 15 },
+                    fom: '2015-04-08',
+                    tom: '2015-04-15',
                     grad: '100',
                 }],
             },
@@ -302,8 +302,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Drammen Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 1, dayOfMonth: 24 },
-                    tom: { year: 2014, monthValue: 2, dayOfMonth: 9 },
+                    fom: '2014-01-24',
+                    tom: '2014-02-09',
                     grad: '80',
                 }],
             },
@@ -312,8 +312,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Ålesund Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 12, dayOfMonth: 31 },
-                    tom: { year: 2015, monthValue: 1, dayOfMonth: 30 },
+                    fom: '2014-12-31',
+                    tom: '2015-01-30',
                     grad: '25',
                 }],
             },
@@ -326,8 +326,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 4, dayOfMonth: 15 },
+                    fom: '2015-04-08',
+                    tom: '2015-04-15',
                     grad: '100',
                 }],
             },
@@ -339,8 +339,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Ålesund Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 12, dayOfMonth: 31 },
-                    tom: { year: 2015, monthValue: 1, dayOfMonth: 30 },
+                    fom: '2014-12-31',
+                    tom: '2015-01-30',
                     grad: '25',
                 }],
             },
@@ -352,8 +352,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Drammen Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 1, dayOfMonth: 24 },
-                    tom: { year: 2014, monthValue: 2, dayOfMonth: 9 },
+                    fom: '2014-01-24',
+                    tom: '2014-02-09',
                     grad: '80',
                 }],
             },
@@ -367,8 +367,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 4, dayOfMonth: 15 },
+                    fom: '2015-04-08',
+                    tom: '2015-04-15',
                     grad: '100',
                 }],
             },
@@ -380,8 +380,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Drammen Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 1, dayOfMonth: 24 },
-                    tom: { year: 2014, monthValue: 2, dayOfMonth: 9 },
+                    fom: '2014-01-24',
+                    tom: '2014-02-09',
                     grad: '80',
                 }],
             },
@@ -393,8 +393,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Ålesund Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 12, dayOfMonth: 31 },
-                    tom: { year: 2015, monthValue: 1, dayOfMonth: 30 },
+                    fom: '2014-12-31',
+                    tom: '2015-01-30',
                     grad: '25',
                 }],
             },
@@ -410,8 +410,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 4, dayOfMonth: 15 },
+                    fom: '2015-04-08',
+                    tom: '2015-04-15',
                     grad: '100',
                 }],
             },
@@ -420,8 +420,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 11, dayOfMonth: 20 },
-                    tom: { year: 2015, monthValue: 11, dayOfMonth: 30 },
+                    fom: '2015-11-20',
+                    tom: '2015-11-30',
                     grad: '25',
                 }],
             },
@@ -430,8 +430,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Drammen Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 1, dayOfMonth: 24 },
-                    tom: { year: 2014, monthValue: 2, dayOfMonth: 9 },
+                    fom: '2014-01-24',
+                    tom: '2014-02-09',
                     grad: '80',
                 }],
             },
@@ -442,8 +442,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 11, dayOfMonth: 20 },
-                    tom: { year: 2015, monthValue: 11, dayOfMonth: 30 },
+                    fom: '2015-11-20',
+                    tom: '2015-11-30',
                     grad: '25',
                 }],
             },
@@ -452,8 +452,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 4, dayOfMonth: 15 },
+                    fom: '2015-04-08',
+                    tom: '2015-04-15',
                     grad: '100',
                 }],
             },
@@ -462,8 +462,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Drammen Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 1, dayOfMonth: 24 },
-                    tom: { year: 2014, monthValue: 2, dayOfMonth: 9 },
+                    fom: '2014-01-24',
+                    tom: '2014-02-09',
                     grad: '80',
                 }],
             },
@@ -476,16 +476,16 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 4, dayOfMonth: 15 },
+                    fom: '2015-04-08',
+                    tom: '2015-04-15',
                     grad: '100',
                 }, {
-                    fom: { year: 2015, monthValue: 5, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 5, dayOfMonth: 15 },
+                    fom: '2015-05-08',
+                    tom: '2015-05-15',
                     grad: '100',
                 }, {
-                    fom: { year: 2015, monthValue: 8, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 8, dayOfMonth: 15 },
+                    fom: '2015-08-08',
+                    tom: '2015-08-15',
                     grad: '100',
                 }],
             },
@@ -494,16 +494,16 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 4, dayOfMonth: 22 },
+                    fom: '2015-04-08',
+                    tom: '2015-04-22',
                     grad: '100',
                 }, {
-                    fom: { year: 2015, monthValue: 6, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 6, dayOfMonth: 15 },
+                    fom: '2015-06-08',
+                    tom: '2015-06-15',
                     grad: '100',
                 }, {
-                    fom: { year: 2015, monthValue: 11, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 11, dayOfMonth: 15 },
+                    fom: '2015-11-08',
+                    tom: '2015-11-15',
                     grad: '100',
                 }],
             },
@@ -512,16 +512,16 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 4, dayOfMonth: 22 },
+                    fom: '2015-04-08',
+                    tom: '2015-04-22',
                     grad: '100',
                 }, {
-                    fom: { year: 2015, monthValue: 3, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 3, dayOfMonth: 15 },
+                    fom: '2015-03-08',
+                    tom: '2015-03-15',
                     grad: '100',
                 }, {
-                    fom: { year: 2015, monthValue: 1, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 1, dayOfMonth: 15 },
+                    fom: '2015-01-08',
+                    tom: '2015-01-15',
                     grad: '100',
                 }],
             },
@@ -530,8 +530,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Drammen Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 1, dayOfMonth: 24 },
-                    tom: { year: 2014, monthValue: 2, dayOfMonth: 9 },
+                    fom: '2014-01-24',
+                    tom: '2014-02-09',
                     grad: '80',
                 }],
             },
@@ -542,16 +542,16 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 4, dayOfMonth: 22 },
+                    fom: '2015-04-08',
+                    tom: '2015-04-22',
                     grad: '100',
                 }, {
-                    fom: { year: 2015, monthValue: 6, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 6, dayOfMonth: 15 },
+                    fom: '2015-06-08',
+                    tom: '2015-06-15',
                     grad: '100',
                 }, {
-                    fom: { year: 2015, monthValue: 11, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 11, dayOfMonth: 15 },
+                    fom: '2015-11-08',
+                    tom: '2015-11-15',
                     grad: '100',
                 }],
             },
@@ -560,16 +560,16 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 4, dayOfMonth: 15 },
+                    fom: '2015-04-08',
+                    tom: '2015-04-15',
                     grad: '100',
                 }, {
-                    fom: { year: 2015, monthValue: 5, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 5, dayOfMonth: 15 },
+                    fom: '2015-05-08',
+                    tom: '2015-05-15',
                     grad: '100',
                 }, {
-                    fom: { year: 2015, monthValue: 8, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 8, dayOfMonth: 15 },
+                    fom: '2015-08-08',
+                    tom: '2015-08-15',
                     grad: '100',
                 }],
             },
@@ -578,16 +578,16 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Alnabru Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2015, monthValue: 1, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 1, dayOfMonth: 15 },
+                    fom: '2015-01-08',
+                    tom: '2015-01-15',
                     grad: '100',
                 }, {
-                    fom: { year: 2015, monthValue: 3, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 3, dayOfMonth: 15 },
+                    fom: '2015-03-08',
+                    tom: '2015-03-15',
                     grad: '100',
                 }, {
-                    fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                    tom: { year: 2015, monthValue: 4, dayOfMonth: 22 },
+                    fom: '2015-04-08',
+                    tom: '2015-04-22',
                     grad: '100',
                 }],
             },
@@ -596,8 +596,8 @@ describe('sorterSykmeldinger', () => {
             arbeidsgiver: 'Drammen Frisør',
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 1, dayOfMonth: 24 },
-                    tom: { year: 2014, monthValue: 2, dayOfMonth: 9 },
+                    fom: '2014-01-24',
+                    tom: '2014-02-09',
                     grad: '80',
                 }],
             },
@@ -607,62 +607,62 @@ describe('sorterSykmeldinger', () => {
 
     it('Skal sortere perioder så eldste perioder fom kommer først og hvis lik fom så kommer eldste tom nederst', () => {
         const perioder = [{
-            fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-            tom: { year: 2015, monthValue: 4, dayOfMonth: 15 },
+            fom: '2015-04-08',
+            tom: '2015-04-15',
             grad: '100',
         }, {
-            fom: { year: 2015, monthValue: 4, dayOfMonth: 6 },
-            tom: { year: 2015, monthValue: 4, dayOfMonth: 16 },
+            fom: '2015-04-06',
+            tom: '2015-04-16',
             grad: '100',
         }, {
-            fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-            tom: { year: 2015, monthValue: 4, dayOfMonth: 14 },
+            fom: '2015-04-08',
+            tom: '2015-04-14',
             grad: '100',
         }];
 
         const p = sorterPerioderEldsteFoerst(perioder);
         expect(p).to.deep.equal([{
-            fom: { year: 2015, monthValue: 4, dayOfMonth: 6 },
-            tom: { year: 2015, monthValue: 4, dayOfMonth: 16 },
+            fom: '2015-04-06',
+            tom: '2015-04-16',
             grad: '100',
         }, {
-            fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-            tom: { year: 2015, monthValue: 4, dayOfMonth: 14 },
+            fom: '2015-04-08',
+            tom: '2015-04-14',
             grad: '100',
         }, {
-            fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-            tom: { year: 2015, monthValue: 4, dayOfMonth: 15 },
+            fom: '2015-04-08',
+            tom: '2015-04-15',
             grad: '100',
         }]);
     });
 
     it('Skal sortere perioder slik at den korteste perioden kommer først dersom flere perioder har samme startdato', () => {
         const perioder = [{
-            fom: { year: 2015, monthValue: 1, dayOfMonth: 1 },
-            tom: { year: 2015, monthValue: 1, dayOfMonth: 30 },
+            fom: '2015-01-01',
+            tom: '2015-01-30',
             grad: '100',
         }, {
-            fom: { year: 2015, monthValue: 1, dayOfMonth: 1 },
-            tom: { year: 2015, monthValue: 1, dayOfMonth: 15 },
+            fom: '2015-01-01',
+            tom: '2015-01-15',
             grad: '100',
         }, {
-            fom: { year: 2015, monthValue: 1, dayOfMonth: 1 },
-            tom: { year: 2015, monthValue: 1, dayOfMonth: 20 },
+            fom: '2015-01-01',
+            tom: '2015-01-20',
             grad: '100',
         }];
 
         const p = sorterPerioderEldsteFoerst(perioder);
         expect(p).to.deep.equal([{
-            fom: { year: 2015, monthValue: 1, dayOfMonth: 1 },
-            tom: { year: 2015, monthValue: 1, dayOfMonth: 15 },
+            fom: '2015-01-01',
+            tom: '2015-01-15',
             grad: '100',
         }, {
-            fom: { year: 2015, monthValue: 1, dayOfMonth: 1 },
-            tom: { year: 2015, monthValue: 1, dayOfMonth: 20 },
+            fom: '2015-01-01',
+            tom: '2015-01-20',
             grad: '100',
         }, {
-            fom: { year: 2015, monthValue: 1, dayOfMonth: 1 },
-            tom: { year: 2015, monthValue: 1, dayOfMonth: 30 },
+            fom: '2015-01-01',
+            tom: '2015-01-30',
             grad: '100',
         }]);
     });
@@ -675,8 +675,8 @@ describe('sorterSykmeldinger', () => {
                 arbeidsgiver: 'Bærum Idrettslag',
                 mulighetForArbeid: {
                     perioder: [{
-                        fom: { year: 2016, monthValue: 3, dayOfMonth: 31 },
-                        tom: { year: 2016, monthValue: 8, dayOfMonth: 13 },
+                        fom: '2016-03-31',
+                        tom: '2016-08-13',
                         grad: '29',
                     }],
                 },
@@ -685,8 +685,8 @@ describe('sorterSykmeldinger', () => {
                 arbeidsgiver: 'Alnabru Frisør',
                 mulighetForArbeid: {
                     perioder: [{
-                        fom: { year: 2015, monthValue: 8, dayOfMonth: 31 },
-                        tom: { year: 2015, monthValue: 9, dayOfMonth: 13 },
+                        fom: '2015-08-31',
+                        tom: '2015-09-13',
                         grad: '100',
                     }],
                 },
@@ -695,8 +695,8 @@ describe('sorterSykmeldinger', () => {
                 arbeidsgiver: 'Alnabru Frisør',
                 mulighetForArbeid: {
                     perioder: [{
-                        fom: { year: 2015, monthValue: 5, dayOfMonth: 17 },
-                        tom: { year: 2015, monthValue: 5, dayOfMonth: 31 },
+                        fom: '2015-05-17',
+                        tom: '2015-05-31',
                         grad: '100',
                     }],
                 },
@@ -705,8 +705,8 @@ describe('sorterSykmeldinger', () => {
                 arbeidsgiver: 'Alnabru Frisør',
                 mulighetForArbeid: {
                     perioder: [{
-                        fom: { year: 2015, monthValue: 4, dayOfMonth: 8 },
-                        tom: { year: 2015, monthValue: 4, dayOfMonth: 15 },
+                        fom: '2015-04-08',
+                        tom: '2015-04-15',
                         grad: '100',
                     }],
                 },
@@ -715,8 +715,8 @@ describe('sorterSykmeldinger', () => {
                 arbeidsgiver: 'Ålesund Frisør',
                 mulighetForArbeid: {
                     perioder: [{
-                        fom: { year: 2014, monthValue: 12, dayOfMonth: 31 },
-                        tom: { year: 2015, monthValue: 1, dayOfMonth: 30 },
+                        fom: '2014-12-31',
+                        tom: '2015-01-30',
                         grad: '25',
                     }],
                 },
@@ -725,8 +725,8 @@ describe('sorterSykmeldinger', () => {
                 arbeidsgiver: 'Drammen Frisør',
                 mulighetForArbeid: {
                     perioder: [{
-                        fom: { year: 2014, monthValue: 1, dayOfMonth: 24 },
-                        tom: { year: 2014, monthValue: 2, dayOfMonth: 9 },
+                        fom: '2014-01-24',
+                        tom: '2014-02-09',
                         grad: '80',
                     }],
                 },
@@ -739,8 +739,8 @@ describe('sorterSykmeldinger', () => {
                     id: 1,
                     mulighetForArbeid: {
                         perioder: [{
-                            fom: { year: 2014, monthValue: 1, dayOfMonth: 1 },
-                            tom: { year: 2014, monthValue: 1, dayOfMonth: 10 },
+                            fom: '2014-01-01',
+                            tom: '2014-01-10',
                             grad: '80',
                         }],
                     },
@@ -749,8 +749,8 @@ describe('sorterSykmeldinger', () => {
                     id: 2,
                     mulighetForArbeid: {
                         perioder: [{
-                            fom: { year: 2014, monthValue: 1, dayOfMonth: 1 },
-                            tom: { year: 2014, monthValue: 1, dayOfMonth: 9 },
+                            fom: '2014-01-01',
+                            tom: '2014-01-09',
                             grad: '80',
                         }],
                     },
@@ -759,8 +759,8 @@ describe('sorterSykmeldinger', () => {
                     id: 3,
                     mulighetForArbeid: {
                         perioder: [{
-                            fom: { year: 2014, monthValue: 1, dayOfMonth: 1 },
-                            tom: { year: 2014, monthValue: 1, dayOfMonth: 11 },
+                            fom: '2014-01-01',
+                            tom: '2014-01-11',
                             grad: '80',
                         }],
                     },
@@ -777,12 +777,12 @@ describe('sorterSykmeldinger', () => {
                 id: 0,
                 mulighetForArbeid: {
                     perioder: [{
-                        fom: { year: 2014, monthValue: 1, dayOfMonth: 1 },
-                        tom: { year: 2014, monthValue: 1, dayOfMonth: 10 }, // 1.1-20.1
+                        fom: '2014-01-01',
+                        tom: '2014-01-10', // 1.1-20.1
                         grad: '80',
                     }, {
-                        fom: { year: 2014, monthValue: 1, dayOfMonth: 15 },
-                        tom: { year: 2014, monthValue: 1, dayOfMonth: 20 },
+                        fom: '2014-01-15',
+                        tom: '2014-01-20',
                         grad: '80',
                     }],
                 },
@@ -790,12 +790,12 @@ describe('sorterSykmeldinger', () => {
                 id: 1,
                 mulighetForArbeid: {
                     perioder: [{
-                        fom: { year: 2014, monthValue: 1, dayOfMonth: 1 },
-                        tom: { year: 2014, monthValue: 1, dayOfMonth: 10 }, // 1.1-5.2
+                        fom: '2014-01-01',
+                        tom: '2014-01-10', // 1.1-5.2
                         grad: '80',
                     }, {
-                        fom: { year: 2014, monthValue: 2, dayOfMonth: 2 },
-                        tom: { year: 2014, monthValue: 2, dayOfMonth: 5 },
+                        fom: '2014-02-02',
+                        tom: '2014-02-05',
                         grad: '80',
                     }],
                 },
@@ -803,12 +803,12 @@ describe('sorterSykmeldinger', () => {
                 id: 2,
                 mulighetForArbeid: {
                     perioder: [{
-                        fom: { year: 2014, monthValue: 1, dayOfMonth: 1 }, // 1.1-10.3
-                        tom: { year: 2014, monthValue: 3, dayOfMonth: 10 },
+                        fom: '2014-01-01', // 1.1-10.3
+                        tom: '2014-03-10',
                         grad: '80',
                     }, {
-                        fom: { year: 2014, monthValue: 2, dayOfMonth: 2 },
-                        tom: { year: 2014, monthValue: 2, dayOfMonth: 9 },
+                        fom: '2014-02-02',
+                        tom: '2014-02-09',
                         grad: '80',
                     }],
                 },
@@ -816,12 +816,12 @@ describe('sorterSykmeldinger', () => {
                 id: 3,
                 mulighetForArbeid: {
                     perioder: [{
-                        fom: { year: 2014, monthValue: 1, dayOfMonth: 1 }, // 1.1-11.2
-                        tom: { year: 2014, monthValue: 1, dayOfMonth: 11 },
+                        fom: '2014-01-01', // 1.1-11.2
+                        tom: '2014-01-11',
                         grad: '80',
                     }, {
-                        fom: { year: 2014, monthValue: 2, dayOfMonth: 2 },
-                        tom: { year: 2014, monthValue: 2, dayOfMonth: 11 },
+                        fom: '2014-02-02',
+                        tom: '2014-02-11',
                         grad: '80',
                     }],
                 },
@@ -829,12 +829,12 @@ describe('sorterSykmeldinger', () => {
                 id: 4,
                 mulighetForArbeid: {
                     perioder: [{
-                        fom: { year: 2014, monthValue: 1, dayOfMonth: 1 }, // 1.1-1.8
-                        tom: { year: 2014, monthValue: 1, dayOfMonth: 11 },
+                        fom: '2014-01-01', // 1.1-1.8
+                        tom: '2014-01-11',
                         grad: '80',
                     }, {
-                        fom: { year: 2014, monthValue: 2, dayOfMonth: 2 },
-                        tom: { year: 2014, monthValue: 8, dayOfMonth: 1 },
+                        fom: '2014-02-02',
+                        tom: '2014-08-01',
                         grad: '80',
                     }],
                 },

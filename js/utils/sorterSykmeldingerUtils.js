@@ -30,20 +30,26 @@ const hentArbeidsgivernavn = (sykmelding) => {
 };
 
 export function sorterSykmeldinger(sykmeldinger = [], kriterium = 'fom') {
-    sykmeldinger.map((sykmelding) => {
-        const perioder = sorterPerioderEldsteFoerst(sykmelding.mulighetForArbeid.perioder);
-        return Object.assign(sykmelding.mulighetForArbeid, { perioder });
-    });
-    return sykmeldinger.sort((a, b) => {
-        if (kriterium === 'fom' || hentArbeidsgivernavn(a).trim().toUpperCase() === hentArbeidsgivernavn(b).toUpperCase()) {
-            if (toDate(utils.getSykmeldingStartdato(a)).getTime() !== toDate(utils.getSykmeldingStartdato(b)).getTime()) {
-                // Hvis a og b har ulik startdato, sorterer vi etter startdato
-                return toDate(utils.getSykmeldingStartdato(b)) - toDate(utils.getSykmeldingStartdato(a));
+    return sykmeldinger
+        .map((sykmelding) => {
+            return {
+                ...sykmelding,
+                mulighetForArbeid: {
+                    ...sykmelding.mulighetForArbeid,
+                    perioder: sorterPerioderEldsteFoerst(sykmelding.mulighetForArbeid.perioder),
+                },
+            };
+        })
+        .sort((a, b) => {
+            if (kriterium === 'fom' || hentArbeidsgivernavn(a).trim().toUpperCase() === hentArbeidsgivernavn(b).toUpperCase()) {
+                if (toDate(utils.getSykmeldingStartdato(a)).getTime() !== toDate(utils.getSykmeldingStartdato(b)).getTime()) {
+                    // Hvis a og b har ulik startdato, sorterer vi etter startdato
+                    return toDate(utils.getSykmeldingStartdato(b)) - toDate(utils.getSykmeldingStartdato(a));
+                }
+                const sistePeriodeB = b.mulighetForArbeid.perioder[b.mulighetForArbeid.perioder.length - 1];
+                const sistePeriodeA = a.mulighetForArbeid.perioder[a.mulighetForArbeid.perioder.length - 1];
+                return toDate(sistePeriodeB.tom) - toDate(sistePeriodeA.tom);
             }
-            const sistePeriodeB = b.mulighetForArbeid.perioder[b.mulighetForArbeid.perioder.length - 1];
-            const sistePeriodeA = a.mulighetForArbeid.perioder[a.mulighetForArbeid.perioder.length - 1];
-            return toDate(sistePeriodeB.tom) - toDate(sistePeriodeA.tom);
-        }
-        return Object.byString(a, kriterium) < Object.byString(b, kriterium) ? -1 : 1;
-    });
+            return Object.byString(a, kriterium) < Object.byString(b, kriterium) ? -1 : 1;
+        });
 }
