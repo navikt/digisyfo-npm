@@ -49,7 +49,7 @@ export const leggTilBilder = (_tidslinjer) => {
 };
 
 export const leggTilTidshendelser = (_tidslinjer, arbeidssituasjon) => {
-    let uker = [4, 7, 8, 26, 39];
+    let uker = [4, 7, 17, 26, 39];
     if (arbeidssituasjon === TIDSLINJE_TYPER.UTEN_ARBEIDSGIVER) {
         uker = [8, 12, 39];
     }

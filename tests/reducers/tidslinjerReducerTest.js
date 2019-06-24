@@ -38,9 +38,9 @@ describe('tidslinjer', () => {
                 hendelser: [{
                     antallDager: 0,
                 }, {
-                    antallDager: 28,
+                    antallDager: 29,
                 }, {
-                    antallDager: 49,
+                    antallDager: 50,
                 }],
             }]);
             const res = leggTilTidshendelser(data);
@@ -51,20 +51,20 @@ describe('tidslinjer', () => {
                     tekstkey: 'tidslinje.sykefravaeret-starter',
                 }, {
                     antallDager: 28,
-                }, {
-                    antallDager: 28,
                     type: 'TID',
                     tekstkey: 'tidslinje.antall-uker.4',
                 }, {
-                    antallDager: 49,
+                    antallDager: 29,
                 }, {
                     antallDager: 49,
                     type: 'TID',
                     tekstkey: 'tidslinje.antall-uker.7',
                 }, {
-                    antallDager: 56,
+                    antallDager: 50,
+                }, {
+                    antallDager: 119,
                     type: 'TID',
-                    tekstkey: 'tidslinje.antall-uker.8',
+                    tekstkey: 'tidslinje.antall-uker.17',
                 }, {
                     antallDager: 182,
                     type: 'TID',
