@@ -17,6 +17,8 @@ Kjøre tester kontinuerlig under utvikling.
 
 Se ellers flere kommandoer i `package.json`.
 
+Bygges og deployes til npmjs fra lokalt 🙈
+
 ---
 
 # Henvendelser
