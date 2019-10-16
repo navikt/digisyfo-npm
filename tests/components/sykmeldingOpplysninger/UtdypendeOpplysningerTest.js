@@ -133,6 +133,8 @@ describe('Utdypende opplysninger', () => {
             expect(component.find('.sykmeldingSeksjon__tittel').length).to.equal(1);
             expect(component.find('.opplysning__tittel').length).to.equal(2);
             expect(component.find('.opplysning__verdi').length).to.equal(2);
+            expect(component.find('.opplysning__verdi').at(0).text()).to.equal('svar 6.2.1');
+            expect(component.find('.opplysning__verdi').at(1).text()).to.equal('svar 6.2.2');
         });
 
         it('Tegner ikke seksjonene ved tom liste', () => {
@@ -146,6 +148,87 @@ describe('Utdypende opplysninger', () => {
                 ledetekster={ledetekster} />);
 
             expect(component.find('.sykmeldingSeksjon__tittel').length).to.equal(0);
+        });
+
+        it('Rendrer seksjon 6.3', () => {
+            const component = mount(<UtdypendeOpplysninger
+                sykmelding={getParsetSykmelding({
+                    utdypendeOpplysninger: {
+                        sykehistorie: 'opplysning 1',
+                        paavirkningArbeidsevne: 'opplysning 2',
+                        resultatAvBehandling: 'opplysning 3',
+                        henvisningUtredningBehandling: 'opplysning 4',
+                        grupper: [
+                            {
+                                id: '6.2',
+                                sporsmal: [
+                                    {
+                                        id: '6.2.1',
+                                        svar: 'svar 6.2.1',
+                                    },
+                                    {
+                                        id: '6.2.2',
+                                        svar: 'svar 6.2.2',
+                                    },
+                                ],
+                            },
+                            {
+                                id: '6.3',
+                                sporsmal: [
+                                    {
+                                        id: '6.3.1',
+                                        svar: 'svar 6.3.1',
+                                    },
+                                    {
+                                        id: '6.3.2',
+                                        svar: 'svar 6.3.2',
+                                    },
+                                ],
+                            }],
+                    },
+                })}
+                ledetekster={ledetekster} />);
+
+            expect(component.find('.sykmeldingSeksjon__tittel').length).to.equal(1);
+            expect(component.find('.opplysning__tittel').length).to.equal(4);
+            expect(component.find('.opplysning__verdi').length).to.equal(4);
+            expect(component.find('.opplysning__verdi').at(0).text()).to.equal('svar 6.2.1');
+            expect(component.find('.opplysning__verdi').at(1).text()).to.equal('svar 6.2.2');
+            expect(component.find('.opplysning__verdi').at(2).text()).to.equal('svar 6.3.1');
+            expect(component.find('.opplysning__verdi').at(3).text()).to.equal('svar 6.3.2');
+        });
+
+        it('Rendrer gruppe med flere seksjoner', () => {
+            const component = mount(<UtdypendeOpplysninger
+                sykmelding={getParsetSykmelding({
+                    utdypendeOpplysninger: {
+                        sykehistorie: 'opplysning 1',
+                        paavirkningArbeidsevne: 'opplysning 2',
+                        resultatAvBehandling: 'opplysning 3',
+                        henvisningUtredningBehandling: 'opplysning 4',
+                        grupper: [
+                            {
+                                id: '6.3',
+                                sporsmal: [
+                                    {
+                                        id: '6.3.1',
+                                        svar: 'svar 6.3.1',
+                                    },
+                                    {
+                                        id: '6.3.2',
+                                        svar: 'svar 6.3.2',
+                                    },
+                                ],
+                            }],
+                    },
+                })}
+                ledetekster={ledetekster} />);
+
+            expect(component.find('.sykmeldingSeksjon__tittel').length).to.equal(1);
+            expect(component.find('.opplysning__tittel').length).to.equal(2);
+            expect(component.find('.opplysning__verdi').length).to.equal(2);
+            expect(component.find('.opplysning__verdi').at(0).text()).to.equal('svar 6.3.1');
+            expect(component.find('.opplysning__verdi').at(1).text()).to.equal('svar 6.3.2');
         });
     });
 
