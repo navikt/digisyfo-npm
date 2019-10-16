@@ -49,29 +49,23 @@ const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'h2'
             }
             {
                 sykmelding.diagnose.bidiagnoser && sykmelding.diagnose.bidiagnoser.map((bidiagnose, index) => {
-                    return (
-                        <React.Fragment>
-                            <div
-                                className="rad-container"
-                                key={`${sykmelding.id}-bidiagnose-${index}`}>
-                                <SykmeldingNokkelOpplysning
-                                    tittel={getLedetekst('din-sykmelding.bidiagnose.tittel', ledetekster)}>
-                                    <p className="js-bidiagnose">{bidiagnose.diagnose}</p>
-                                    <p className="js-bidiagnose-meta nokkelopplysning__meta nokkelopplysning__meta--mobil">{getLedetekst('din-sykmelding.diagnose.meta', ledetekster)}</p>
-                                </SykmeldingNokkelOpplysning>
-                                <SykmeldingNokkelOpplysning
-                                    tittel={getLedetekst('din-sykmelding.diagnosekode.tittel', ledetekster)}>
-                                    <p>
-                                        <span
-                                            className="js-bidiagnose-kode">{bidiagnose.diagnosekode}
-                                        </span>
-                                        <span className="js-bidiagnose-system">{bidiagnose.diagnosesystem}</span>
-                                    </p>
-                                </SykmeldingNokkelOpplysning>
-                            </div>
-                            <p className="js-bidiagnose-meta nokkelopplysning__meta nokkelopplysning__meta--desktop">{getLedetekst('din-sykmelding.diagnose.meta', ledetekster)}</p>
-                        </React.Fragment>
-                    );
+                    return (<div
+                        className="rad-container"
+                        key={`${sykmelding.id}-bidiagnose-${index}`}>
+                        <SykmeldingNokkelOpplysning
+                            tittel={getLedetekst('din-sykmelding.bidiagnose.tittel', ledetekster)}>
+                            <p className="js-bidiagnose">{bidiagnose.diagnose}</p>
+                        </SykmeldingNokkelOpplysning>
+                        <SykmeldingNokkelOpplysning
+                            tittel={getLedetekst('din-sykmelding.diagnosekode.tittel', ledetekster)}>
+                            <p>
+                                <span
+                                    className="js-bidiagnose-kode">{bidiagnose.diagnosekode}
+                                </span>
+                                &nbsp;<span className="js-bidiagnose-system">{bidiagnose.diagnosesystem}</span>
+                            </p>
+                        </SykmeldingNokkelOpplysning>
+                    </div>);
                 })
             }
             {
