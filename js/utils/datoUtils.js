@@ -1,12 +1,19 @@
 export const ANTALL_MS_DAG = 1000 * 60 * 60 * 24;
 
 const erLocalDate = (dato) => { return dato.year && dato.monthValue && dato.dayOfMonth; };
+const erDatostringUtenTid = (dato) => { return dato instanceof String && !dato.contains('T') && dato.split('-').length === 3; };
 
 export const toDate = (dato) => {
     if (typeof dato === 'undefined' || dato === null) {
         return null;
     }
-    return erLocalDate(dato) ? new Date(dato.year, dato.monthValue - 1, dato.dayOfMonth) : new Date(dato);
+    if (erLocalDate(dato)) {
+        return new Date(dato.year, dato.monthValue - 1, dato.dayOfMonth);
+    } else if (erDatostringUtenTid(dato)) {
+        const [year, month, day] = dato.split('-');
+        return new Date(year, month, day, 0);
+    }
+    return new Date(dato);
 };
 
 export const toDatePrettyPrint = (dato) => {

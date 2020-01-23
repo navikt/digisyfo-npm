@@ -49,7 +49,11 @@ describe('datoUtils', () => {
 
     describe('toDate', () => {
         it('Skal skal returnere JS-dato når sender inn en streng', () => {
-            expect(toDate('2014-02-28')).to.deep.equal(new Date('2014-02-28'));
+            expect(toDate('2014-02-28')).to.be.instanceOf(Date);
+        });
+
+        it('Skal sette tidspunkt til midnatt når man sender inn streng uten tid', () => {
+            expect(toDate('2014-02-28').toUTCString()).to.equal('Fri, 28 Feb 2014 00:00:00 GMT');
         });
 
         it('Skal skal returnere JS-dato når sender inn en JS-dato', () => {
