@@ -56,6 +56,10 @@ describe('datoUtils', () => {
             expect(toDate('2014-02-28').toUTCString()).to.equal('Fri, 28 Feb 2014 00:00:00 GMT');
         });
 
+        it('Skal hente ut riktig dato', () => {
+            expect(toDate('2014-02-28').getDate()).to.equal(28);
+        });
+
         it('Skal skal returnere JS-dato når sender inn en JS-dato', () => {
             expect(toDate(new Date('2014-02-28'))).to.deep.equal(new Date('2014-02-28'));
         });
