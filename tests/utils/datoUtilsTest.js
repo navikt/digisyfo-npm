@@ -15,15 +15,15 @@ import {
 describe('datoUtils', () => {
     describe('toDatePrettyPrint', () => {
         it('Skal formatere dato', () => {
-            expect(toDatePrettyPrint({ year: 2014, monthValue: 2, dayOfMonth: 28 })).to.equal('28.02.2014');
+            expect(toDatePrettyPrint(new Date('2014-02-28'))).to.equal('28.02.2014');
         });
 
         it('Skal ta hensyn til tidssoner', () => {
-            expect(toDatePrettyPrint({ year: 2016, monthValue: 5, dayOfMonth: 10 })).to.equal('10.05.2016');
+            expect(toDatePrettyPrint(new Date('2016-05-10'))).to.equal('10.05.2016');
         });
 
         it('Skal ta hensyn til skuddår', () => {
-            expect(toDatePrettyPrint({ year: 1984, monthValue: 2, dayOfMonth: 29 })).to.equal('29.02.1984');
+            expect(toDatePrettyPrint(new Date('1984-02-29'))).to.equal('29.02.1984');
         });
 
         it('Kan formattere dato på ISO-format', () => {
@@ -37,8 +37,8 @@ describe('datoUtils', () => {
 
     describe('getDuration', () => {
         it('Skal regne ut varighet', () => {
-            expect(getDuration({ year: 2014, monthValue: 2, dayOfMonth: 27 }, { year: 2014, monthValue: 3, dayOfMonth: 8 })).to.equal(10);
-            expect(getDuration({ year: 2014, monthValue: 6, dayOfMonth: 30 }, { year: 2014, monthValue: 7, dayOfMonth: 5 })).to.equal(6);
+            expect(getDuration(new Date('2014-02-27'), new Date('2014-03-08'))).to.equal(10);
+            expect(getDuration(new Date('2014-06-30'), new Date('2014-07-05'))).to.equal(6);
         });
 
         it('Kan regne ut varighet på ISO-format', () => {
@@ -109,7 +109,7 @@ describe('datoUtils', () => {
 
     describe('langtDatoFormat', () => {
         it('Skal returnere 25. september 2017', () => {
-            const d = langtDatoFormat(new Date(2017, 8, 25));
+            const d = langtDatoFormat(new Date('2017-09-25'));
             expect(d).to.equal('25. september 2017');
         });
         it('Takler å få tekst-dato inn', () => {
