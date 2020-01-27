@@ -19,16 +19,16 @@ describe('getSykmelding', () => {
 describe('getPeriodeSpenn', () => {
     it('skal returnere antall dager mellom startdato i første periode og sluttdato i siste periode', () => {
         const perioder = [{
-            fom: { year: 2015, monthValue: 1, dayOfMonth: 1 },
-            tom: { year: 2015, monthValue: 1, dayOfMonth: 2 },
+            fom: new Date('2015-01-01'),
+            tom: new Date('2015-01-02'),
             grad: '100',
         }, {
-            fom: { year: 2015, monthValue: 1, dayOfMonth: 1 },
-            tom: { year: 2015, monthValue: 1, dayOfMonth: 3 },
+            fom: new Date('2015-01-01'),
+            tom: new Date('2015-01-03'),
             grad: '100',
         }, {
-            fom: { year: 2015, monthValue: 1, dayOfMonth: 1 },
-            tom: { year: 2015, monthValue: 1, dayOfMonth: 20 },
+            fom: new Date('2015-01-01'),
+            tom: new Date('2015-01-20'),
             grad: '100',
         }];
         const p = utils.getPeriodeSpenn(perioder);
@@ -42,33 +42,33 @@ describe('getSykmeldingStartdato', () => {
             id: 1,
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 1, dayOfMonth: 1 },
-                    tom: { year: 2014, monthValue: 1, dayOfMonth: 10 },
+                    fom: new Date('2014-01-01'),
+                    tom: new Date('2014-01-10'),
                     grad: '80',
                 }, {
-                    fom: { year: 2014, monthValue: 2, dayOfMonth: 2 },
-                    tom: { year: 2014, monthValue: 2, dayOfMonth: 5 },
+                    fom: new Date('2014-02-02'),
+                    tom: new Date('2014-02-05'),
                     grad: '80',
                 }],
             },
         });
-        expect(res1).to.deep.equal({ year: 2014, monthValue: 1, dayOfMonth: 1 });
+        expect(res1).to.deep.equal(new Date('2014-01-01'));
 
         const res2 = utils.getSykmeldingStartdato({
             id: 1,
             mulighetForArbeid: {
                 perioder: [{
-                    fom: { year: 2014, monthValue: 1, dayOfMonth: 1 },
-                    tom: { year: 2014, monthValue: 1, dayOfMonth: 10 },
+                    fom: new Date('2014-01-01'),
+                    tom: new Date('2014-01-10'),
                     grad: '80',
                 }, {
-                    fom: { year: 2012, monthValue: 2, dayOfMonth: 2 },
-                    tom: { year: 2014, monthValue: 2, dayOfMonth: 5 },
+                    fom: new Date('2012-02-02'),
+                    tom: new Date('2014-02-05'),
                     grad: '80',
                 }],
             },
         });
-        expect(res2).to.deep.equal({ year: 2012, monthValue: 2, dayOfMonth: 2 });
+        expect(res2).to.deep.equal(new Date('2012-02-02'));
     });
 });
 
