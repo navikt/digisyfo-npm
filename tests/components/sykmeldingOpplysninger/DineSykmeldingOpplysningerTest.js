@@ -14,6 +14,16 @@ const expect = chai.expect;
 describe('DineSykmeldingOpplysninger', () => {
     let component;
 
+    it('Skal vise "Avventende sykmelding" som tittel dersom sykmeldingen er avventende', () => {
+        const sykmelding = getParsetSykmelding();
+        sykmelding.mulighetForArbeid.perioder[0].avventende = true;
+        component = mount(<DineSykmeldingOpplysninger
+            sykmelding={sykmelding}
+            ledetekster={ledetekster} />);
+        expect(component.find('.js-din-sykmelding-tittel').length).to.equal(1);
+        expect(component.find('.js-din-sykmelding-tittel').text()).to.contain('Avventende sykmelding');
+    });
+
     it('Skal vise perioder', () => {
         component = shallow(<DineSykmeldingOpplysninger sykmelding={getParsetSykmelding()} ledetekster={ledetekster} />);
         expect(component.find(SykmeldingPerioder)).to.have.length(1);
