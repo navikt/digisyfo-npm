@@ -13,8 +13,11 @@ import { tidligsteFom } from '../../utils/periodeUtils';
 
 const DineSykmeldingOpplysninger = ({ sykmelding, ledetekster, Overskrift = 'h2' }) => {
     return (<div className="dine-opplysninger">
-        <Overskrift className="typo-innholdstittel blokk-l">
-            {getLedetekst('din-sykmelding.tittel', ledetekster)}
+        <Overskrift className="js-din-sykmelding-tittel typo-innholdstittel blokk-l">
+            {
+                sykmelding.mulighetForArbeid.perioder.some((periode) => { return !!periode.avventende; })
+                    ? 'Avventende sykmelding'
+                    : getLedetekst('din-sykmelding.tittel', ledetekster)}
         </Overskrift>
         <div className="blokk-l side-innhold">
             <SykmeldingPerioder perioder={sykmelding.mulighetForArbeid.perioder} ledetekster={ledetekster} />
