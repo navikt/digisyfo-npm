@@ -21,12 +21,14 @@ import Radiofaner from './components/Radiofaner';
 import { Bjorn } from './components/Hjelpeboble';
 import Stegnavigasjon from './components/Stegnavigasjon';
 import DineSykmeldingOpplysninger from './components/sykmeldingOpplysninger/DineSykmeldingOpplysninger';
+import DineKoronaSykmeldingOpplysninger from './components/sykmeldingOpplysninger/DineKoronaSykmeldingOpplysninger';
 import Video from './components/Video';
 
 export { ArbeidsgiversSykmeldingOpplysninger };
 export { ArbeidsgiversNokkelopplysninger };
 export { FlereOpplysninger };
 export { DineSykmeldingOpplysninger };
+export { DineKoronaSykmeldingOpplysninger };
 export { SykmeldingUtdrag };
 export { Utvidbar };
 export { Video };
