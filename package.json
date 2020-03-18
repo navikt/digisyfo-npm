@@ -1,6 +1,6 @@
 {
   "name": "@navikt/digisyfo-npm",
-  "version": "17.3.2",
+  "version": "17.4.2",
   "description": "Felleskomponenter for DigiSyfo - Digitalisering av sykefraværsoppfølgingen",
   "main": "lib/index.js",
   "files": [
