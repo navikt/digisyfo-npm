@@ -15,7 +15,7 @@ const DineKoronaSykmeldingOpplysninger = ({
     return (
         <div className="dine-opplysninger">
             <Overskrift className="js-din-sykmelding-tittel typo-innholdstittel blokk-l">Egenerklæring</Overskrift>
-            <div className="blokk-l side-innhold">
+            <div className="blokk-l side-innhold fjern-margin-bottom">
                 <SykmeldingPerioder
                     perioder={sykmelding.mulighetForArbeid.perioder}
                     ledetekster={ledetekster}
