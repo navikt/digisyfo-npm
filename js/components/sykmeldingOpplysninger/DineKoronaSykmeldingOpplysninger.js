@@ -5,6 +5,7 @@ import { sykmelding as sykmeldingPt, keyValue } from '../../propTypes';
 import { getLedetekst } from '../../ledetekster';
 import { SykmeldingNokkelOpplysning } from './SykmeldingOpplysning';
 import SykmeldingPerioder from './SykmeldingPerioder';
+import '../../../less/_korona.less';
 
 const DineKoronaSykmeldingOpplysninger = ({
     sykmelding,
@@ -13,10 +14,8 @@ const DineKoronaSykmeldingOpplysninger = ({
 }) => {
     return (
         <div className="dine-opplysninger">
-            <Overskrift className="js-din-sykmelding-tittel typo-innholdstittel blokk-l">
-        14-dagers egenmelding
-            </Overskrift>
-            <div className="blokk-l side-innhold">
+            <Overskrift className="js-din-sykmelding-tittel typo-innholdstittel blokk-l">Egenerklæring</Overskrift>
+            <div className="blokk-l side-innhold fjern-margin-bottom">
                 <SykmeldingPerioder
                     perioder={sykmelding.mulighetForArbeid.perioder}
                     ledetekster={ledetekster}
@@ -59,7 +58,7 @@ const DineKoronaSykmeldingOpplysninger = ({
                                     <span className="js-hoveddiagnose-kode">
                                         {sykmelding.diagnose.hoveddiagnose.diagnosekode}
                                     </span>
-                                    &nbsp;
+                  &nbsp;
                                     <span className="js-hoveddiagnose-system">
                                         {sykmelding.diagnose.hoveddiagnose.diagnosesystem}
                                     </span>
