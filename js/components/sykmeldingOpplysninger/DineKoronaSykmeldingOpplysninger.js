@@ -5,7 +5,6 @@ import { sykmelding as sykmeldingPt, keyValue } from '../../propTypes';
 import { getLedetekst } from '../../ledetekster';
 import { SykmeldingNokkelOpplysning } from './SykmeldingOpplysning';
 import SykmeldingPerioder from './SykmeldingPerioder';
-import '../../../less/_korona.less';
 
 const DineKoronaSykmeldingOpplysninger = ({
     sykmelding,
