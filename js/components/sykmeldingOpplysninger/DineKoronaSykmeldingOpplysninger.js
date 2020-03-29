@@ -14,7 +14,7 @@ const DineKoronaSykmeldingOpplysninger = ({
 }) => {
     return (
         <div className="dine-opplysninger">
-            <Overskrift className="js-din-sykmelding-tittel typo-innholdstittel blokk-l">Egenerklæring</Overskrift>
+            <Overskrift className="js-din-sykmelding-tittel typo-innholdstittel blokk-l">Dine opplysninger</Overskrift>
             <div className="blokk-l side-innhold fjern-margin-bottom">
                 <SykmeldingPerioder
                     perioder={sykmelding.mulighetForArbeid.perioder}
@@ -69,18 +69,6 @@ const DineKoronaSykmeldingOpplysninger = ({
                             {getLedetekst('din-sykmelding.diagnose.meta', ledetekster)}
                         </p>
                     </div>
-                ) : null}
-                {sykmelding.arbeidsgiver ? (
-                    <SykmeldingNokkelOpplysning tittel="Arbeidsgiver">
-                        <div>
-                            <p className="js-arbeidsgiver">{sykmelding.arbeidsgiver}</p>
-                            <p className="js-stillingsprosent">
-                                {getLedetekst('din-sykmelding.stillingsprosent', ledetekster, {
-                                    '%STILLINGSPROSENT%': sykmelding.stillingsprosent,
-                                })}
-                            </p>
-                        </div>
-                    </SykmeldingNokkelOpplysning>
                 ) : null}
             </div>
         </div>
