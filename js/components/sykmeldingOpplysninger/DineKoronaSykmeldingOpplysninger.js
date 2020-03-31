@@ -33,9 +33,6 @@ const DineKoronaSykmeldingOpplysninger = ({
                                     <p className="js-hoveddiagnose">
                                         {sykmelding.diagnose.hoveddiagnose.diagnose}
                                     </p>
-                                    <p className="js-diagnose-meta nokkelopplysning__meta nokkelopplysning__meta--mobil">
-                                        {getLedetekst('din-sykmelding.diagnose.meta', ledetekster)}
-                                    </p>
                                 </div>
                             </SykmeldingNokkelOpplysning>
                             <div className="nokkelopplysning nokkelopplysning--hoveddiagnose js-hoveddiagnose-kode-container">
@@ -64,9 +61,6 @@ const DineKoronaSykmeldingOpplysninger = ({
                                 </p>
                             </div>
                         </div>
-                        <p className="js-diagnose-meta nokkelopplysning__meta nokkelopplysning__meta--desktop">
-                            {getLedetekst('din-sykmelding.diagnose.meta', ledetekster)}
-                        </p>
                     </div>
                 ) : null}
             </div>
