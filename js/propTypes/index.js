@@ -196,6 +196,7 @@ export const sykmeldingstatus = PropTypes.oneOf([
 
 export const sykmelding = PropTypes.shape({
     id: PropTypes.string,
+    erPapirsykmelding: PropTypes.bool,
     erEgenmeldt: PropTypes.bool,
     startLegemeldtFravaer: PropTypes.instanceOf(Date),
     skalViseSkravertFelt: PropTypes.bool,
