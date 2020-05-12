@@ -7,15 +7,18 @@ class BjornBildeLiten extends BjornBildeStor {
         /* eslint-disable */
         return (<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <title>{this.props.alt}</title>
+            <defs>
+                <circle id="path-1-bjorn" cx="32" cy="32" r="32" />
+            </defs>
             <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g id="Group-5">
                     <g id="Group-3">
                         <g id="Group-10-Copy-3">
                             <g id="Group-6">
                                 <mask id="mask-2-bjorn" fill="white">
-                                    <circle id="path-1-bjorn" cx="32" cy="32" r="32" />
+                                    <use xlinkHref="#path-1-bjorn" />
                                 </mask>
-                                <circle id="path-1-bjorn" cx="32" cy="32" r="32" fill="#A4DFF7" />
+                                <use id="Mask" fill="#A4DFF7" xlinkHref="#path-1-bjorn" />
                                 <g id="Group-150" mask="url(#mask-2-bjorn)">
                                     <g transform="translate(6.400000, 3.840000)">
                                         <g id="Group" transform="translate(0.324907, 0.170667)">
