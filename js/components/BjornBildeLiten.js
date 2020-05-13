@@ -8,18 +8,18 @@ class BjornBildeLiten extends BjornBildeStor {
         return (<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <title>{this.props.alt}</title>
             <defs>
-                <circle id="path-1" cx="32" cy="32" r="32" />
+                <circle id="path-1-bjorn" cx="32" cy="32" r="32" />
             </defs>
             <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g id="Group-5">
                     <g id="Group-3">
                         <g id="Group-10-Copy-3">
                             <g id="Group-6">
-                                <mask id="mask-2" fill="white">
-                                    <use xlinkHref="#path-1" />
+                                <mask id="mask-2-bjorn" fill="white">
+                                    <use xlinkHref="#path-1-bjorn" />
                                 </mask>
-                                <use id="Mask" fill="#A4DFF7" xlinkHref="#path-1" />
-                                <g id="Group-150" mask="url(#mask-2)">
+                                <use id="Mask" fill="#A4DFF7" xlinkHref="#path-1-bjorn" />
+                                <g id="Group-150" mask="url(#mask-2-bjorn)">
                                     <g transform="translate(6.400000, 3.840000)">
                                         <g id="Group" transform="translate(0.324907, 0.170667)">
                                             <path d="M25.1245478,45.154717 L17.5391463,45.154717 C13.4494717,45.154717 0,53.5789644 0,61.4209844 L0,82.0553459 L50.2490956,82.0553459 L50.2490956,61.4209844 C50.2490956,53.5789644 36.7996239,45.154717 32.7099493,45.154717 L25.1245478,45.154717 Z" id="Fill-29-Copy" fill="#624B7F" />

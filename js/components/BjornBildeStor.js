@@ -100,18 +100,18 @@ class BjornBildeStor extends Component {
         return (<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <title>{this.props.alt}</title>
             <defs>
-                <circle id="path-1" cx="50" cy="50" r="50" />
+                <circle id="path-1-bjorn" cx="50" cy="50" r="50" />
             </defs>
             <g id="Illustrasjoner" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g id="Group-5">
                     <g id="Group-3">
                         <g id="Group-10-Copy-3">
                             <g id="Group-6">
-                                <mask id="mask-2" fill="white">
-                                    <use xlinkHref="#path-1" />
+                                <mask id="mask-2-bjorn" fill="white">
+                                    <use xlinkHref="#path-1-bjorn" />
                                 </mask>
-                                <use id="Mask" fill="#A4DFF7" xlinkHref="#path-1" />
-                                <g id="Group" mask="url(#mask-2)">
+                                <use id="Mask" fill="#A4DFF7" xlinkHref="#path-1-bjorn" />
+                                <g id="Group" mask="url(#mask-2-bjorn)">
                                     <g transform="translate(25.000000, 15.500000)">
                                         <path
                                             d="M25.75,46.5 L17.975767,46.5 C13.7842838,46.5 0,55.1752289 0,63.2508842 L0,84.5 L51.5,84.5 L51.5,63.2508842 C51.5,55.1752289 37.7157162,46.5 33.524233,46.5 L25.75,46.5 Z"
