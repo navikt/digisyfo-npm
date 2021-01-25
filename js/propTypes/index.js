@@ -171,6 +171,11 @@ export const sykepengesoknad = PropTypes.shape({
     oppsummering: oppsummeringsoknad,
 });
 
+export const merknad = PropTypes.shape({
+    type: PropTypes.string.isRequired,
+    beskrivelse: PropTypes.string,
+});
+
 export const sykmeldingdiagnose = PropTypes.shape({
     diagnose: PropTypes.string,
     diagnosekode: PropTypes.string,
@@ -192,12 +197,14 @@ export const sykmeldingstatus = PropTypes.oneOf([
     sykmldstatuser.UTGAATT,
     sykmldstatuser.AVBRUTT,
     sykmldstatuser.BEKREFTET,
-    sykmldstatuser.TIL_SENDING]);
+    sykmldstatuser.TIL_SENDING,
+]);
 
 export const sykmelding = PropTypes.shape({
     id: PropTypes.string,
     erPapirsykmelding: PropTypes.bool,
     erEgenmeldt: PropTypes.bool,
+    merknader: PropTypes.arrayOf(merknad),
     startLegemeldtFravaer: PropTypes.instanceOf(Date),
     skalViseSkravertFelt: PropTypes.bool,
     identdato: PropTypes.instanceOf(Date),
