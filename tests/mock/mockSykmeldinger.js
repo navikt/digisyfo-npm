@@ -8,10 +8,10 @@ const getSykmelding = (sykmelding = {}) => {
         identdato: '2017-07-07',
         status: 'SENDT',
         merknader: [
-          {
-            type: "UGYLDIG_TILBAKEDATERING",
-            beskrivelse: "Dette er en beskrivelse",
-          },
+            {
+                type: 'UGYLDIG_TILBAKEDATERING',
+                beskrivelse: 'Dette er en beskrivelse',
+            },
         ],
         naermesteLederStatus: null,
         innsendtArbeidsgivernavn: 'TESTBEDRIFT AS',
@@ -110,10 +110,10 @@ export const getParsetSykmelding = (sykmelding = {}) => {
         identdato: new Date('2017-07-07'),
         status: 'SENDT',
         merknader: [
-          {
-            type: "UGYLDIG_TILBAKEDATERING",
-            beskrivelse: "Dette er en beskrivelse",
-          },
+            {
+                type: 'UGYLDIG_TILBAKEDATERING',
+                beskrivelse: 'Dette er en beskrivelse',
+            },
         ],
         naermesteLederStatus: null,
         innsendtArbeidsgivernavn: 'TESTBEDRIFT AS',
