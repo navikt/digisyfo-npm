@@ -7,6 +7,12 @@ const getSykmelding = (sykmelding = {}) => {
         skalViseSkravertFelt: true,
         identdato: '2017-07-07',
         status: 'SENDT',
+        merknader: [
+          {
+            type: "UGYLDIG_TILBAKEDATERING",
+            beskrivelse: "Dette er en beskrivelse",
+          },
+        ],
         naermesteLederStatus: null,
         innsendtArbeidsgivernavn: 'TESTBEDRIFT AS',
         valgtArbeidssituasjon: null,
@@ -103,6 +109,12 @@ export const getParsetSykmelding = (sykmelding = {}) => {
         skalViseSkravertFelt: true,
         identdato: new Date('2017-07-07'),
         status: 'SENDT',
+        merknader: [
+          {
+            type: "UGYLDIG_TILBAKEDATERING",
+            beskrivelse: "Dette er en beskrivelse",
+          },
+        ],
         naermesteLederStatus: null,
         innsendtArbeidsgivernavn: 'TESTBEDRIFT AS',
         valgtArbeidssituasjon: null,
