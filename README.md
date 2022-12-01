@@ -1,6 +1,8 @@
 digisyfo-npm
 ================
 
+# ⚠️ Deprekert: Dette biblioteket er ikke lengre i bruk ⚠️
+
 Felles kode for digitalisering av sykefraværsoppfølgingen.
 
 # Komme i gang
